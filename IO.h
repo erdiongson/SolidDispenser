@@ -26,9 +26,15 @@ extern "C" {
 
 #define SENSOR_A		PORTBbits.RB0
 #define SENSOR_B		PORTBbits.RB1
-#define MOTOR_ON_BUT   	PORTBbits.RB2
+
+#define MOTOR_ON_BUT   	PORTBbits.RB2 
+
+
 #define RIGHT			PORTBbits.RB3
 #define CENTER	    	PORTBbits.RB4
+#define BUTTON_TRIS     TRISBbits.TRISB4 //Input button
+#define BUTTON_PRESSED  (!CENTER)
+#define PULL-UP_PORTB   LATBbits.RB4
     //#define			LATB5
     //#define PGC		LATB6
     //#define PGD		LATB7
