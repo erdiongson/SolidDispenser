@@ -9558,7 +9558,7 @@ void main(void)
                     }while (PORTBbits.RB4 == 0);
                 }
 
-                if ((PORTBbits.RB3 == 0) && NUM != 99)
+                if ((PORTBbits.RB3 == 0) && NUM != 11)
                 {
                     NUM = NUM + 1;
                     while (PORTBbits.RB3 == 0);
@@ -9570,7 +9570,7 @@ void main(void)
                     while (PORTAbits.RA5 == 0);
                 }
 
-                if (PORTAbits.RA4 == 0 && NUM <= 89)
+                if (PORTAbits.RA4 == 0 && NUM <= 1)
                 {
                     NUM = NUM + 10;
                     while (PORTAbits.RA4 == 0);
@@ -10092,14 +10092,24 @@ void Homing_Again_Manual(void)
                 WriteSTLED316SErr('2');
                 MotorBREAK();
             }
-        }
-        while(IR_SENSORF != 1);
+        }while(IR_SENSORF != 1);
 
         errorcounter = 30;
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
 
-        NUM--;
+        while(PORTBbits.RB2 == 0){
+            for(i=0; i<3; i++){
+                _delay((unsigned long)((1000)*(8000000/4000.0)));
+            }
+            Stop = 1;
+        }
+
+        if (NUM < 11)
+        {
+            NUM--;
+        }
+
         WriteSTLED316SData(NUM, vibration_mode);
 
         if (vibration_mode == 1 && NUM != 0)

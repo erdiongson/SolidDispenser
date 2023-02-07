@@ -369,7 +369,7 @@ void main(void)
                     }while (CENTER == 0);
                 }
 
-                if ((RIGHT == 0) && NUM != 99) 
+                if ((RIGHT == 0) && NUM != 11) 
                 {
                     NUM = NUM + 1;
                     while (RIGHT == 0);
@@ -381,7 +381,7 @@ void main(void)
                     while (LEFT == 0);
                 }
 
-                if (DOWN == 0 && NUM <= 89) 
+                if (DOWN == 0 && NUM <= 1) 
                 {
                     NUM = NUM + 10;
                     while (DOWN == 0);
@@ -933,14 +933,24 @@ void Homing_Again_Manual(void)
                 WriteSTLED316SErr('2');
                 MotorBREAK();
             }
-        }
-        while(IR_SENSORF != 1);
+        }while(IR_SENSORF != 1);
         
         errorcounter = errorTime0;
         delay_1ms(Motor_Stop_Delay_Time);
-        MotorBREAK();
-
-        NUM--;
+        MotorBREAK();         
+                
+        while(MOTOR_ON_BUT == 0){ //MOTOR_ON_BUT
+            for(i=0; i<3; i++){  
+                __delay_ms(1000);
+            }
+            Stop = 1;
+        }
+        
+        if (NUM < 11)
+        {
+            NUM--;
+        } 
+        
         WriteSTLED316SData(NUM, vibration_mode);
 
         if (vibration_mode == 1 && NUM != 0) 
@@ -968,7 +978,7 @@ void Homing_Again_Manual(void)
             break;
         
     } // end while
-
+    
     IR_ON = 0; // turn off IR sensor
     
     if (NUM == 0 || Stop==1) 
