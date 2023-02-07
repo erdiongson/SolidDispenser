@@ -39,9 +39,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3820
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f65j50.h: 3820: extern volatile unsigned char CCP4CON __attribute__((address(0xF73)));
 [v _CCP4CON `Vuc ~T0 @X0 0 e@3955 ]
-"3921
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f65j50.h: 3921: extern volatile unsigned char CCPR4L __attribute__((address(0xF74)));
-[v _CCPR4L `Vuc ~T0 @X0 0 e@3956 ]
 "3941
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f65j50.h: 3941:     struct {
 [s S164 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
@@ -879,83 +876,80 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 628 ]
 }
 "29
-[; ;MotorDriver.c: 29: void Set_RG3_PWM(void)
-[v _Set_RG3_PWM `(v ~T0 @X0 1 ef ]
+[; ;MotorDriver.c: 29: void Set_RG3(void)
+[v _Set_RG3 `(v ~T0 @X0 1 ef ]
 "30
 [; ;MotorDriver.c: 30: {
 {
-[e :U _Set_RG3_PWM ]
+[e :U _Set_RG3 ]
 [f ]
-"31
-[; ;MotorDriver.c: 31:     CCP4CON = 0x0C;
-[e = _CCP4CON -> -> 12 `i `uc ]
-"32
-[; ;MotorDriver.c: 32:     CCPR4L = PWM_reg;
-[e = _CCPR4L _PWM_reg ]
 "33
-[; ;MotorDriver.c: 33:   T4CONbits.TMR4ON = 1;
-[e = . . _T4CONbits 0 1 -> -> 1 `i `uc ]
+[; ;MotorDriver.c: 33:     CCP4CON = 0x08;
+[e = _CCP4CON -> -> 8 `i `uc ]
 "34
-[; ;MotorDriver.c: 34: }
+[; ;MotorDriver.c: 34:   T4CONbits.TMR4ON = 1;
+[e = . . _T4CONbits 0 1 -> -> 1 `i `uc ]
+"35
+[; ;MotorDriver.c: 35: }
 [e :UE 629 ]
 }
-"36
-[; ;MotorDriver.c: 36: void Clr_RG3_PWM(void)
-[v _Clr_RG3_PWM `(v ~T0 @X0 1 ef ]
 "37
-[; ;MotorDriver.c: 37: {
-{
-[e :U _Clr_RG3_PWM ]
-[f ]
+[; ;MotorDriver.c: 37: void Clr_RG3(void)
+[v _Clr_RG3 `(v ~T0 @X0 1 ef ]
 "38
-[; ;MotorDriver.c: 38:  CCP4CON = 0x00;
-[e = _CCP4CON -> -> 0 `i `uc ]
+[; ;MotorDriver.c: 38: {
+{
+[e :U _Clr_RG3 ]
+[f ]
 "39
-[; ;MotorDriver.c: 39:     T4CONbits.TMR4ON = 0;
-[e = . . _T4CONbits 0 1 -> -> 0 `i `uc ]
+[; ;MotorDriver.c: 39:  CCP4CON = 0x00;
+[e = _CCP4CON -> -> 0 `i `uc ]
 "40
-[; ;MotorDriver.c: 40: }
+[; ;MotorDriver.c: 40:     T4CONbits.TMR4ON = 0;
+[e = . . _T4CONbits 0 1 -> -> 0 `i `uc ]
+"41
+[; ;MotorDriver.c: 41: }
 [e :UE 630 ]
 }
-"42
-[; ;MotorDriver.c: 42: void MotorON_PWM(void)
-[v _MotorON_PWM `(v ~T0 @X0 1 ef ]
 "43
-[; ;MotorDriver.c: 43: {
-{
-[e :U _MotorON_PWM ]
-[f ]
+[; ;MotorDriver.c: 43: void MotorON(void)
+[v _MotorON `(v ~T0 @X0 1 ef ]
 "44
-[; ;MotorDriver.c: 44:  LATGbits.LATG3 = 1;
-[e = . . _LATGbits 0 3 -> -> 1 `i `uc ]
+[; ;MotorDriver.c: 44: {
+{
+[e :U _MotorON ]
+[f ]
 "45
-[; ;MotorDriver.c: 45:  LATGbits.LATG4 = 1;
+[; ;MotorDriver.c: 45:  LATGbits.LATG3 = 1;
+[e = . . _LATGbits 0 3 -> -> 1 `i `uc ]
+"46
+[; ;MotorDriver.c: 46:  LATGbits.LATG4 = 1;
 [e = . . _LATGbits 0 4 -> -> 1 `i `uc ]
-"47
-[; ;MotorDriver.c: 47:  Set_RG3_PWM();
-[e ( _Set_RG3_PWM ..  ]
 "48
-[; ;MotorDriver.c: 48: }
+[; ;MotorDriver.c: 48:  Set_RG3();
+[e ( _Set_RG3 ..  ]
+"49
+[; ;MotorDriver.c: 49: }
 [e :UE 631 ]
 }
-"50
-[; ;MotorDriver.c: 50: void MotorBREAK(void)
-[v _MotorBREAK `(v ~T0 @X0 1 ef ]
 "51
-[; ;MotorDriver.c: 51: {
+[; ;MotorDriver.c: 51: void MotorBREAK(void)
+[v _MotorBREAK `(v ~T0 @X0 1 ef ]
+"52
+[; ;MotorDriver.c: 52: {
 {
 [e :U _MotorBREAK ]
 [f ]
-"53
-[; ;MotorDriver.c: 53:  Clr_RG3_PWM();
-[e ( _Clr_RG3_PWM ..  ]
-"55
-[; ;MotorDriver.c: 55:  LATGbits.LATG3 = 1;
-[e = . . _LATGbits 0 3 -> -> 1 `i `uc ]
+"54
+[; ;MotorDriver.c: 54:  Clr_RG3();
+[e ( _Clr_RG3 ..  ]
 "56
-[; ;MotorDriver.c: 56:  LATGbits.LATG4 = 1;
-[e = . . _LATGbits 0 4 -> -> 1 `i `uc ]
+[; ;MotorDriver.c: 56:  LATGbits.LATG3 = 1;
+[e = . . _LATGbits 0 3 -> -> 1 `i `uc ]
 "57
-[; ;MotorDriver.c: 57: }
+[; ;MotorDriver.c: 57:  LATGbits.LATG4 = 1;
+[e = . . _LATGbits 0 4 -> -> 1 `i `uc ]
+"58
+[; ;MotorDriver.c: 58: }
 [e :UE 632 ]
 }

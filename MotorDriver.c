@@ -11,9 +11,9 @@
 #include "main.h"
 
 void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
+void Set_RG3(void);
+void Clr_RG3(void);
+void MotorON(void);
 void MotorBREAK(void);
 
 unsigned char PWM_reg;
@@ -26,31 +26,32 @@ void initMotor(void)
     T4CON = 0x00;
 }
 
-void Set_RG3_PWM(void)
+void Set_RG3(void)
 {	
-    CCP4CON = 0x0C;  //0b00001100;	// setup as PWM 
-    CCPR4L = PWM_reg;
+    /*CCP4CON = 0x0C;  //0b00001100;	// setup as PWM 
+    CCPR4L = PWM_reg;*/
+    CCP4CON = 0x08;  //0b00001000;	// set pin high 
  	T4CONbits.TMR4ON = 1;
 }
 
-void Clr_RG3_PWM(void)
+void Clr_RG3(void)
 {
 	CCP4CON = 0x00;		//Disable PWM
     T4CONbits.TMR4ON = 0;
 }
 
-void MotorON_PWM(void)
+void MotorON(void)
 {
 	MotorDrive_RG3 = 1;
 	MotorDrive_RG4 = 1;
 
-	Set_RG3_PWM();
+	Set_RG3();
 }
 
 void MotorBREAK(void)
 {
 
-	Clr_RG3_PWM();
+	Clr_RG3();
 
 	MotorDrive_RG3 = 1;
 	MotorDrive_RG4 = 1;

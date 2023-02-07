@@ -9195,9 +9195,9 @@ extern unsigned char PWM_reg;
 
 void init(void);
 void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
+void Set_RG3(void);
+void Clr_RG3(void);
+void MotorON(void);
 void MotorBREAK(void);
 unsigned int Read_IR(void);
 void MotorPosition_Init(void);

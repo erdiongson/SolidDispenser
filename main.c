@@ -16,7 +16,7 @@
 #include "i2c.h"
 #include "pic18f65j50.h"
 
-#define VERSION     33
+#define VERSION     34
 
 #define OFF         0
 #define ON			1
@@ -78,9 +78,9 @@ unsigned char PWM_reg = 0x3F;
 
 void init(void);
 void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
+void Set_RG3(void);
+void Clr_RG3(void);
+void MotorON(void);
 void MotorBREAK(void);
 unsigned int Read_IR(void);
 void MotorPosition_Init(void);
@@ -315,7 +315,7 @@ void main(void)
     /*************************************************************************
                Read Motor Speed
     **************************************************************************/  
-    PWM_reg = NORMAL;
+    /*    PWM_reg = NORMAL;
     
     INTCONbits.GIE=0; 
     ETemp = read_i2c(EEPROM_MotorSpeed);
@@ -330,7 +330,7 @@ void main(void)
         INTCONbits.GIE=0;
         write_i2c(EEPROM_MotorSpeed,PWM_reg);
         INTCONbits.GIE=1;
-    }
+    }*/
     
     errorcounter = errorTime0;
     MotorPosition_Init();
@@ -553,7 +553,7 @@ void main(void)
                             }
                             break;
                             
-                        case 0x64: //program motor speed
+                        /*case 0x64: //program motor speed
                             
                             if(Busy==0)
                             {
@@ -581,7 +581,7 @@ void main(void)
                                     
                                     Busy = 0;
                             }
-                            break;
+                            break;*/
                             
                         case 0x65: //program motor vibration time
                             
@@ -818,7 +818,7 @@ Function:		Initialize Motor startup position
 void MotorPosition_Init(void)
 {
     IR_ON = 1;
-    MotorON_PWM(); // turn ON motor
+    MotorON(); // turn ON motor
     __delay_ms(350); //default 350
     errorcounter = errorTime0;
         
@@ -906,7 +906,7 @@ void Homing_Again_Manual(void)
         readWeighingData();
         AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
-        MotorON_PWM(); // Turn ON motor
+        MotorON(); // Turn ON motor
         __delay_ms(350); //default 350
         errorcounter = errorTime0;
 
@@ -1020,7 +1020,7 @@ void Homing_Again_Auto(void)
         readWeighingData();
         AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
-        MotorON_PWM(); // Turn ON motor
+        MotorON(); // Turn ON motor
         __delay_ms(350); //default350
         
         errorcounter = errorTime0;

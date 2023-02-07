@@ -9195,9 +9195,9 @@ extern unsigned char PWM_reg;
 
 void init(void);
 void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
+void Set_RG3(void);
+void Clr_RG3(void);
+void MotorON(void);
 void MotorBREAK(void);
 unsigned int Read_IR(void);
 void MotorPosition_Init(void);
@@ -9233,9 +9233,9 @@ void Homing_Again_Auto(void);
 
 
 void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
+void Set_RG3(void);
+void Clr_RG3(void);
+void MotorON(void);
 void MotorBREAK(void);
 
 unsigned char PWM_reg;
@@ -9248,31 +9248,32 @@ void initMotor(void)
     T4CON = 0x00;
 }
 
-void Set_RG3_PWM(void)
+void Set_RG3(void)
 {
-    CCP4CON = 0x0C;
-    CCPR4L = PWM_reg;
+
+
+    CCP4CON = 0x08;
   T4CONbits.TMR4ON = 1;
 }
 
-void Clr_RG3_PWM(void)
+void Clr_RG3(void)
 {
  CCP4CON = 0x00;
     T4CONbits.TMR4ON = 0;
 }
 
-void MotorON_PWM(void)
+void MotorON(void)
 {
  LATGbits.LATG3 = 1;
  LATGbits.LATG4 = 1;
 
- Set_RG3_PWM();
+ Set_RG3();
 }
 
 void MotorBREAK(void)
 {
 
- Clr_RG3_PWM();
+ Clr_RG3();
 
  LATGbits.LATG3 = 1;
  LATGbits.LATG4 = 1;
