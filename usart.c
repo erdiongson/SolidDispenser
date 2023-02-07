@@ -16,9 +16,8 @@ char Read1USART(void);
 
 /****************************************************************************
 Function:		USART Initialization
-******************************************************************************/
-void initUSART(void)
-{
+ ******************************************************************************/
+void initUSART(void) {
     // setup USART
     TRISCbits.TRISC6 = 0; // TX as output
     TRISCbits.TRISC7 = 1; // RX as input
@@ -30,47 +29,42 @@ void initUSART(void)
     TXSTA1bits.CSRC = 0; //Clock Source Select bit for syn - Asyn is dont care
     RCSTA1bits.ADDEN = 1;
     RCSTA1bits.SPEN = 1; // Enable serial port
-    
+
     // Setting for 19200 BPS
     BAUDCON1bits.BRG16 = 0; // Divisor at 8 bit
     TXSTA1bits.BRGH = 1; // No high-speed baudrate
     PIE1bits.RC1IE = 1;
     PIE1bits.TX1IE = 0;
     //(FOSC/baudrate/64)-1 = SPBRG1
-    SPBRG1 = 25;  //48MHZ = 38; // divisor value for 19200
+    SPBRG1 = 25; //48MHZ = 38; // divisor value for 19200
     SPBRGH1 = 0;
-    
+
 }
 
 /****************************************************************************
 Function:		USART Write Function
-******************************************************************************/
-void Write1USART(char data)
-{
-  	TXREG1 = data;      // Write the data byte to the USART2
+ ******************************************************************************/
+void Write1USART(char data) {
+    TXREG1 = data; // Write the data byte to the USART2
 
-	while (Busy1USART());
-}	// end Write1USART
+    while (Busy1USART());
+} // end Write1USART
 
 /****************************************************************************
 Function:		USART Read Function
-******************************************************************************/
-char Read1USART(void)
-{
+ ******************************************************************************/
+char Read1USART(void) {
     char result;
-    
-    if (RCSTA1bits.OERR) 
-    {    //has there been an overrun error?
+
+    if (RCSTA1bits.OERR) { //has there been an overrun error?
         RCSTA1bits.CREN = 0; //disable Rx to clear error
-        result = RCREG1;    //purge receive buffer
-        result = RCREG1;    //purge receive buffer
-        RCSTA1bits.CREN = 1;    //re-enable Rx
-    } 
-    else 
-    {
+        result = RCREG1; //purge receive buffer
+        result = RCREG1; //purge receive buffer
+        RCSTA1bits.CREN = 1; //re-enable Rx
+    } else {
         result = RCREG1;
     }
-    
+
     return result;
 }
 
