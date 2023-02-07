@@ -1,2 +1,0 @@
-Warning[2105] D:\Solid Dispenser API\SolidDispenser_V4.0\Solid_Dispenser_V4.0.X\pic18f65j50.h 41 : Header file pic18f65j50.h included directly. Use #include <xc.h> instead.
-Error[yy] D:\Solid Dispenser API\SolidDispenser_V4.0\Solid_Dispenser_V4.0.X\pic18f65j50.h 50 : syntax error
