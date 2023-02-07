@@ -9297,7 +9297,7 @@ unsigned char __t3rd16on(void);
 
 #pragma config CCP2MX = DEFAULT
 #pragma config MSSPMSK = MSK5
-# 55 "./main.h"
+# 56 "./main.h"
  extern unsigned char PWM_reg;
 
     void init(void);
@@ -9346,7 +9346,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "./pic18f65j50.h" 1
 # 22 "main.c" 2
-# 66 "main.c"
+# 73 "main.c"
 enum Op_Mode {
     MANUAL_MODE, IDLE_MODE, AUTO_MODE
 };
@@ -9386,6 +9386,7 @@ volatile unsigned char delay_motor_stop_time;
 volatile unsigned char PWM_Duty_Cycle;
 volatile char TMR1IF_triggered = 0;
 unsigned char PWM_reg = 0x3F;
+unsigned int dutyCycle_reg;
 
 void init(void);
 void initMotor(void);
@@ -9427,17 +9428,18 @@ void WriteSTLED316SErr(char msg);
 void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
+unsigned int PWM_Selection (unsigned int msg);
 
 
+unsigned int duty_cycle = 0;
 uint16_t pwm_count = 0;
 uint16_t pwm_mode = 0;
 
 int dispense = 0;
-int temp = 0;
 
 void pwm_set(uint16_t duty){
-    CCP2CONbits.DC2B = (uint8_t)(duty & 0x0003);
-    CCPR2L = (uint8_t)(duty >> 2);
+    CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
+    CCPR1L = (uint8_t)(duty >> 2);
 }
 
 
@@ -9451,11 +9453,44 @@ void main(void) {
     i2c_Init();
     initUSART();
     InitTimer1();
-# 211 "main.c"
+# 187 "main.c"
+    OSCCONbits.IRCF0 = 0;
+    OSCCONbits.IRCF1 = 0;
+    OSCCONbits.IRCF2 = 0;
+    OSCCONbits.SCS0 = 0;
+    OSCCONbits.SCS1 = 0;
+
+
+
+    TRISCbits.TRISC2 = 0;
+
+
+
+    TRISBbits.TRISB4 = 1;
+
+
+    T2CONbits.T2OUTPS0 = 0;
+    T2CONbits.T2OUTPS1 = 0;
+    T2CONbits.T2OUTPS2 = 0;
+    T2CONbits.T2OUTPS3 = 0;
+
+    T2CONbits.T2CKPS = 0x00;
+
+
+
+
+
+    PR2 = 4;
+
+    CCP1CONbits.DC1B = 0;
+    CCP1CONbits.CCP1M = 0x0C;
+    CCPR1L = 0;
+
+    T2CONbits.TMR2ON = 1;
+
     LATCbits.LATC1 = 0;
     LATAbits.LATA2 = 0;
     errorcounter = 30;
-
 
 
     RCONbits.IPEN = 1;
@@ -9473,10 +9508,10 @@ void main(void) {
     LATDbits.LATD0 = 1;
     LATDbits.LATD1 = 1;
 
-    WriteSTLED316SData(36, 0xFF);
+    WriteSTLED316SData(37, 0xFF);
     _delay((unsigned long)((500)*(8000000/4000.0)));
     AD_capture_BattVoltage();
-# 243 "main.c"
+# 252 "main.c"
     INTCONbits.GIE = 0;
     ETemp = read_i2c(0x0010);
     INTCONbits.GIE = 1;
@@ -9639,8 +9674,46 @@ void main(void) {
 
 
 
+    INTCONbits.GIE=0;
+    ETemp = read_i2c(0x0070);
+    INTCONbits.GIE=1;
+
+    dutyCycle_reg = ETemp & 0xFF;
+
+    if(dutyCycle_reg != 0x00 && dutyCycle_reg != 0x01 && dutyCycle_reg != 0x02 && dutyCycle_reg != 0x03)
+    {
+        dutyCycle_reg = 0x00;
+        INTCONbits.GIE=0;
+        write_i2c(0x0070,dutyCycle_reg);
+        INTCONbits.GIE=1;
+    }
+    else{
+      switch (dutyCycle_reg) {
+        case 0x00:
+          duty_cycle = 0;
+          break;
+        case 0x01:
+          duty_cycle = 9;
+          break;
+        case 0x02:
+          duty_cycle = 14;
+          break;
+        case 0x03:
+          duty_cycle = 20;
+          break;
+        default:
+          duty_cycle = 0;
+          break;
+        }
+    }
+
+
+
+
     while (1) {
-# 419 "main.c"
+# 464 "main.c"
+        pwm_set(duty_cycle);
+
         __asm(" clrwdt");
         errorcounter = 30;
         AD_capture_BattVoltage();
@@ -9653,16 +9726,18 @@ void main(void) {
 
                 NUM = NUM_REC;
                 if (PORTBbits.RB4 == 0) {
-                    do {
-                        if (PORTBbits.RB2 == 0) {
-                            ToggleVIB_Mode();
-                        }
+                  duty_cycle = PWM_Selection(dutyCycle_reg);
+                  dutyCycle_reg = read_i2c(0x0070);
+                  ToggleVIB_Mode();
 
-                        WriteSTLED316SVibMode(vibration_mode);
-                        _delay((unsigned long)((100)*(8000000/4000.0)));
-
-                    } while (PORTBbits.RB4 == 0);
+                  WriteSTLED316SVibMode(vibration_mode);
+                  _delay((unsigned long)((100)*(8000000/4000.0)));
+                  while (PORTBbits.RB4 == 0);
+# 503 "main.c"
                 }
+
+
+
                 if ((PORTBbits.RB3 == 0) && NUM != 99) {
                     NUM = NUM + 1;
 
@@ -9671,16 +9746,11 @@ void main(void) {
                     while (PORTBbits.RB3 == 0){
                       _delay((unsigned long)((1000)*(8000000/4000.0)));
 
-
-
                       if(PORTBbits.RB3 == 0 && NUM <= 89)
                       {
                         NUM = NUM + 10;
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
-
-
-
                       if(PORTBbits.RB3 == 0 && PORTAbits.RA5 == 0)
                       {
                           NUM = 0;
@@ -9697,15 +9767,10 @@ void main(void) {
                     while (PORTAbits.RA5 == 0){
                       _delay((unsigned long)((1000)*(8000000/4000.0)));
 
-
-
                       if(PORTAbits.RA5 == 0 && NUM >= 10){
                         NUM = NUM - 10;
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
-
-
-
                       if(PORTAbits.RA5 == 0 && PORTBbits.RB3 == 0)
                       {
                           NUM = 0;
@@ -9726,8 +9791,6 @@ void main(void) {
 
                 NUM_REC = NUM;
                 WriteSTLED316SData(NUM, vibration_mode);
-
-
 
 
                 if(dispense == 1)
@@ -9876,7 +9939,7 @@ void main(void) {
                                 Busy = 0;
                             }
                             break;
-# 685 "main.c"
+# 739 "main.c"
                         case 0x65:
 
                             if (Busy == 0) {
@@ -10042,7 +10105,6 @@ void __attribute__((picinterrupt(("")))) high_isr(void) {
     }
 
 
-
     if(INTCON3bits.INT2F == 1) {
 
       if (dispense == 0 && PORTBbits.RB4 != 0)
@@ -10050,7 +10112,6 @@ void __attribute__((picinterrupt(("")))) high_isr(void) {
 
         dispense = 1;
       }
-
       else if (dispense == 1 && PORTBbits.RB4 != 0)
       {
 
@@ -10131,7 +10192,8 @@ void MotorPosition_Init(void) {
 
 
 void ToggleVIB_Mode(void) {
-    if (vibration_mode)
+
+    if (dutyCycle_reg == 0x00)
         vibration_mode = 0;
     else
         vibration_mode = 1;
@@ -10237,20 +10299,20 @@ void Homing_Again_Manual(void) {
 
         if (Stop == 1)
             break;
-
-
-
-
+# 1108 "main.c"
         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
             i_RUN_ZERO = 2;
             WriteSTLED316SData(NUM, !vibration_mode);
             _delay((unsigned long)((50)*(8000000/4000.0)));
             WriteSTLED316SData(NUM, vibration_mode);
             _delay((unsigned long)((50)*(8000000/4000.0)));
+
+
+
+
+
         }
         WriteSTLED316SData(NUM, vibration_mode);
-
-
         if(dispense == 0 && NUM != 0)
         {
             NUM_REC = NUM;
@@ -10457,4 +10519,39 @@ void Low_Power_Indicator(void) {
         LATDbits.LATD1 = 0;
     }
 
+}
+
+
+
+unsigned int PWM_Selection (unsigned int msg){
+    int dcSelected;
+    switch(msg){
+        case 0x00:
+            dcSelected = 9;
+            INTCONbits.GIE = 0;
+            write_i2c(0x0070, 0x01);
+            INTCONbits.GIE = 1;
+            break;
+        case 0x01:
+            dcSelected = 14;
+            INTCONbits.GIE = 0;
+            write_i2c(0x0070, 0x02);
+            INTCONbits.GIE = 1;
+            break;
+        case 0x02:
+            dcSelected = 20;
+            INTCONbits.GIE = 0;
+            write_i2c(0x0070, 0x03);
+            INTCONbits.GIE = 1;
+            break;
+        case 0x03:
+            dcSelected = 0;
+            INTCONbits.GIE = 0;
+            write_i2c(0x0070, 0x00);
+            INTCONbits.GIE = 1;
+            break;
+        default:
+            break;
+    }
+    return(dcSelected);
 }

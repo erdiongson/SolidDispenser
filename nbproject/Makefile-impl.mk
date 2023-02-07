@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=SolidDispenser
+PROJECTNAME=SolidDispenser_V3.7_PWMTrials
 
 # Active Configuration
 DEFAULTCONF=default

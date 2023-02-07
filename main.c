@@ -5,13 +5,13 @@
  * Created on November 30, 2019, 10:21 AM
  * Version 3.1 : i. Move from old complier C18 to new complier XC8
  *               ii. remove old timer and change to use XC8 timer
- * Created: 2022-12-12, 4:00PM
+ * Created: 2022-12-08, 4:00PM
  * Author: erdiongson
- * Version 3.6 : i. Increments and Decrements by 10 when the ?UP? or ?DOWN? 
- *                  Button is pressed - 12/12
- *               ii. Pause for continuous (00) and limited (01-99) dispense - 12/19
- *               iii. Dispense count user reset to zero (00) - 12/20
+ * Version 3.6 : i. Adding PWM Control for the Vibration Motor
+ *               ii. User enabled control for PWM Duty Cycle
+ *                   Controls with 25%, 50%, 75% and 100% Duty Cycle
  */
+
 
 #include <xc.h>
 #include "IO.h"
@@ -24,7 +24,7 @@
 /******************************************************************************
 * Please change this version every time the code is updated.
 ******************************************************************************/
-#define VERSION     36
+#define VERSION     37
 
 /******************************************************************************
 * Watch dog timer enable
@@ -52,6 +52,13 @@
 #define four_sec    0x84
 #define five_sec    0x85
 
+/******************************************************************************
+* PWM Duty Cycle Selection
+******************************************************************************/
+#define zero_percent       0x00
+#define twentyfive_percent 0x01
+#define fifty_percent      0x02
+#define hundred_percent   0x03
 /******************************************************************************
 * Write USART Data
 ******************************************************************************/
@@ -86,7 +93,7 @@ unsigned int Motor_Stop_Delay_Time = 0;
 unsigned int Device_ID;
 unsigned int Motor_Pause_Time = 0;
 unsigned int NUM;
-unsigned int i_RUN_ZERO = 0; //0: Limited; 1: Continuous Dispense; 2: Pause/Stop
+unsigned int i_RUN_ZERO = 0; //0: Limited; 1: Unlimited; 2: Reset/Stop
 unsigned int NUM_REC;
 unsigned int i = 0;
 unsigned int IR_SENSORF = 0;
@@ -102,6 +109,7 @@ volatile unsigned char delay_motor_stop_time;
 volatile unsigned char PWM_Duty_Cycle;
 volatile char TMR1IF_triggered = false;
 unsigned char PWM_reg = 0x3F;
+unsigned int dutyCycle_reg;
 
 void init(void);
 void initMotor(void);
@@ -143,9 +151,19 @@ void WriteSTLED316SErr(char msg);
 void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
+unsigned int PWM_Selection (unsigned int msg);
 
+//
+unsigned int duty_cycle = 0;
+uint16_t pwm_count = 0;
+uint16_t pwm_mode = 0;
+//20221214 - (erdiongson) Interrupt Declaration for toggle on and off
 int dispense = 0;
-int temp = 0;
+
+void pwm_set(uint16_t duty){
+    CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
+    CCPR1L = (uint8_t)(duty >> 2);
+}
 
 /****************************************************************************
 Function:		Main Loop
@@ -159,10 +177,50 @@ void main(void) {
     initUSART();
     InitTimer1();
     
+    
+    //int duty_cycle = 100;
+    //20221214 - (erdiongson) Interrupt Declaration for toggle on and off
+    //INTCON3bits.INT2IE = 1;   //Interrupt Enable INT2 - Dispense Button
+    //INTCON2bits.INTEDG2 = 0; //Interrupt on Falling Edge INT1
+
+    // Set the oscillator to the internal oscillator with a clock frequency of 8MHz
+    OSCCONbits.IRCF0 = 0;
+    OSCCONbits.IRCF1 = 0;
+    OSCCONbits.IRCF2 = 0;
+    OSCCONbits.SCS0 = 0;
+    OSCCONbits.SCS1 = 0;
+    // Set the PWM output pin as an output by writing a '0' to the corresponding TRIS register bit
+    //TRISCbits.TRISC1 = 0;
+    // Set the PWM output pin as an output by writing a '0' to the corresponding TRIS register bit PWM1
+    TRISCbits.TRISC2 = 0;
+    //LATCbits.LATC1 = 1;
+    //PORTCbits.RC1 = 0;
+    // Set this button as an input by writing a '1' to the corresponding TRIS register bit
+    TRISBbits.TRISB4 = 1;
+    
+    //Set Timer2 postscale 1:1
+    T2CONbits.T2OUTPS0 = 0;
+    T2CONbits.T2OUTPS1 = 0;
+    T2CONbits.T2OUTPS2 = 0;
+    T2CONbits.T2OUTPS3 = 0;
+    //Set pre-scaler 1:1
+    T2CONbits.T2CKPS = 0x00;
+    
+    //set the PWM period by writing to PR2 Register
+    //AS per computation:
+    //PWD_Period = (PR2+1)*(4*TOSC*Prescaler)
+    //PR2 = [(1/400KHZ)/(4*(1/8MHz)*1)]-1
+    PR2 = 4;
+    //CCPxCON Setting
+    CCP1CONbits.DC1B = 0;
+    CCP1CONbits.CCP1M = 0x0C;
+    CCPR1L = 0;
+    
+    T2CONbits.TMR2ON = 1;
+    
     VIB_MOTOR_ON = 0;
     IR_ON = 0;
     errorcounter = errorTime0;
-
 
     /* Enable interrupt priority */
     RCONbits.IPEN = 1;
@@ -350,10 +408,61 @@ void main(void) {
     MotorPosition_Init();
     AMBER_LED = 0;
 
+    /*************************************************************************
+               Read PWM Setup
+     **************************************************************************/    
+    INTCONbits.GIE=0; 
+    ETemp = read_i2c(EEPROM_PWMDutyCycle);
+    INTCONbits.GIE=1;
+    
+    dutyCycle_reg = ETemp & 0xFF;
+    
+    if(dutyCycle_reg != zero_percent && dutyCycle_reg != twentyfive_percent && dutyCycle_reg != fifty_percent && dutyCycle_reg != hundred_percent)
+    {
+        dutyCycle_reg = zero_percent;
+        INTCONbits.GIE=0;
+        write_i2c(EEPROM_PWMDutyCycle,dutyCycle_reg);
+        INTCONbits.GIE=1;
+    }
+    else{
+      switch (dutyCycle_reg) {
+        case zero_percent:
+          duty_cycle = 0;
+          break;
+        case twentyfive_percent:
+          duty_cycle = 9;
+          break;       
+        case fifty_percent:
+          duty_cycle = 14;
+          break;
+        case hundred_percent:
+          duty_cycle = 20;
+          break;
+        default:
+          duty_cycle = 0;
+          break;          
+        }   
+    }
+                   
     /****************************************************************************
                    While(1) loop
      ******************************************************************************/
     while (1) {
+        //20221212 - (erdiongson) Test for PWM only -- NOT TO BE USED
+        //CCP2CONbits.DC2B = (duty_cycle & 0x03);
+        //CCPR2L = (duty_cycle >> 2);
+        //PORTCbits.RC1 = CCP2CONbits.CCP2X;
+        
+        /*pwm_set(duty_cycle); //change the pwm_count to any duty cycle you want
+        duty_cycle++;
+        __delay_ms(2000);
+        if(duty_cycle >= 0x13){
+            duty_cycle = 0;
+        }
+       //END 20221212 - (erdiongson) Test for PWM only -- NOT TO BE USED*/
+        
+        pwm_set(duty_cycle);
+        
         ClrWdt();
         errorcounter = errorTime0;
         AD_capture_BattVoltage();
@@ -366,34 +475,48 @@ void main(void) {
 
                 NUM = NUM_REC;
                 if (CENTER == 0) {
-                    do {
-                        if (MOTOR_ON_BUT == 0) {
-                            ToggleVIB_Mode();
-                        }
-
-                        WriteSTLED316SVibMode(vibration_mode);
-                        __delay_ms(100);
-
-                    } while (CENTER == 0);
+                  duty_cycle = PWM_Selection(dutyCycle_reg);
+                  dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                  ToggleVIB_Mode();
+                      
+                  WriteSTLED316SVibMode(vibration_mode);
+                  __delay_ms(100);
+                  while (CENTER == 0);
+                    
+                    //duty_cycle = PWM_Selection(dutyCycle_reg);
+                    //dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                    //duty_cycle += 5;
+                    /*pwm_set(pwm_count); //change the pwm_count to any duty cycle you want
+                                        
+                    if(pwm_count >= 0x50){
+                      pwm_count = 0;
+                    }*/
+                    /*
+                    duty_cycle += 25;
+                    if(duty_cycle > 100)
+                    {
+                       duty_cycle = 25;
+                    }
+                    //Set the PWM duty cycle by writing to the CCP1CON and CCPR1L registers
+                    CCP2CONbits.DC2B = (duty_cycle & 0x03);
+                    CCPR2L = (duty_cycle >> 2);*/
                 }
+                // Output the PWM signal to the digital output pin VIBRATION_MODE for testing
+                //PORTCbits.RC1 = CCP2CONbits.CCP2X;
+                
                 if ((RIGHT == 0) && NUM != 99) {
                     NUM = NUM + 1;
-                    //20221212: erdiongson - added increase in 10 digits when button is pressed longer
+                    //20221212 - (erdiongson) added increase in 10 digits when button is pressed longer
                     WriteSTLED316SData(NUM, vibration_mode);
                     __delay_ms(250);
                     while (RIGHT == 0){
                       __delay_ms(1000);
-                      
-                      //erdiongson - Making sure that the Button is still pressed after a second
-                      //             to avoid false  increments
+                      //Making sure that the Button is still pressed after a second
                       if(RIGHT == 0 && NUM <= 89)
                       {
                         NUM = NUM + 10; 
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
-                      
-                      //20221220: erdiongson - pressing both UP and DOWN button resets
-                      //                       the number to zero '00'
                       if(RIGHT == 0 && LEFT == 0)
                       {
                           NUM = 0;
@@ -409,16 +532,11 @@ void main(void) {
                     __delay_ms(250);
                     while (LEFT == 0){
                       __delay_ms(1000);
-                      
-                      //erdiongson - Making sure that the Button is still pressed after a second
-                      //             to avoid false  increments
+                      //Making sure that the Button is still pressed after a second
                       if(LEFT == 0 && NUM >= 10){
                         NUM = NUM - 10;
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
-                      
-                      //20221220: erdiongson - pressing both UP and DOWN button resets
-                      //                       the number to zero '00'
                       if(LEFT == 0 && RIGHT == 0)
                       {
                           NUM = 0;
@@ -440,8 +558,6 @@ void main(void) {
                 NUM_REC = NUM;
                 WriteSTLED316SData(NUM, vibration_mode);
                 
-                //20221219: erdiongson - using the dispense variable as a temporary variable
-                //                       for the MOTOR_ON_BUT/dispense button
                 //if (MOTOR_ON_BUT == 0) //MOTOR_ON_BUT
                 if(dispense == 1)
                 {
@@ -784,8 +900,7 @@ void __interrupt() high_isr(void) {
         TMR1IF_triggered = true;
     }
     
-    //20221219: erdiongson - to use the dispense button as both pause and start,
-    //                       we turn it as an interrupt toggle
+    //Turn on and off of Dispensing
     if(INTCON3bits.INT2F == 1) {
       //If the motor is currently off
       if (dispense == 0 && CENTER != 0)
@@ -793,7 +908,6 @@ void __interrupt() high_isr(void) {
         //Turn on Dispense Motor
         dispense = 1;
       }
-      //If the motor is currently on
       else if (dispense == 1 && CENTER != 0)
       {
         //Turn off Dispense Motor
@@ -874,7 +988,8 @@ void MotorPosition_Init(void) {
 Function:		Toggle vibration variable
  ******************************************************************************/
 void ToggleVIB_Mode(void) {
-    if (vibration_mode)
+    //if(vibration_mode)
+    if (dutyCycle_reg == zero_percent)
         vibration_mode = 0;
     else
         vibration_mode = 1;
@@ -981,19 +1096,28 @@ void Homing_Again_Manual(void) {
         if (Stop == 1)
             break;
 
+        /*while (NUM == 0 && i_RUN_ZERO == 0) {    
+            i_RUN_ZERO = 2;
+            WriteSTLED316SData(NUM, !vibration_mode);
+            __delay_ms(50);
+            WriteSTLED316SData(NUM, vibration_mode);
+            __delay_ms(50);
+        }  */      
+        
         //while (!MOTOR_ON_BUT && NUM == 0) {
-        //20221219: erdiongson - checking if the dispense button is pressed at any
-        //                       point on the process
         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {    
             i_RUN_ZERO = 2;
             WriteSTLED316SData(NUM, !vibration_mode);
             __delay_ms(50);
             WriteSTLED316SData(NUM, vibration_mode);
             __delay_ms(50);
+            /*if(NUM != 0)
+            {
+                NUM = 0;
+                NUMInit = NUM;
+            }*/
         }
         WriteSTLED316SData(NUM, vibration_mode);
-        
-        //remembers the last NUM value for Pause process
         if(dispense == 0 && NUM != 0)
         {
             NUM_REC = NUM;
@@ -1018,7 +1142,7 @@ void Homing_Again_Manual(void) {
     }
     i_RUN_ZERO = 0;
     NUM = 0;
-    //resets the dispense variable for START/PASUSE/STOP command button
+    //NUM = NUMInit;
     dispense = 0;
     OpMode = MANUAL_MODE;
 
@@ -1200,4 +1324,39 @@ void Low_Power_Indicator(void) {
         AMBER_LED = 0;
     }
 
+}
+/****************************************************************************
+Function:		Selecting the PWM duty cycle
+ ******************************************************************************/
+unsigned int PWM_Selection (unsigned int msg){
+    int dcSelected;
+    switch(msg){
+        case zero_percent:
+            dcSelected = 9; //The duty cycle can be selected from 0-20
+            INTCONbits.GIE = 0;
+            write_i2c(EEPROM_PWMDutyCycle, twentyfive_percent);
+            INTCONbits.GIE = 1;
+            break;
+        case twentyfive_percent:
+            dcSelected = 14;
+            INTCONbits.GIE = 0;
+            write_i2c(EEPROM_PWMDutyCycle, fifty_percent);
+            INTCONbits.GIE = 1;
+            break;            
+        case fifty_percent:
+            dcSelected = 20;
+            INTCONbits.GIE = 0;
+            write_i2c(EEPROM_PWMDutyCycle, hundred_percent);
+            INTCONbits.GIE = 1;            
+            break;
+        case hundred_percent:
+            dcSelected = 0;            
+            INTCONbits.GIE = 0;
+            write_i2c(EEPROM_PWMDutyCycle, zero_percent);
+            INTCONbits.GIE = 1;
+            break;
+        default:
+            break;
+    }
+    return(dcSelected);
 }
