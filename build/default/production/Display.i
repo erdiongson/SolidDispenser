@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "Display.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,15 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-# 11 "main.c"
+# 1 "Display.c" 2
+
+
+
+
+
+
+
+
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -9156,25 +9163,10 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 11 "main.c" 2
+# 9 "Display.c" 2
 
 # 1 "./IO.h" 1
-# 12 "main.c" 2
-
-# 1 "./DRV8872.h" 1
-# 16 "./DRV8872.h"
-void Motor_Init(void);
-void MotorON_PWM(void);
-
-void HomeBREAK(void);
-void MotorBREAK(void);
-
-void Set_RG3_PWM(void);
-void Set_RG4_PWM(void);
-
-void Clr_RG3_PWM(void);
-void Clr_RG4_PWM(void);
-# 13 "main.c" 2
+# 10 "Display.c" 2
 
 # 1 "./main.h" 1
 # 16 "./main.h"
@@ -9240,1104 +9232,341 @@ void flush(void);
 void flushOut(void);
 void readWeighingData(void);
 void Homing_Again_Auto(void);
-# 14 "main.c" 2
+# 11 "Display.c" 2
 
 # 1 "./Led_Display.h" 1
-# 15 "main.c" 2
-
-# 1 "./i2c.h" 1
-# 16 "main.c" 2
-
-# 1 "./pic18f65j50.h" 1
-# 17 "main.c" 2
-# 41 "main.c"
-enum Op_Mode{MANUAL_MODE, IDLE_MODE,AUTO_MODE};
-
-unsigned char Serial_Flag;
-unsigned char Serial_GData;
-unsigned char Serial_Buffer[16];
-unsigned char Serial_Temp_Buffer[16];
-unsigned char Serial_Buffer_Out[16];
-unsigned char Stop = 0;
-unsigned char motor_status;
-unsigned char Busy = 0;
-unsigned char vibration_mode;
-unsigned char data;
-
-unsigned int Serial_Count;
-unsigned int EAdd_High, EAdd_Low, ETemp;
-unsigned int Motor_Speed;
-unsigned int Vmotor_Time = 2000;
-unsigned int Motor_Stop_Delay_Time = 0;
-unsigned int Device_ID;
-unsigned int Motor_Pause_Time = 0;
-unsigned int NUM;
-unsigned int NUM_REC;
-unsigned int i=0;
-unsigned int IR_SENSORF = 0;
-
-volatile char OpMode = MANUAL_MODE;
-volatile long errorcounter = 30;
-
-volatile unsigned char pause_Time;
-volatile unsigned char vib_Time;
-volatile unsigned char delay_motor_stop_time;
-volatile unsigned char PWM_Duty_Cycle;
-volatile char TMR1IF_triggered = 0;
-unsigned char PWM_reg = 0x3F;
-
-void init(void);
-void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
-void MotorBREAK(void);
-unsigned int Read_IR(void);
-void MotorPosition_Init(void);
-void STLED316s_Delay (void);
-void STLED316s_SPI_SendData ( unsigned char Data );
-void WriteSTLED316SData( int number, char v_mode);
-void WriteSTLED316SMode( char msg);
-void WriteSTLED316SVibMode( char v_mode);
-void InitSTLED316( unsigned char Brightness );
-unsigned char Get7Seg (int Digit);
-void ToggleVIB_Mode(void);
-void Homing_Again_Manual(void);
-void i2c_Init(void);
-void i2c_Wait(void);
-void i2c_Start(void);
-void i2c_Restart(void);
-void i2c_Stop(void);
-void i2c_Write(unsigned char data);
-void i2c_Address(unsigned char address, unsigned char mode);
-int i2c_Read(unsigned char ack);
-void write_i2c(long address, int data);
-int read_i2c(long address);
-void Vibration_Time(unsigned int vib_time);
-void Delay_Time(unsigned int delaytime);
-void initUSART(void);
-void Write1USART(char data);
-char Read1USART(void);
-void flush(void);
-void flushOut(void);
-void readWeighingData(void);
-void Homing_Again_Auto(void);
-void WriteSTLED316SErr( char msg);
-void InitTimer1(void);
+# 12 "Display.c" 2
 
 
-
-
-
-void main(void)
+void InitSTLED316( unsigned char Brightness )
 {
-    GIE = 0;
-    init();
-    InitSTLED316(0x77);
-    initMotor();
-    i2c_Init();
-    initUSART();
-    InitTimer1();
+ int i;
 
-    LATCbits.LATC1 = 0;
-    LATAbits.LATA2 = 0;
-    errorcounter = 30;
+ LATCbits.LATC4 = 1;
 
+ LATCbits.LATC4 = 0;
 
+ STLED316s_SPI_SendData ( 0x00 + (0x02 << 3) + 0x20 + 0x00 );
 
-   RCONbits.IPEN = 1;
 
+ LATCbits.LATC4 = 1;
 
-   IPR1bits.RCIP = 1;
+ LATCbits.LATC4 = 0;
 
 
-   INTCONbits.GIEH = 1;
-    INTCONbits.GIE=1;
+ STLED316s_SPI_SendData ( 0x00 + (0x02 << 3) + 0x20 + 0x00 );
 
+ STLED316s_SPI_SendData ( ( ( Brightness>>4 )<<5 ) | 0x00 | 0x5 );
 
+ LATCbits.LATC4 = 1;
 
+ LATCbits.LATC4 = 0;
 
-    WDTCONbits.SWDTEN = 0;
 
-    LATDbits.LATD0 = 1;
-    LATDbits.LATD1 = 0;
+ STLED316s_SPI_SendData ( (0x02 << 3) + 0x01 + 0x00 + 0x00 );
 
-    WriteSTLED316SData(32, 0xFF);
-    _delay((unsigned long)((100)*(8000000/4000.0)));
-# 162 "main.c"
-    INTCONbits.GIE=0;
-    ETemp = read_i2c(0x0010);
-    INTCONbits.GIE=1;
 
-    vibration_mode = ETemp & 0x00FF;
-    if(vibration_mode>1)
-    {
-        vibration_mode = 1;
 
-        INTCONbits.GIE=0;
-        write_i2c(0x0010, vibration_mode);
-        INTCONbits.GIE=1;
-    }
 
-    NUM = 1;
-    WriteSTLED316SData(NUM, vibration_mode);
-    NUM_REC = 1;
 
+ LATCbits.LATC4 = 1;
 
+ LATCbits.LATC4 = 0;
 
 
-    INTCONbits.GIE=0;
-    ETemp = read_i2c(0x0020);
-    INTCONbits.GIE=1;
+    STLED316s_SPI_SendData ( (0x02 << 3) + 0x01 + 0x00 + 0x00 );
 
-    Device_ID = ETemp & 0x00FF;
-    if(Device_ID<0x31 || Device_ID>0x3A)
-    {
-        Device_ID=0x31;
+ STLED316s_SPI_SendData ( Brightness );
+ STLED316s_SPI_SendData ( Brightness );
+ STLED316s_SPI_SendData ( Brightness );
 
-        INTCONbits.GIE=0;
-        write_i2c(0x0020, Device_ID);
-        INTCONbits.GIE=1;
-    }
 
 
+ LATCbits.LATC4 = 1;
 
+ LATCbits.LATC4 = 0;
 
-    INTCONbits.GIE=0;
-    ETemp = read_i2c(0x0060);
-    INTCONbits.GIE=1;
 
-    pause_Time = ETemp & 0x00FF;
-    if(pause_Time<0x30 || pause_Time>0x35)
-    {
-        pause_Time = 0x30;
-        Motor_Pause_Time=0;
+ STLED316s_SPI_SendData ( (0x03 << 3) + 0x00 + 0x00 + 0x00 );
 
-        INTCONbits.GIE=0;
-        write_i2c(0x0060, pause_Time);
-        INTCONbits.GIE=1;
-    }
-    else
-    {
-        switch(pause_Time)
-        {
-            case 0x30:
-            default:
-                Motor_Pause_Time = 0;
-                pause_Time = 0x30;
-                break;
 
-            case 0x31:
-                Motor_Pause_Time = 1000;
-                break;
+ LATCbits.LATC4 = 1;
 
-            case 0x32:
-                Motor_Pause_Time = 2000;
-                break;
-
-            case 0x33:
-                 Motor_Pause_Time = 3000;
-                break;
+ LATCbits.LATC4 = 0;
 
-            case 0x34:
-                Motor_Pause_Time = 4000;
-                break;
+    STLED316s_SPI_SendData ( (0x03 << 3) + 0x00 + 0x00 + 0x00 );
 
-            case 0x35:
-                Motor_Pause_Time = 5000;
-                break;
-        }
-    }
+ STLED316s_SPI_SendData ( Brightness );
+ STLED316s_SPI_SendData ( Brightness );
+ STLED316s_SPI_SendData ( Brightness );
+ STLED316s_SPI_SendData ( Brightness );
 
 
 
+ LATCbits.LATC4 = 1;
+}
 
-    INTCONbits.GIE=0;
-    ETemp = read_i2c(0x0050);
-    INTCONbits.GIE=1;
-
-    delay_motor_stop_time = ETemp & 0x00FF;
-    if(delay_motor_stop_time>0x96)
-    {
-        delay_motor_stop_time=0x00;
-
-        INTCONbits.GIE=0;
-        write_i2c(0x0050, delay_motor_stop_time);
-        INTCONbits.GIE=1;
-
-        Motor_Stop_Delay_Time=0;
-    }
-    else
-    {
-        Motor_Stop_Delay_Time = delay_motor_stop_time;
-    }
-
-
-
-
-    INTCONbits.GIE=0;
-    ETemp = read_i2c(0x0040);
-    INTCONbits.GIE=1
-            ;
-    vib_Time = ETemp & 0x00FF;
-    if( (vib_Time!=0x81 && vib_Time!=0x82 && vib_Time!=0x83 && vib_Time!=0x84 && vib_Time!=0x85) )
-    {
-        Vmotor_Time = 2000;
-        vib_Time = 0x82;
-
-        INTCONbits.GIE=0;
-        write_i2c(0x0040,vib_Time);
-        INTCONbits.GIE=1;
-    }
-    else
-    {
-        switch(vib_Time)
-        {
-            case 0x81:
-                Vmotor_Time=1000;
-                break;
-            case 0x82:
-            default:
-                Vmotor_Time=2000;
-                vib_Time=0x82;
-                break;
-            case 0x83:
-                Vmotor_Time=3000;
-                break;
-            case 0x84:
-                Vmotor_Time=4000;
-                break;
-            case 0x85:
-                Vmotor_Time=5000;
-                break;
-        }
-    }
-
-
-
-
-    PWM_reg = 0x3F;
-
-    INTCONbits.GIE=0;
-    ETemp = read_i2c(0x0030);
-    INTCONbits.GIE=1;
-
-    PWM_reg = ETemp & 0x00FF;
-
-    if( (PWM_reg!=0x00 && PWM_reg!=0x3F && PWM_reg!=0x7F) )
-    {
-        PWM_reg=0x3F;
-
-        INTCONbits.GIE=0;
-        write_i2c(0x0030,PWM_reg);
-        INTCONbits.GIE=1;
-    }
-
-    errorcounter = 30;
-    MotorPosition_Init();
-
-
-
-
-    while(1)
-    {
-        __asm(" clrwdt");
-        errorcounter = 30;
-
-        switch(OpMode)
-        {
-
-
-
-            case MANUAL_MODE:
-
-                NUM = NUM_REC;
-
-                if (PORTBbits.RB4 == 0)
-                {
-                    do
-                    {
-                        if(PORTBbits.RB2 == 0)
-                        {
-                            ToggleVIB_Mode();
-                        }
-
-                        WriteSTLED316SVibMode(vibration_mode);
-                         _delay((unsigned long)((100)*(8000000/4000.0)));
-
-                    }while (PORTBbits.RB4 == 0);
-                }
-
-                if ((PORTBbits.RB3 == 0) && NUM != 99)
-                {
-                    NUM = NUM + 1;
-                    while (PORTBbits.RB3 == 0);
-                }
-
-                if (PORTAbits.RA5 == 0 && NUM != 0)
-                {
-                    NUM = NUM - 1;
-                    while (PORTAbits.RA5 == 0);
-                }
-
-                if (PORTAbits.RA4 == 0 && NUM <= 89)
-                {
-                    NUM = NUM + 10;
-                    while (PORTAbits.RA4 == 0);
-                }
-
-                if (PORTAbits.RA3 == 0 && NUM >= 10)
-                {
-                    NUM = NUM - 10;
-                    while (PORTAbits.RA3 == 0);
-                }
-
-                NUM_REC = NUM;
-                WriteSTLED316SData(NUM, vibration_mode);
-
-                if (PORTBbits.RB2 == 0)
-                {
-                    Busy = 1;
-                    errorcounter = 30;
-                    Homing_Again_Manual();
-                    Stop = 0;
-                    Busy = 0;
-
-                    do
-                    {
-                        WriteSTLED316SErr('E');
-                    }
-                    while (!PORTBbits.RB2);
-                }
-
-
-
-
-            case AUTO_MODE:
-
-                if(Serial_Flag==1)
-                {
-
-                    switch(Serial_Buffer[1])
-                    {
-                        case 0x44:
-
-                            if(Serial_Buffer[2] == 0xF1 && Busy == 0)
-                            {
-                                Stop = 0;
-                                Busy = 1;
-                                NUM = NUM_REC;
-
-                                errorcounter = 30;
-                                Homing_Again_Auto();
-
-                            }
-                            else if(Serial_Buffer[2] == 0xF2 && Busy == 0)
-                           {
-                                Stop = 0;
-                                Busy = 1;
-                                NUM = NUM_REC;
-                                WriteSTLED316SData(NUM, vibration_mode);
-
-                                errorcounter = 30;
-                                Homing_Again_Manual();
-
-
-                                if(Stop == 0)
-                                {
-                                    Serial_Buffer_Out[0] = 0xA5;
-                                    Serial_Buffer_Out[1] = 0x44;
-                                    Serial_Buffer_Out[2] = 0xF9;
-                                    Serial_Buffer_Out[3] = 0X3D;
-                                    Serial_Buffer_Out[4] = 0x5A;
-
-                                    INTCONbits.GIE=0;
-                                    for (i=0; i<5;i++)
-                                    {
-                                        Write1USART(Serial_Buffer_Out[i]);
-                                    }
-                                    INTCONbits.GIE=1;
-                                }
-
-                            }
-                                flush();
-                                flushOut();
-                                Stop = 0;
-                                Busy = 0;
-                                break;
-
-
-                        case 0x23:
-
-                            if(Busy==0)
-                            {
-                                Busy = 1;
-
-
-
-                                    pause_Time = Serial_Buffer[2];
-                                    switch(pause_Time)
-                                    {
-                                        case 0x30:
-                                        default:
-                                            Motor_Pause_Time = 0;
-                                            pause_Time = 0x30;
-                                            break;
-
-                                        case 0x31:
-                                            Motor_Pause_Time = 1000;
-                                            break;
-
-                                        case 0x32:
-                                            Motor_Pause_Time = 2000;
-                                            break;
-
-                                        case 0x33:
-                                            Motor_Pause_Time = 3000;
-                                            break;
-
-                                        case 0x34:
-                                            Motor_Pause_Time = 4000;
-                                            break;
-
-                                        case 0x35:
-                                            Motor_Pause_Time = 5000;
-                                            break;
-                                    }
-
-
-
-                                INTCONbits.GIE=0;
-                                write_i2c(0x0060, pause_Time);
-                                INTCONbits.GIE=1;
-
-                                flush();
-                                Busy = 0;
-                            }
-                            break;
-
-
-                        case 0x51:
-
-                            if(Busy==0)
-                            {
-                                if (Serial_Buffer[2] == 0x00)
-                                {
-                                    Busy = 1;
-
-                                    INTCONbits.GIE=0;
-                                    pause_Time = read_i2c(0x0060);
-                                    vib_Time = read_i2c(0x0040);
-                                    Motor_Speed = read_i2c(0x0030);
-                                    delay_motor_stop_time = read_i2c(0x0050);
-                                    INTCONbits.GIE=1;
-
-                                    Serial_Buffer_Out[0] = 0x51;
-                                    Serial_Buffer_Out[1] = pause_Time;
-                                    Serial_Buffer_Out[2] = Motor_Speed;
-                                    Serial_Buffer_Out[3] = vib_Time;
-                                    Serial_Buffer_Out[4] = delay_motor_stop_time;
-
-                                    _delay((unsigned long)((100)*(8000000/4000.0)));
-
-                                    INTCONbits.GIE=0;
-                                    for (i=0; i<5;i++)
-                                    {
-                                        Write1USART(Serial_Buffer_Out[i]);
-                                    }
-                                    INTCONbits.GIE=1;
-                                }
-                                flushOut();
-                                Busy = 0;
-                            }
-                            break;
-
-                        case 0x64:
-
-                            if(Busy==0)
-                            {
-                                Busy = 1;
-                                PWM_Duty_Cycle = Serial_Buffer[2];
-
-                                switch(PWM_Duty_Cycle)
-                                {
-                                    case 0x00:
-                                        PWM_reg=0x00;
-                                        break;
-
-                                    case 0x3F:
-                                    default:
-                                        PWM_reg=0x3F;
-                                        break;
-
-                                    case 0x7F:
-                                        PWM_reg=0x7F;
-                                        break;
-                                }
-                                    INTCONbits.GIE=0;
-                                    write_i2c(0x0030,PWM_reg);
-                                    INTCONbits.GIE=1;
-
-                                    Busy = 0;
-                            }
-                            break;
-
-                        case 0x65:
-
-                            if(Busy == 0)
-                            {
-                                Busy = 1;
-                                vib_Time = Serial_Buffer[2];
-
-                                switch(vib_Time)
-                                {
-                                    case 0x81:
-                                        Vmotor_Time=1000;
-                                        break;
-
-                                    case 0x82:
-                                    default:
-                                        Vmotor_Time=2000;
-                                        vib_Time=0x82;
-                                        break;
-
-                                    case 0x83:
-                                        Vmotor_Time=3000;
-                                        break;
-
-                                    case 0x84:
-                                        Vmotor_Time=4000;
-                                        break;
-
-                                    case 0x85:
-                                        Vmotor_Time=5000;
-                                        break;
-                                }
-                                    INTCONbits.GIE=0;
-                                    write_i2c(0x0040,vib_Time);
-                                    INTCONbits.GIE=1;
-
-                                    Busy = 0;
-                            }
-
-                        case 0x66:
-
-                            if(Busy == 0)
-                            {
-                                Busy = 1;
-                                delay_motor_stop_time = Serial_Buffer[2];
-                                Motor_Stop_Delay_Time = delay_motor_stop_time;
-
-                                INTCONbits.GIE=0;
-                                write_i2c(0x0050,delay_motor_stop_time);
-                                INTCONbits.GIE=1;
-
-                                Busy = 0;
-                            }
-
-                            break;
-
-                    }
-
-                    Serial_Flag = 0;
-                    Serial_GData = 0;
-                    OpMode = MANUAL_MODE;
-                }
-                else
-                {
-                    OpMode = MANUAL_MODE;
-                }
-
-
-        }
-    }
+void STLED316s_Delay(void)
+{
 
 
 
 }
 
-
-
-
-void __attribute__((picinterrupt(("")))) high_isr(void)
+void STLED316s_SPI_SendData( unsigned char Data )
 {
-    unsigned char c, i;
- unsigned char Temp;
+ char i,temp,t;
 
-    if ((PIR1bits.RC1IF))
+ for(i = 0; i < 8 ;i ++)
  {
-
-  c=Read1USART();
-
-  if ((c == 0xA5) && ((Serial_Flag == 0)||(Busy == 1)))
-  {
-   Serial_GData = 1;
-   Serial_Count = 0;
-   Serial_Buffer[Serial_Count] = c;
-            Serial_Count++;
-  }
-  else if (Serial_GData == 1)
-  {
-   Serial_Buffer[Serial_Count] = c;
-
-   if(Serial_Count<5)
-            {
-                if (c == 0x5A)
-                {
-                    Temp = Serial_Buffer[1] + Serial_Buffer[2];
-
-                    if (Temp == Serial_Buffer[3])
-                    {
-                        if(Busy==0 || Serial_Buffer[2]==0xF5)
-                        {
-                            INTCONbits.GIE=0;
-                            for (i=0; i<5; i++)
-                            {
-                                Write1USART(Serial_Buffer[i]);
-                            }
-                            INTCONbits.GIE=1;
-                        }
-                        else
-                        {
-                            INTCONbits.GIE=0;
-                            for (i=0; i<5; i++)
-                            {
-                                Write1USART(0x16);
-                            }
-                            INTCONbits.GIE=1;
-                        }
-
-                        Serial_Flag = 1;
-                        Serial_Count = 0;
-                        OpMode = AUTO_MODE;
-
-                    }
-                    else
-                    {
-                        Serial_Flag = 0;
-                        Serial_Count = 0;
-
-                        INTCONbits.GIE=0;
-                        for (i=0; i<5; i++)
-                        {
-                            Write1USART(0x15);
-                        }
-                        INTCONbits.GIE=1;
-                    }
-
-                    if(Serial_Buffer[2]==0xF5 && OpMode == AUTO_MODE)
-                    {
-                        Stop = 1;
-                    }
-                }
-            }
-            else
-            {
-                Serial_GData = 0;
-            }
-
-            Serial_Count++;
-  }
+  LATCbits.LATC3 = 0;
+  temp = Data & (0x1 << i);
+  if(temp)
+   LATCbits.LATC5 = 1;
+  else
+   LATCbits.LATC5 = 0;
+  for( t = 0 ; t < 5; t++);
+  LATCbits.LATC3 = 1;
+  for( t = 0 ; t < 5 ; t++);
  }
-    else
-    {
-        if (RCSTA1bits.OERR == 1)
-        {
-            RCSTA1bits.OERR = 0;
-            RCSTA1bits.CREN = 0;
-            RCSTA1bits.CREN = 1;
-        }
-    }
-
-    if (TMR1IF_triggered == 1)
-    {
-        if(errorcounter >0)
-        {
-            errorcounter--;
-        }
-        else
-        {
-            errorcounter = 0;
-        }
-
-        TMR1IF_triggered = 0;
-    }
-
-    if(TMR1IF)
-    {
-        TMR1 = 0x9E57;
-        TMR1IF = 0;
-        TMR1IF_triggered = 1;
-    }
-
 }
 
+unsigned char Get7Seg (int Digit)
+{
+ unsigned char Data;
 
-
-
-void delay_1ms(unsigned int time)
+ switch (Digit)
  {
-   while(time > 0)
-   {
-       _delay((unsigned long)((1)*(8000000/4000.0)));
-      time--;
-    }
+  case 0:
+   Data = 0x3F;
+   break;
+  case 1:
+   Data = 0x06;
+   break;
+  case 2:
+   Data = 0x5B;
+   break;
+  case 3:
+   Data = 0x4F;
+   break;
+  case 4:
+   Data = 0x66;
+   break;
+  case 5:
+   Data = 0x6D;
+   break;
+  case 6:
+   Data = 0x7D;
+   break;
+  case 7:
+   Data = 0x07;
+   break;
+  case 8:
+   Data = 0x7F;
+   break;
+  case 9:
+   Data = 0x6F;
+   break;
+  default:
+   Data = 0x00;
+   break;
+ }
+ return (Data);
 }
 
+void WriteSTLED316SData( int number, char v_mode)
+{
+ unsigned char data3, data4;
+ int NUM_DIG0, NUM_DIG1;
+
+ NUM_DIG0=(int) number%10;
+ NUM_DIG1=(int) number/10;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00 );
+
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00);
+
+ data4 = Get7Seg(NUM_DIG1);
+ data3 = Get7Seg(NUM_DIG0);
+
+ if (v_mode)
+ {
+  if (v_mode == 0xFF)
+   data4 |= 0x80;
+  else
+   data3 |= 0x80;
+ }
+
+    STLED316s_SPI_SendData (data4);
+    STLED316s_SPI_SendData (data3);
+
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData ( 0x0D );
+
+ LATCbits.LATC4 = 1;
+}
+
+void WriteSTLED316SMode( char msg)
+{
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00 );
+
+
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00);
+
+ switch(msg)
+ {
+   case 'E':
+     STLED316s_SPI_SendData (0x79);
+        STLED316s_SPI_SendData (0x3F);
+       break;
+      case 'O':
+     STLED316s_SPI_SendData (0x3F);
+        STLED316s_SPI_SendData (0x73);
+      break;
+      case 'C':
+     STLED316s_SPI_SendData (0x39);
+        STLED316s_SPI_SendData (0x77);
+       break;
+      case 'X':
+     STLED316s_SPI_SendData (0x00);
+        STLED316s_SPI_SendData (0x00);
+       break;
+      case 'G':
+     STLED316s_SPI_SendData (0x00);
+        STLED316s_SPI_SendData (0x3F);
+        break;
+      case 'S':
+     STLED316s_SPI_SendData (0x79);
+        STLED316s_SPI_SendData (0x06);
+        break;
+      case 'A':
+     STLED316s_SPI_SendData (0x77);
+        STLED316s_SPI_SendData (0x3E);
+        break;
+      case 'V':
+     STLED316s_SPI_SendData (0x00);
+        STLED316s_SPI_SendData (0x3E);
+        break;
+      default:
+       break;
+ }
 
 
 
-unsigned int Read_IR(void)
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData ( 0x0D );
+
+ LATCbits.LATC4 = 1;
+}
+
+void WriteSTLED316SVibMode( char v_mode)
 {
 
-    if(PORTAbits.RA1 == 1)
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00 );
+
+
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00);
+
+
+
+
+
+    if (v_mode == 1)
     {
-        return 0;
+  STLED316s_SPI_SendData (0x00);
+        STLED316s_SPI_SendData (0xBE);
     }
     else
     {
-        return 1;
+        STLED316s_SPI_SendData (0x00);
+        STLED316s_SPI_SendData (0x3E);
     }
 
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData ( 0x0D );
+
+ LATCbits.LATC4 = 1;
 }
 
-
-
-
-void MotorPosition_Init(void)
+void WriteSTLED316SErr( char msg)
 {
-    LATAbits.LATA2 = 1;
-    MotorON_PWM();
-    _delay((unsigned long)((350)*(8000000/4000.0)));
-    errorcounter = 30;
-
-    do
-    {
-      IR_SENSORF = Read_IR();
-      if(errorcounter == 0)
-      {
-          WriteSTLED316SErr('1');
-          MotorBREAK();
-      }
-
-    }while(IR_SENSORF != 0);
-
-     _delay((unsigned long)((100)*(8000000/4000.0)));
-    errorcounter = 30;
-    do
-    {
-       IR_SENSORF = Read_IR();
-       if(errorcounter == 0)
-       {
-            WriteSTLED316SErr('2');
-           MotorBREAK();
-       }
-
-    }while(IR_SENSORF != 1);
-
-    errorcounter = 30;
-
-    delay_1ms(Motor_Stop_Delay_Time);
-    MotorBREAK();
-    _delay((unsigned long)((500)*(8000000/4000.0)));
-    IR_SENSORF=0;
-
-    LATAbits.LATA2 = 0;
-
-}
-
-
-
-
-void ToggleVIB_Mode(void)
-{
-    if (vibration_mode)
-        vibration_mode = 0;
-    else
-        vibration_mode = 1;
-
-
-
-
-
-
-    INTCONbits.GIE=0;
-    write_i2c(0x0010, vibration_mode);
-    INTCONbits.GIE=1;
-
-
-}
-
-
-
-
-void Homing_Again_Manual(void)
-{
-
-    if (vibration_mode == 1)
-    {
-        LATCbits.LATC1 = 1;
-        delay_1ms(Vmotor_Time);
-        LATCbits.LATC1 = 0;
-        _delay((unsigned long)((300)*(8000000/4000.0)));
-    }
-    else
-    {
-        LATCbits.LATC1 = 0;
-        _delay((unsigned long)((300)*(8000000/4000.0)));
-    }
-
-    LATAbits.LATA2 = 1;
-
-    while (NUM>0)
-    {
-        __asm(" clrwdt");
-        readWeighingData();
-        delay_1ms(Motor_Pause_Time);
-        MotorON_PWM();
-        _delay((unsigned long)((350)*(8000000/4000.0)));
-        errorcounter = 30;
-
-        do
-        {
-            IR_SENSORF = Read_IR();
-            if(errorcounter == 0)
-            {
-                WriteSTLED316SErr('1');
-                MotorBREAK();
-            }
-
-        }while(IR_SENSORF != 0);
-
-         _delay((unsigned long)((100)*(8000000/4000.0)));
-
-         errorcounter = 30;
-
-        do
-        {
-            IR_SENSORF = Read_IR();
-            if(errorcounter == 0)
-            {
-                WriteSTLED316SErr('2');
-                MotorBREAK();
-            }
-        }
-        while(IR_SENSORF != 1);
-
-        errorcounter = 30;
-        delay_1ms(Motor_Stop_Delay_Time);
-        MotorBREAK();
-
-        NUM--;
-        WriteSTLED316SData(NUM, vibration_mode);
-
-        if (vibration_mode == 1 && NUM != 0)
-        {
-            LATCbits.LATC1 = 1;
-            delay_1ms(Vmotor_Time);
-
-            LATCbits.LATC1 = 0;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-        }
-        else if(vibration_mode == 0 && NUM != 0)
-        {
-            LATCbits.LATC1 = 0;
-            if (NUM != 0)
-            {
-                delay_1ms(Vmotor_Time);
-            }
-            else
-            {
-                _delay((unsigned long)((500)*(8000000/4000.0)));
-            }
-        }
-
-        if(Stop==1)
-            break;
-
-    }
-
-    LATAbits.LATA2 = 0;
-
-    if (NUM == 0 || Stop==1)
-    {
-
-        if (vibration_mode == 1)
-        {
-            LATCbits.LATC1 = 1;
-            delay_1ms(Vmotor_Time);
-
-            LATCbits.LATC1 = 0;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-        }
-
-    }
-
-    NUM = 0;
-    OpMode = MANUAL_MODE;
-
-}
-
-
-
-
-void Homing_Again_Auto(void)
-{
-
-    IR_SENSORF = 0;
-    WriteSTLED316SMode('A');
-
-    if (vibration_mode == 1)
-    {
-        LATCbits.LATC1 = 1;
-        delay_1ms(Vmotor_Time);
-        LATCbits.LATC1 = 0;
-        _delay((unsigned long)((300)*(8000000/4000.0)));
-    }
-    else
-    {
-        LATCbits.LATC1 = 0;
-        _delay((unsigned long)((300)*(8000000/4000.0)));
-    }
-
-    LATAbits.LATA2 = 1;
-
-    while ( Stop==0)
-    {
-        __asm(" clrwdt");
-        readWeighingData();
-        delay_1ms(Motor_Pause_Time);
-        MotorON_PWM();
-        _delay((unsigned long)((350)*(8000000/4000.0)));
-
-        errorcounter = 30;
-
-       do
-        {
-          IR_SENSORF = Read_IR();
-          if(errorcounter == 0)
-          {
-              WriteSTLED316SErr('1');
-              MotorBREAK();
-          }
-        }while(IR_SENSORF != 0);
-
-         _delay((unsigned long)((100)*(8000000/4000.0)));
-         errorcounter = 30;
-
-        do
-        {
-          IR_SENSORF = Read_IR();
-          if(errorcounter == 0)
-          {
-              WriteSTLED316SErr('2');
-              MotorBREAK();
-          }
-        }while(IR_SENSORF != 1);
-
-        errorcounter = 30;
-
-        delay_1ms(Motor_Stop_Delay_Time);
-        MotorBREAK();
-
-        if (vibration_mode == 1)
-        {
-            LATCbits.LATC1 = 1;
-            delay_1ms(Vmotor_Time);
-
-            LATCbits.LATC1 = 0;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-        }
-        else
-        {
-            LATCbits.LATC1 = 0;
-             delay_1ms(Vmotor_Time);
-        }
-
-        if(Stop==1)
-            break;
-
-    }
-
-    LATAbits.LATA2 = 0;
-
-    if (NUM == 0 || Stop==1)
-    {
-
-        if (vibration_mode == 1)
-        {
-            LATCbits.LATC1 = 1;
-            delay_1ms(Vmotor_Time);
-
-            LATCbits.LATC1 = 0;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-        }
-
-    }
-
-    NUM = 0;
-    OpMode = AUTO_MODE;
-
-}
-
-
-
-
-void flush(void)
-{
-    int i;
-
-    for(i=0; i<16; i++)
-    {
-        Serial_Buffer[i]=0x00;
-    }
-}
-
-
-
-
-void flushOut(void)
-{
-    int i;
-
-    for(i=0; i<16; i++)
-    {
-        Serial_Buffer_Out[i]=0x00;
-    }
-}
-
-
-
-
-void readWeighingData(void)
-{
-    int i;
-
-    Serial_Buffer_Out[0] = 0xA5;
-    Serial_Buffer_Out[1] = 0x45;
-    Serial_Buffer_Out[2] = 0x00;
-    Serial_Buffer_Out[3] = 0x45;
-    Serial_Buffer_Out[4] = 0x5A;
-
-    INTCONbits.GIE=0;
-    for (i=0; i<5;i++)
-    {
-        Write1USART(Serial_Buffer_Out[i]);
-    }
-    INTCONbits.GIE=1;
-
-    flushOut();
-}
-
-void InitTimer1(void)
-{
- T1CON = 0b00110001;
-
-
-    TMR1 = 0x9E57;
- TMR1IF = 0;
- TMR1IE = 1;
-    IPR1bits.TMR1IP=1;
-
-    TMR1IF_triggered = 0;
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00 );
+
+
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData (0x00);
+
+ switch(msg)
+ {
+   case 'E':
+     STLED316s_SPI_SendData (0x79);
+        STLED316s_SPI_SendData (0x77);
+       break;
+      case '0':
+     STLED316s_SPI_SendData (0x79);
+        STLED316s_SPI_SendData (0x3F);
+      break;
+      case '1':
+     STLED316s_SPI_SendData (0x79);
+        STLED316s_SPI_SendData (0x06);
+       break;
+      case '2':
+     STLED316s_SPI_SendData (0x79);
+        STLED316s_SPI_SendData (0x5B);
+       break;
+      case 'G':
+     STLED316s_SPI_SendData (0x00);
+        STLED316s_SPI_SendData (0x3F);
+        break;
+      case 'S':
+     STLED316s_SPI_SendData (0x79);
+        STLED316s_SPI_SendData (0x06);
+        break;
+      case 'A':
+     STLED316s_SPI_SendData (0x77);
+        STLED316s_SPI_SendData (0x3E);
+        break;
+      default:
+       break;
+ }
+
+ LATCbits.LATC4 = 1;
+
+ LATCbits.LATC4 = 0;
+
+ STLED316s_SPI_SendData ( 0x0D );
+
+ LATCbits.LATC4 = 1;
 }
