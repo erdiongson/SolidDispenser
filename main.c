@@ -58,11 +58,7 @@
 #define zero_percent       0x00
 #define twentyfive_percent 0x01
 #define fifty_percent      0x02
-<<<<<<< Updated upstream
 #define hundred_percent   0x03
-=======
-#define hundred_percent    0x03
->>>>>>> Stashed changes
 /******************************************************************************
 * Write USART Data
 ******************************************************************************/
@@ -127,7 +123,7 @@ void STLED316s_Delay(void);
 void STLED316s_SPI_SendData(unsigned char Data);
 void WriteSTLED316SData(int number, char v_mode);
 void WriteSTLED316SMode(char msg);
-void WriteSTLED316SVibMode(unsigned int dc_reg, char v_mode);
+void WriteSTLED316SVibMode(char v_mode);
 void InitSTLED316(unsigned char Brightness);
 unsigned char Get7Seg(int Digit);
 void ToggleVIB_Mode(void);
@@ -483,11 +479,7 @@ void main(void) {
                   dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
                   ToggleVIB_Mode();
                       
-<<<<<<< Updated upstream
                   WriteSTLED316SVibMode(vibration_mode);
-=======
-                  WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
->>>>>>> Stashed changes
                   __delay_ms(100);
                   while (CENTER == 0);
                     
