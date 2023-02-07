@@ -9203,9 +9203,9 @@ extern unsigned char PWM_reg;
 
 void init(void);
 void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
+void Set_RG3(void);
+void Clr_RG3(void);
+void MotorON(void);
 void MotorBREAK(void);
 unsigned int Read_IR(void);
 void MotorPosition_Init(void);
@@ -9287,9 +9287,9 @@ unsigned char PWM_reg = 0x3F;
 
 void init(void);
 void initMotor(void);
-void Set_RG3_PWM(void);
-void Clr_RG3_PWM(void);
-void MotorON_PWM(void);
+void Set_RG3(void);
+void Clr_RG3(void);
+void MotorON(void);
 void MotorBREAK(void);
 unsigned int Read_IR(void);
 void MotorPosition_Init(void);
@@ -9363,7 +9363,7 @@ void main(void)
     LATDbits.LATD0 = 1;
     LATDbits.LATD1 = 1;
 
-    WriteSTLED316SData(33, 0xFF);
+    WriteSTLED316SData(34, 0xFF);
     _delay((unsigned long)((500)*(8000000/4000.0)));
     AD_capture_BattVoltage();
 
@@ -9520,27 +9520,7 @@ void main(void)
                 break;
         }
     }
-
-
-
-
-    PWM_reg = 0x3F;
-
-    INTCONbits.GIE=0;
-    ETemp = read_i2c(0x0030);
-    INTCONbits.GIE=1;
-
-    PWM_reg = ETemp & 0x00FF;
-
-    if( (PWM_reg!=0x00 && PWM_reg!=0x3F && PWM_reg!=0x7F) )
-    {
-        PWM_reg=0x3F;
-
-        INTCONbits.GIE=0;
-        write_i2c(0x0030,PWM_reg);
-        INTCONbits.GIE=1;
-    }
-
+# 335 "main.c"
     errorcounter = 30;
     MotorPosition_Init();
     LATDbits.LATD1 = 0;
@@ -9761,37 +9741,7 @@ void main(void)
                                 Busy = 0;
                             }
                             break;
-
-                        case 0x64:
-
-                            if(Busy==0)
-                            {
-                                Busy = 1;
-                                PWM_Duty_Cycle = Serial_Buffer[2];
-
-                                switch(PWM_Duty_Cycle)
-                                {
-                                    case 0x00:
-                                        PWM_reg=0x00;
-                                        break;
-
-                                    case 0x3F:
-                                    default:
-                                        PWM_reg=0x3F;
-                                        break;
-
-                                    case 0x7F:
-                                        PWM_reg=0x7F;
-                                        break;
-                                }
-                                    INTCONbits.GIE=0;
-                                    write_i2c(0x0030,PWM_reg);
-                                    INTCONbits.GIE=1;
-
-                                    Busy = 0;
-                            }
-                            break;
-
+# 586 "main.c"
                         case 0x65:
 
                             if(Busy == 0)
@@ -10027,7 +9977,7 @@ unsigned int Read_IR(void)
 void MotorPosition_Init(void)
 {
     LATAbits.LATA2 = 1;
-    MotorON_PWM();
+    MotorON();
     _delay((unsigned long)((350)*(8000000/4000.0)));
     errorcounter = 30;
 
@@ -10115,7 +10065,7 @@ void Homing_Again_Manual(void)
         readWeighingData();
         AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
-        MotorON_PWM();
+        MotorON();
         _delay((unsigned long)((350)*(8000000/4000.0)));
         errorcounter = 30;
 
@@ -10229,7 +10179,7 @@ void Homing_Again_Auto(void)
         readWeighingData();
         AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
-        MotorON_PWM();
+        MotorON();
         _delay((unsigned long)((350)*(8000000/4000.0)));
 
         errorcounter = 30;

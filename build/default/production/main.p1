@@ -325,8 +325,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f65j50.h: 13860: extern volatile unsigned short TMR1 __attribute__((address(0xFCE)));
 [v _TMR1 `Vus ~T0 @X0 0 e@4046 ]
 "83 main.c
-[; ;main.c: 83: void MotorON_PWM(void);
-[v _MotorON_PWM `(v ~T0 @X0 0 ef ]
+[; ;main.c: 83: void MotorON(void);
+[v _MotorON `(v ~T0 @X0 0 ef ]
 "115
 [; ;main.c: 115: void WriteSTLED316SErr( char msg);
 [v _WriteSTLED316SErr `(v ~T0 @X0 0 ef1`uc ]
@@ -1360,8 +1360,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 155:     LATDbits.LATD1 = 1;
 [e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
 "157
-[; ;main.c: 157:     WriteSTLED316SData(33, 0xFF);
-[e ( _WriteSTLED316SData (2 , -> 33 `i -> -> 255 `i `uc ]
+[; ;main.c: 157:     WriteSTLED316SData(34, 0xFF);
+[e ( _WriteSTLED316SData (2 , -> 34 `i -> -> 255 `i `uc ]
 "158
 [; ;main.c: 158:     _delay((unsigned long)((500)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
@@ -1737,43 +1737,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 313:     }
 }
 [e :U 645 ]
-"318
-[; ;main.c: 318:     PWM_reg = 0x3F;
-[e = _PWM_reg -> -> 63 `i `uc ]
-"320
-[; ;main.c: 320:     INTCONbits.GIE=0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"321
-[; ;main.c: 321:     ETemp = read_i2c(0x0030);
-[e = _ETemp -> ( _read_i2c (1 -> -> 48 `i `l `ui ]
-"322
-[; ;main.c: 322:     INTCONbits.GIE=1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"324
-[; ;main.c: 324:     PWM_reg = ETemp & 0x00FF;
-[e = _PWM_reg -> & _ETemp -> -> 255 `i `ui `uc ]
-"326
-[; ;main.c: 326:     if( (PWM_reg!=0x00 && PWM_reg!=0x3F && PWM_reg!=0x7F) )
-[e $ ! && && != -> _PWM_reg `i -> 0 `i != -> _PWM_reg `i -> 63 `i != -> _PWM_reg `i -> 127 `i 654  ]
-"327
-[; ;main.c: 327:     {
-{
-"328
-[; ;main.c: 328:         PWM_reg=0x3F;
-[e = _PWM_reg -> -> 63 `i `uc ]
-"330
-[; ;main.c: 330:         INTCONbits.GIE=0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"331
-[; ;main.c: 331:         write_i2c(0x0030,PWM_reg);
-[e ( _write_i2c (2 , -> -> 48 `i `l -> _PWM_reg `i ]
-"332
-[; ;main.c: 332:         INTCONbits.GIE=1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"333
-[; ;main.c: 333:     }
-}
-[e :U 654 ]
 "335
 [; ;main.c: 335:     errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
@@ -1785,7 +1748,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
 "342
 [; ;main.c: 342:     while(1)
-[e :U 656 ]
+[e :U 655 ]
 "343
 [; ;main.c: 343:     {
 {
@@ -1800,31 +1763,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _AD_capture_BattVoltage ..  ]
 "348
 [; ;main.c: 348:         switch(OpMode)
-[e $U 659  ]
+[e $U 658  ]
 "349
 [; ;main.c: 349:         {
 {
 "353
 [; ;main.c: 353:             case MANUAL_MODE:
-[e :U 660 ]
+[e :U 659 ]
 "355
 [; ;main.c: 355:                 NUM = NUM_REC;
 [e = _NUM _NUM_REC ]
 "357
 [; ;main.c: 357:                 if (PORTBbits.RB4 == 0)
-[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 661  ]
+[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 660  ]
 "358
 [; ;main.c: 358:                 {
 {
 "359
 [; ;main.c: 359:                     do
-[e :U 664 ]
+[e :U 663 ]
 "360
 [; ;main.c: 360:                     {
 {
 "361
 [; ;main.c: 361:                         if(PORTBbits.RB2 == 0)
-[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 665  ]
+[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 664  ]
 "362
 [; ;main.c: 362:                         {
 {
@@ -1834,7 +1797,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "364
 [; ;main.c: 364:                         }
 }
-[e :U 665 ]
+[e :U 664 ]
 "366
 [; ;main.c: 366:                         WriteSTLED316SVibMode(vibration_mode);
 [e ( _WriteSTLED316SVibMode (1 -> _vibration_mode `uc ]
@@ -1844,15 +1807,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "369
 [; ;main.c: 369:                     }while (PORTBbits.RB4 == 0);
 }
-[e $ == -> . . _PORTBbits 0 4 `i -> 0 `i 664  ]
-[e :U 663 ]
+[e $ == -> . . _PORTBbits 0 4 `i -> 0 `i 663  ]
+[e :U 662 ]
 "370
 [; ;main.c: 370:                 }
 }
-[e :U 661 ]
+[e :U 660 ]
 "372
 [; ;main.c: 372:                 if ((PORTBbits.RB3 == 0) && NUM != 99)
-[e $ ! && == -> . . _PORTBbits 0 3 `i -> 0 `i != _NUM -> -> 99 `i `ui 666  ]
+[e $ ! && == -> . . _PORTBbits 0 3 `i -> 0 `i != _NUM -> -> 99 `i `ui 665  ]
 "373
 [; ;main.c: 373:                 {
 {
@@ -1861,18 +1824,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _NUM + _NUM -> -> 1 `i `ui ]
 "375
 [; ;main.c: 375:                     while (PORTBbits.RB3 == 0);
-[e $U 667  ]
-[e :U 668 ]
+[e $U 666  ]
 [e :U 667 ]
-[e $ == -> . . _PORTBbits 0 3 `i -> 0 `i 668  ]
-[e :U 669 ]
+[e :U 666 ]
+[e $ == -> . . _PORTBbits 0 3 `i -> 0 `i 667  ]
+[e :U 668 ]
 "376
 [; ;main.c: 376:                 }
 }
-[e :U 666 ]
+[e :U 665 ]
 "378
 [; ;main.c: 378:                 if (PORTAbits.RA5 == 0 && NUM != 0)
-[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i != _NUM -> -> 0 `i `ui 670  ]
+[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i != _NUM -> -> 0 `i `ui 669  ]
 "379
 [; ;main.c: 379:                 {
 {
@@ -1881,18 +1844,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _NUM - _NUM -> -> 1 `i `ui ]
 "381
 [; ;main.c: 381:                     while (PORTAbits.RA5 == 0);
-[e $U 671  ]
-[e :U 672 ]
+[e $U 670  ]
 [e :U 671 ]
-[e $ == -> . . _PORTAbits 0 5 `i -> 0 `i 672  ]
-[e :U 673 ]
+[e :U 670 ]
+[e $ == -> . . _PORTAbits 0 5 `i -> 0 `i 671  ]
+[e :U 672 ]
 "382
 [; ;main.c: 382:                 }
 }
-[e :U 670 ]
+[e :U 669 ]
 "384
 [; ;main.c: 384:                 if (PORTAbits.RA4 == 0 && NUM <= 89)
-[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i <= _NUM -> -> 89 `i `ui 674  ]
+[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i <= _NUM -> -> 89 `i `ui 673  ]
 "385
 [; ;main.c: 385:                 {
 {
@@ -1901,18 +1864,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _NUM + _NUM -> -> 10 `i `ui ]
 "387
 [; ;main.c: 387:                     while (PORTAbits.RA4 == 0);
-[e $U 675  ]
-[e :U 676 ]
+[e $U 674  ]
 [e :U 675 ]
-[e $ == -> . . _PORTAbits 0 4 `i -> 0 `i 676  ]
-[e :U 677 ]
+[e :U 674 ]
+[e $ == -> . . _PORTAbits 0 4 `i -> 0 `i 675  ]
+[e :U 676 ]
 "388
 [; ;main.c: 388:                 }
 }
-[e :U 674 ]
+[e :U 673 ]
 "390
 [; ;main.c: 390:                 if (PORTAbits.RA3 == 0 && NUM >= 10)
-[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i >= _NUM -> -> 10 `i `ui 678  ]
+[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i >= _NUM -> -> 10 `i `ui 677  ]
 "391
 [; ;main.c: 391:                 {
 {
@@ -1921,15 +1884,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _NUM - _NUM -> -> 10 `i `ui ]
 "393
 [; ;main.c: 393:                     while (PORTAbits.RA3 == 0);
-[e $U 679  ]
-[e :U 680 ]
+[e $U 678  ]
 [e :U 679 ]
-[e $ == -> . . _PORTAbits 0 3 `i -> 0 `i 680  ]
-[e :U 681 ]
+[e :U 678 ]
+[e $ == -> . . _PORTAbits 0 3 `i -> 0 `i 679  ]
+[e :U 680 ]
 "394
 [; ;main.c: 394:                 }
 }
-[e :U 678 ]
+[e :U 677 ]
 "396
 [; ;main.c: 396:                 NUM_REC = NUM;
 [e = _NUM_REC _NUM ]
@@ -1938,7 +1901,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
 "399
 [; ;main.c: 399:                 if (PORTBbits.RB2 == 0)
-[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 682  ]
+[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 681  ]
 "400
 [; ;main.c: 400:                 {
 {
@@ -1960,28 +1923,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 "412
 [; ;main.c: 412:                 }
 }
-[e :U 682 ]
+[e :U 681 ]
 "417
 [; ;main.c: 417:             case AUTO_MODE:
-[e :U 683 ]
+[e :U 682 ]
 "419
 [; ;main.c: 419:                 if(Serial_Flag==1)
-[e $ ! == -> _Serial_Flag `i -> 1 `i 684  ]
+[e $ ! == -> _Serial_Flag `i -> 1 `i 683  ]
 "420
 [; ;main.c: 420:                 {
 {
 "422
 [; ;main.c: 422:                     switch(Serial_Buffer[1])
-[e $U 686  ]
+[e $U 685  ]
 "423
 [; ;main.c: 423:                     {
 {
 "424
 [; ;main.c: 424:                         case 0x44:
-[e :U 687 ]
+[e :U 686 ]
 "426
 [; ;main.c: 426:                             if(Serial_Buffer[2] == 0xF1 && Busy == 0)
-[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 241 `i == -> _Busy `i -> 0 `i 688  ]
+[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 241 `i == -> _Busy `i -> 0 `i 687  ]
 "427
 [; ;main.c: 427:                             {
 {
@@ -2003,11 +1966,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "435
 [; ;main.c: 435:                             }
 }
-[e $U 689  ]
+[e $U 688  ]
 "436
 [; ;main.c: 436:                             else if(Serial_Buffer[2] == 0xF2 && Busy == 0)
-[e :U 688 ]
-[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 242 `i == -> _Busy `i -> 0 `i 690  ]
+[e :U 687 ]
+[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 242 `i == -> _Busy `i -> 0 `i 689  ]
 "437
 [; ;main.c: 437:                            {
 {
@@ -2031,7 +1994,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _Homing_Again_Manual ..  ]
 "447
 [; ;main.c: 447:                                 if(Stop == 0)
-[e $ ! == -> _Stop `i -> 0 `i 691  ]
+[e $ ! == -> _Stop `i -> 0 `i 690  ]
 "448
 [; ;main.c: 448:                                 {
 {
@@ -2057,9 +2020,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 456:                                     for (i=0; i<5;i++)
 {
 [e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 692  ]
-[e $U 693  ]
-[e :U 692 ]
+[e $ < _i -> -> 5 `i `ui 691  ]
+[e $U 692  ]
+[e :U 691 ]
 "457
 [; ;main.c: 457:                                     {
 {
@@ -2070,8 +2033,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 459:                                     }
 }
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 692  ]
-[e :U 693 ]
+[e $ < _i -> -> 5 `i `ui 691  ]
+[e :U 692 ]
 }
 "460
 [; ;main.c: 460:                                     INTCONbits.GIE=1;
@@ -2079,12 +2042,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "461
 [; ;main.c: 461:                                 }
 }
-[e :U 691 ]
+[e :U 690 ]
 "463
 [; ;main.c: 463:                             }
 }
-[e :U 690 ]
 [e :U 689 ]
+[e :U 688 ]
 "464
 [; ;main.c: 464:                                 flush();
 [e ( _flush ..  ]
@@ -2099,13 +2062,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _Busy -> -> 0 `i `uc ]
 "468
 [; ;main.c: 468:                                 break;
-[e $U 685  ]
+[e $U 684  ]
 "471
 [; ;main.c: 471:                         case 0x23:
-[e :U 695 ]
+[e :U 694 ]
 "473
 [; ;main.c: 473:                             if(Busy==0)
-[e $ ! == -> _Busy `i -> 0 `i 696  ]
+[e $ ! == -> _Busy `i -> 0 `i 695  ]
 "474
 [; ;main.c: 474:                             {
 {
@@ -2117,16 +2080,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _pause_Time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
 "480
 [; ;main.c: 480:                                     switch(pause_Time)
-[e $U 698  ]
+[e $U 697  ]
 "481
 [; ;main.c: 481:                                     {
 {
 "482
 [; ;main.c: 482:                                         case 0x30:
-[e :U 699 ]
+[e :U 698 ]
 "483
 [; ;main.c: 483:                                         default:
-[e :U 700 ]
+[e :U 699 ]
 "484
 [; ;main.c: 484:                                             Motor_Pause_Time = 0;
 [e = _Motor_Pause_Time -> -> 0 `i `ui ]
@@ -2135,65 +2098,65 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _pause_Time -> -> 48 `i `uc ]
 "486
 [; ;main.c: 486:                                             break;
-[e $U 697  ]
+[e $U 696  ]
 "488
 [; ;main.c: 488:                                         case 0x31:
-[e :U 701 ]
+[e :U 700 ]
 "489
 [; ;main.c: 489:                                             Motor_Pause_Time = 1000;
 [e = _Motor_Pause_Time -> -> 1000 `i `ui ]
 "490
 [; ;main.c: 490:                                             break;
-[e $U 697  ]
+[e $U 696  ]
 "492
 [; ;main.c: 492:                                         case 0x32:
-[e :U 702 ]
+[e :U 701 ]
 "493
 [; ;main.c: 493:                                             Motor_Pause_Time = 2000;
 [e = _Motor_Pause_Time -> -> 2000 `i `ui ]
 "494
 [; ;main.c: 494:                                             break;
-[e $U 697  ]
+[e $U 696  ]
 "496
 [; ;main.c: 496:                                         case 0x33:
-[e :U 703 ]
+[e :U 702 ]
 "497
 [; ;main.c: 497:                                             Motor_Pause_Time = 3000;
 [e = _Motor_Pause_Time -> -> 3000 `i `ui ]
 "498
 [; ;main.c: 498:                                             break;
-[e $U 697  ]
+[e $U 696  ]
 "500
 [; ;main.c: 500:                                         case 0x34:
-[e :U 704 ]
+[e :U 703 ]
 "501
 [; ;main.c: 501:                                             Motor_Pause_Time = 4000;
 [e = _Motor_Pause_Time -> -> 4000 `i `ui ]
 "502
 [; ;main.c: 502:                                             break;
-[e $U 697  ]
+[e $U 696  ]
 "504
 [; ;main.c: 504:                                         case 0x35:
-[e :U 705 ]
+[e :U 704 ]
 "505
 [; ;main.c: 505:                                             Motor_Pause_Time = 5000;
 [e = _Motor_Pause_Time -> -> 5000 `i `ui ]
 "506
 [; ;main.c: 506:                                             break;
-[e $U 697  ]
+[e $U 696  ]
 "507
 [; ;main.c: 507:                                     }
 }
-[e $U 697  ]
-[e :U 698 ]
-[e [\ -> _pause_Time `i , $ -> 48 `i 699
- , $ -> 49 `i 701
- , $ -> 50 `i 702
- , $ -> 51 `i 703
- , $ -> 52 `i 704
- , $ -> 53 `i 705
- 700 ]
+[e $U 696  ]
 [e :U 697 ]
+[e [\ -> _pause_Time `i , $ -> 48 `i 698
+ , $ -> 49 `i 700
+ , $ -> 50 `i 701
+ , $ -> 51 `i 702
+ , $ -> 52 `i 703
+ , $ -> 53 `i 704
+ 699 ]
+[e :U 696 ]
 "511
 [; ;main.c: 511:                                 INTCONbits.GIE=0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
@@ -2212,22 +2175,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "517
 [; ;main.c: 517:                             }
 }
-[e :U 696 ]
+[e :U 695 ]
 "518
 [; ;main.c: 518:                             break;
-[e $U 685  ]
+[e $U 684  ]
 "521
 [; ;main.c: 521:                         case 0x51:
-[e :U 706 ]
+[e :U 705 ]
 "523
 [; ;main.c: 523:                             if(Busy==0)
-[e $ ! == -> _Busy `i -> 0 `i 707  ]
+[e $ ! == -> _Busy `i -> 0 `i 706  ]
 "524
 [; ;main.c: 524:                             {
 {
 "525
 [; ;main.c: 525:                                 if (Serial_Buffer[2] == 0x00)
-[e $ ! == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 0 `i 708  ]
+[e $ ! == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 0 `i 707  ]
 "526
 [; ;main.c: 526:                                 {
 {
@@ -2277,9 +2240,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 545:                                     for (i=0; i<5;i++)
 {
 [e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 709  ]
-[e $U 710  ]
-[e :U 709 ]
+[e $ < _i -> -> 5 `i `ui 708  ]
+[e $U 709  ]
+[e :U 708 ]
 "546
 [; ;main.c: 546:                                     {
 {
@@ -2290,8 +2253,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 548:                                     }
 }
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 709  ]
-[e :U 710 ]
+[e $ < _i -> -> 5 `i `ui 708  ]
+[e :U 709 ]
 }
 "549
 [; ;main.c: 549:                                     INTCONbits.GIE=1;
@@ -2299,7 +2262,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "550
 [; ;main.c: 550:                                 }
 }
-[e :U 708 ]
+[e :U 707 ]
 "551
 [; ;main.c: 551:                                 flushOut();
 [e ( _flushOut ..  ]
@@ -2309,96 +2272,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 "553
 [; ;main.c: 553:                             }
 }
-[e :U 707 ]
+[e :U 706 ]
 "554
 [; ;main.c: 554:                             break;
-[e $U 685  ]
-"556
-[; ;main.c: 556:                         case 0x64:
-[e :U 712 ]
-"558
-[; ;main.c: 558:                             if(Busy==0)
-[e $ ! == -> _Busy `i -> 0 `i 713  ]
-"559
-[; ;main.c: 559:                             {
-{
-"560
-[; ;main.c: 560:                                 Busy = 1;
-[e = _Busy -> -> 1 `i `uc ]
-"561
-[; ;main.c: 561:                                 PWM_Duty_Cycle = Serial_Buffer[2];
-[e = _PWM_Duty_Cycle *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
-"563
-[; ;main.c: 563:                                 switch(PWM_Duty_Cycle)
-[e $U 715  ]
-"564
-[; ;main.c: 564:                                 {
-{
-"565
-[; ;main.c: 565:                                     case 0x00:
-[e :U 716 ]
-"566
-[; ;main.c: 566:                                         PWM_reg=0x00;
-[e = _PWM_reg -> -> 0 `i `uc ]
-"567
-[; ;main.c: 567:                                         break;
-[e $U 714  ]
-"569
-[; ;main.c: 569:                                     case 0x3F:
-[e :U 717 ]
-"570
-[; ;main.c: 570:                                     default:
-[e :U 718 ]
-"571
-[; ;main.c: 571:                                         PWM_reg=0x3F;
-[e = _PWM_reg -> -> 63 `i `uc ]
-"572
-[; ;main.c: 572:                                         break;
-[e $U 714  ]
-"574
-[; ;main.c: 574:                                     case 0x7F:
-[e :U 719 ]
-"575
-[; ;main.c: 575:                                         PWM_reg=0x7F;
-[e = _PWM_reg -> -> 127 `i `uc ]
-"576
-[; ;main.c: 576:                                         break;
-[e $U 714  ]
-"577
-[; ;main.c: 577:                                 }
-}
-[e $U 714  ]
-[e :U 715 ]
-[e [\ -> _PWM_Duty_Cycle `i , $ -> 0 `i 716
- , $ -> 63 `i 717
- , $ -> 127 `i 719
- 718 ]
-[e :U 714 ]
-"578
-[; ;main.c: 578:                                     INTCONbits.GIE=0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"579
-[; ;main.c: 579:                                     write_i2c(0x0030,PWM_reg);
-[e ( _write_i2c (2 , -> -> 48 `i `l -> _PWM_reg `i ]
-"580
-[; ;main.c: 580:                                     INTCONbits.GIE=1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"582
-[; ;main.c: 582:                                     Busy = 0;
-[e = _Busy -> -> 0 `i `uc ]
-"583
-[; ;main.c: 583:                             }
-}
-[e :U 713 ]
-"584
-[; ;main.c: 584:                             break;
-[e $U 685  ]
+[e $U 684  ]
 "586
 [; ;main.c: 586:                         case 0x65:
-[e :U 720 ]
+[e :U 711 ]
 "588
 [; ;main.c: 588:                             if(Busy == 0)
-[e $ ! == -> _Busy `i -> 0 `i 721  ]
+[e $ ! == -> _Busy `i -> 0 `i 712  ]
 "589
 [; ;main.c: 589:                             {
 {
@@ -2410,25 +2293,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _vib_Time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
 "593
 [; ;main.c: 593:                                 switch(vib_Time)
-[e $U 723  ]
+[e $U 714  ]
 "594
 [; ;main.c: 594:                                 {
 {
 "595
 [; ;main.c: 595:                                     case 0x81:
-[e :U 724 ]
+[e :U 715 ]
 "596
 [; ;main.c: 596:                                         Vmotor_Time=1000;
 [e = _Vmotor_Time -> -> 1000 `i `ui ]
 "597
 [; ;main.c: 597:                                         break;
-[e $U 722  ]
+[e $U 713  ]
 "599
 [; ;main.c: 599:                                     case 0x82:
-[e :U 725 ]
+[e :U 716 ]
 "600
 [; ;main.c: 600:                                     default:
-[e :U 726 ]
+[e :U 717 ]
 "601
 [; ;main.c: 601:                                         Vmotor_Time=2000;
 [e = _Vmotor_Time -> -> 2000 `i `ui ]
@@ -2437,46 +2320,46 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _vib_Time -> -> 130 `i `uc ]
 "603
 [; ;main.c: 603:                                         break;
-[e $U 722  ]
+[e $U 713  ]
 "605
 [; ;main.c: 605:                                     case 0x83:
-[e :U 727 ]
+[e :U 718 ]
 "606
 [; ;main.c: 606:                                         Vmotor_Time=3000;
 [e = _Vmotor_Time -> -> 3000 `i `ui ]
 "607
 [; ;main.c: 607:                                         break;
-[e $U 722  ]
+[e $U 713  ]
 "609
 [; ;main.c: 609:                                     case 0x84:
-[e :U 728 ]
+[e :U 719 ]
 "610
 [; ;main.c: 610:                                         Vmotor_Time=4000;
 [e = _Vmotor_Time -> -> 4000 `i `ui ]
 "611
 [; ;main.c: 611:                                         break;
-[e $U 722  ]
+[e $U 713  ]
 "613
 [; ;main.c: 613:                                     case 0x85:
-[e :U 729 ]
+[e :U 720 ]
 "614
 [; ;main.c: 614:                                         Vmotor_Time=5000;
 [e = _Vmotor_Time -> -> 5000 `i `ui ]
 "615
 [; ;main.c: 615:                                         break;
-[e $U 722  ]
+[e $U 713  ]
 "616
 [; ;main.c: 616:                                 }
 }
-[e $U 722  ]
-[e :U 723 ]
-[e [\ -> _vib_Time `i , $ -> 129 `i 724
- , $ -> 130 `i 725
- , $ -> 131 `i 727
- , $ -> 132 `i 728
- , $ -> 133 `i 729
- 726 ]
-[e :U 722 ]
+[e $U 713  ]
+[e :U 714 ]
+[e [\ -> _vib_Time `i , $ -> 129 `i 715
+ , $ -> 130 `i 716
+ , $ -> 131 `i 718
+ , $ -> 132 `i 719
+ , $ -> 133 `i 720
+ 717 ]
+[e :U 713 ]
 "617
 [; ;main.c: 617:                                     INTCONbits.GIE=0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
@@ -2492,13 +2375,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "622
 [; ;main.c: 622:                             }
 }
-[e :U 721 ]
+[e :U 712 ]
 "624
 [; ;main.c: 624:                         case 0x66:
-[e :U 730 ]
+[e :U 721 ]
 "626
 [; ;main.c: 626:                             if(Busy == 0)
-[e $ ! == -> _Busy `i -> 0 `i 731  ]
+[e $ ! == -> _Busy `i -> 0 `i 722  ]
 "627
 [; ;main.c: 627:                             {
 {
@@ -2526,23 +2409,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "637
 [; ;main.c: 637:                             }
 }
-[e :U 731 ]
+[e :U 722 ]
 "639
 [; ;main.c: 639:                             break;
-[e $U 685  ]
+[e $U 684  ]
 "641
 [; ;main.c: 641:                     }
 }
-[e $U 685  ]
-[e :U 686 ]
-[e [\ -> *U + &U _Serial_Buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i , $ -> 68 `i 687
- , $ -> 35 `i 695
- , $ -> 81 `i 706
- , $ -> 100 `i 712
- , $ -> 101 `i 720
- , $ -> 102 `i 730
- 685 ]
+[e $U 684  ]
 [e :U 685 ]
+[e [\ -> *U + &U _Serial_Buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i , $ -> 68 `i 686
+ , $ -> 35 `i 694
+ , $ -> 81 `i 705
+ , $ -> 101 `i 711
+ , $ -> 102 `i 721
+ 684 ]
+[e :U 684 ]
 "643
 [; ;main.c: 643:                     Serial_Flag = 0;
 [e = _Serial_Flag -> -> 0 `i `uc ]
@@ -2555,10 +2437,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "646
 [; ;main.c: 646:                 }
 }
-[e $U 732  ]
+[e $U 723  ]
 "647
 [; ;main.c: 647:                 else
-[e :U 684 ]
+[e :U 683 ]
 "648
 [; ;main.c: 648:                 {
 {
@@ -2568,22 +2450,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "650
 [; ;main.c: 650:                 }
 }
-[e :U 732 ]
+[e :U 723 ]
 "653
 [; ;main.c: 653:         }
 }
-[e $U 658  ]
-[e :U 659 ]
-[e [\ -> _OpMode `i , $ . `E5395 0 660
- , $ . `E5395 2 683
- 658 ]
+[e $U 657  ]
 [e :U 658 ]
+[e [\ -> _OpMode `i , $ . `E5395 0 659
+ , $ . `E5395 2 682
+ 657 ]
+[e :U 657 ]
 "654
 [; ;main.c: 654:     }
 }
-[e :U 655 ]
-[e $U 656  ]
-[e :U 657 ]
+[e :U 654 ]
+[e $U 655  ]
+[e :U 656 ]
 "658
 [; ;main.c: 658: }
 [e :UE 628 ]
@@ -2606,7 +2488,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _Temp `uc ~T0 @X0 1 a ]
 "668
 [; ;main.c: 668:     if ((PIR1bits.RC1IF))
-[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 734  ]
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 725  ]
 "669
 [; ;main.c: 669:  {
 {
@@ -2615,7 +2497,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _c -> ( _Read1USART ..  `uc ]
 "673
 [; ;main.c: 673:   if ((c == 0xA5) && ((Serial_Flag == 0)||(Busy == 1)))
-[e $ ! && == -> _c `i -> 165 `i || == -> _Serial_Flag `i -> 0 `i == -> _Busy `i -> 1 `i 735  ]
+[e $ ! && == -> _c `i -> 165 `i || == -> _Serial_Flag `i -> 0 `i == -> _Busy `i -> 1 `i 726  ]
 "674
 [; ;main.c: 674:   {
 {
@@ -2634,11 +2516,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "679
 [; ;main.c: 679:   }
 }
-[e $U 736  ]
+[e $U 727  ]
 "680
 [; ;main.c: 680:   else if (Serial_GData == 1)
-[e :U 735 ]
-[e $ ! == -> _Serial_GData `i -> 1 `i 737  ]
+[e :U 726 ]
+[e $ ! == -> _Serial_GData `i -> 1 `i 728  ]
 "681
 [; ;main.c: 681:   {
 {
@@ -2647,13 +2529,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = *U + &U _Serial_Buffer * -> _Serial_Count `ux -> -> # *U &U _Serial_Buffer `ui `ux _c ]
 "684
 [; ;main.c: 684:    if(Serial_Count<5)
-[e $ ! < _Serial_Count -> -> 5 `i `ui 738  ]
+[e $ ! < _Serial_Count -> -> 5 `i `ui 729  ]
 "685
 [; ;main.c: 685:             {
 {
 "686
 [; ;main.c: 686:                 if (c == 0x5A)
-[e $ ! == -> _c `i -> 90 `i 739  ]
+[e $ ! == -> _c `i -> 90 `i 730  ]
 "687
 [; ;main.c: 687:                 {
 {
@@ -2662,13 +2544,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _Temp -> + -> *U + &U _Serial_Buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i `uc ]
 "690
 [; ;main.c: 690:                     if (Temp == Serial_Buffer[3])
-[e $ ! == -> _Temp `i -> *U + &U _Serial_Buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i 740  ]
+[e $ ! == -> _Temp `i -> *U + &U _Serial_Buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i 731  ]
 "691
 [; ;main.c: 691:                     {
 {
 "692
 [; ;main.c: 692:                         if(Busy==0 || Serial_Buffer[2]==0xF5)
-[e $ ! || == -> _Busy `i -> 0 `i == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i 741  ]
+[e $ ! || == -> _Busy `i -> 0 `i == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i 732  ]
 "693
 [; ;main.c: 693:                         {
 {
@@ -2679,9 +2561,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 695:                             for (i=0; i<5; i++)
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 742  ]
-[e $U 743  ]
-[e :U 742 ]
+[e $ < -> _i `i -> 5 `i 733  ]
+[e $U 734  ]
+[e :U 733 ]
 "696
 [; ;main.c: 696:                             {
 {
@@ -2692,8 +2574,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 698:                             }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 742  ]
-[e :U 743 ]
+[e $ < -> _i `i -> 5 `i 733  ]
+[e :U 734 ]
 }
 "699
 [; ;main.c: 699:                             INTCONbits.GIE=1;
@@ -2701,10 +2583,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "700
 [; ;main.c: 700:                         }
 }
-[e $U 745  ]
+[e $U 736  ]
 "701
 [; ;main.c: 701:                         else
-[e :U 741 ]
+[e :U 732 ]
 "702
 [; ;main.c: 702:                         {
 {
@@ -2715,9 +2597,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 704:                             for (i=0; i<5; i++)
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 746  ]
-[e $U 747  ]
-[e :U 746 ]
+[e $ < -> _i `i -> 5 `i 737  ]
+[e $U 738  ]
+[e :U 737 ]
 "705
 [; ;main.c: 705:                             {
 {
@@ -2728,8 +2610,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 707:                             }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 746  ]
-[e :U 747 ]
+[e $ < -> _i `i -> 5 `i 737  ]
+[e :U 738 ]
 }
 "708
 [; ;main.c: 708:                             INTCONbits.GIE=1;
@@ -2737,7 +2619,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "709
 [; ;main.c: 709:                         }
 }
-[e :U 745 ]
+[e :U 736 ]
 "711
 [; ;main.c: 711:                         Serial_Flag = 1;
 [e = _Serial_Flag -> -> 1 `i `uc ]
@@ -2750,10 +2632,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "715
 [; ;main.c: 715:                     }
 }
-[e $U 749  ]
+[e $U 740  ]
 "716
 [; ;main.c: 716:                     else
-[e :U 740 ]
+[e :U 731 ]
 "717
 [; ;main.c: 717:                     {
 {
@@ -2770,9 +2652,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 722:                         for (i=0; i<5; i++)
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 750  ]
-[e $U 751  ]
-[e :U 750 ]
+[e $ < -> _i `i -> 5 `i 741  ]
+[e $U 742  ]
+[e :U 741 ]
 "723
 [; ;main.c: 723:                         {
 {
@@ -2783,8 +2665,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 725:                         }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 750  ]
-[e :U 751 ]
+[e $ < -> _i `i -> 5 `i 741  ]
+[e :U 742 ]
 }
 "726
 [; ;main.c: 726:                         INTCONbits.GIE=1;
@@ -2792,10 +2674,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "727
 [; ;main.c: 727:                     }
 }
-[e :U 749 ]
+[e :U 740 ]
 "729
 [; ;main.c: 729:                     if(Serial_Buffer[2]==0xF5 && OpMode == AUTO_MODE)
-[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i == -> _OpMode `i -> . `E5395 2 `i 753  ]
+[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i == -> _OpMode `i -> . `E5395 2 `i 744  ]
 "730
 [; ;main.c: 730:                     {
 {
@@ -2805,18 +2687,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 "732
 [; ;main.c: 732:                     }
 }
-[e :U 753 ]
+[e :U 744 ]
 "733
 [; ;main.c: 733:                 }
 }
-[e :U 739 ]
+[e :U 730 ]
 "734
 [; ;main.c: 734:             }
 }
-[e $U 754  ]
+[e $U 745  ]
 "735
 [; ;main.c: 735:             else
-[e :U 738 ]
+[e :U 729 ]
 "736
 [; ;main.c: 736:             {
 {
@@ -2826,28 +2708,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 "738
 [; ;main.c: 738:             }
 }
-[e :U 754 ]
+[e :U 745 ]
 "740
 [; ;main.c: 740:             Serial_Count++;
 [e ++ _Serial_Count -> -> 1 `i `ui ]
 "741
 [; ;main.c: 741:   }
 }
-[e :U 737 ]
-[e :U 736 ]
+[e :U 728 ]
+[e :U 727 ]
 "742
 [; ;main.c: 742:  }
 }
-[e $U 755  ]
+[e $U 746  ]
 "743
 [; ;main.c: 743:     else
-[e :U 734 ]
+[e :U 725 ]
 "744
 [; ;main.c: 744:     {
 {
 "745
 [; ;main.c: 745:         if (RCSTA1bits.OERR == 1)
-[e $ ! == -> . . _RCSTA1bits 0 1 `i -> 1 `i 756  ]
+[e $ ! == -> . . _RCSTA1bits 0 1 `i -> 1 `i 747  ]
 "746
 [; ;main.c: 746:         {
 {
@@ -2863,20 +2745,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "750
 [; ;main.c: 750:         }
 }
-[e :U 756 ]
+[e :U 747 ]
 "751
 [; ;main.c: 751:     }
 }
-[e :U 755 ]
+[e :U 746 ]
 "753
 [; ;main.c: 753:     if (TMR1IF_triggered == 1)
-[e $ ! == -> _TMR1IF_triggered `i -> 1 `i 757  ]
+[e $ ! == -> _TMR1IF_triggered `i -> 1 `i 748  ]
 "754
 [; ;main.c: 754:     {
 {
 "755
 [; ;main.c: 755:         if(errorcounter >0)
-[e $ ! > _errorcounter -> -> 0 `i `l 758  ]
+[e $ ! > _errorcounter -> -> 0 `i `l 749  ]
 "756
 [; ;main.c: 756:         {
 {
@@ -2886,10 +2768,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "758
 [; ;main.c: 758:         }
 }
-[e $U 759  ]
+[e $U 750  ]
 "759
 [; ;main.c: 759:         else
-[e :U 758 ]
+[e :U 749 ]
 "760
 [; ;main.c: 760:         {
 {
@@ -2899,10 +2781,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "762
 [; ;main.c: 762:         }
 }
-[e :U 759 ]
+[e :U 750 ]
 "764
 [; ;main.c: 764:         if(LowPowerCounter >0)
-[e $ ! > _LowPowerCounter -> -> 0 `i `l 760  ]
+[e $ ! > _LowPowerCounter -> -> 0 `i `l 751  ]
 "765
 [; ;main.c: 765:         {
 {
@@ -2912,10 +2794,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "767
 [; ;main.c: 767:         }
 }
-[e $U 761  ]
+[e $U 752  ]
 "768
 [; ;main.c: 768:         else
-[e :U 760 ]
+[e :U 751 ]
 "769
 [; ;main.c: 769:         {
 {
@@ -2928,17 +2810,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "772
 [; ;main.c: 772:         }
 }
-[e :U 761 ]
+[e :U 752 ]
 "774
 [; ;main.c: 774:         TMR1IF_triggered = 0;
 [e = _TMR1IF_triggered -> -> 0 `i `uc ]
 "775
 [; ;main.c: 775:     }
 }
-[e :U 757 ]
+[e :U 748 ]
 "777
 [; ;main.c: 777:     if(TMR1IF)
-[e $ ! _TMR1IF 762  ]
+[e $ ! _TMR1IF 753  ]
 "778
 [; ;main.c: 778:     {
 {
@@ -2954,10 +2836,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "782
 [; ;main.c: 782:     }
 }
-[e :U 762 ]
+[e :U 753 ]
 "784
 [; ;main.c: 784: }
-[e :UE 733 ]
+[e :UE 724 ]
 }
 "789
 [; ;main.c: 789: void delay_1ms(unsigned int time)
@@ -2974,8 +2856,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "791
 [; ;main.c: 791:    while(time > 0)
-[e $U 764  ]
-[e :U 765 ]
+[e $U 755  ]
+[e :U 756 ]
 "792
 [; ;main.c: 792:    {
 {
@@ -2988,14 +2870,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "795
 [; ;main.c: 795:     }
 }
-[e :U 764 ]
+[e :U 755 ]
 "791
 [; ;main.c: 791:    while(time > 0)
-[e $ > _time -> -> 0 `i `ui 765  ]
-[e :U 766 ]
+[e $ > _time -> -> 0 `i `ui 756  ]
+[e :U 757 ]
 "796
 [; ;main.c: 796: }
-[e :UE 763 ]
+[e :UE 754 ]
 }
 "801
 [; ;main.c: 801: unsigned int Read_IR(void)
@@ -3007,35 +2889,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "804
 [; ;main.c: 804:     if(PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 768  ]
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 759  ]
 "805
 [; ;main.c: 805:     {
 {
 "806
 [; ;main.c: 806:         return 0;
 [e ) -> -> 0 `i `ui ]
-[e $UE 767  ]
+[e $UE 758  ]
 "807
 [; ;main.c: 807:     }
 }
-[e $U 769  ]
+[e $U 760  ]
 "808
 [; ;main.c: 808:     else
-[e :U 768 ]
+[e :U 759 ]
 "809
 [; ;main.c: 809:     {
 {
 "810
 [; ;main.c: 810:         return 1;
 [e ) -> -> 1 `i `ui ]
-[e $UE 767  ]
+[e $UE 758  ]
 "811
 [; ;main.c: 811:     }
 }
-[e :U 769 ]
+[e :U 760 ]
 "813
 [; ;main.c: 813: }
-[e :UE 767 ]
+[e :UE 758 ]
 }
 "818
 [; ;main.c: 818: void MotorPosition_Init(void)
@@ -3049,8 +2931,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 820:     LATAbits.LATA2 = 1;
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 "821
-[; ;main.c: 821:     MotorON_PWM();
-[e ( _MotorON_PWM ..  ]
+[; ;main.c: 821:     MotorON();
+[e ( _MotorON ..  ]
 "822
 [; ;main.c: 822:     _delay((unsigned long)((350)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
@@ -3059,7 +2941,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _errorcounter -> -> 30 `i `l ]
 "825
 [; ;main.c: 825:     do
-[e :U 773 ]
+[e :U 764 ]
 "826
 [; ;main.c: 826:     {
 {
@@ -3068,7 +2950,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _IR_SENSORF ( _Read_IR ..  ]
 "828
 [; ;main.c: 828:       if(errorcounter == 0)
-[e $ ! == _errorcounter -> -> 0 `i `l 774  ]
+[e $ ! == _errorcounter -> -> 0 `i `l 765  ]
 "829
 [; ;main.c: 829:       {
 {
@@ -3081,12 +2963,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "832
 [; ;main.c: 832:       }
 }
-[e :U 774 ]
+[e :U 765 ]
 "834
 [; ;main.c: 834:     }while(IR_SENSORF != 0);
 }
-[e $ != _IR_SENSORF -> -> 0 `i `ui 773  ]
-[e :U 772 ]
+[e $ != _IR_SENSORF -> -> 0 `i `ui 764  ]
+[e :U 763 ]
 "836
 [; ;main.c: 836:      _delay((unsigned long)((30)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
@@ -3095,7 +2977,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _errorcounter -> -> 30 `i `l ]
 "838
 [; ;main.c: 838:     do
-[e :U 777 ]
+[e :U 768 ]
 "839
 [; ;main.c: 839:     {
 {
@@ -3104,7 +2986,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _IR_SENSORF ( _Read_IR ..  ]
 "841
 [; ;main.c: 841:        if(errorcounter == 0)
-[e $ ! == _errorcounter -> -> 0 `i `l 778  ]
+[e $ ! == _errorcounter -> -> 0 `i `l 769  ]
 "842
 [; ;main.c: 842:        {
 {
@@ -3117,12 +2999,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "845
 [; ;main.c: 845:        }
 }
-[e :U 778 ]
+[e :U 769 ]
 "847
 [; ;main.c: 847:     }while(IR_SENSORF != 1);
 }
-[e $ != _IR_SENSORF -> -> 1 `i `ui 777  ]
-[e :U 776 ]
+[e $ != _IR_SENSORF -> -> 1 `i `ui 768  ]
+[e :U 767 ]
 "849
 [; ;main.c: 849:     errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
@@ -3143,7 +3025,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
 "858
 [; ;main.c: 858: }
-[e :UE 770 ]
+[e :UE 761 ]
 }
 "863
 [; ;main.c: 863: void ToggleVIB_Mode(void)
@@ -3155,18 +3037,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "865
 [; ;main.c: 865:     if (vibration_mode)
-[e $ ! != -> _vibration_mode `i -> 0 `i 780  ]
+[e $ ! != -> _vibration_mode `i -> 0 `i 771  ]
 "866
 [; ;main.c: 866:         vibration_mode = 0;
 [e = _vibration_mode -> -> 0 `i `uc ]
-[e $U 781  ]
+[e $U 772  ]
 "867
 [; ;main.c: 867:     else
-[e :U 780 ]
+[e :U 771 ]
 "868
 [; ;main.c: 868:         vibration_mode = 1;
 [e = _vibration_mode -> -> 1 `i `uc ]
-[e :U 781 ]
+[e :U 772 ]
 "875
 [; ;main.c: 875:     INTCONbits.GIE=0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
@@ -3178,7 +3060,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 "880
 [; ;main.c: 880: }
-[e :UE 779 ]
+[e :UE 770 ]
 }
 "885
 [; ;main.c: 885: void Homing_Again_Manual(void)
@@ -3190,7 +3072,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "888
 [; ;main.c: 888:     if (vibration_mode == 1)
-[e $ ! == -> _vibration_mode `i -> 1 `i 783  ]
+[e $ ! == -> _vibration_mode `i -> 1 `i 774  ]
 "889
 [; ;main.c: 889:     {
 {
@@ -3209,10 +3091,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "894
 [; ;main.c: 894:     }
 }
-[e $U 784  ]
+[e $U 775  ]
 "895
 [; ;main.c: 895:     else
-[e :U 783 ]
+[e :U 774 ]
 "896
 [; ;main.c: 896:     {
 {
@@ -3225,14 +3107,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "899
 [; ;main.c: 899:     }
 }
-[e :U 784 ]
+[e :U 775 ]
 "901
 [; ;main.c: 901:     LATAbits.LATA2 = 1;
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 "903
 [; ;main.c: 903:     while (NUM>0)
-[e $U 785  ]
-[e :U 786 ]
+[e $U 776  ]
+[e :U 777 ]
 "904
 [; ;main.c: 904:     {
 {
@@ -3249,8 +3131,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 908:         delay_1ms(Motor_Pause_Time);
 [e ( _delay_1ms (1 _Motor_Pause_Time ]
 "909
-[; ;main.c: 909:         MotorON_PWM();
-[e ( _MotorON_PWM ..  ]
+[; ;main.c: 909:         MotorON();
+[e ( _MotorON ..  ]
 "910
 [; ;main.c: 910:         _delay((unsigned long)((350)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
@@ -3259,7 +3141,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _errorcounter -> -> 30 `i `l ]
 "913
 [; ;main.c: 913:         do
-[e :U 790 ]
+[e :U 781 ]
 "914
 [; ;main.c: 914:         {
 {
@@ -3268,7 +3150,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _IR_SENSORF ( _Read_IR ..  ]
 "916
 [; ;main.c: 916:             if(errorcounter == 0)
-[e $ ! == _errorcounter -> -> 0 `i `l 791  ]
+[e $ ! == _errorcounter -> -> 0 `i `l 782  ]
 "917
 [; ;main.c: 917:             {
 {
@@ -3281,12 +3163,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "920
 [; ;main.c: 920:             }
 }
-[e :U 791 ]
+[e :U 782 ]
 "922
 [; ;main.c: 922:         }while(IR_SENSORF != 0);
 }
-[e $ != _IR_SENSORF -> -> 0 `i `ui 790  ]
-[e :U 789 ]
+[e $ != _IR_SENSORF -> -> 0 `i `ui 781  ]
+[e :U 780 ]
 "924
 [; ;main.c: 924:          _delay((unsigned long)((30)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
@@ -3295,7 +3177,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _errorcounter -> -> 30 `i `l ]
 "928
 [; ;main.c: 928:         do
-[e :U 794 ]
+[e :U 785 ]
 "929
 [; ;main.c: 929:         {
 {
@@ -3304,7 +3186,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _IR_SENSORF ( _Read_IR ..  ]
 "931
 [; ;main.c: 931:             if(errorcounter == 0)
-[e $ ! == _errorcounter -> -> 0 `i `l 795  ]
+[e $ ! == _errorcounter -> -> 0 `i `l 786  ]
 "932
 [; ;main.c: 932:             {
 {
@@ -3317,12 +3199,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "935
 [; ;main.c: 935:             }
 }
-[e :U 795 ]
+[e :U 786 ]
 "936
 [; ;main.c: 936:         }
 }
-[e $ != _IR_SENSORF -> -> 1 `i `ui 794  ]
-[e :U 793 ]
+[e $ != _IR_SENSORF -> -> 1 `i `ui 785  ]
+[e :U 784 ]
 "939
 [; ;main.c: 939:         errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
@@ -3340,7 +3222,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
 "946
 [; ;main.c: 946:         if (vibration_mode == 1 && NUM != 0)
-[e $ ! && == -> _vibration_mode `i -> 1 `i != _NUM -> -> 0 `i `ui 796  ]
+[e $ ! && == -> _vibration_mode `i -> 1 `i != _NUM -> -> 0 `i `ui 787  ]
 "947
 [; ;main.c: 947:         {
 {
@@ -3359,11 +3241,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "953
 [; ;main.c: 953:         }
 }
-[e $U 797  ]
+[e $U 788  ]
 "954
 [; ;main.c: 954:         else if(vibration_mode == 0 && NUM != 0)
-[e :U 796 ]
-[e $ ! && == -> _vibration_mode `i -> 0 `i != _NUM -> -> 0 `i `ui 798  ]
+[e :U 787 ]
+[e $ ! && == -> _vibration_mode `i -> 0 `i != _NUM -> -> 0 `i `ui 789  ]
 "955
 [; ;main.c: 955:         {
 {
@@ -3372,7 +3254,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 "957
 [; ;main.c: 957:             if (NUM != 0)
-[e $ ! != _NUM -> -> 0 `i `ui 799  ]
+[e $ ! != _NUM -> -> 0 `i `ui 790  ]
 "958
 [; ;main.c: 958:             {
 {
@@ -3382,10 +3264,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "960
 [; ;main.c: 960:             }
 }
-[e $U 800  ]
+[e $U 791  ]
 "961
 [; ;main.c: 961:             else
-[e :U 799 ]
+[e :U 790 ]
 "962
 [; ;main.c: 962:             {
 {
@@ -3395,39 +3277,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 "964
 [; ;main.c: 964:             }
 }
-[e :U 800 ]
+[e :U 791 ]
 "965
 [; ;main.c: 965:         }
 }
-[e :U 798 ]
-[e :U 797 ]
+[e :U 789 ]
+[e :U 788 ]
 "967
 [; ;main.c: 967:         if(Stop==1)
-[e $ ! == -> _Stop `i -> 1 `i 801  ]
+[e $ ! == -> _Stop `i -> 1 `i 792  ]
 "968
 [; ;main.c: 968:             break;
-[e $U 787  ]
-[e :U 801 ]
+[e $U 778  ]
+[e :U 792 ]
 "970
 [; ;main.c: 970:     }
 }
-[e :U 785 ]
+[e :U 776 ]
 "903
 [; ;main.c: 903:     while (NUM>0)
-[e $ > _NUM -> -> 0 `i `ui 786  ]
-[e :U 787 ]
+[e $ > _NUM -> -> 0 `i `ui 777  ]
+[e :U 778 ]
 "972
 [; ;main.c: 972:     LATAbits.LATA2 = 0;
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
 "974
 [; ;main.c: 974:     if (NUM == 0 || Stop==1)
-[e $ ! || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i 802  ]
+[e $ ! || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i 793  ]
 "975
 [; ;main.c: 975:     {
 {
 "977
 [; ;main.c: 977:         if (vibration_mode == 1)
-[e $ ! == -> _vibration_mode `i -> 1 `i 803  ]
+[e $ ! == -> _vibration_mode `i -> 1 `i 794  ]
 "978
 [; ;main.c: 978:         {
 {
@@ -3446,11 +3328,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "984
 [; ;main.c: 984:         }
 }
-[e :U 803 ]
+[e :U 794 ]
 "986
 [; ;main.c: 986:     }
 }
-[e :U 802 ]
+[e :U 793 ]
 "988
 [; ;main.c: 988:     NUM = 0;
 [e = _NUM -> -> 0 `i `ui ]
@@ -3459,7 +3341,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _OpMode -> . `E5395 0 `uc ]
 "991
 [; ;main.c: 991: }
-[e :UE 782 ]
+[e :UE 773 ]
 }
 "996
 [; ;main.c: 996: void Homing_Again_Auto(void)
@@ -3477,7 +3359,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _WriteSTLED316SMode (1 -> -> 65 `ui `uc ]
 "1002
 [; ;main.c: 1002:     if (vibration_mode == 1)
-[e $ ! == -> _vibration_mode `i -> 1 `i 805  ]
+[e $ ! == -> _vibration_mode `i -> 1 `i 796  ]
 "1003
 [; ;main.c: 1003:     {
 {
@@ -3496,10 +3378,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1008
 [; ;main.c: 1008:     }
 }
-[e $U 806  ]
+[e $U 797  ]
 "1009
 [; ;main.c: 1009:     else
-[e :U 805 ]
+[e :U 796 ]
 "1010
 [; ;main.c: 1010:     {
 {
@@ -3512,14 +3394,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1013
 [; ;main.c: 1013:     }
 }
-[e :U 806 ]
+[e :U 797 ]
 "1015
 [; ;main.c: 1015:     LATAbits.LATA2 = 1;
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 "1017
 [; ;main.c: 1017:     while ( Stop==0)
-[e $U 807  ]
-[e :U 808 ]
+[e $U 798  ]
+[e :U 799 ]
 "1018
 [; ;main.c: 1018:     {
 {
@@ -3536,8 +3418,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 1022:         delay_1ms(Motor_Pause_Time);
 [e ( _delay_1ms (1 _Motor_Pause_Time ]
 "1023
-[; ;main.c: 1023:         MotorON_PWM();
-[e ( _MotorON_PWM ..  ]
+[; ;main.c: 1023:         MotorON();
+[e ( _MotorON ..  ]
 "1024
 [; ;main.c: 1024:         _delay((unsigned long)((350)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
@@ -3546,7 +3428,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _errorcounter -> -> 30 `i `l ]
 "1028
 [; ;main.c: 1028:        do
-[e :U 812 ]
+[e :U 803 ]
 "1029
 [; ;main.c: 1029:         {
 {
@@ -3555,7 +3437,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _IR_SENSORF ( _Read_IR ..  ]
 "1031
 [; ;main.c: 1031:           if(errorcounter == 0)
-[e $ ! == _errorcounter -> -> 0 `i `l 813  ]
+[e $ ! == _errorcounter -> -> 0 `i `l 804  ]
 "1032
 [; ;main.c: 1032:           {
 {
@@ -3568,12 +3450,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1035
 [; ;main.c: 1035:           }
 }
-[e :U 813 ]
+[e :U 804 ]
 "1036
 [; ;main.c: 1036:         }while(IR_SENSORF != 0);
 }
-[e $ != _IR_SENSORF -> -> 0 `i `ui 812  ]
-[e :U 811 ]
+[e $ != _IR_SENSORF -> -> 0 `i `ui 803  ]
+[e :U 802 ]
 "1038
 [; ;main.c: 1038:          _delay((unsigned long)((30)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
@@ -3582,7 +3464,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _errorcounter -> -> 30 `i `l ]
 "1041
 [; ;main.c: 1041:         do
-[e :U 816 ]
+[e :U 807 ]
 "1042
 [; ;main.c: 1042:         {
 {
@@ -3591,7 +3473,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _IR_SENSORF ( _Read_IR ..  ]
 "1044
 [; ;main.c: 1044:           if(errorcounter == 0)
-[e $ ! == _errorcounter -> -> 0 `i `l 817  ]
+[e $ ! == _errorcounter -> -> 0 `i `l 808  ]
 "1045
 [; ;main.c: 1045:           {
 {
@@ -3604,12 +3486,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1048
 [; ;main.c: 1048:           }
 }
-[e :U 817 ]
+[e :U 808 ]
 "1049
 [; ;main.c: 1049:         }while(IR_SENSORF != 1);
 }
-[e $ != _IR_SENSORF -> -> 1 `i `ui 816  ]
-[e :U 815 ]
+[e $ != _IR_SENSORF -> -> 1 `i `ui 807  ]
+[e :U 806 ]
 "1051
 [; ;main.c: 1051:         errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
@@ -3621,7 +3503,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _MotorBREAK ..  ]
 "1056
 [; ;main.c: 1056:         if (vibration_mode == 1)
-[e $ ! == -> _vibration_mode `i -> 1 `i 818  ]
+[e $ ! == -> _vibration_mode `i -> 1 `i 809  ]
 "1057
 [; ;main.c: 1057:         {
 {
@@ -3640,10 +3522,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1063
 [; ;main.c: 1063:         }
 }
-[e $U 819  ]
+[e $U 810  ]
 "1064
 [; ;main.c: 1064:         else
-[e :U 818 ]
+[e :U 809 ]
 "1065
 [; ;main.c: 1065:         {
 {
@@ -3656,34 +3538,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1068
 [; ;main.c: 1068:         }
 }
-[e :U 819 ]
+[e :U 810 ]
 "1070
 [; ;main.c: 1070:         if(Stop==1)
-[e $ ! == -> _Stop `i -> 1 `i 820  ]
+[e $ ! == -> _Stop `i -> 1 `i 811  ]
 "1071
 [; ;main.c: 1071:             break;
-[e $U 809  ]
-[e :U 820 ]
+[e $U 800  ]
+[e :U 811 ]
 "1073
 [; ;main.c: 1073:     }
 }
-[e :U 807 ]
+[e :U 798 ]
 "1017
 [; ;main.c: 1017:     while ( Stop==0)
-[e $ == -> _Stop `i -> 0 `i 808  ]
-[e :U 809 ]
+[e $ == -> _Stop `i -> 0 `i 799  ]
+[e :U 800 ]
 "1075
 [; ;main.c: 1075:     LATAbits.LATA2 = 0;
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
 "1077
 [; ;main.c: 1077:     if (NUM == 0 || Stop==1)
-[e $ ! || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i 821  ]
+[e $ ! || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i 812  ]
 "1078
 [; ;main.c: 1078:     {
 {
 "1080
 [; ;main.c: 1080:         if (vibration_mode == 1)
-[e $ ! == -> _vibration_mode `i -> 1 `i 822  ]
+[e $ ! == -> _vibration_mode `i -> 1 `i 813  ]
 "1081
 [; ;main.c: 1081:         {
 {
@@ -3702,11 +3584,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1087
 [; ;main.c: 1087:         }
 }
-[e :U 822 ]
+[e :U 813 ]
 "1089
 [; ;main.c: 1089:     }
 }
-[e :U 821 ]
+[e :U 812 ]
 "1091
 [; ;main.c: 1091:     NUM = 0;
 [e = _NUM -> -> 0 `i `ui ]
@@ -3715,7 +3597,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _OpMode -> . `E5395 2 `uc ]
 "1094
 [; ;main.c: 1094: }
-[e :UE 804 ]
+[e :UE 795 ]
 }
 "1099
 [; ;main.c: 1099: void flush(void)
@@ -3732,9 +3614,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 1103:     for(i=0; i<16; i++)
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 16 `i 824  ]
-[e $U 825  ]
-[e :U 824 ]
+[e $ < _i -> 16 `i 815  ]
+[e $U 816  ]
+[e :U 815 ]
 "1104
 [; ;main.c: 1104:     {
 {
@@ -3745,12 +3627,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 1106:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 16 `i 824  ]
-[e :U 825 ]
+[e $ < _i -> 16 `i 815  ]
+[e :U 816 ]
 }
 "1107
 [; ;main.c: 1107: }
-[e :UE 823 ]
+[e :UE 814 ]
 }
 "1112
 [; ;main.c: 1112: void flushOut(void)
@@ -3767,9 +3649,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 1116:     for(i=0; i<16; i++)
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 16 `i 828  ]
-[e $U 829  ]
-[e :U 828 ]
+[e $ < _i -> 16 `i 819  ]
+[e $U 820  ]
+[e :U 819 ]
 "1117
 [; ;main.c: 1117:     {
 {
@@ -3780,12 +3662,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 1119:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 16 `i 828  ]
-[e :U 829 ]
+[e $ < _i -> 16 `i 819  ]
+[e :U 820 ]
 }
 "1120
 [; ;main.c: 1120: }
-[e :UE 827 ]
+[e :UE 818 ]
 }
 "1125
 [; ;main.c: 1125: void readWeighingData(void)
@@ -3820,9 +3702,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 1136:     for (i=0; i<5;i++)
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 832  ]
-[e $U 833  ]
-[e :U 832 ]
+[e $ < _i -> 5 `i 823  ]
+[e $U 824  ]
+[e :U 823 ]
 "1137
 [; ;main.c: 1137:     {
 {
@@ -3833,8 +3715,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 1139:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 5 `i 832  ]
-[e :U 833 ]
+[e $ < _i -> 5 `i 823  ]
+[e :U 824 ]
 }
 "1140
 [; ;main.c: 1140:     INTCONbits.GIE=1;
@@ -3844,7 +3726,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _flushOut ..  ]
 "1143
 [; ;main.c: 1143: }
-[e :UE 831 ]
+[e :UE 822 ]
 }
 "1145
 [; ;main.c: 1145: void InitTimer1(void)
@@ -3874,7 +3756,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _TMR1IF_triggered -> -> 0 `i `uc ]
 "1156
 [; ;main.c: 1156: }
-[e :UE 835 ]
+[e :UE 826 ]
 }
 "1159
 [; ;main.c: 1159: void AD_capture_BattVoltage(void)
@@ -3907,19 +3789,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ADCON0bits 4 1 -> -> 1 `i `uc ]
 "1171
 [; ;main.c: 1171:  while(ADCON0bits.GO==1){;}
-[e $U 837  ]
-[e :U 838 ]
+[e $U 828  ]
+[e :U 829 ]
 {
 }
-[e :U 837 ]
-[e $ == -> . . _ADCON0bits 4 1 `i -> 1 `i 838  ]
-[e :U 839 ]
+[e :U 828 ]
+[e $ == -> . . _ADCON0bits 4 1 `i -> 1 `i 829  ]
+[e :U 830 ]
 "1173
 [; ;main.c: 1173:     VOLTAGE = (ADRESH*256) | (ADRESL);
 [e = _VOLTAGE -> | * -> _ADRESH `i -> 256 `i -> _ADRESL `i `ui ]
 "1174
 [; ;main.c: 1174: }
-[e :UE 836 ]
+[e :UE 827 ]
 }
 "1176
 [; ;main.c: 1176: void Low_Power_Indicator(void)
@@ -3931,7 +3813,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "1179
 [; ;main.c: 1179:     if(VOLTAGE <= 0x0366)
-[e $ ! <= _VOLTAGE -> -> 870 `i `ui 841  ]
+[e $ ! <= _VOLTAGE -> -> 870 `i `ui 832  ]
 "1180
 [; ;main.c: 1180:     {
 {
@@ -3941,11 +3823,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1184
 [; ;main.c: 1184:     }
 }
-[e $U 842  ]
+[e $U 833  ]
 "1185
 [; ;main.c: 1185:     else if(VOLTAGE >= 0x03C0)
-[e :U 841 ]
-[e $ ! >= _VOLTAGE -> -> 960 `i `ui 843  ]
+[e :U 832 ]
+[e $ ! >= _VOLTAGE -> -> 960 `i `ui 834  ]
 "1186
 [; ;main.c: 1186:     {
 {
@@ -3955,9 +3837,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1188
 [; ;main.c: 1188:     }
 }
-[e :U 843 ]
-[e :U 842 ]
+[e :U 834 ]
+[e :U 833 ]
 "1190
 [; ;main.c: 1190: }
-[e :UE 840 ]
+[e :UE 831 ]
 }
