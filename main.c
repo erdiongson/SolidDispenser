@@ -5,8 +5,13 @@
  * Created on November 30, 2019, 10:21 AM
  * Version 3.1 : i. Move from old complier C18 to new complier XC8
  *               ii. remove old timer and change to use XC8 timer
+ * Created: 2022-12-12, 4:00PM
+ * Author: erdiongson
+ * Version 3.6 : i. Increments and Decrements by 10 when the ?UP? or ?DOWN? 
+ *                  Button is pressed - 12/12
+ *               ii. Pause for continuous (00) and limited (01-99) dispense - 12/19
+ *               iii. Dispense count user reset to zero (00) - 12/20
  */
-
 
 #include <xc.h>
 #include "IO.h"
@@ -16,23 +21,42 @@
 #include "i2c.h"
 #include "pic18f65j50.h"
 
-#define VERSION     35
+/******************************************************************************
+* Please change this version every time the code is updated.
+******************************************************************************/
+#define VERSION     36
 
+/******************************************************************************
+* Watch dog timer enable
+******************************************************************************/
 #define OFF         0
 #define ON			1
+/*****************************************************************************/
+
 #define false       0
 #define true		1
 
+/******************************************************************************
+* PWM Duty Cycle Selection
+******************************************************************************/
 #define NORMAL   	0x3F //0x3F
 #define FAST    	0x00
 #define SLOW    	0x7F//0x7F
+
+/******************************************************************************
+* Vibration Motor Duration Selection
+******************************************************************************/
 #define one_sec     0x81
 #define two_sec     0x82
 #define three_sec   0x83
 #define four_sec    0x84
 #define five_sec    0x85
-#define Serial_SOT	0xA5
-#define Serial_EOT	0x5A
+
+/******************************************************************************
+* Write USART Data
+******************************************************************************/
+#define Serial_SOT	0xA5 //Serial Out Buffer Start Bit
+#define Serial_EOT	0x5A //Serial Out Buffer End Bit
 #define NAK         0x15
 #define CMD_BUSY    0x16
 
@@ -62,7 +86,7 @@ unsigned int Motor_Stop_Delay_Time = 0;
 unsigned int Device_ID;
 unsigned int Motor_Pause_Time = 0;
 unsigned int NUM;
-unsigned int i_RUN_ZERO = 0;
+unsigned int i_RUN_ZERO = 0; //0: Limited; 1: Continuous Dispense; 2: Pause/Stop
 unsigned int NUM_REC;
 unsigned int i = 0;
 unsigned int IR_SENSORF = 0;
@@ -120,6 +144,9 @@ void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
 
+int dispense = 0;
+int temp = 0;
+
 /****************************************************************************
 Function:		Main Loop
  ******************************************************************************/
@@ -131,7 +158,7 @@ void main(void) {
     i2c_Init();
     initUSART();
     InitTimer1();
-
+    
     VIB_MOTOR_ON = 0;
     IR_ON = 0;
     errorcounter = errorTime0;
@@ -150,14 +177,13 @@ void main(void) {
 
     //RCSTA1bits.CREN = 1; // Continuos receiver
 
-    WDTCONbits.SWDTEN = OFF; // turn ON watchdog timer
-
     GREEN_LED = 1;
     AMBER_LED = 1;
 
     WriteSTLED316SData(VERSION, 0xFF);
     __delay_ms(500);
     AD_capture_BattVoltage();
+
     /****************************************************************************
                   Read Parameters
      ******************************************************************************/
@@ -303,7 +329,7 @@ void main(void) {
     /*************************************************************************
                Read Motor Speed
      **************************************************************************/
-    /*    PWM_reg = NORMAL;
+        PWM_reg = NORMAL;
     
     INTCONbits.GIE=0; 
     ETemp = read_i2c(EEPROM_MotorSpeed);
@@ -318,7 +344,7 @@ void main(void) {
         INTCONbits.GIE=0;
         write_i2c(EEPROM_MotorSpeed,PWM_reg);
         INTCONbits.GIE=1;
-    }*/
+    }
 
     errorcounter = errorTime0;
     MotorPosition_Init();
@@ -339,7 +365,6 @@ void main(void) {
             case MANUAL_MODE:
 
                 NUM = NUM_REC;
-
                 if (CENTER == 0) {
                     do {
                         if (MOTOR_ON_BUT == 0) {
@@ -351,15 +376,55 @@ void main(void) {
 
                     } while (CENTER == 0);
                 }
-
                 if ((RIGHT == 0) && NUM != 99) {
                     NUM = NUM + 1;
-                    while (RIGHT == 0);
+                    //20221212: erdiongson - added increase in 10 digits when button is pressed longer
+                    WriteSTLED316SData(NUM, vibration_mode);
+                    __delay_ms(250);
+                    while (RIGHT == 0){
+                      __delay_ms(1000);
+                      
+                      //erdiongson - Making sure that the Button is still pressed after a second
+                      //             to avoid false  increments
+                      if(RIGHT == 0 && NUM <= 89)
+                      {
+                        NUM = NUM + 10; 
+                        WriteSTLED316SData(NUM, vibration_mode);
+                      }
+                      
+                      //20221220: erdiongson - pressing both UP and DOWN button resets
+                      //                       the number to zero '00'
+                      if(RIGHT == 0 && LEFT == 0)
+                      {
+                          NUM = 0;
+                          WriteSTLED316SData(NUM, vibration_mode);
+                      }
+                    };
                 }
 
                 if (LEFT == 0 && NUM != 0) {
                     NUM = NUM - 1;
-                    while (LEFT == 0);
+                    //20221212 - (erdiongson) added decrease in 10 digits when button is pressed longer
+                    WriteSTLED316SData(NUM, vibration_mode);
+                    __delay_ms(250);
+                    while (LEFT == 0){
+                      __delay_ms(1000);
+                      
+                      //erdiongson - Making sure that the Button is still pressed after a second
+                      //             to avoid false  increments
+                      if(LEFT == 0 && NUM >= 10){
+                        NUM = NUM - 10;
+                        WriteSTLED316SData(NUM, vibration_mode);
+                      }
+                      
+                      //20221220: erdiongson - pressing both UP and DOWN button resets
+                      //                       the number to zero '00'
+                      if(LEFT == 0 && RIGHT == 0)
+                      {
+                          NUM = 0;
+                          WriteSTLED316SData(NUM, vibration_mode);
+                      }
+                    };
                 }
 
                 if (DOWN == 0 && NUM <= 89) {
@@ -374,8 +439,11 @@ void main(void) {
 
                 NUM_REC = NUM;
                 WriteSTLED316SData(NUM, vibration_mode);
-
-                if (MOTOR_ON_BUT == 0) //MOTOR_ON_BUT
+                
+                //20221219: erdiongson - using the dispense variable as a temporary variable
+                //                       for the MOTOR_ON_BUT/dispense button
+                //if (MOTOR_ON_BUT == 0) //MOTOR_ON_BUT
+                if(dispense == 1)
                 {
                     Busy = 1;
                     errorcounter = errorTime0;
@@ -715,7 +783,26 @@ void __interrupt() high_isr(void) {
         TMR1IF = 0;
         TMR1IF_triggered = true;
     }
-
+    
+    //20221219: erdiongson - to use the dispense button as both pause and start,
+    //                       we turn it as an interrupt toggle
+    if(INTCON3bits.INT2F == 1) {
+      //If the motor is currently off
+      if (dispense == 0 && CENTER != 0)
+      {
+        //Turn on Dispense Motor
+        dispense = 1;
+      }
+      //If the motor is currently on
+      else if (dispense == 1 && CENTER != 0)
+      {
+        //Turn off Dispense Motor
+        dispense = 0;
+      }
+      //Clear the interrupt Flag
+      INTCON3bits.INT2F = 0;
+      return;
+    }
 }
 
 /****************************************************************************
@@ -809,6 +896,7 @@ Function:		Homing for Manual Mode
  ******************************************************************************/
 void Homing_Again_Manual(void) {
 
+    //Checks the vibration mode for the process
     if (vibration_mode == 1) {
         VIB_MOTOR_ON = 1;
         delay_1ms(Vmotor_Time);
@@ -820,11 +908,17 @@ void Homing_Again_Manual(void) {
     }
 
     IR_ON = 1; //turn ON IR sensor
-
+    int NUMInit = NUM;
+    //Checks if the NUM is set to Unlimited Dispense
     if (NUM == 0) {
         i_RUN_ZERO = 1;
     }
+    else
+    {
+        i_RUN_ZERO = 0;
+    }
 
+    //Dispensing Process (unlimited and limited dispense)
     while (NUM > 0 || i_RUN_ZERO == 1) {
         ClrWdt();
         readWeighingData();
@@ -833,7 +927,8 @@ void Homing_Again_Manual(void) {
         MotorON(); // Turn ON motor
         __delay_ms(350); //default 350
         errorcounter = errorTime0;
-
+        //Dispense motor stops at IR Sensor Detection
+        //IR sensor aligned with the marker
         do {
             IR_SENSORF = Read_IR();
             if (errorcounter == 0) {
@@ -846,7 +941,7 @@ void Homing_Again_Manual(void) {
         __delay_ms(30);
 
         errorcounter = errorTime0;
-
+        //IR sensor not aligned with the marker
         do {
             IR_SENSORF = Read_IR();
             if (errorcounter == 0) {
@@ -854,23 +949,24 @@ void Homing_Again_Manual(void) {
                 MotorBREAK();
             }
         } while (IR_SENSORF != 1);
+        
 
         errorcounter = errorTime0;
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
 
+        //Decrement the current number for limited dispense
         if (NUM > 0 && i_RUN_ZERO != 1) {
             NUM--;
         }
 
         WriteSTLED316SData(NUM, vibration_mode);
-
         if (vibration_mode == 1 && (NUM != 0 ||  i_RUN_ZERO == 1)) {
             VIB_MOTOR_ON = 1;
             delay_1ms(Vmotor_Time);
-
             VIB_MOTOR_ON = 0;
             __delay_ms(300);
+            
         } else if (vibration_mode == 0 && (NUM != 0 ||  i_RUN_ZERO == 1)) {
             VIB_MOTOR_ON = 0;
             if (NUM != 0 || i_RUN_ZERO == 1) {
@@ -878,12 +974,17 @@ void Homing_Again_Manual(void) {
             } else {
                 __delay_ms(500);
             }
+            
         }
-
+        
+        //Checks if the Stop bit is triggered
         if (Stop == 1)
             break;
 
-        while (!MOTOR_ON_BUT && NUM == 0) {
+        //while (!MOTOR_ON_BUT && NUM == 0) {
+        //20221219: erdiongson - checking if the dispense button is pressed at any
+        //                       point on the process
+        while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {    
             i_RUN_ZERO = 2;
             WriteSTLED316SData(NUM, !vibration_mode);
             __delay_ms(50);
@@ -891,8 +992,16 @@ void Homing_Again_Manual(void) {
             __delay_ms(50);
         }
         WriteSTLED316SData(NUM, vibration_mode);
+        
+        //remembers the last NUM value for Pause process
+        if(dispense == 0 && NUM != 0)
+        {
+            NUM_REC = NUM;
+            NUM = 0;
+        }
         __delay_ms(50);
     } // end while
+
 
     IR_ON = 0; // turn off IR sensor
 
@@ -909,6 +1018,8 @@ void Homing_Again_Manual(void) {
     }
     i_RUN_ZERO = 0;
     NUM = 0;
+    //resets the dispense variable for START/PASUSE/STOP command button
+    dispense = 0;
     OpMode = MANUAL_MODE;
 
 }
