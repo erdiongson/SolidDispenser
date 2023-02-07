@@ -3,11 +3,11 @@ Microchip MPLAB XC8 Compiler V2.10 ()
 Linker command line:
 
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.10\pic\dat\en_msgs.txt \
-  -cs -h+dist/default/production\Solid_Dispenser_V3.3.X.production.sym \
-  --cmf=dist/default/production\Solid_Dispenser_V3.3.X.production.cmf -z \
-  -Q18F65J50 -oC:\Users\pc1\AppData\Local\Temp\s7gc.2 \
+  -cs -h+dist/default/production\Solid_Dispenser_V3.3-LNH.X.production.sym \
+  --cmf=dist/default/production\Solid_Dispenser_V3.3-LNH.X.production.cmf \
+  -z -Q18F65J50 -oC:\Users\pc1\AppData\Local\Temp\s54s.2 \
   --defsym=__MPLAB_BUILD=1 \
-  -Mdist/default/production/Solid_Dispenser_V3.3.X.production.map -E1 \
+  -Mdist/default/production/Solid_Dispenser_V3.3-LNH.X.production.map -E1 \
   -ver=XC8 --acfsm=1493 -ASTACK=088h-0F3Fh -pstack=STACK -ACODE=00h-07FF7h \
   -ACONST=00h-07FF7h -ASMALLCONST=01000h-010FFhx111,07F00h-07FF7h \
   -AMEDIUMCONST=01000h-07FF7h -ACOMRAM=01h-05Fh -AABS1=00h-0F3Fh \
@@ -26,8 +26,8 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\pc1\AppData\Local\Temp\s7gc.o \
-  dist/default/production\Solid_Dispenser_V3.3.X.production.o 
+  C:\Users\pc1\AppData\Local\Temp\s54s.o \
+  dist/default/production\Solid_Dispenser_V3.3-LNH.X.production.o 
 
 Object code version is 3.11
 
@@ -39,11 +39,11 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\pc1\AppData\Local\Temp\s7gc.o
+C:\Users\pc1\AppData\Local\Temp\s54s.o
                 init                                29A      29A        4        4       0
                 reset_vec                             0        0        4        0       0
                 config                             7FF8     7FF8        6     7FF8       0
-dist/default/production\Solid_Dispenser_V3.3.X.production.o
+dist/default/production\Solid_Dispenser_V3.3-LNH.X.production.o
                 intcode                               8        8      292        4       0
                 temp                                 59       59        1        1       1
                 text43                             1EAC     1EAC       36        4       0

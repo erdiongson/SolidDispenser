@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 18F65J50 ]
 [d frameptr 4065 ]
-"68 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"68 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [e E5395 Op_Mode `uc
 MANUAL_MODE 0
 IDLE_MODE 1
@@ -39,7 +39,7 @@ AUTO_MODE 2
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"14 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\Display.c
+"14 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\Display.c
 [v _InitSTLED316 InitSTLED316 `(v  1 e 1 0 ]
 "89
 [v _STLED316s_SPI_SendData STLED316s_SPI_SendData `(v  1 e 1 0 ]
@@ -53,7 +53,7 @@ AUTO_MODE 2
 [v _WriteSTLED316SVibMode WriteSTLED316SVibMode `(v  1 e 1 0 ]
 "291
 [v _WriteSTLED316SErr WriteSTLED316SErr `(v  1 e 1 0 ]
-"24 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\i2c.c
+"24 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\i2c.c
 [v _i2c_Init i2c_Init `(v  1 e 1 0 ]
 "41
 [v _i2c_Wait i2c_Wait `(v  1 e 1 0 ]
@@ -73,9 +73,9 @@ AUTO_MODE 2
 [v _write_i2c write_i2c `(v  1 e 1 0 ]
 "118
 [v _read_i2c read_i2c `(i  1 e 2 0 ]
-"18 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\IO.c
+"18 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\IO.c
 [v _init init `(v  1 e 1 0 ]
-"124 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"124 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _main main `(v  1 e 1 0 ]
 "662
 [v _high_isr high_isr `IIH(v  1 e 1 0 ]
@@ -103,7 +103,7 @@ AUTO_MODE 2
 [v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
 "1178
 [v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
-"21 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\MotorDriver.c
+"21 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\MotorDriver.c
 [v _initMotor initMotor `(v  1 e 1 0 ]
 "29
 [v _Set_RG3_PWM Set_RG3_PWM `(v  1 e 1 0 ]
@@ -113,7 +113,7 @@ AUTO_MODE 2
 [v _MotorON_PWM MotorON_PWM `(v  1 e 1 0 ]
 "50
 [v _MotorBREAK MotorBREAK `(v  1 e 1 0 ]
-"20 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\usart.c
+"20 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\usart.c
 [v _initUSART initUSART `(v  1 e 1 0 ]
 "48
 [v _Write1USART Write1USART `(v  1 e 1 0 ]
@@ -737,7 +737,7 @@ AUTO_MODE 2
 [v _TRISD5 TRISD5 `VEb  1 e 0 @31917 ]
 "19108
 [v _TRISD6 TRISD6 `VEb  1 e 0 @31918 ]
-"44 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"44 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _Serial_Flag Serial_Flag `uc  1 e 1 0 ]
 "45
 [v _Serial_GData Serial_GData `uc  1 e 1 0 ]
@@ -791,14 +791,14 @@ AUTO_MODE 2
 [v _PWM_Duty_Cycle PWM_Duty_Cycle `VEuc  1 e 1 0 ]
 "76
 [v _TMR1IF_triggered TMR1IF_triggered `VEuc  1 e 1 0 ]
-"19 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\MotorDriver.c
+"19 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\MotorDriver.c
 [v _PWM_reg PWM_reg `uc  1 e 1 0 ]
-"124 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"124 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "657
 } 0
-"118 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\i2c.c
+"118 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\i2c.c
 [v _read_i2c read_i2c `(i  1 e 2 0 ]
 {
 "120
@@ -824,34 +824,34 @@ AUTO_MODE 2
 [v i2c_Read@ack ack `uc  1 a 1 9 ]
 "104
 } 0
-"20 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\usart.c
+"20 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\usart.c
 [v _initUSART initUSART `(v  1 e 1 0 ]
 {
 "43
 } 0
-"21 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\MotorDriver.c
+"21 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\MotorDriver.c
 [v _initMotor initMotor `(v  1 e 1 0 ]
 {
 "27
 } 0
-"18 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\IO.c
+"18 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\IO.c
 [v _init init `(v  1 e 1 0 ]
 {
 "82
 } 0
-"24 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\i2c.c
+"24 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\i2c.c
 [v _i2c_Init i2c_Init `(v  1 e 1 0 ]
 {
 "38
 } 0
-"1101 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"1101 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _flush flush `(v  1 e 1 0 ]
 {
 "1103
 [v flush@i i `i  1 a 2 6 ]
 "1109
 } 0
-"253 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\Display.c
+"253 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\Display.c
 [v _WriteSTLED316SVibMode WriteSTLED316SVibMode `(v  1 e 1 0 ]
 {
 [v WriteSTLED316SVibMode@v_mode v_mode `uc  1 a 1 wreg ]
@@ -860,12 +860,12 @@ AUTO_MODE 2
 [v WriteSTLED316SVibMode@v_mode v_mode `uc  1 a 1 12 ]
 "289
 } 0
-"862 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"862 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _ToggleVIB_Mode ToggleVIB_Mode `(v  1 e 1 0 ]
 {
 "879
 } 0
-"107 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\i2c.c
+"107 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\i2c.c
 [v _write_i2c write_i2c `(v  1 e 1 0 ]
 {
 [v write_i2c@address address `l  1 p 4 0 ]
@@ -922,7 +922,7 @@ AUTO_MODE 2
 [v ___aldiv@divisor divisor `l  1 p 4 10 ]
 "41
 } 0
-"817 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"817 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _MotorPosition_Init MotorPosition_Init `(v  1 e 1 0 ]
 {
 "857
@@ -932,7 +932,7 @@ AUTO_MODE 2
 {
 "1158
 } 0
-"14 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\Display.c
+"14 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\Display.c
 [v _InitSTLED316 InitSTLED316 `(v  1 e 1 0 ]
 {
 [v InitSTLED316@Brightness Brightness `uc  1 a 1 wreg ]
@@ -941,12 +941,12 @@ AUTO_MODE 2
 [v InitSTLED316@Brightness Brightness `uc  1 a 1 14 ]
 "80
 } 0
-"884 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"884 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _Homing_Again_Manual Homing_Again_Manual `(v  1 e 1 0 ]
 {
 "993
 } 0
-"150 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\Display.c
+"150 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\Display.c
 [v _WriteSTLED316SData WriteSTLED316SData `(v  1 e 1 0 ]
 {
 "153
@@ -984,7 +984,7 @@ AUTO_MODE 2
 [v ___awdiv@divisor divisor `i  1 p 2 8 ]
 "41
 } 0
-"107 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\Display.c
+"107 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\Display.c
 [v _Get7Seg Get7Seg `(uc  1 e 1 0 ]
 {
 "109
@@ -993,7 +993,7 @@ AUTO_MODE 2
 [v Get7Seg@Digit Digit `i  1 p 2 6 ]
 "148
 } 0
-"998 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"998 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _Homing_Again_Auto Homing_Again_Auto `(v  1 e 1 0 ]
 {
 "1096
@@ -1012,7 +1012,7 @@ AUTO_MODE 2
 [v flushOut@i i `i  1 a 2 6 ]
 "1122
 } 0
-"48 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\usart.c
+"48 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\usart.c
 [v _Write1USART Write1USART `(v  1 e 1 0 ]
 {
 [v Write1USART@data data `uc  1 a 1 wreg ]
@@ -1021,7 +1021,7 @@ AUTO_MODE 2
 [v Write1USART@data data `uc  1 a 1 6 ]
 "53
 } 0
-"191 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\Display.c
+"191 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\Display.c
 [v _WriteSTLED316SMode WriteSTLED316SMode `(v  1 e 1 0 ]
 {
 [v WriteSTLED316SMode@msg msg `uc  1 a 1 wreg ]
@@ -1053,12 +1053,12 @@ AUTO_MODE 2
 [v STLED316s_SPI_SendData@Data Data `uc  1 a 1 8 ]
 "105
 } 0
-"800 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"800 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _Read_IR Read_IR `(ui  1 e 2 0 ]
 {
 "812
 } 0
-"42 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\MotorDriver.c
+"42 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\MotorDriver.c
 [v _MotorON_PWM MotorON_PWM `(v  1 e 1 0 ]
 {
 "48
@@ -1078,7 +1078,7 @@ AUTO_MODE 2
 {
 "40
 } 0
-"1161 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"1161 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
 {
 "1176
@@ -1099,7 +1099,7 @@ AUTO_MODE 2
 [v high_isr@Temp Temp `uc  1 a 1 3 ]
 "783
 } 0
-"48 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\usart.c
+"48 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\usart.c
 [v i2_Write1USART Write1USART `(v  1 e 1 0 ]
 {
 [v i2Write1USART@data data `uc  1 a 1 wreg ]
@@ -1115,7 +1115,7 @@ AUTO_MODE 2
 [v Read1USART@result result `uc  1 a 1 0 ]
 "75
 } 0
-"1178 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3.X\main.c
+"1178 C:\Users\pc1\Desktop\Kenny's Document\SDB-1 DP1801\Design Master\DM03 - Software\DM03-03 Source codes\FW\SolidDispenser_V3.3\Solid_Dispenser_V3.3-LNH.X\main.c
 [v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
 {
 "1192

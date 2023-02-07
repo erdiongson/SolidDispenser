@@ -9617,7 +9617,6 @@ void main(void)
 
 
 
-
                 }
 
 
@@ -10094,23 +10093,33 @@ void ToggleVIB_Mode(void)
 void Homing_Again_Manual(void)
 {
 
-    if (vibration_mode == 1)
-    {
-        LATCbits.LATC1 = 1;
-        delay_1ms(Vmotor_Time);
-        LATCbits.LATC1 = 0;
-        _delay((unsigned long)((300)*(8000000/4000.0)));
-    }
-    else
-    {
-        LATCbits.LATC1 = 0;
-        _delay((unsigned long)((300)*(8000000/4000.0)));
-    }
 
-    LATAbits.LATA2 = 1;
 
     while (NUM>0)
     {
+        if (vibration_mode == 1 && NUM != 0)
+        {
+            LATCbits.LATC1 = 1;
+            delay_1ms(Vmotor_Time);
+
+            LATCbits.LATC1 = 0;
+            _delay((unsigned long)((300)*(8000000/4000.0)));
+        }
+        else if(vibration_mode == 0 && NUM != 0)
+        {
+            LATCbits.LATC1 = 0;
+            if (NUM != 0)
+            {
+                delay_1ms(Vmotor_Time);
+            }
+            else
+            {
+                _delay((unsigned long)((500)*(8000000/4000.0)));
+            }
+        }
+
+        LATAbits.LATA2 = 1;
+
         __asm(" clrwdt");
         readWeighingData();
         AD_capture_BattVoltage();
@@ -10149,9 +10158,6 @@ void Homing_Again_Manual(void)
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
 
-        NUM--;
-        WriteSTLED316SData(NUM, vibration_mode);
-
         if (vibration_mode == 1 && NUM != 0)
         {
             LATCbits.LATC1 = 1;
@@ -10173,26 +10179,22 @@ void Homing_Again_Manual(void)
             }
         }
 
+        NUM--;
+        WriteSTLED316SData(NUM, vibration_mode);
+
+        _delay((unsigned long)((20000)*(8000000/4000.0)));
+        _delay((unsigned long)((20000)*(8000000/4000.0)));
+        _delay((unsigned long)((20000)*(8000000/4000.0)));
+        _delay((unsigned long)((20000)*(8000000/4000.0)));
+        _delay((unsigned long)((20000)*(8000000/4000.0)));
+        _delay((unsigned long)((20000)*(8000000/4000.0)));
+
         if(Stop==1)
             break;
 
     }
 
     LATAbits.LATA2 = 0;
-
-    if (NUM == 0 || Stop==1)
-    {
-
-        if (vibration_mode == 1)
-        {
-            LATCbits.LATC1 = 1;
-            delay_1ms(Vmotor_Time);
-
-            LATCbits.LATC1 = 0;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-        }
-
-    }
 
     NUM = 0;
     OpMode = MANUAL_MODE;

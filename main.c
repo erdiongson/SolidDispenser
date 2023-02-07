@@ -403,7 +403,6 @@ void main(void)
                     Homing_Again_Manual();
                     Stop = 0;
                     Busy = 0;
-
                    // do
                    // {
                        // WriteSTLED316SErr('E');
@@ -885,23 +884,33 @@ Function:		Homing for Manual Mode
 void Homing_Again_Manual(void) 
 {
   
-    if (vibration_mode == 1) 
-    {
-        VIB_MOTOR_ON = 1;    
-        delay_1ms(Vmotor_Time);
-        VIB_MOTOR_ON = 0;
-        __delay_ms(300);
-    } 
-    else 
-    {
-        VIB_MOTOR_ON = 0;
-        __delay_ms(300);
-    }
-  
-    IR_ON = 1; //turn ON IR sensor
+
     
     while (NUM>0) 
     {
+        if (vibration_mode == 1 && NUM != 0) 
+        {
+            VIB_MOTOR_ON = 1;                    
+            delay_1ms(Vmotor_Time);
+            
+            VIB_MOTOR_ON = 0;
+            __delay_ms(300);
+        } 
+        else if(vibration_mode == 0 && NUM != 0) 
+        {
+            VIB_MOTOR_ON = 0;
+            if (NUM != 0) 
+            {
+                delay_1ms(Vmotor_Time);
+            } 
+            else 
+            {
+                __delay_ms(500);
+            }
+        }
+  
+        IR_ON = 1; //turn ON IR sensor
+        
         ClrWdt();
         readWeighingData();
         AD_capture_BattVoltage();
@@ -940,9 +949,6 @@ void Homing_Again_Manual(void)
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
 
-        NUM--;
-        WriteSTLED316SData(NUM, vibration_mode);
-
         if (vibration_mode == 1 && NUM != 0) 
         {
             VIB_MOTOR_ON = 1;                    
@@ -963,7 +969,17 @@ void Homing_Again_Manual(void)
                 __delay_ms(500);
             }
         }
-      
+        
+        NUM--;
+        WriteSTLED316SData(NUM, vibration_mode);
+        
+        __delay_ms(20000);
+        __delay_ms(20000);
+        __delay_ms(20000);
+        __delay_ms(20000);
+        __delay_ms(20000);
+        __delay_ms(20000);
+        
         if(Stop==1)
             break;
         
@@ -971,20 +987,6 @@ void Homing_Again_Manual(void)
 
     IR_ON = 0; // turn off IR sensor
     
-    if (NUM == 0 || Stop==1) 
-    {
-    
-        if (vibration_mode == 1) 
-        {
-            VIB_MOTOR_ON = 1;
-            delay_1ms(Vmotor_Time);
-            
-            VIB_MOTOR_ON = 0;
-            __delay_ms(300);
-        }
-        
-    }
-   
     NUM = 0;
     OpMode = MANUAL_MODE;
 

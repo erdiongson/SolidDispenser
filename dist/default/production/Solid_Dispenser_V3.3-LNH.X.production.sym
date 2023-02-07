@@ -608,9 +608,9 @@ bssCOMRAM 1 59 COMRAM 1 1
 bssBANK0 60 87 BANK0 60 1
 text34 2044 2077 CODE 2044 0
 %locals
-dist/default/production\Solid_Dispenser_V3.3.X.production.o
+dist/default/production\Solid_Dispenser_V3.3-LNH.X.production.o
 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f65j50.h
-C:\Users\pc1\AppData\Local\Temp\s7gc.s
+C:\Users\pc1\AppData\Local\Temp\s54s.s
 3396 1D40 0 CODE 0
 3398 1D40 0 CODE 0
 3401 1D40 0 CODE 0
@@ -1574,7 +1574,7 @@ main.c
 794 1EFA 0 CODE 0
 790 1EFA 0 CODE 0
 795 1F0C 0 CODE 0
-C:\Users\pc1\AppData\Local\Temp\s7gc.s
+C:\Users\pc1\AppData\Local\Temp\s54s.s
 13004 8 0 CODE 0
 main.c
 662 8 0 CODE 0
