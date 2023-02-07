@@ -45,7 +45,7 @@ extern "C" {
 #define PORTC_TRIS      0X84     // all out      
 
 #define GREEN_LED		LATDbits.LATD0
-#define RED_LED			LATDbits.LATD1
+#define AMBER_LED		LATDbits.LATD1
 //#define 			PORTDbits.RD2
 //#define 			PORTDbits.RD3
 //#define 			PORTDbits.RD4
