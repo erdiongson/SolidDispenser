@@ -42,17 +42,17 @@ extern "C" {
     
 #define _XTAL_FREQ 8000000
     
-#define EEPROM_VibMode          0x0010
-#define EEPROM_DevID            0x0020
-#define EEPROM_MotorSpeed       0x0030
-#define EEPROM_VibTime          0x0040
-#define EEPROM_MotorStopDelay   0x0050
-#define EEPROM_MotorPauseTime   0x0060
+#define EEPROM_VibMode              0x0010
+#define EEPROM_DevID                0x0020
+#define EEPROM_MotorSpeed           0x0030
+#define EEPROM_VibTime              0x0040
+#define EEPROM_MotorStopPosition    0x0050
+#define EEPROM_MotorPauseTime       0x0060
     
 #define Busy1USART( )  (!TXSTA1bits.TRMT)
 #define DataRdy1USART( ) (PIR1bits.RC1IF)
-
-
+    
+extern unsigned char PWM_reg;
     
 void init(void);
 void initMotor(void);
@@ -60,7 +60,7 @@ void Set_RG3_PWM(void);
 void Clr_RG3_PWM(void);
 void MotorON_PWM(void);
 void MotorBREAK(void);
-void Read_IR(void);
+unsigned int Read_IR(void);
 void MotorPosition_Init(void);
 void STLED316s_Delay (void);
 void STLED316s_SPI_SendData ( unsigned char Data );

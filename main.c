@@ -16,14 +16,14 @@
 #include "i2c.h"
 #include "pic18f65j50.h"
 
-#define VERSION 31
+#define VERSION     32
 
 #define OFF         0
 #define ON			1
-#define MANUAL_MODE	2
-#define IDLE_MODE	3
-#define AUTO_MODE	4
-#define NORMAL   	0x3F
+#define false       0
+#define true		1
+
+#define NORMAL   	0x3F //0x3F
 #define FAST    	0x00
 #define SLOW    	0x7F
 #define one_sec     0x81
@@ -35,6 +35,10 @@
 #define Serial_EOT	0x5A
 #define NAK         0x15
 #define CMD_BUSY    0x16
+
+#define errorTime   30
+
+enum Op_Mode{MANUAL_MODE, IDLE_MODE,AUTO_MODE};
 
 unsigned char Serial_Flag;
 unsigned char Serial_GData;
@@ -57,15 +61,17 @@ unsigned int Motor_Pause_Time = 0;
 unsigned int NUM;
 unsigned int NUM_REC;
 unsigned int i=0;
+unsigned int IR_SENSORF = 0;
 
 volatile char OpMode = MANUAL_MODE;
-volatile char IR_SENSORF = 0;
+volatile long errorcounter = errorTime; //IRsensor counter
 
 volatile unsigned char pause_Time;
 volatile unsigned char vib_Time;
 volatile unsigned char delay_motor_stop_time;
 volatile unsigned char PWM_Duty_Cycle;
-volatile unsigned char PWM_reg = 0x3F;
+volatile char TMR1IF_triggered = false;
+unsigned char PWM_reg = 0x3F;
 
 void init(void);
 void initMotor(void);
@@ -73,12 +79,13 @@ void Set_RG3_PWM(void);
 void Clr_RG3_PWM(void);
 void MotorON_PWM(void);
 void MotorBREAK(void);
-void Read_IR(void);
+unsigned int Read_IR(void);
 void MotorPosition_Init(void);
 void STLED316s_Delay (void);
 void STLED316s_SPI_SendData ( unsigned char Data );
 void WriteSTLED316SData( int number, char v_mode);
 void WriteSTLED316SMode( char msg);
+void WriteSTLED316SVibMode( char v_mode);
 void InitSTLED316( unsigned char Brightness );
 unsigned char Get7Seg (int Digit);
 void ToggleVIB_Mode(void);
@@ -103,6 +110,7 @@ void flushOut(void);
 void readWeighingData(void);
 void Homing_Again_Auto(void);
 void WriteSTLED316SErr( char msg);
+void InitTimer1(void);
 
 
 /****************************************************************************
@@ -110,12 +118,18 @@ Function:		Main Loop
 ******************************************************************************/
 void main(void) 
 {    
+    GIE = 0;
     init();
     InitSTLED316(0x77);
     initMotor();
     i2c_Init();
     initUSART();
+    InitTimer1();
+    
     VIB_MOTOR_ON = 0;
+    IR_ON = 0;
+    errorcounter = errorTime;
+  
     
     /* Enable interrupt priority */
   	RCONbits.IPEN = 1;
@@ -130,62 +144,121 @@ void main(void)
  
     //RCSTA1bits.CREN = 1; // Continuos receiver
     
-    WDTCONbits.SWDTEN = ON; // turn ON watchdog timer
+    WDTCONbits.SWDTEN = OFF; // turn ON watchdog timer
     
     GREEN_LED = 1;
+    RED_LED = 0;
     
     WriteSTLED316SData(VERSION, 0xFF);
     __delay_ms(100);
-    //MotorPosition_Init();
+       
+ /****************************************************************************
+               Read Parameters
+******************************************************************************/
+    
+     /*************************************************************************
+               Read Vibration Mode
+    **************************************************************************/
+    INTCONbits.GIE=0;
+    ETemp = read_i2c(EEPROM_VibMode);
+    INTCONbits.GIE=1;
+    
+    vibration_mode = ETemp & 0x00FF;
+    if(vibration_mode>1)
+    {
+        vibration_mode = 1;
+        
+        INTCONbits.GIE=0;
+        write_i2c(EEPROM_VibMode, vibration_mode);
+        INTCONbits.GIE=1;
+    }
     
     NUM = 1;
     WriteSTLED316SData(NUM, vibration_mode);
     NUM_REC = 1;
     
-    vibration_mode = 1;
-    
-    if (vibration_mode)
-        RED_LED = 1;
-    else
-        RED_LED = 0;
-    
-    
- /****************************************************************************
-               Read Parameters
-******************************************************************************/
-    
     /*************************************************************************
                Read Device ID
     **************************************************************************/
+    INTCONbits.GIE=0;
     ETemp = read_i2c(EEPROM_DevID);
+    INTCONbits.GIE=1;
+    
     Device_ID = ETemp & 0x00FF;
     if(Device_ID<0x31 || Device_ID>0x3A)
     {
         Device_ID=0x31;
+        
+        INTCONbits.GIE=0;
         write_i2c(EEPROM_DevID, Device_ID);
+        INTCONbits.GIE=1;
     }
     
     /*************************************************************************
                Read Motor Pause Time
     **************************************************************************/
+    INTCONbits.GIE=0;
     ETemp = read_i2c(EEPROM_MotorPauseTime);
+    INTCONbits.GIE=1;
+    
     pause_Time = ETemp & 0x00FF;
     if(pause_Time<0x30 || pause_Time>0x35)
     {
         pause_Time = 0x30;
         Motor_Pause_Time=0;
+        
+        INTCONbits.GIE=0;
         write_i2c(EEPROM_MotorPauseTime, pause_Time);
+        INTCONbits.GIE=1;
+    }
+    else
+    {
+        switch(pause_Time)
+        {
+            case 0x30:
+            default:
+                Motor_Pause_Time = 0;
+                pause_Time = 0x30;
+                break;
+                                            
+            case 0x31:
+                Motor_Pause_Time = 1000;
+                break;
+                                            
+            case 0x32:
+                Motor_Pause_Time = 2000;
+                break;
+                                            
+            case 0x33:
+                 Motor_Pause_Time = 3000;
+                break;
+                                            
+            case 0x34:
+                Motor_Pause_Time = 4000;
+                break;
+                                            
+            case 0x35:
+                Motor_Pause_Time = 5000;
+                break;                                            
+        }
     }
     
     /*************************************************************************
-               Read Motor Stop Delay Time
-    **************************************************************************/ 
-    ETemp = read_i2c(EEPROM_MotorStopDelay);
+               Read Motor Stop Position
+    **************************************************************************/
+    INTCONbits.GIE=0;
+    ETemp = read_i2c(EEPROM_MotorStopPosition);
+    INTCONbits.GIE=1;
+    
     delay_motor_stop_time = ETemp & 0x00FF;
     if(delay_motor_stop_time>0x96)
     {
         delay_motor_stop_time=0x00;
-        write_i2c(EEPROM_MotorStopDelay, delay_motor_stop_time);
+        
+        INTCONbits.GIE=0;
+        write_i2c(EEPROM_MotorStopPosition, delay_motor_stop_time);
+        INTCONbits.GIE=1;
+        
         Motor_Stop_Delay_Time=0;
     }
     else
@@ -196,13 +269,19 @@ void main(void)
     /*************************************************************************
                Read Motor Vibration Time
     **************************************************************************/
+    INTCONbits.GIE=0;
     ETemp = read_i2c(EEPROM_VibTime);
+    INTCONbits.GIE=1
+            ;
     vib_Time = ETemp & 0x00FF;   
     if( (vib_Time!=one_sec && vib_Time!=two_sec && vib_Time!=three_sec && vib_Time!=four_sec && vib_Time!=five_sec) )
     {
         Vmotor_Time = 2000;      // default is 2 sec
         vib_Time = two_sec;
+        
+        INTCONbits.GIE=0;
         write_i2c(EEPROM_VibTime,vib_Time);
+        INTCONbits.GIE=1;
     }
     else
     {
@@ -232,17 +311,23 @@ void main(void)
                Read Motor Speed
     **************************************************************************/  
     PWM_reg = NORMAL;
-     
-    ETemp = read_i2c(EEPROM_MotorSpeed); 
+    
+    INTCONbits.GIE=0; 
+    ETemp = read_i2c(EEPROM_MotorSpeed);
+    INTCONbits.GIE=1;
     
     PWM_reg = ETemp & 0x00FF;
     
     if( (PWM_reg!=FAST && PWM_reg!=NORMAL && PWM_reg!=SLOW) )
     {
         PWM_reg=NORMAL;
-        write_i2c(EEPROM_MotorSpeed,PWM_reg);       
+        
+        INTCONbits.GIE=0;
+        write_i2c(EEPROM_MotorSpeed,PWM_reg);
+        INTCONbits.GIE=1;
     }
     
+    errorcounter = errorTime;
     MotorPosition_Init();
     
  /****************************************************************************
@@ -251,6 +336,7 @@ void main(void)
     while(1)
     {
         ClrWdt();
+        errorcounter = errorTime;
         
         switch(OpMode)
         {
@@ -263,8 +349,17 @@ void main(void)
 
                 if (CENTER == 0) 
                 {
-                    ToggleVIB_Mode();
-                    while (CENTER == 0);
+                    do
+                    {                                              
+                        if(MOTOR_ON_BUT == 0)
+                        {
+                            ToggleVIB_Mode();                           
+                        }
+                        
+                        WriteSTLED316SVibMode(vibration_mode);
+                         __delay_ms(100);
+                    
+                    }while (CENTER == 0);
                 }
 
                 if ((RIGHT == 0) && NUM != 99) 
@@ -297,6 +392,7 @@ void main(void)
                 if (MOTOR_ON_BUT == 0)
                 {
                     Busy = 1;
+                    errorcounter = errorTime;
                     Homing_Again_Manual();
                     Stop = 0;
                     Busy = 0;
@@ -325,7 +421,8 @@ void main(void)
                                 Stop = 0;
                                 Busy = 1;
                                 NUM = NUM_REC;
-                                                              
+                                
+                                errorcounter = errorTime;                              
                                 Homing_Again_Auto();
                                 
                             }
@@ -335,7 +432,8 @@ void main(void)
                                 Busy = 1;
                                 NUM = NUM_REC;
                                 WriteSTLED316SData(NUM, vibration_mode);
-                                                              
+                                
+                                errorcounter = errorTime;
                                 Homing_Again_Manual();
                                 
                                 //send semi-auto dispense completed command to PC
@@ -346,8 +444,13 @@ void main(void)
                                     Serial_Buffer_Out[2] = 0xF9;
                                     Serial_Buffer_Out[3] = 0X3D;
                                     Serial_Buffer_Out[4] = Serial_EOT;
+                                    
+                                    INTCONbits.GIE=0;
                                     for (i=0; i<5;i++)
+                                    {
                                         Write1USART(Serial_Buffer_Out[i]);
+                                    }
+                                    INTCONbits.GIE=1;
                                 }
                                 
                             }
@@ -358,13 +461,13 @@ void main(void)
                                 break;
                             
                             
-                        case 0x23: //program device ID
+                        case 0x23: //program Pause time
                             
                             if(Busy==0)
                             {
                                 Busy = 1;
-                                if(Serial_Buffer[2]>=0x30 && Serial_Buffer[2]<=0x35)
-                                {
+                                //if(Serial_Buffer[2]>=0x30 && Serial_Buffer[2]<=0x35)
+                                //{
                                     //Device_ID = Serial_Buffer[2];
                                     pause_Time = Serial_Buffer[2];
                                     switch(pause_Time)
@@ -372,6 +475,7 @@ void main(void)
                                         case 0x30:
                                         default:
                                             Motor_Pause_Time = 0;
+                                            pause_Time = 0x30;
                                             break;
                                             
                                         case 0x31:
@@ -394,9 +498,13 @@ void main(void)
                                             Motor_Pause_Time = 5000;
                                             break;                                            
                                     }
-                                }
+                                //}
                                 //write_i2c(EEPROM_DevID, Device_ID);
+                                    
+                                INTCONbits.GIE=0;
                                 write_i2c(EEPROM_MotorPauseTime, pause_Time);
+                                INTCONbits.GIE=1;
+                                
                                 flush();
                                 Busy = 0;
                             }
@@ -410,14 +518,15 @@ void main(void)
                                 if (Serial_Buffer[2] == 0x00)
                                 {                               
                                     Busy = 1;
-                                    //Device_ID = read_i2c(EEPROM_DevID);
+                                    
+                                    INTCONbits.GIE=0;
                                     pause_Time = read_i2c(EEPROM_MotorPauseTime);
                                     vib_Time = read_i2c(EEPROM_VibTime);
                                     Motor_Speed = read_i2c(EEPROM_MotorSpeed);
-                                    delay_motor_stop_time = read_i2c(EEPROM_MotorStopDelay);                                                                      
+                                    delay_motor_stop_time = read_i2c(EEPROM_MotorStopPosition);
+                                    INTCONbits.GIE=1;
 
                                     Serial_Buffer_Out[0] = 0x51;
-                                    //Serial_Buffer_Out[1] = Device_ID;
                                     Serial_Buffer_Out[1] = pause_Time;
                                     Serial_Buffer_Out[2] = Motor_Speed;
                                     Serial_Buffer_Out[3] = vib_Time;
@@ -425,8 +534,12 @@ void main(void)
                                     
                                     __delay_ms(100);
                                     
+                                    INTCONbits.GIE=0;
                                     for (i=0; i<5;i++)
+                                    {
                                         Write1USART(Serial_Buffer_Out[i]);
+                                    }
+                                    INTCONbits.GIE=1;
                                 }
                                 flushOut();
                                 Busy = 0;
@@ -455,12 +568,15 @@ void main(void)
                                         PWM_reg=SLOW;                                   
                                         break;
                                 }
+                                    INTCONbits.GIE=0;
                                     write_i2c(EEPROM_MotorSpeed,PWM_reg);
+                                    INTCONbits.GIE=1;
+                                    
                                     Busy = 0;
                             }
                             break;
                             
-                        case 0x65: //program motor pause/vibration time
+                        case 0x65: //program motor vibration time
                             
                             if(Busy == 0)
                             {
@@ -491,18 +607,25 @@ void main(void)
                                         Vmotor_Time=5000;                                   
                                         break;
                                 }
+                                    INTCONbits.GIE=0;
                                     write_i2c(EEPROM_VibTime,vib_Time);
+                                    INTCONbits.GIE=1;
+                                    
                                     Busy = 0;
                             }
                             
-                        case 0x66: //program motor stop delay
+                        case 0x66: //program motor stop position
                             
                             if(Busy == 0)
                             {
                                 Busy = 1;
                                 delay_motor_stop_time = Serial_Buffer[2];
-                                Motor_Stop_Delay_Time = delay_motor_stop_time;                             
-                                write_i2c(EEPROM_MotorStopDelay,delay_motor_stop_time);
+                                Motor_Stop_Delay_Time = delay_motor_stop_time; 
+                                
+                                INTCONbits.GIE=0;
+                                write_i2c(EEPROM_MotorStopPosition,delay_motor_stop_time);
+                                INTCONbits.GIE=1;
+                                
                                 Busy = 0;
                             }
                             
@@ -561,13 +684,21 @@ void __interrupt() high_isr(void)
                     {
                         if(Busy==0 || Serial_Buffer[2]==0xF5)
                         {
+                            INTCONbits.GIE=0;
                             for (i=0; i<5; i++)
+                            {
                                 Write1USART(Serial_Buffer[i]);
+                            }
+                            INTCONbits.GIE=1;
                         }
                         else
                         {
+                            INTCONbits.GIE=0;
                             for (i=0; i<5; i++)
+                            {
                                 Write1USART(CMD_BUSY);
+                            }
+                            INTCONbits.GIE=1;
                         }
 
                         Serial_Flag = 1;
@@ -579,8 +710,13 @@ void __interrupt() high_isr(void)
                     {
                         Serial_Flag = 0;
                         Serial_Count = 0;
+                        
+                        INTCONbits.GIE=0;
                         for (i=0; i<5; i++)
+                        {
                             Write1USART(NAK);
+                        }
+                        INTCONbits.GIE=1;
                     }
 
                     if(Serial_Buffer[2]==0xF5 && OpMode == AUTO_MODE)
@@ -607,6 +743,27 @@ void __interrupt() high_isr(void)
         }
     }
     
+    if (TMR1IF_triggered == true)
+    {
+        if(errorcounter >0)
+        {
+            errorcounter--;
+        }
+        else 
+        {
+            errorcounter = 0;
+        }
+        
+        TMR1IF_triggered = false;
+    }
+    
+    if(TMR1IF)
+    { 
+        TMR1 = 0x9E57; //100ms timer1
+        TMR1IF = 0;
+        TMR1IF_triggered = true;
+    }  
+    
 }
 
 /****************************************************************************
@@ -622,499 +779,20 @@ void delay_1ms(unsigned int time)
 }
 
 /****************************************************************************
-Function:		Port Initialization
-******************************************************************************/
-void init(void)
-{
-    TRISA = PORTA_TRIS;
-    TRISB = PORTB_TRIS;
-    TRISC = PORTC_TRIS;
-    TRISD = PORTD_TRIS;
-    TRISE = PORTE_TRIS;
-    TRISF = PORTF_TRIS;
-    TRISG = PORTG_TRIS;
-    
-    //enable or disable adc converter
-    ADCON0bits.VCFG1 = 0; // internal VDD as reference
-	ADCON0bits.VCFG0 = 0; // internal VDD as reference
-    ADCON0bits.ADON=0;// 0 = OFF adc 1 = ON adc
-
-    //AD converter configuration register
-	ADCON1bits.ADFM = 1;  //  right justified
-	ADCON1bits.ADCAL = 0; //  calibration disabled
-	ADCON1bits.ACQT2 = 0; //
-	ADCON1bits.ACQT1 = 1; //
-	ADCON1bits.ACQT0 = 0; //
-	ADCON1bits.ADCS2 = 1; //
-	ADCON1bits.ADCS1 = 0; //
-	ADCON1bits.ADCS0 = 0; //
-    
-    //WDT configuration
-	WDTCONbits.ADSHR = 1; // shared address access
-    
-	//CONFIG2Hbits.WDTPS3 = 1;
-    //WDTCONbits.SWDTEN = 1;
-    
-    //to enable or disable analog port - 0 is enable 1 is disable
-	ANCON0bits.PCFG0 = 0; // AN0 analog port
-	ANCON0bits.PCFG1 = 1; // RA1 digital port
-	ANCON0bits.PCFG2 = 1; // RA2 digital port
-	ANCON0bits.PCFG3 = 1; // RA3 digital port
-	ANCON0bits.PCFG4 = 1; // RA5 digital port
-    ANCON0bits.PCFG7 = 1; // RA5 digital port
-    
-    WDTCONbits.ADSHR = 0;
-    
-    INTCONbits.GIE = 1;	/* Enable Global Interrupt */
-    //INTCONbits.PEIE = 1;/* Enable Peripheral Interrupt */
-    //PIE1bits.RCIE = 1;	/* Enable Receive Interrupt*/
-    //PIE1bits.TXIE = 1;	/* Enable Transmit Interrupt*/
-    
-    OSCCONbits.SCS = 0b11; //Postscaled internal clock (INTRC/INTOSC derived)
-    OSCCONbits.IRCF = 0b111;//8 MHz (INTOSC drives clock directly)
-	
-}
-
-/****************************************************************************
-Function:		USART Initialization
-******************************************************************************/
-void initUSART(void)
-{
-    // setup USART
-    TRISCbits.TRISC6 = 0; // TX as output
-    TRISCbits.TRISC7 = 1; // RX as input
-    TXSTA1bits.SYNC = 0; // Async operation
-    TXSTA1bits.TX9 = 0; // No tx of 9th bit
-    TXSTA1bits.TXEN = 1; // Enable transmitter
-    RCSTA1bits.RX9 = 0; // No rx of 9th bit
-    RCSTA1bits.CREN = 1; // Enable receiver
-    TXSTA1bits.CSRC = 0; //Clock Source Select bit for syn - Asyn is dont care
-    RCSTA1bits.ADDEN = 1;
-    RCSTA1bits.SPEN = 1; // Enable serial port
-    
-    // Setting for 19200 BPS
-    BAUDCON1bits.BRG16 = 0; // Divisor at 8 bit
-    TXSTA1bits.BRGH = 1; // No high-speed baudrate
-    PIE1bits.RC1IE = 1;
-    PIE1bits.TX1IE = 0;
-    //(FOSC/baudrate/64)-1 = SPBRG1
-    SPBRG1 = 25;  //48MHZ = 38; // divisor value for 19200
-    SPBRGH1 = 0;
-    
-}
-
-/****************************************************************************
-Function:		USART Write Function
-******************************************************************************/
-void Write1USART(char data)
-{
-  	TXREG1 = data;      // Write the data byte to the USART2
-
-	while (Busy1USART());
-}	// end Write1USART
-
-/****************************************************************************
-Function:		USART Read Function
-******************************************************************************/
-char Read1USART(void)
-{
-    char result;
-    
-    if (RCSTA1bits.OERR) 
-    {    //has there been an overrun error?
-        RCSTA1bits.CREN = 0; //disable Rx to clear error
-        result = RCREG1;    //purge receive buffer
-        result = RCREG1;    //purge receive buffer
-        RCSTA1bits.CREN = 1;    //re-enable Rx
-    } 
-    else 
-    {
-        result = RCREG1;
-    }
-    
-    return result;
-}
-
-/****************************************************************************
-Function:		i2C Function
-******************************************************************************/
-void write_i2c(long address, int data)
-{
-	i2c_Start();      					// send Start
-	i2c_Address(I2C_SLAVE, I2C_WRITE);	// Send  slave address with write operation
-	i2c_Write((unsigned char)(address/0x100));			// High Address
-	i2c_Write((unsigned char)(address&0xFF));			// Low Address
-	i2c_Write((unsigned char)data);					// Data
- 	i2c_Stop();			  				// send Stop
-}
-
-//long read_i2c(unsigned char address)
-int read_i2c(long address)
-{
-	int read_byte;
-
-	// Read one byte (i.e. servo pos of one servo)
-	i2c_Start();      					// send Start
-	i2c_Address(I2C_SLAVE, I2C_WRITE);	// Send slave address with write operation
-	i2c_Write((unsigned char)(address/0x100));			// High Address
-	i2c_Write((unsigned char)(address&0xFF));			// Low Address
-	i2c_Restart();						// Restart
-	i2c_Address(I2C_SLAVE, I2C_READ);	// Send slave address with read operation
-	read_byte = i2c_Read(0);			// Read one byte
-										// If more than one byte to be read, (0) should
-										// be on last byte only
-										// e.g.3 bytes= i2c_Read(1); i2c_Read(1); i2c_Read(0);
-   	i2c_Stop();							// send Stop
-	return (read_byte);					// return byte. If reading more than one byte
-										// store in an array
-}
-
-/****************************************************************************
-Function:		Motor Function
-******************************************************************************/
-void initMotor(void)
-{
-    PR4 = 0xC7;
-    T3CONbits.T3CCP1 = 0;   // to set Timer3 and Timer4 are the clock sources for ECCP2, ECCP3, CCP4 and CCP5;
-    T3CONbits.T3CCP2 = 1;    
-    T4CON = 0x00;
-}
-
-void Set_RG3_PWM(void)
-{	
-    CCP4CON = 0x0C;  //0b00001100;	// setup as PWM 
-    CCPR4L = PWM_reg;
- 	T4CONbits.TMR4ON = 1;
-}
-
-void Clr_RG3_PWM(void)
-{
-	CCP4CON = 0x00;		//Disable PWM
-    T4CONbits.TMR4ON = 0;
-}
-
-void MotorON_PWM(void)
-{
-	MotorDrive_RG3 = 1;
-	MotorDrive_RG4 = 1;
-
-	Set_RG3_PWM();
-}
-
-void MotorBREAK(void)
-{
-
-	Clr_RG3_PWM();
-
-	MotorDrive_RG3 = 1;
-	MotorDrive_RG4 = 1;
-}
-
-/****************************************************************************
-Function:		7Segment Display
-******************************************************************************/
-void InitSTLED316( unsigned char Brightness ) //default 0x77
-{   
-	int i;
-	
-	STB_Set;	
-											
-	STB_Clr;
-						
-	STLED316s_SPI_SendData ( CHIP_CONFIG_ADDRESS + CHIP_CONFIG_PAGE + FIX_Address + WRITE_Command ); 
-	                     //    0x0                  0x10                 0x20            0 
-	
-	STB_Set;	
-												
-	STB_Clr;
-	
-	
-	STLED316s_SPI_SendData ( CHIP_CONFIG_ADDRESS + CHIP_CONFIG_PAGE + FIX_Address + WRITE_Command );
-	                     //    0x0                  0x10                 0x20            0 
-	STLED316s_SPI_SendData ( ( ( Brightness>>4 )<<5 ) | 0x00 | 0x5 );	                    
-												
-	STB_Set;	
-										
-	STB_Clr;
-
-			 
-	STLED316s_SPI_SendData ( DIGIT_BRIGHTNESS_PAGE + DIGIT_BRIGHTNESS_ADDRESS + INC_Address + WRITE_Command );
-	                     //   0x10			  	  1                           0                  0	   
-
-
-/**********************************************************************************************************/
-
-	STB_Set;	
-											
-	STB_Clr;
-
-
-    STLED316s_SPI_SendData ( DIGIT_BRIGHTNESS_PAGE + DIGIT_BRIGHTNESS_ADDRESS + INC_Address + WRITE_Command );
-	                        //   0x10		    1                           0                  0	   
-	STLED316s_SPI_SendData ( Brightness );					         
-	STLED316s_SPI_SendData ( Brightness );							 
-	STLED316s_SPI_SendData ( Brightness );							 		
-
-/**********************************************************************************************************/
-
-	STB_Set;	
-										
-	STB_Clr;
-
-						/* LED灯亮度设置 */	
-	STLED316s_SPI_SendData ( LED_BRIGHTNESS_PAGE + LED_BRIGHTNESS_ADDRESS + INC_Address + WRITE_Command );
-	                     //   0x11			  0                           0                  0	   
-
-	STB_Set;	
-											
-	STB_Clr;
-
-    STLED316s_SPI_SendData ( LED_BRIGHTNESS_PAGE + LED_BRIGHTNESS_ADDRESS + INC_Address + WRITE_Command );
-	                       //   0x11		  0                           0                  0	   
-	STLED316s_SPI_SendData ( Brightness );					         
-	STLED316s_SPI_SendData ( Brightness );							 
-	STLED316s_SPI_SendData ( Brightness );							 	
-	STLED316s_SPI_SendData ( Brightness );				         
-
-/*********************************************************************************************************/
-
-	STB_Set;
-}
-
-void STLED316s_Delay(void)
-{
-//	char i;
-// 	
-// 	for( i = 0 ; i < 10 ; i++ );
-}
-
-void STLED316s_SPI_SendData( unsigned char Data )
-{
-	char i,temp,t;
-	
-	for(i = 0; i < 8 ;i ++)
-	{
-		CLK_Clr;		//SCL=0;		
-		temp =  Data & (0x1 << i);		
-		if(temp)
-			DATA_Set;	//SDATA=1
-		else
-			DATA_CLr;	//SDATA=0
-		for( t = 0 ; t < 5; t++);
-		CLK_Set;		
-		for( t = 0 ; t < 5 ; t++);					
-	}
-}	
-
-unsigned char Get7Seg (int Digit)
-{
-	unsigned char Data;
-	
-	switch (Digit)
-	{
-		case 0:
-			Data = Seg_0;
-			break;
-		case 1:
-			Data = Seg_1;
-			break;
-		case 2:
-			Data = Seg_2;
-			break;
-		case 3:
-			Data = Seg_3;
-			break;
-		case 4:
-			Data = Seg_4;
-			break;
-		case 5:
-			Data = Seg_5;
-			break;
-		case 6:
-			Data = Seg_6;
-			break;
-		case 7:
-			Data = Seg_7;
-			break;
-		case 8:
-			Data = Seg_8;
-			break;
-		case 9:
-			Data = Seg_9;
-			break;
-		default:
-			Data = Seg_Blank;
-			break;
-	}
-	return (Data);
-}	//
-
-void WriteSTLED316SData( int number, char v_mode)
-{   
-	unsigned char data3, data4;
-	int NUM_DIG0, NUM_DIG1;
-	
-	NUM_DIG0=(int) number%10;
-	NUM_DIG1=(int) number/10;
-
-	STB_Clr;
-					
-	STLED316s_SPI_SendData (0x00 );	
-	
-	STB_Set;	
-												
-	STB_Clr;
-				
-	STLED316s_SPI_SendData (0x00);	
-
-	data4 = Get7Seg(NUM_DIG1);
-	data3 = Get7Seg(NUM_DIG0);
-	
-	if (v_mode)
-	{
-		if (v_mode == 0xFF)
-			data4 |= Seg_Dot;	//display the dot	for version dot
-		else
-			data3 |= Seg_Dot;	//display the dot
-	}
-	
-    STLED316s_SPI_SendData (data4);
-    STLED316s_SPI_SendData (data3);
-			 	
-	STB_Set;
-														
-	STB_Clr;
-		 										
-	STLED316s_SPI_SendData ( DISPLAY_ON );				 /* 发送打开显示命令 */
-
-	STB_Set;		
-}	
-
-void WriteSTLED316SMode( char msg)
-{   
-	STB_Clr;
-				
-	STLED316s_SPI_SendData (0x00 );	
-				  	
-
-	STB_Set;	
-												
-	STB_Clr;
-			
-	STLED316s_SPI_SendData (0x00);	
-	
-	switch(msg)
-	{
-	  case 'E': //error start button not release
-	    STLED316s_SPI_SendData (Seg_E); 
-        STLED316s_SPI_SendData (Seg_0); 
-      	break; 
-      case 'O':
-	    STLED316s_SPI_SendData (Seg_0); //0
-        STLED316s_SPI_SendData (Seg_P); //P
-     	break;
-      case 'C':
-	    STLED316s_SPI_SendData (Seg_C); //C
-        STLED316s_SPI_SendData (Seg_A); //A
-     	 break;
-      case 'X':
-	    STLED316s_SPI_SendData (Seg_Blank); //0
-        STLED316s_SPI_SendData (Seg_Blank); //0
-      	break;
-      case 'G':
-	    STLED316s_SPI_SendData (Seg_Blank); //0
-        STLED316s_SPI_SendData (Seg_0); //0
-        break;
-      case 'S':    
-	    STLED316s_SPI_SendData (Seg_E); //0
-        STLED316s_SPI_SendData (Seg_1); //0
-        break;
-      case 'A': //Auto - continuous mode    
-	    STLED316s_SPI_SendData (Seg_A); //0
-        STLED316s_SPI_SendData (Seg_U); //0
-        break;
-      default:
-      	break;
-	}
-
-	STB_Set;
-															
-	STB_Clr;
-		 										
-	STLED316s_SPI_SendData ( DISPLAY_ON );				
-    
-	STB_Set;		
-}
-
-void WriteSTLED316SErr( char msg)
-{   
-	STB_Clr;
-				
-	STLED316s_SPI_SendData (0x00 );	
-				  	
-
-	STB_Set;	
-												
-	STB_Clr;
-			
-	STLED316s_SPI_SendData (0x00);	
-	
-	switch(msg)
-	{
-	  case 'E': //error start button not release
-	    STLED316s_SPI_SendData (Seg_E); 
-        STLED316s_SPI_SendData (Seg_0); 
-      	break; 
-      case 'O':
-	    STLED316s_SPI_SendData (Seg_0); //0
-        STLED316s_SPI_SendData (Seg_P); //P
-     	break;
-      case 'C':
-	    STLED316s_SPI_SendData (Seg_C); //C
-        STLED316s_SPI_SendData (Seg_A); //A
-     	 break;
-      case 'X':
-	    STLED316s_SPI_SendData (Seg_Blank); //0
-        STLED316s_SPI_SendData (Seg_Blank); //0
-      	break;
-      case 'G':
-	    STLED316s_SPI_SendData (Seg_Blank); //0
-        STLED316s_SPI_SendData (Seg_0); //0
-        break;
-      case 'S':    
-	    STLED316s_SPI_SendData (Seg_E); //0
-        STLED316s_SPI_SendData (Seg_1); //0
-        break;
-      case 'A': //Auto - continuous mode    
-	    STLED316s_SPI_SendData (Seg_A); //0
-        STLED316s_SPI_SendData (Seg_U); //0
-        break;
-      default:
-      	break;
-	}
-
-	STB_Set;
-															
-	STB_Clr;
-		 										
-	STLED316s_SPI_SendData ( DISPLAY_ON );				
-    
-	STB_Set;		
-}
-
-/****************************************************************************
 Function:		IR Sensor Function
 ******************************************************************************/
-void Read_IR(void) 
+unsigned int Read_IR(void) 
 {
-    if(IR_Status == 1)
+    //IRFlag black is 1 white is 0
+    if(IR_Status == 1)//white
     {
-        IR_SENSORF = 0;
+        return 0; 
     } 
-    else
+    else //black
     {
-        IR_SENSORF = 1;
-    } 
+        return 1;
+    }
+    
 }
 
 /****************************************************************************
@@ -1124,21 +802,38 @@ void MotorPosition_Init(void)
 {
     IR_ON = 1;
     MotorON_PWM(); // turn ON motor
-    __delay_ms(350);
+    __delay_ms(350); //default 350
+    errorcounter = errorTime;
         
     do
     {
-        Read_IR();        
+      IR_SENSORF =  Read_IR();
+      if(errorcounter == 0)
+      {
+          WriteSTLED316SErr('1');
+          MotorBREAK();
+      }
+       
     }while(IR_SENSORF != 0);
-        
+    
+     __delay_ms(100);
+    errorcounter = errorTime;    
     do
     {
-        Read_IR();      
+       IR_SENSORF =  Read_IR();
+       if(errorcounter == 0)
+       {
+            WriteSTLED316SErr('2');
+           MotorBREAK();
+       }
+       
     }while(IR_SENSORF != 1);
+    
+    errorcounter = errorTime;
     
     delay_1ms(Motor_Stop_Delay_Time);
     MotorBREAK();
-    __delay_ms(2000);
+    __delay_ms(500);
     IR_SENSORF=0;
                       
     IR_ON = 0;
@@ -1155,14 +850,16 @@ void ToggleVIB_Mode(void)
     else
         vibration_mode = 1;
     
-    if (vibration_mode)
-        RED_LED = 1;
-    else
-        RED_LED = 0;
+    //if (vibration_mode)
+        //RED_LED = 1;
+    //else
+        //RED_LED = 0;
+    
+    INTCONbits.GIE=0;
+    write_i2c(EEPROM_VibMode, vibration_mode);
+    INTCONbits.GIE=1;
 
-    //write_i2c(EEPROM_VibMode, vibration_mode);
-
-    WriteSTLED316SData(NUM, vibration_mode); //Update the display
+    //WriteSTLED316SData(NUM, vibration_mode); //Update the display
 }
 
 /****************************************************************************
@@ -1170,8 +867,6 @@ Function:		Homing for Manual Mode
 ******************************************************************************/
 void Homing_Again_Manual(void) 
 {
-    
-    IR_SENSORF = 0;
   
     if (vibration_mode == 1) 
     {
@@ -1194,20 +889,36 @@ void Homing_Again_Manual(void)
         readWeighingData();
         delay_1ms(Motor_Pause_Time);
         MotorON_PWM(); // Turn ON motor
-        __delay_ms(350); //default150
+        __delay_ms(350); //default 350
+        errorcounter = errorTime;
 
         do
         {
-            Read_IR();
+            IR_SENSORF = Read_IR();
+            if(errorcounter == 0)
+            {
+                WriteSTLED316SErr('1');
+                MotorBREAK();
+            }
+           
         }while(IR_SENSORF != 0);
         
+         __delay_ms(100);
+         
+         errorcounter = errorTime;
+         
         do
         {
-            Read_IR();
-        }while(IR_SENSORF != 1);
+            IR_SENSORF = Read_IR();
+            if(errorcounter == 0)
+            {
+                WriteSTLED316SErr('2');
+                MotorBREAK();
+            }
+        }
+        while(IR_SENSORF != 1);
         
-        IR_SENSORF = 0;
-
+        errorcounter = errorTime;
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
 
@@ -1254,8 +965,6 @@ void Homing_Again_Manual(void)
             __delay_ms(300);
         }
         
-        IR_SENSORF = 0;
-        
     }
    
     NUM = 0;
@@ -1293,19 +1002,34 @@ void Homing_Again_Auto(void)
         readWeighingData();
         delay_1ms(Motor_Pause_Time);
         MotorON_PWM(); // Turn ON motor
-        __delay_ms(350); //default150
+        __delay_ms(350); //default350
+        
+        errorcounter = errorTime;
 
-        do
+       do
         {
-            Read_IR();
+          IR_SENSORF =   Read_IR();
+          if(errorcounter == 0)
+          {
+              WriteSTLED316SErr('1');
+              MotorBREAK();
+          }
         }while(IR_SENSORF != 0);
         
+         __delay_ms(100);
+         errorcounter = errorTime;
+        
         do
         {
-            Read_IR();
+          IR_SENSORF =   Read_IR();
+          if(errorcounter == 0)
+          {
+              WriteSTLED316SErr('2');
+              MotorBREAK();
+          }
         }while(IR_SENSORF != 1);
         
-        IR_SENSORF = 0;
+        errorcounter = errorTime;
 
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
@@ -1342,8 +1066,6 @@ void Homing_Again_Auto(void)
             VIB_MOTOR_ON = 0;
             __delay_ms(300);
         }
-        
-        IR_SENSORF = 0;
         
     }
    
@@ -1390,8 +1112,26 @@ void readWeighingData(void)
     Serial_Buffer_Out[2] = 0x00;
     Serial_Buffer_Out[3] = 0x45;
     Serial_Buffer_Out[4] = Serial_EOT;
+    
+    INTCONbits.GIE=0;
     for (i=0; i<5;i++)
+    {
         Write1USART(Serial_Buffer_Out[i]);
+    }
+    INTCONbits.GIE=1;
     
     flushOut();
+}
+
+void InitTimer1(void)
+{
+	T1CON	= 0b00110001;   //prescaler is 8 default is 4tmr
+	//TMR1H	= T1_ValueH;	//
+	//TMR1L	= T1_ValueL;	//
+    TMR1 = 0x9E57; //100ms
+	TMR1IF	= 0;	
+	TMR1IE	= 1;
+    IPR1bits.TMR1IP=1;
+    
+    TMR1IF_triggered = false;
 }

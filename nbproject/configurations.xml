@@ -20,6 +20,11 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.c</itemPath>
+      <itemPath>Display.c</itemPath>
+      <itemPath>i2c.c</itemPath>
+      <itemPath>usart.c</itemPath>
+      <itemPath>IO.c</itemPath>
+      <itemPath>MotorDriver.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

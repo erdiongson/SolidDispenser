@@ -22,7 +22,7 @@ extern "C" {
 #define LEFT			PORTAbits.RA5
 //#define 			PORTAbits.RA6		//OSC1
 //#define 			PORTAbits.RA7		//OSC2
-#define PORTA_TRIS      0xFb     
+#define PORTA_TRIS      0xFB     //11111011    
 
 #define SENSOR_A		PORTBbits.RB0
 #define SENSOR_B		PORTBbits.RB1
