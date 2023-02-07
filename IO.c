@@ -40,6 +40,8 @@ void init(void)
 	ADCON1bits.ADCS1 = 0; //
 	ADCON1bits.ADCS0 = 0; //
     
+   
+    
     //WDT configuration
 	WDTCONbits.ADSHR = 1; // shared address access
     
@@ -64,4 +66,17 @@ void init(void)
     OSCCONbits.SCS = 0b11; //Postscaled internal clock (INTRC/INTOSC derived)
     OSCCONbits.IRCF = 0b111;//8 MHz (INTOSC drives clock directly)
 	
+    ADRES = 0; //flush ADC output register
+    
+    //A/D Calibration Reservoir
+	ADCON0bits.CHS0 = 0;	//AN0
+	ADCON0bits.CHS1 = 0;	//AN0
+	ADCON0bits.CHS2 = 0;	//AN0
+	ADCON0bits.CHS3 = 0;	//AN0
+	ADCON1bits.ADCAL = 1;
+	ADCON0bits.ADON=1;
+
+	ADCON0bits.GO=1;
+	while(ADCON0bits.GO){;}
+	ADCON1bits.ADCAL = 0;
 }

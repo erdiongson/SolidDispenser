@@ -16,7 +16,7 @@
 #include "i2c.h"
 #include "pic18f65j50.h"
 
-#define VERSION     32
+#define VERSION     33
 
 #define OFF         0
 #define ON			1
@@ -25,7 +25,7 @@
 
 #define NORMAL   	0x3F //0x3F
 #define FAST    	0x00
-#define SLOW    	0x7F
+#define SLOW    	0x7F//0x7F
 #define one_sec     0x81
 #define two_sec     0x82
 #define three_sec   0x83
@@ -36,7 +36,8 @@
 #define NAK         0x15
 #define CMD_BUSY    0x16
 
-#define errorTime   30
+#define errorTime0  30 //IR sensor
+#define Time0       20 //Low Power
 
 enum Op_Mode{MANUAL_MODE, IDLE_MODE,AUTO_MODE};
 
@@ -62,9 +63,11 @@ unsigned int NUM;
 unsigned int NUM_REC;
 unsigned int i=0;
 unsigned int IR_SENSORF = 0;
+unsigned int VOLTAGE=-0;
 
 volatile char OpMode = MANUAL_MODE;
-volatile long errorcounter = errorTime; //IRsensor counter
+volatile long errorcounter = errorTime0; //IRsensor counter
+volatile long LowPowerCounter = Time0;
 
 volatile unsigned char pause_Time;
 volatile unsigned char vib_Time;
@@ -111,6 +114,8 @@ void readWeighingData(void);
 void Homing_Again_Auto(void);
 void WriteSTLED316SErr( char msg);
 void InitTimer1(void);
+void AD_capture_BattVoltage(void);
+void Low_Power_Indicator(void);
 
 
 /****************************************************************************
@@ -128,7 +133,7 @@ void main(void)
     
     VIB_MOTOR_ON = 0;
     IR_ON = 0;
-    errorcounter = errorTime;
+    errorcounter = errorTime0;
   
     
     /* Enable interrupt priority */
@@ -147,11 +152,11 @@ void main(void)
     WDTCONbits.SWDTEN = OFF; // turn ON watchdog timer
     
     GREEN_LED = 1;
-    RED_LED = 0;
+    AMBER_LED = 1;
     
     WriteSTLED316SData(VERSION, 0xFF);
-    __delay_ms(100);
-       
+    __delay_ms(500);
+    AD_capture_BattVoltage();   
  /****************************************************************************
                Read Parameters
 ******************************************************************************/
@@ -327,8 +332,9 @@ void main(void)
         INTCONbits.GIE=1;
     }
     
-    errorcounter = errorTime;
+    errorcounter = errorTime0;
     MotorPosition_Init();
+    AMBER_LED = 0;
     
  /****************************************************************************
                 While(1) loop
@@ -336,7 +342,8 @@ void main(void)
     while(1)
     {
         ClrWdt();
-        errorcounter = errorTime;
+        errorcounter = errorTime0;
+        AD_capture_BattVoltage();
         
         switch(OpMode)
         {
@@ -389,19 +396,19 @@ void main(void)
                 NUM_REC = NUM;
                 WriteSTLED316SData(NUM, vibration_mode);
 
-                if (MOTOR_ON_BUT == 0)
+                if (MOTOR_ON_BUT == 0) //MOTOR_ON_BUT
                 {
                     Busy = 1;
-                    errorcounter = errorTime;
+                    errorcounter = errorTime0;
                     Homing_Again_Manual();
                     Stop = 0;
                     Busy = 0;
 
-                    do
-                    {
-                        WriteSTLED316SErr('E');
-                    }
-                    while (!MOTOR_ON_BUT); //Loop until the pushbutton release
+                   // do
+                   // {
+                       // WriteSTLED316SErr('E');
+                   // }
+                   // while (!MOTOR_ON_BUT); //Loop until the pushbutton release
                 }
             
             /****************************************************************
@@ -422,7 +429,7 @@ void main(void)
                                 Busy = 1;
                                 NUM = NUM_REC;
                                 
-                                errorcounter = errorTime;                              
+                                errorcounter = errorTime0;                              
                                 Homing_Again_Auto();
                                 
                             }
@@ -433,7 +440,7 @@ void main(void)
                                 NUM = NUM_REC;
                                 WriteSTLED316SData(NUM, vibration_mode);
                                 
-                                errorcounter = errorTime;
+                                errorcounter = errorTime0;
                                 Homing_Again_Manual();
                                 
                                 //send semi-auto dispense completed command to PC
@@ -754,6 +761,16 @@ void __interrupt() high_isr(void)
             errorcounter = 0;
         }
         
+        if(LowPowerCounter >0)
+        {
+            LowPowerCounter--;
+        }
+        else
+        {
+            LowPowerCounter = Time0;
+            Low_Power_Indicator();
+        }
+        
         TMR1IF_triggered = false;
     }
     
@@ -803,7 +820,7 @@ void MotorPosition_Init(void)
     IR_ON = 1;
     MotorON_PWM(); // turn ON motor
     __delay_ms(350); //default 350
-    errorcounter = errorTime;
+    errorcounter = errorTime0;
         
     do
     {
@@ -816,8 +833,8 @@ void MotorPosition_Init(void)
        
     }while(IR_SENSORF != 0);
     
-     __delay_ms(100);
-    errorcounter = errorTime;    
+     __delay_ms(30);
+    errorcounter = errorTime0;    
     do
     {
        IR_SENSORF =  Read_IR();
@@ -829,7 +846,7 @@ void MotorPosition_Init(void)
        
     }while(IR_SENSORF != 1);
     
-    errorcounter = errorTime;
+    errorcounter = errorTime0;
     
     delay_1ms(Motor_Stop_Delay_Time);
     MotorBREAK();
@@ -887,10 +904,11 @@ void Homing_Again_Manual(void)
     {
         ClrWdt();
         readWeighingData();
+        AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
         MotorON_PWM(); // Turn ON motor
         __delay_ms(350); //default 350
-        errorcounter = errorTime;
+        errorcounter = errorTime0;
 
         do
         {
@@ -903,9 +921,9 @@ void Homing_Again_Manual(void)
            
         }while(IR_SENSORF != 0);
         
-         __delay_ms(100);
+         __delay_ms(30);
          
-         errorcounter = errorTime;
+         errorcounter = errorTime0;
          
         do
         {
@@ -918,7 +936,7 @@ void Homing_Again_Manual(void)
         }
         while(IR_SENSORF != 1);
         
-        errorcounter = errorTime;
+        errorcounter = errorTime0;
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
 
@@ -1000,11 +1018,12 @@ void Homing_Again_Auto(void)
     {
         ClrWdt();
         readWeighingData();
+        AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
         MotorON_PWM(); // Turn ON motor
         __delay_ms(350); //default350
         
-        errorcounter = errorTime;
+        errorcounter = errorTime0;
 
        do
         {
@@ -1016,8 +1035,8 @@ void Homing_Again_Auto(void)
           }
         }while(IR_SENSORF != 0);
         
-         __delay_ms(100);
-         errorcounter = errorTime;
+         __delay_ms(30);
+         errorcounter = errorTime0;
         
         do
         {
@@ -1029,7 +1048,7 @@ void Homing_Again_Auto(void)
           }
         }while(IR_SENSORF != 1);
         
-        errorcounter = errorTime;
+        errorcounter = errorTime0;
 
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
@@ -1134,4 +1153,38 @@ void InitTimer1(void)
     IPR1bits.TMR1IP=1;
     
     TMR1IF_triggered = false;
+}
+
+// Check Battery Voltage Level
+void AD_capture_BattVoltage(void)
+{
+	//select channel AN0 and start conversion
+    ADCON0bits.CHS0=0;
+    ADCON0bits.CHS1=0;
+    ADCON0bits.CHS2=0;
+    ADCON0bits.CHS3=0;
+    
+	ADCON0bits.ADON=1;// ON adc
+	delay_1ms(5);
+	ADCON0bits.GO=1;
+
+	while(ADCON0bits.GO==1){;}
+    //VOLTAGE=ADRES;
+    VOLTAGE = (ADRESH*256) | (ADRESL);
+}
+
+void Low_Power_Indicator(void)
+{
+    //max 0x0400
+    if(VOLTAGE <= 0x0366)//2.7v(0x0346) --> 6.5V //6.1V cut off
+    {
+                
+        AMBER_LED=1;
+        
+    }
+    else if(VOLTAGE >= 0x03C0) // 3.1v --> 7.5V
+    {
+    	AMBER_LED=0;
+    }
+    
 }
