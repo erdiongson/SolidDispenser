@@ -241,7 +241,7 @@ void WriteSTLED316SMode(char msg) {
     STB_Set;
 }
 
-void WriteSTLED316SVibMode(char v_mode) {
+void WriteSTLED316SVibMode(unsigned int dc_reg, char v_mode) {
 
     STB_Clr;
 
@@ -258,12 +258,21 @@ void WriteSTLED316SVibMode(char v_mode) {
     //STLED316s_SPI_SendData (Seg_U); //0
 
 
-    if (v_mode == 1) {
-        STLED316s_SPI_SendData(Seg_Blank); //0
-        STLED316s_SPI_SendData(Seg_Udot); //0
-    } else {
-        STLED316s_SPI_SendData(Seg_Blank); //0
+    if (v_mode == 1 && dc_reg == 0x01) {
         STLED316s_SPI_SendData(Seg_U); //0
+        STLED316s_SPI_SendData(Seg_1dot); //0
+    } 
+    else if(v_mode == 1 && dc_reg == 0x02){
+        STLED316s_SPI_SendData(Seg_U); //0
+        STLED316s_SPI_SendData(Seg_2dot); //0
+    }
+    else if(v_mode == 1 && dc_reg == 0x03){
+        STLED316s_SPI_SendData(Seg_U); //0
+        STLED316s_SPI_SendData(Seg_3dot); //0
+    }
+    else {
+        STLED316s_SPI_SendData(Seg_U); //0
+        STLED316s_SPI_SendData(Seg_0dot); //0
     }
 
     STB_Set;
