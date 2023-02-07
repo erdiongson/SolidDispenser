@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=SolidDispenser_V3.6_Candidate
+PROJECTNAME=SolidDispenser
 
 # Active Configuration
 DEFAULTCONF=default

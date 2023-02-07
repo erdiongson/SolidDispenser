@@ -144,17 +144,8 @@ void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
 
-//
-uint16_t pwm_count = 0;
-uint16_t pwm_mode = 0;
-//20221214 - (erdiongson) Interrupt Declaration for toggle on and off
 int dispense = 0;
 int temp = 0;
-
-void pwm_set(uint16_t duty){
-    CCP2CONbits.DC2B = (uint8_t)(duty & 0x0003);
-    CCPR2L = (uint8_t)(duty >> 2);
-}
 
 /****************************************************************************
 Function:		Main Loop
@@ -167,46 +158,6 @@ void main(void) {
     i2c_Init();
     initUSART();
     InitTimer1();
-    
-    /*
-    int duty_cycle = 100;
-    //20221214 - (erdiongson) Interrupt Declaration for toggle on and off
-    //INTCON3bits.INT2IE = 1;   //Interrupt Enable INT2 - Dispense Button
-    //INTCON2bits.INTEDG2 = 0; //Interrupt on Falling Edge INT1
-
-    // Set the oscillator to the internal oscillator with a clock frequency of 8MHz
-    OSCCONbits.IRCF0 = 1;
-    OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF2 = 1;
-    OSCCONbits.SCS0 = 1;
-    OSCCONbits.SCS1 = 1;
-    // Set the PWM output pin as an output by writing a '0' to the corresponding TRIS register bit
-    TRISCbits.TRISC1 = 0;
-    //LATCbits.LATC1 = 1;
-    PORTCbits.RC1 = 0;
-    // Set this button as an input by writing a '1' to the corresponding TRIS register bit
-    TRISBbits.TRISB4 = 1;
-    
-    //Set Timer2 postscale 1:1
-    T2CONbits.T2OUTPS0 = 0;
-    T2CONbits.T2OUTPS1 = 0;
-    T2CONbits.T2OUTPS2 = 0;
-    T2CONbits.T2OUTPS3 = 0;
-    //Set pre-scaler 1:1
-    T2CONbits.T2CKPS = 0x00;
-    
-    //set the PWM period by writing to PR2 Register
-    //AS per computation:
-    //PWD_Period = (PR2+1)*(4*TOSC*Prescaler)
-    //PR2 = [(1/400KHZ)/(4*(1/8MHz)*1)]-1
-    PR2 = 153;
-    //CCPxCON Setting
-    CCP2CONbits.DC2B = 0;
-    CCP2CONbits.CCP2M = 0x0C;
-    CCPR2L = 0;
-    
-    T2CONbits.TMR2ON = 1;
-    */
     
     VIB_MOTOR_ON = 0;
     IR_ON = 0;
@@ -403,19 +354,6 @@ void main(void) {
                    While(1) loop
      ******************************************************************************/
     while (1) {
-        //20221212 - (erdiongson) Test for PWM only -- NOT TO BE USED
-        //CCP2CONbits.DC2B = (duty_cycle & 0x03);
-        //CCPR2L = (duty_cycle >> 2);
-        //PORTCbits.RC1 = CCP2CONbits.CCP2X;
-        
-        //pwm_set(1);
-        //pwm_count++;
-        //__delay_ms(1000);
-        //if(pwm_count >= 0x004F){
-        //    pwm_count = 0;
-        //}
-       //END 20221212 - (erdiongson) Test for PWM only -- NOT TO BE USED
-        
         ClrWdt();
         errorcounter = errorTime0;
         AD_capture_BattVoltage();
