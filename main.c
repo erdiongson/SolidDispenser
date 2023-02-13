@@ -11,6 +11,7 @@
  *                  Button is pressed - 12/12
  *               ii. Pause for continuous (00) and limited (01-99) dispense - 12/19
  *               iii. Dispense count user reset to zero (00) - 12/20
+ * Version 3.61 : i. [BUG FIX] De-bounce adjustment for UP and DOWN buttons
  */
 
 #include <xc.h>
@@ -24,7 +25,7 @@
 /******************************************************************************
 * Please change this version every time the code is updated.
 ******************************************************************************/
-#define VERSION     36
+#define VERSION     36 //Bug-fix v3.61: Debounce for UP and DOWN buttons
 
 /******************************************************************************
 * Watch dog timer enable
@@ -380,9 +381,10 @@ void main(void) {
                     NUM = NUM + 1;
                     //20221212: erdiongson - added increase in 10 digits when button is pressed longer
                     WriteSTLED316SData(NUM, vibration_mode);
-                    __delay_ms(250);
+                    //20230210: erdiongson - adjust this delay for debounce of UP button
+                    __delay_ms(150);
                     while (RIGHT == 0){
-                      __delay_ms(1000);
+                      __delay_ms(500); //decrease this delay if you want to increment 10 faster
                       
                       //erdiongson - Making sure that the Button is still pressed after a second
                       //             to avoid false  increments
@@ -406,12 +408,13 @@ void main(void) {
                     NUM = NUM - 1;
                     //20221212 - (erdiongson) added decrease in 10 digits when button is pressed longer
                     WriteSTLED316SData(NUM, vibration_mode);
-                    __delay_ms(250);
+                    //20230210: erdiongson - adjust this delay for debounce of DOWN button
+                    __delay_ms(150);
                     while (LEFT == 0){
-                      __delay_ms(1000);
+                      __delay_ms(500); //decrease this delay if you want to decrement 10 faster
                       
                       //erdiongson - Making sure that the Button is still pressed after a second
-                      //             to avoid false  increments
+                      //             to avoid false increments
                       if(LEFT == 0 && NUM >= 10){
                         NUM = NUM - 10;
                         WriteSTLED316SData(NUM, vibration_mode);
