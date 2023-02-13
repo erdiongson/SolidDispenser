@@ -7,9 +7,16 @@
  *               ii. remove old timer and change to use XC8 timer
  * Created: 2022-12-08, 4:00PM
  * Author: erdiongson
+<<<<<<< HEAD
  * Version 3.6 : i. Adding PWM Control for the Vibration Motor
  *               ii. User enabled control for PWM Duty Cycle
  *                   Controls with 25%, 50%, 75% and 100% Duty Cycle
+=======
+ * Version 3.6 : i. Increments and Decrements by 10 when the ?UP? or ?DOWN? 
+ *                  Button is pressed - 12/12
+ *               ii. Pause for continuous (00) and limited (01-99) dispense - 12/19
+ *               iii. Dispense count user reset to zero (00) - 12/20
+>>>>>>> parent of db5b34b... Merge branch 'Version_3.61' into main
  */
 
 
@@ -24,7 +31,11 @@
 /******************************************************************************
 * Please change this version every time the code is updated.
 ******************************************************************************/
+<<<<<<< HEAD
 #define VERSION     37
+=======
+#define VERSION     36
+>>>>>>> parent of db5b34b... Merge branch 'Version_3.61' into main
 
 /******************************************************************************
 * Watch dog timer enable
@@ -511,7 +522,13 @@ void main(void) {
                     __delay_ms(250);
                     while (RIGHT == 0){
                       __delay_ms(1000);
+<<<<<<< HEAD
                       //Making sure that the Button is still pressed after a second
+=======
+                      
+                      //erdiongson - Making sure that the Button is still pressed after a second
+                      //             to avoid false  increments
+>>>>>>> parent of db5b34b... Merge branch 'Version_3.61' into main
                       if(RIGHT == 0 && NUM <= 89)
                       {
                         NUM = NUM + 10; 
@@ -532,7 +549,13 @@ void main(void) {
                     __delay_ms(250);
                     while (LEFT == 0){
                       __delay_ms(1000);
+<<<<<<< HEAD
                       //Making sure that the Button is still pressed after a second
+=======
+                      
+                      //erdiongson - Making sure that the Button is still pressed after a second
+                      //             to avoid false  increments
+>>>>>>> parent of db5b34b... Merge branch 'Version_3.61' into main
                       if(LEFT == 0 && NUM >= 10){
                         NUM = NUM - 10;
                         WriteSTLED316SData(NUM, vibration_mode);
