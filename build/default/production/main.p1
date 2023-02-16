@@ -1,51 +1,29 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"95 main.c
-[; ;main.c: 95: volatile char OpMode = MANUAL_MODE;
+"98 main.c
+[; ;main.c: 98: volatile char OpMode = MANUAL_MODE;
 [c E5436 0 1 2 .. ]
 [n E5436 Op_Mode MANUAL_MODE IDLE_MODE AUTO_MODE  ]
-"10737 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10737:     struct {
-[s S415 :4 `uc 1 :2 `uc 1 :2 `uc 1 ]
-[n S415 . CCP2M DC2B P2M ]
-"10742
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10742:     struct {
-[s S416 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S416 . CCP2M0 CCP2M1 CCP2M2 CCP2M3 DC2B0 DC2B1 P2M0 P2M1 ]
-"10752
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10752:     struct {
-[s S417 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S417 . . CCP2Y CCP2X ]
-"10736
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10736: typedef union {
-[u S414 `S415 1 `S416 1 `S417 1 ]
-[n S414 . . . . ]
-"10758
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10758: extern volatile CCP2CONbits_t CCP2CONbits __attribute__((address(0xFB6)));
-[v _CCP2CONbits `VS414 ~T0 @X0 0 e@4022 ]
-"10835
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10835: extern volatile unsigned char CCPR2L __attribute__((address(0xFB7)));
-[v _CCPR2L `Vuc ~T0 @X0 0 e@4023 ]
 [p mainexit ]
-"17088
+"17088 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 17088: extern volatile __bit GIE __attribute__((address(0x7F97)));
 [v _GIE `Vb ~T0 @X0 0 e@32663 ]
-"106 main.c
-[; ;main.c: 106: void init(void);
+"109 main.c
+[; ;main.c: 109: void init(void);
 [v _init `(v ~T0 @X0 0 ef ]
-"119
-[; ;main.c: 119: void InitSTLED316(unsigned char Brightness);
+"122
+[; ;main.c: 122: void InitSTLED316(unsigned char Brightness);
 [v _InitSTLED316 `(v ~T0 @X0 0 ef1`uc ]
-"107
-[; ;main.c: 107: void initMotor(void);
+"110
+[; ;main.c: 110: void initMotor(void);
 [v _initMotor `(v ~T0 @X0 0 ef ]
-"123
-[; ;main.c: 123: void i2c_Init(void);
+"126
+[; ;main.c: 126: void i2c_Init(void);
 [v _i2c_Init `(v ~T0 @X0 0 ef ]
-"135
-[; ;main.c: 135: void initUSART(void);
+"138
+[; ;main.c: 138: void initUSART(void);
 [v _initUSART `(v ~T0 @X0 0 ef ]
-"143
-[; ;main.c: 143: void InitTimer1(void);
+"146
+[; ;main.c: 146: void InitTimer1(void);
 [v _InitTimer1 `(v ~T0 @X0 0 ef ]
 "6334 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6334:     struct {
@@ -154,6 +132,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15474
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 15474: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS620 ~T0 @X0 0 e@4082 ]
+"11572
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 11572:     struct {
+[s S443 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S443 . SWDTEN . ADSHR . LVDSTAT REGSLP ]
+"11580
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 11580:     struct {
+[s S444 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S444 . SWDTE . DEVCFG ]
+"11571
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 11571: typedef union {
+[u S442 `S443 1 `S444 1 ]
+[n S442 . . . ]
+"11586
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 11586: extern volatile WDTCONbits_t WDTCONbits __attribute__((address(0xFC0)));
+[v _WDTCONbits `VS442 ~T0 @X0 0 e@4032 ]
 "6446
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6446:     struct {
 [s S259 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -169,24 +162,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6467
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6467: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
 [v _LATDbits `VS258 ~T0 @X0 0 e@3980 ]
-"116 main.c
-[; ;main.c: 116: void WriteSTLED316SData(int number, char v_mode);
+"119 main.c
+[; ;main.c: 119: void WriteSTLED316SData(int number, char v_mode);
 [v _WriteSTLED316SData `(v ~T0 @X0 0 ef2`i`uc ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"144 main.c
-[; ;main.c: 144: void AD_capture_BattVoltage(void);
+"147 main.c
+[; ;main.c: 147: void AD_capture_BattVoltage(void);
 [v _AD_capture_BattVoltage `(v ~T0 @X0 0 ef ]
-"132
-[; ;main.c: 132: int read_i2c(long address);
+"135
+[; ;main.c: 135: int read_i2c(long address);
 [v _read_i2c `(i ~T0 @X0 0 ef1`l ]
-"131
-[; ;main.c: 131: void write_i2c(long address, int data);
+"134
+[; ;main.c: 134: void write_i2c(long address, int data);
 [v _write_i2c `(v ~T0 @X0 0 ef2`l`i ]
-"113
-[; ;main.c: 113: void MotorPosition_Init(void);
+"116
+[; ;main.c: 116: void MotorPosition_Init(void);
 [v _MotorPosition_Init `(v ~T0 @X0 0 ef ]
 "5074 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 5074:     struct {
@@ -219,11 +212,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5115
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 5115: extern volatile PORTBbits_t PORTBbits __attribute__((address(0xF81)));
 [v _PORTBbits `VS211 ~T0 @X0 0 e@3969 ]
-"121 main.c
-[; ;main.c: 121: void ToggleVIB_Mode(void);
+"124 main.c
+[; ;main.c: 124: void ToggleVIB_Mode(void);
 [v _ToggleVIB_Mode `(v ~T0 @X0 0 ef ]
-"118
-[; ;main.c: 118: void WriteSTLED316SVibMode(char v_mode);
+"121
+[; ;main.c: 121: void WriteSTLED316SVibMode(char v_mode);
 [v _WriteSTLED316SVibMode `(v ~T0 @X0 0 ef1`uc ]
 "4918 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4918:     struct {
@@ -248,20 +241,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "4953
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4953: extern volatile PORTAbits_t PORTAbits __attribute__((address(0xF80)));
 [v _PORTAbits `VS206 ~T0 @X0 0 e@3968 ]
-"122 main.c
-[; ;main.c: 122: void Homing_Again_Manual(void);
+"125 main.c
+[; ;main.c: 125: void Homing_Again_Manual(void);
 [v _Homing_Again_Manual `(v ~T0 @X0 0 ef ]
-"141
-[; ;main.c: 141: void Homing_Again_Auto(void);
+"144
+[; ;main.c: 144: void Homing_Again_Auto(void);
 [v _Homing_Again_Auto `(v ~T0 @X0 0 ef ]
-"136
-[; ;main.c: 136: void Write1USART(char data);
-[v _Write1USART `(v ~T0 @X0 0 ef1`uc ]
-"138
-[; ;main.c: 138: void flush(void);
-[v _flush `(v ~T0 @X0 0 ef ]
 "139
-[; ;main.c: 139: void flushOut(void);
+[; ;main.c: 139: void Write1USART(char data);
+[v _Write1USART `(v ~T0 @X0 0 ef1`uc ]
+"141
+[; ;main.c: 141: void flush(void);
+[v _flush `(v ~T0 @X0 0 ef ]
+"142
+[; ;main.c: 142: void flushOut(void);
 [v _flushOut `(v ~T0 @X0 0 ef ]
 [t ~ __interrupt . k ]
 [t T109 __interrupt ]
@@ -284,8 +277,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8627
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8627: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
 [v _PIR1bits `VS327 ~T0 @X0 0 e@3998 ]
-"137 main.c
-[; ;main.c: 137: char Read1USART(void);
+"140 main.c
+[; ;main.c: 140: char Read1USART(void);
 [v _Read1USART `(uc ~T0 @X0 0 ef ]
 "9534 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9534:     struct {
@@ -322,8 +315,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9576
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9576: extern volatile RCSTA1bits_t RCSTA1bits __attribute__((address(0xFAC)));
 [v _RCSTA1bits `VS366 ~T0 @X0 0 e@4012 ]
-"145 main.c
-[; ;main.c: 145: void Low_Power_Indicator(void);
+"148 main.c
+[; ;main.c: 148: void Low_Power_Indicator(void);
 [v _Low_Power_Indicator `(v ~T0 @X0 0 ef ]
 "18972 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 18972: extern volatile __bit TMR1IF __attribute__((address(0x7CF0)));
@@ -346,20 +339,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15264
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 15264: extern volatile INTCON3bits_t INTCON3bits __attribute__((address(0xFF0)));
 [v _INTCON3bits `VS613 ~T0 @X0 0 e@4080 ]
-"110 main.c
-[; ;main.c: 110: void MotorON(void);
+"113 main.c
+[; ;main.c: 113: void MotorON(void);
 [v _MotorON `(v ~T0 @X0 0 ef ]
-"142
-[; ;main.c: 142: void WriteSTLED316SErr(char msg);
+"145
+[; ;main.c: 145: void WriteSTLED316SErr(char msg);
 [v _WriteSTLED316SErr `(v ~T0 @X0 0 ef1`uc ]
-"111
-[; ;main.c: 111: void MotorBREAK(void);
+"114
+[; ;main.c: 114: void MotorBREAK(void);
 [v _MotorBREAK `(v ~T0 @X0 0 ef ]
-"140
-[; ;main.c: 140: void readWeighingData(void);
+"143
+[; ;main.c: 143: void readWeighingData(void);
 [v _readWeighingData `(v ~T0 @X0 0 ef ]
-"117
-[; ;main.c: 117: void WriteSTLED316SMode(char msg);
+"120
+[; ;main.c: 120: void WriteSTLED316SMode(char msg);
 [v _WriteSTLED316SMode `(v ~T0 @X0 0 ef1`uc ]
 "13723 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 13723: extern volatile unsigned char T1CON __attribute__((address(0xFCD)));
@@ -1187,2752 +1180,2824 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x CCP2MX  =  DEFAULT  ]
 "38
 [p x MSSPMSK  =  MSK5  ]
-"70 main.c
-[; ;main.c: 70: unsigned char Serial_Flag;
+"73 main.c
+[; ;main.c: 73: unsigned char Serial_Flag;
 [v _Serial_Flag `uc ~T0 @X0 1 e ]
-"71
-[; ;main.c: 71: unsigned char Serial_GData;
-[v _Serial_GData `uc ~T0 @X0 1 e ]
-"72
-[; ;main.c: 72: unsigned char Serial_Buffer[16];
-[v _Serial_Buffer `uc ~T0 @X0 -> 16 `i e ]
-"73
-[; ;main.c: 73: unsigned char Serial_Temp_Buffer[16];
-[v _Serial_Temp_Buffer `uc ~T0 @X0 -> 16 `i e ]
 "74
-[; ;main.c: 74: unsigned char Serial_Buffer_Out[16];
-[v _Serial_Buffer_Out `uc ~T0 @X0 -> 16 `i e ]
+[; ;main.c: 74: unsigned char Serial_GData;
+[v _Serial_GData `uc ~T0 @X0 1 e ]
 "75
-[; ;main.c: 75: unsigned char Stop = 0;
+[; ;main.c: 75: unsigned char Serial_Buffer[16];
+[v _Serial_Buffer `uc ~T0 @X0 -> 16 `i e ]
+"76
+[; ;main.c: 76: unsigned char Serial_Temp_Buffer[16];
+[v _Serial_Temp_Buffer `uc ~T0 @X0 -> 16 `i e ]
+"77
+[; ;main.c: 77: unsigned char Serial_Buffer_Out[16];
+[v _Serial_Buffer_Out `uc ~T0 @X0 -> 16 `i e ]
+"78
+[; ;main.c: 78: unsigned char Stop = 0;
 [v _Stop `uc ~T0 @X0 1 e ]
 [i _Stop
 -> -> 0 `i `uc
 ]
-"76
-[; ;main.c: 76: unsigned char motor_status;
+"79
+[; ;main.c: 79: unsigned char motor_status;
 [v _motor_status `uc ~T0 @X0 1 e ]
-"77
-[; ;main.c: 77: unsigned char Busy = 0;
+"80
+[; ;main.c: 80: unsigned char Busy = 0;
 [v _Busy `uc ~T0 @X0 1 e ]
 [i _Busy
 -> -> 0 `i `uc
 ]
-"78
-[; ;main.c: 78: unsigned char vibration_mode;
-[v _vibration_mode `uc ~T0 @X0 1 e ]
-"79
-[; ;main.c: 79: unsigned char data;
-[v _data `uc ~T0 @X0 1 e ]
 "81
-[; ;main.c: 81: unsigned int Serial_Count;
-[v _Serial_Count `ui ~T0 @X0 1 e ]
+[; ;main.c: 81: unsigned char vibration_mode;
+[v _vibration_mode `uc ~T0 @X0 1 e ]
 "82
-[; ;main.c: 82: unsigned int EAdd_High, EAdd_Low, ETemp;
+[; ;main.c: 82: unsigned char data;
+[v _data `uc ~T0 @X0 1 e ]
+"84
+[; ;main.c: 84: unsigned int Serial_Count;
+[v _Serial_Count `ui ~T0 @X0 1 e ]
+"85
+[; ;main.c: 85: unsigned int EAdd_High, EAdd_Low, ETemp;
 [v _EAdd_High `ui ~T0 @X0 1 e ]
 [v _EAdd_Low `ui ~T0 @X0 1 e ]
 [v _ETemp `ui ~T0 @X0 1 e ]
-"83
-[; ;main.c: 83: unsigned int Motor_Speed;
+"86
+[; ;main.c: 86: unsigned int Motor_Speed;
 [v _Motor_Speed `ui ~T0 @X0 1 e ]
-"84
-[; ;main.c: 84: unsigned int Vmotor_Time = 2000;
+"87
+[; ;main.c: 87: unsigned int Vmotor_Time = 2000;
 [v _Vmotor_Time `ui ~T0 @X0 1 e ]
 [i _Vmotor_Time
 -> -> 2000 `i `ui
 ]
-"85
-[; ;main.c: 85: unsigned int Motor_Stop_Delay_Time = 0;
+"88
+[; ;main.c: 88: unsigned int Motor_Stop_Delay_Time = 0;
 [v _Motor_Stop_Delay_Time `ui ~T0 @X0 1 e ]
 [i _Motor_Stop_Delay_Time
 -> -> 0 `i `ui
 ]
-"86
-[; ;main.c: 86: unsigned int Device_ID;
+"89
+[; ;main.c: 89: unsigned int Device_ID;
 [v _Device_ID `ui ~T0 @X0 1 e ]
-"87
-[; ;main.c: 87: unsigned int Motor_Pause_Time = 0;
+"90
+[; ;main.c: 90: unsigned int Motor_Pause_Time = 0;
 [v _Motor_Pause_Time `ui ~T0 @X0 1 e ]
 [i _Motor_Pause_Time
 -> -> 0 `i `ui
 ]
-"88
-[; ;main.c: 88: unsigned int NUM;
+"91
+[; ;main.c: 91: unsigned int NUM;
 [v _NUM `ui ~T0 @X0 1 e ]
-"89
-[; ;main.c: 89: unsigned int i_RUN_ZERO = 0;
+"92
+[; ;main.c: 92: unsigned int i_RUN_ZERO = 0;
 [v _i_RUN_ZERO `ui ~T0 @X0 1 e ]
 [i _i_RUN_ZERO
 -> -> 0 `i `ui
 ]
-"90
-[; ;main.c: 90: unsigned int NUM_REC;
+"93
+[; ;main.c: 93: unsigned int NUM_REC;
 [v _NUM_REC `ui ~T0 @X0 1 e ]
-"91
-[; ;main.c: 91: unsigned int i = 0;
+"94
+[; ;main.c: 94: unsigned int i = 0;
 [v _i `ui ~T0 @X0 1 e ]
 [i _i
 -> -> 0 `i `ui
 ]
-"92
-[; ;main.c: 92: unsigned int IR_SENSORF = 0;
+"95
+[; ;main.c: 95: unsigned int IR_SENSORF = 0;
 [v _IR_SENSORF `ui ~T0 @X0 1 e ]
 [i _IR_SENSORF
 -> -> 0 `i `ui
 ]
-"93
-[; ;main.c: 93: unsigned int VOLTAGE = -0;
+"96
+[; ;main.c: 96: unsigned int VOLTAGE = -0;
 [v _VOLTAGE `ui ~T0 @X0 1 e ]
 [i _VOLTAGE
 -> -U -> 0 `i `ui
 ]
-"95
-[; ;main.c: 95: volatile char OpMode = MANUAL_MODE;
+"98
+[; ;main.c: 98: volatile char OpMode = MANUAL_MODE;
 [v _OpMode `Vuc ~T0 @X0 1 e ]
 [i _OpMode
 -> . `E5436 0 `uc
 ]
-"96
-[; ;main.c: 96: volatile long errorcounter = 30;
+"99
+[; ;main.c: 99: volatile long errorcounter = 30;
 [v _errorcounter `Vl ~T0 @X0 1 e ]
 [i _errorcounter
 -> -> 30 `i `l
 ]
-"97
-[; ;main.c: 97: volatile long LowPowerCounter = 20;
+"100
+[; ;main.c: 100: volatile long LowPowerCounter = 20;
 [v _LowPowerCounter `Vl ~T0 @X0 1 e ]
 [i _LowPowerCounter
 -> -> 20 `i `l
 ]
-"99
-[; ;main.c: 99: volatile unsigned char pause_Time;
-[v _pause_Time `Vuc ~T0 @X0 1 e ]
-"100
-[; ;main.c: 100: volatile unsigned char vib_Time;
-[v _vib_Time `Vuc ~T0 @X0 1 e ]
-"101
-[; ;main.c: 101: volatile unsigned char delay_motor_stop_time;
-[v _delay_motor_stop_time `Vuc ~T0 @X0 1 e ]
 "102
-[; ;main.c: 102: volatile unsigned char PWM_Duty_Cycle;
-[v _PWM_Duty_Cycle `Vuc ~T0 @X0 1 e ]
+[; ;main.c: 102: volatile unsigned char pause_Time;
+[v _pause_Time `Vuc ~T0 @X0 1 e ]
 "103
-[; ;main.c: 103: volatile char TMR1IF_triggered = 0;
+[; ;main.c: 103: volatile unsigned char vib_Time;
+[v _vib_Time `Vuc ~T0 @X0 1 e ]
+"104
+[; ;main.c: 104: volatile unsigned char delay_motor_stop_time;
+[v _delay_motor_stop_time `Vuc ~T0 @X0 1 e ]
+"105
+[; ;main.c: 105: volatile unsigned char PWM_Duty_Cycle;
+[v _PWM_Duty_Cycle `Vuc ~T0 @X0 1 e ]
+"106
+[; ;main.c: 106: volatile char TMR1IF_triggered = 0;
 [v _TMR1IF_triggered `Vuc ~T0 @X0 1 e ]
 [i _TMR1IF_triggered
 -> -> 0 `i `uc
 ]
-"104
-[; ;main.c: 104: unsigned char PWM_reg = 0x3F;
+"107
+[; ;main.c: 107: unsigned char PWM_reg = 0x3F;
 [v _PWM_reg `uc ~T0 @X0 1 e ]
 [i _PWM_reg
 -> -> 63 `i `uc
 ]
-"148
-[; ;main.c: 148: uint16_t pwm_count = 0;
-[v _pwm_count `us ~T0 @X0 1 e ]
-[i _pwm_count
--> -> 0 `i `us
-]
-"149
-[; ;main.c: 149: uint16_t pwm_mode = 0;
-[v _pwm_mode `us ~T0 @X0 1 e ]
-[i _pwm_mode
--> -> 0 `i `us
-]
-"151
-[; ;main.c: 151: int dispense = 0;
+"150
+[; ;main.c: 150: int dispense = 0;
 [v _dispense `i ~T0 @X0 1 e ]
 [i _dispense
 -> 0 `i
 ]
-"152
-[; ;main.c: 152: int temp = 0;
+"151
+[; ;main.c: 151: int temp = 0;
 [v _temp `i ~T0 @X0 1 e ]
 [i _temp
 -> 0 `i
 ]
-"154
-[; ;main.c: 154: void pwm_set(uint16_t duty){
-[v _pwm_set `(v ~T0 @X0 1 ef1`us ]
-{
-[e :U _pwm_set ]
-[v _duty `us ~T0 @X0 1 r1 ]
-[f ]
-"155
-[; ;main.c: 155:     CCP2CONbits.DC2B = (uint8_t)(duty & 0x0003);
-[e = . . _CCP2CONbits 0 1 -> & -> _duty `ui -> -> 3 `i `ui `uc ]
-"156
-[; ;main.c: 156:     CCPR2L = (uint8_t)(duty >> 2);
-[e = _CCPR2L -> >> -> _duty `ui -> 2 `i `uc ]
-"157
-[; ;main.c: 157: }
-[e :UE 628 ]
-}
+"152
+[; ;main.c: 152: int holdTimeRight = 0;
+[v _holdTimeRight `i ~T0 @X0 1 e ]
+[i _holdTimeRight
+-> 0 `i
+]
+"153
+[; ;main.c: 153: int holdTimeLeft = 0;
+[v _holdTimeLeft `i ~T0 @X0 1 e ]
+[i _holdTimeLeft
+-> 0 `i
+]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"162
-[; ;main.c: 162: void main(void) {
+"158
+[; ;main.c: 158: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"163
-[; ;main.c: 163:     GIE = 0;
+"159
+[; ;main.c: 159:     GIE = 0;
 [e = _GIE -> -> 0 `i `b ]
-"164
-[; ;main.c: 164:     init();
+"160
+[; ;main.c: 160:     init();
 [e ( _init ..  ]
-"165
-[; ;main.c: 165:     InitSTLED316(0x77);
+"161
+[; ;main.c: 161:     InitSTLED316(0x77);
 [e ( _InitSTLED316 (1 -> -> 119 `i `uc ]
-"166
-[; ;main.c: 166:     initMotor();
+"162
+[; ;main.c: 162:     initMotor();
 [e ( _initMotor ..  ]
-"167
-[; ;main.c: 167:     i2c_Init();
+"163
+[; ;main.c: 163:     i2c_Init();
 [e ( _i2c_Init ..  ]
-"168
-[; ;main.c: 168:     initUSART();
+"164
+[; ;main.c: 164:     initUSART();
 [e ( _initUSART ..  ]
-"169
-[; ;main.c: 169:     InitTimer1();
+"165
+[; ;main.c: 165:     InitTimer1();
 [e ( _InitTimer1 ..  ]
-"211
-[; ;main.c: 211:     LATCbits.LATC1 = 0;
+"167
+[; ;main.c: 167:     LATCbits.LATC1 = 0;
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"212
-[; ;main.c: 212:     LATAbits.LATA2 = 0;
+"168
+[; ;main.c: 168:     LATAbits.LATA2 = 0;
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-"213
-[; ;main.c: 213:     errorcounter = 30;
+"169
+[; ;main.c: 169:     errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"217
-[; ;main.c: 217:     RCONbits.IPEN = 1;
+"173
+[; ;main.c: 173:     RCONbits.IPEN = 1;
 [e = . . _RCONbits 6 7 -> -> 1 `i `uc ]
-"220
-[; ;main.c: 220:     IPR1bits.RCIP = 1;
+"176
+[; ;main.c: 176:     IPR1bits.RCIP = 1;
 [e = . . _IPR1bits 1 3 -> -> 1 `i `uc ]
-"223
-[; ;main.c: 223:     INTCONbits.GIEH = 1;
+"179
+[; ;main.c: 179:     INTCONbits.GIEH = 1;
 [e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-"224
-[; ;main.c: 224:     INTCONbits.GIE = 1;
+"180
+[; ;main.c: 180:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"229
-[; ;main.c: 229:     LATDbits.LATD0 = 1;
+"184
+[; ;main.c: 184:     WDTCONbits.SWDTEN = 0;
+[e = . . _WDTCONbits 0 0 -> -> 0 `i `uc ]
+"185
+[; ;main.c: 185:     LATDbits.LATD0 = 1;
 [e = . . _LATDbits 0 0 -> -> 1 `i `uc ]
-"230
-[; ;main.c: 230:     LATDbits.LATD1 = 1;
+"186
+[; ;main.c: 186:     LATDbits.LATD1 = 1;
 [e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
-"232
-[; ;main.c: 232:     WriteSTLED316SData(36, 0xFF);
+"188
+[; ;main.c: 188:     WriteSTLED316SData(36, 0xFF);
 [e ( _WriteSTLED316SData (2 , -> 36 `i -> -> 255 `i `uc ]
-"233
-[; ;main.c: 233:     _delay((unsigned long)((500)*(8000000/4000.0)));
+"189
+[; ;main.c: 189:     _delay((unsigned long)((500)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"234
-[; ;main.c: 234:     AD_capture_BattVoltage();
+"190
+[; ;main.c: 190:     AD_capture_BattVoltage();
 [e ( _AD_capture_BattVoltage ..  ]
-"243
-[; ;main.c: 243:     INTCONbits.GIE = 0;
+"199
+[; ;main.c: 199:     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"244
-[; ;main.c: 244:     ETemp = read_i2c(0x0010);
+"200
+[; ;main.c: 200:     ETemp = read_i2c(0x0010);
 [e = _ETemp -> ( _read_i2c (1 -> -> 16 `i `l `ui ]
-"245
-[; ;main.c: 245:     INTCONbits.GIE = 1;
+"201
+[; ;main.c: 201:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"247
-[; ;main.c: 247:     vibration_mode = ETemp & 0x00FF;
+"203
+[; ;main.c: 203:     vibration_mode = ETemp & 0x00FF;
 [e = _vibration_mode -> & _ETemp -> -> 255 `i `ui `uc ]
-"248
-[; ;main.c: 248:     if (vibration_mode > 1) {
-[e $ ! > -> _vibration_mode `i -> 1 `i 630  ]
+"204
+[; ;main.c: 204:     if (vibration_mode > 1) {
+[e $ ! > -> _vibration_mode `i -> 1 `i 629  ]
 {
-"249
-[; ;main.c: 249:         vibration_mode = 1;
+"205
+[; ;main.c: 205:         vibration_mode = 1;
 [e = _vibration_mode -> -> 1 `i `uc ]
-"251
-[; ;main.c: 251:         INTCONbits.GIE = 0;
+"207
+[; ;main.c: 207:         INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"252
-[; ;main.c: 252:         write_i2c(0x0010, vibration_mode);
+"208
+[; ;main.c: 208:         write_i2c(0x0010, vibration_mode);
 [e ( _write_i2c (2 , -> -> 16 `i `l -> _vibration_mode `i ]
-"253
-[; ;main.c: 253:         INTCONbits.GIE = 1;
+"209
+[; ;main.c: 209:         INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"254
-[; ;main.c: 254:     }
+"210
+[; ;main.c: 210:     }
+}
+[e :U 629 ]
+"212
+[; ;main.c: 212:     NUM = 1;
+[e = _NUM -> -> 1 `i `ui ]
+"213
+[; ;main.c: 213:     WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"214
+[; ;main.c: 214:     NUM_REC = 1;
+[e = _NUM_REC -> -> 1 `i `ui ]
+"219
+[; ;main.c: 219:     INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"220
+[; ;main.c: 220:     ETemp = read_i2c(0x0020);
+[e = _ETemp -> ( _read_i2c (1 -> -> 32 `i `l `ui ]
+"221
+[; ;main.c: 221:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"223
+[; ;main.c: 223:     Device_ID = ETemp & 0x00FF;
+[e = _Device_ID & _ETemp -> -> 255 `i `ui ]
+"224
+[; ;main.c: 224:     if (Device_ID < 0x31 || Device_ID > 0x3A) {
+[e $ ! || < _Device_ID -> -> 49 `i `ui > _Device_ID -> -> 58 `i `ui 630  ]
+{
+"225
+[; ;main.c: 225:         Device_ID = 0x31;
+[e = _Device_ID -> -> 49 `i `ui ]
+"227
+[; ;main.c: 227:         INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"228
+[; ;main.c: 228:         write_i2c(0x0020, Device_ID);
+[e ( _write_i2c (2 , -> -> 32 `i `l -> _Device_ID `i ]
+"229
+[; ;main.c: 229:         INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"230
+[; ;main.c: 230:     }
 }
 [e :U 630 ]
-"256
-[; ;main.c: 256:     NUM = 1;
-[e = _NUM -> -> 1 `i `ui ]
-"257
-[; ;main.c: 257:     WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"258
-[; ;main.c: 258:     NUM_REC = 1;
-[e = _NUM_REC -> -> 1 `i `ui ]
-"263
-[; ;main.c: 263:     INTCONbits.GIE = 0;
+"235
+[; ;main.c: 235:     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"264
-[; ;main.c: 264:     ETemp = read_i2c(0x0020);
-[e = _ETemp -> ( _read_i2c (1 -> -> 32 `i `l `ui ]
-"265
-[; ;main.c: 265:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"267
-[; ;main.c: 267:     Device_ID = ETemp & 0x00FF;
-[e = _Device_ID & _ETemp -> -> 255 `i `ui ]
-"268
-[; ;main.c: 268:     if (Device_ID < 0x31 || Device_ID > 0x3A) {
-[e $ ! || < _Device_ID -> -> 49 `i `ui > _Device_ID -> -> 58 `i `ui 631  ]
-{
-"269
-[; ;main.c: 269:         Device_ID = 0x31;
-[e = _Device_ID -> -> 49 `i `ui ]
-"271
-[; ;main.c: 271:         INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"272
-[; ;main.c: 272:         write_i2c(0x0020, Device_ID);
-[e ( _write_i2c (2 , -> -> 32 `i `l -> _Device_ID `i ]
-"273
-[; ;main.c: 273:         INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"274
-[; ;main.c: 274:     }
-}
-[e :U 631 ]
-"279
-[; ;main.c: 279:     INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"280
-[; ;main.c: 280:     ETemp = read_i2c(0x0060);
+"236
+[; ;main.c: 236:     ETemp = read_i2c(0x0060);
 [e = _ETemp -> ( _read_i2c (1 -> -> 96 `i `l `ui ]
-"281
-[; ;main.c: 281:     INTCONbits.GIE = 1;
+"237
+[; ;main.c: 237:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"283
-[; ;main.c: 283:     pause_Time = ETemp & 0x00FF;
+"239
+[; ;main.c: 239:     pause_Time = ETemp & 0x00FF;
 [e = _pause_Time -> & _ETemp -> -> 255 `i `ui `uc ]
-"284
-[; ;main.c: 284:     if (pause_Time < 0x30 || pause_Time > 0x35) {
-[e $ ! || < -> _pause_Time `i -> 48 `i > -> _pause_Time `i -> 53 `i 632  ]
+"240
+[; ;main.c: 240:     if (pause_Time < 0x30 || pause_Time > 0x35) {
+[e $ ! || < -> _pause_Time `i -> 48 `i > -> _pause_Time `i -> 53 `i 631  ]
 {
-"285
-[; ;main.c: 285:         pause_Time = 0x30;
+"241
+[; ;main.c: 241:         pause_Time = 0x30;
 [e = _pause_Time -> -> 48 `i `uc ]
-"286
-[; ;main.c: 286:         Motor_Pause_Time = 0;
+"242
+[; ;main.c: 242:         Motor_Pause_Time = 0;
 [e = _Motor_Pause_Time -> -> 0 `i `ui ]
+"244
+[; ;main.c: 244:         INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"245
+[; ;main.c: 245:         write_i2c(0x0060, pause_Time);
+[e ( _write_i2c (2 , -> -> 96 `i `l -> _pause_Time `i ]
+"246
+[; ;main.c: 246:         INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"247
+[; ;main.c: 247:     } else {
+}
+[e $U 632  ]
+[e :U 631 ]
+{
+"248
+[; ;main.c: 248:         switch (pause_Time) {
+[e $U 634  ]
+{
+"249
+[; ;main.c: 249:             case 0x30:
+[e :U 635 ]
+"250
+[; ;main.c: 250:             default:
+[e :U 636 ]
+"251
+[; ;main.c: 251:                 Motor_Pause_Time = 0;
+[e = _Motor_Pause_Time -> -> 0 `i `ui ]
+"252
+[; ;main.c: 252:                 pause_Time = 0x30;
+[e = _pause_Time -> -> 48 `i `uc ]
+"253
+[; ;main.c: 253:                 break;
+[e $U 633  ]
+"255
+[; ;main.c: 255:             case 0x31:
+[e :U 637 ]
+"256
+[; ;main.c: 256:                 Motor_Pause_Time = 1000;
+[e = _Motor_Pause_Time -> -> 1000 `i `ui ]
+"257
+[; ;main.c: 257:                 break;
+[e $U 633  ]
+"259
+[; ;main.c: 259:             case 0x32:
+[e :U 638 ]
+"260
+[; ;main.c: 260:                 Motor_Pause_Time = 2000;
+[e = _Motor_Pause_Time -> -> 2000 `i `ui ]
+"261
+[; ;main.c: 261:                 break;
+[e $U 633  ]
+"263
+[; ;main.c: 263:             case 0x33:
+[e :U 639 ]
+"264
+[; ;main.c: 264:                 Motor_Pause_Time = 3000;
+[e = _Motor_Pause_Time -> -> 3000 `i `ui ]
+"265
+[; ;main.c: 265:                 break;
+[e $U 633  ]
+"267
+[; ;main.c: 267:             case 0x34:
+[e :U 640 ]
+"268
+[; ;main.c: 268:                 Motor_Pause_Time = 4000;
+[e = _Motor_Pause_Time -> -> 4000 `i `ui ]
+"269
+[; ;main.c: 269:                 break;
+[e $U 633  ]
+"271
+[; ;main.c: 271:             case 0x35:
+[e :U 641 ]
+"272
+[; ;main.c: 272:                 Motor_Pause_Time = 5000;
+[e = _Motor_Pause_Time -> -> 5000 `i `ui ]
+"273
+[; ;main.c: 273:                 break;
+[e $U 633  ]
+"274
+[; ;main.c: 274:         }
+}
+[e $U 633  ]
+[e :U 634 ]
+[e [\ -> _pause_Time `i , $ -> 48 `i 635
+ , $ -> 49 `i 637
+ , $ -> 50 `i 638
+ , $ -> 51 `i 639
+ , $ -> 52 `i 640
+ , $ -> 53 `i 641
+ 636 ]
+[e :U 633 ]
+"275
+[; ;main.c: 275:     }
+}
+[e :U 632 ]
+"280
+[; ;main.c: 280:     INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"281
+[; ;main.c: 281:     ETemp = read_i2c(0x0050);
+[e = _ETemp -> ( _read_i2c (1 -> -> 80 `i `l `ui ]
+"282
+[; ;main.c: 282:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"284
+[; ;main.c: 284:     delay_motor_stop_time = ETemp & 0x00FF;
+[e = _delay_motor_stop_time -> & _ETemp -> -> 255 `i `ui `uc ]
+"285
+[; ;main.c: 285:     if (delay_motor_stop_time > 0x96) {
+[e $ ! > -> _delay_motor_stop_time `i -> 150 `i 642  ]
+{
+"286
+[; ;main.c: 286:         delay_motor_stop_time = 0x00;
+[e = _delay_motor_stop_time -> -> 0 `i `uc ]
 "288
 [; ;main.c: 288:         INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
 "289
-[; ;main.c: 289:         write_i2c(0x0060, pause_Time);
-[e ( _write_i2c (2 , -> -> 96 `i `l -> _pause_Time `i ]
+[; ;main.c: 289:         write_i2c(0x0050, delay_motor_stop_time);
+[e ( _write_i2c (2 , -> -> 80 `i `l -> _delay_motor_stop_time `i ]
 "290
 [; ;main.c: 290:         INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"291
-[; ;main.c: 291:     } else {
-}
-[e $U 633  ]
-[e :U 632 ]
-{
 "292
-[; ;main.c: 292:         switch (pause_Time) {
-[e $U 635  ]
-{
-"293
-[; ;main.c: 293:             case 0x30:
-[e :U 636 ]
-"294
-[; ;main.c: 294:             default:
-[e :U 637 ]
-"295
-[; ;main.c: 295:                 Motor_Pause_Time = 0;
-[e = _Motor_Pause_Time -> -> 0 `i `ui ]
-"296
-[; ;main.c: 296:                 pause_Time = 0x30;
-[e = _pause_Time -> -> 48 `i `uc ]
-"297
-[; ;main.c: 297:                 break;
-[e $U 634  ]
-"299
-[; ;main.c: 299:             case 0x31:
-[e :U 638 ]
-"300
-[; ;main.c: 300:                 Motor_Pause_Time = 1000;
-[e = _Motor_Pause_Time -> -> 1000 `i `ui ]
-"301
-[; ;main.c: 301:                 break;
-[e $U 634  ]
-"303
-[; ;main.c: 303:             case 0x32:
-[e :U 639 ]
-"304
-[; ;main.c: 304:                 Motor_Pause_Time = 2000;
-[e = _Motor_Pause_Time -> -> 2000 `i `ui ]
-"305
-[; ;main.c: 305:                 break;
-[e $U 634  ]
-"307
-[; ;main.c: 307:             case 0x33:
-[e :U 640 ]
-"308
-[; ;main.c: 308:                 Motor_Pause_Time = 3000;
-[e = _Motor_Pause_Time -> -> 3000 `i `ui ]
-"309
-[; ;main.c: 309:                 break;
-[e $U 634  ]
-"311
-[; ;main.c: 311:             case 0x34:
-[e :U 641 ]
-"312
-[; ;main.c: 312:                 Motor_Pause_Time = 4000;
-[e = _Motor_Pause_Time -> -> 4000 `i `ui ]
-"313
-[; ;main.c: 313:                 break;
-[e $U 634  ]
-"315
-[; ;main.c: 315:             case 0x35:
-[e :U 642 ]
-"316
-[; ;main.c: 316:                 Motor_Pause_Time = 5000;
-[e = _Motor_Pause_Time -> -> 5000 `i `ui ]
-"317
-[; ;main.c: 317:                 break;
-[e $U 634  ]
-"318
-[; ;main.c: 318:         }
-}
-[e $U 634  ]
-[e :U 635 ]
-[e [\ -> _pause_Time `i , $ -> 48 `i 636
- , $ -> 49 `i 638
- , $ -> 50 `i 639
- , $ -> 51 `i 640
- , $ -> 52 `i 641
- , $ -> 53 `i 642
- 637 ]
-[e :U 634 ]
-"319
-[; ;main.c: 319:     }
-}
-[e :U 633 ]
-"324
-[; ;main.c: 324:     INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"325
-[; ;main.c: 325:     ETemp = read_i2c(0x0050);
-[e = _ETemp -> ( _read_i2c (1 -> -> 80 `i `l `ui ]
-"326
-[; ;main.c: 326:     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"328
-[; ;main.c: 328:     delay_motor_stop_time = ETemp & 0x00FF;
-[e = _delay_motor_stop_time -> & _ETemp -> -> 255 `i `ui `uc ]
-"329
-[; ;main.c: 329:     if (delay_motor_stop_time > 0x96) {
-[e $ ! > -> _delay_motor_stop_time `i -> 150 `i 643  ]
-{
-"330
-[; ;main.c: 330:         delay_motor_stop_time = 0x00;
-[e = _delay_motor_stop_time -> -> 0 `i `uc ]
-"332
-[; ;main.c: 332:         INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"333
-[; ;main.c: 333:         write_i2c(0x0050, delay_motor_stop_time);
-[e ( _write_i2c (2 , -> -> 80 `i `l -> _delay_motor_stop_time `i ]
-"334
-[; ;main.c: 334:         INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"336
-[; ;main.c: 336:         Motor_Stop_Delay_Time = 0;
+[; ;main.c: 292:         Motor_Stop_Delay_Time = 0;
 [e = _Motor_Stop_Delay_Time -> -> 0 `i `ui ]
-"337
-[; ;main.c: 337:     } else {
+"293
+[; ;main.c: 293:     } else {
 }
-[e $U 644  ]
-[e :U 643 ]
+[e $U 643  ]
+[e :U 642 ]
 {
-"338
-[; ;main.c: 338:         Motor_Stop_Delay_Time = delay_motor_stop_time;
+"294
+[; ;main.c: 294:         Motor_Stop_Delay_Time = delay_motor_stop_time;
 [e = _Motor_Stop_Delay_Time -> _delay_motor_stop_time `ui ]
-"339
-[; ;main.c: 339:     }
+"295
+[; ;main.c: 295:     }
 }
-[e :U 644 ]
-"344
-[; ;main.c: 344:     INTCONbits.GIE = 0;
+[e :U 643 ]
+"300
+[; ;main.c: 300:     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"345
-[; ;main.c: 345:     ETemp = read_i2c(0x0040);
+"301
+[; ;main.c: 301:     ETemp = read_i2c(0x0040);
 [e = _ETemp -> ( _read_i2c (1 -> -> 64 `i `l `ui ]
-"346
-[; ;main.c: 346:     INTCONbits.GIE = 1
+"302
+[; ;main.c: 302:     INTCONbits.GIE = 1
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"348
-[; ;main.c: 348:     vib_Time = ETemp & 0x00FF;
+"304
+[; ;main.c: 304:     vib_Time = ETemp & 0x00FF;
 [e = _vib_Time -> & _ETemp -> -> 255 `i `ui `uc ]
-"349
-[; ;main.c: 349:     if ((vib_Time != 0x81 && vib_Time != 0x82 && vib_Time != 0x83 && vib_Time != 0x84 && vib_Time != 0x85)) {
-[e $ ! && && && && != -> _vib_Time `i -> 129 `i != -> _vib_Time `i -> 130 `i != -> _vib_Time `i -> 131 `i != -> _vib_Time `i -> 132 `i != -> _vib_Time `i -> 133 `i 645  ]
+"305
+[; ;main.c: 305:     if ((vib_Time != 0x81 && vib_Time != 0x82 && vib_Time != 0x83 && vib_Time != 0x84 && vib_Time != 0x85)) {
+[e $ ! && && && && != -> _vib_Time `i -> 129 `i != -> _vib_Time `i -> 130 `i != -> _vib_Time `i -> 131 `i != -> _vib_Time `i -> 132 `i != -> _vib_Time `i -> 133 `i 644  ]
 {
-"350
-[; ;main.c: 350:         Vmotor_Time = 2000;
+"306
+[; ;main.c: 306:         Vmotor_Time = 2000;
 [e = _Vmotor_Time -> -> 2000 `i `ui ]
-"351
-[; ;main.c: 351:         vib_Time = 0x82;
+"307
+[; ;main.c: 307:         vib_Time = 0x82;
 [e = _vib_Time -> -> 130 `i `uc ]
-"353
-[; ;main.c: 353:         INTCONbits.GIE = 0;
+"309
+[; ;main.c: 309:         INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"354
-[; ;main.c: 354:         write_i2c(0x0040, vib_Time);
+"310
+[; ;main.c: 310:         write_i2c(0x0040, vib_Time);
 [e ( _write_i2c (2 , -> -> 64 `i `l -> _vib_Time `i ]
-"355
-[; ;main.c: 355:         INTCONbits.GIE = 1;
+"311
+[; ;main.c: 311:         INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"356
-[; ;main.c: 356:     } else {
+"312
+[; ;main.c: 312:     } else {
+}
+[e $U 645  ]
+[e :U 644 ]
+{
+"313
+[; ;main.c: 313:         switch (vib_Time) {
+[e $U 647  ]
+{
+"314
+[; ;main.c: 314:             case 0x81:
+[e :U 648 ]
+"315
+[; ;main.c: 315:                 Vmotor_Time = 1000;
+[e = _Vmotor_Time -> -> 1000 `i `ui ]
+"316
+[; ;main.c: 316:                 break;
+[e $U 646  ]
+"317
+[; ;main.c: 317:             case 0x82:
+[e :U 649 ]
+"318
+[; ;main.c: 318:             default:
+[e :U 650 ]
+"319
+[; ;main.c: 319:                 Vmotor_Time = 2000;
+[e = _Vmotor_Time -> -> 2000 `i `ui ]
+"320
+[; ;main.c: 320:                 vib_Time = 0x82;
+[e = _vib_Time -> -> 130 `i `uc ]
+"321
+[; ;main.c: 321:                 break;
+[e $U 646  ]
+"322
+[; ;main.c: 322:             case 0x83:
+[e :U 651 ]
+"323
+[; ;main.c: 323:                 Vmotor_Time = 3000;
+[e = _Vmotor_Time -> -> 3000 `i `ui ]
+"324
+[; ;main.c: 324:                 break;
+[e $U 646  ]
+"325
+[; ;main.c: 325:             case 0x84:
+[e :U 652 ]
+"326
+[; ;main.c: 326:                 Vmotor_Time = 4000;
+[e = _Vmotor_Time -> -> 4000 `i `ui ]
+"327
+[; ;main.c: 327:                 break;
+[e $U 646  ]
+"328
+[; ;main.c: 328:             case 0x85:
+[e :U 653 ]
+"329
+[; ;main.c: 329:                 Vmotor_Time = 5000;
+[e = _Vmotor_Time -> -> 5000 `i `ui ]
+"330
+[; ;main.c: 330:                 break;
+[e $U 646  ]
+"331
+[; ;main.c: 331:         }
 }
 [e $U 646  ]
-[e :U 645 ]
-{
-"357
-[; ;main.c: 357:         switch (vib_Time) {
-[e $U 648  ]
-{
-"358
-[; ;main.c: 358:             case 0x81:
-[e :U 649 ]
-"359
-[; ;main.c: 359:                 Vmotor_Time = 1000;
-[e = _Vmotor_Time -> -> 1000 `i `ui ]
-"360
-[; ;main.c: 360:                 break;
-[e $U 647  ]
-"361
-[; ;main.c: 361:             case 0x82:
-[e :U 650 ]
-"362
-[; ;main.c: 362:             default:
-[e :U 651 ]
-"363
-[; ;main.c: 363:                 Vmotor_Time = 2000;
-[e = _Vmotor_Time -> -> 2000 `i `ui ]
-"364
-[; ;main.c: 364:                 vib_Time = 0x82;
-[e = _vib_Time -> -> 130 `i `uc ]
-"365
-[; ;main.c: 365:                 break;
-[e $U 647  ]
-"366
-[; ;main.c: 366:             case 0x83:
-[e :U 652 ]
-"367
-[; ;main.c: 367:                 Vmotor_Time = 3000;
-[e = _Vmotor_Time -> -> 3000 `i `ui ]
-"368
-[; ;main.c: 368:                 break;
-[e $U 647  ]
-"369
-[; ;main.c: 369:             case 0x84:
-[e :U 653 ]
-"370
-[; ;main.c: 370:                 Vmotor_Time = 4000;
-[e = _Vmotor_Time -> -> 4000 `i `ui ]
-"371
-[; ;main.c: 371:                 break;
-[e $U 647  ]
-"372
-[; ;main.c: 372:             case 0x85:
-[e :U 654 ]
-"373
-[; ;main.c: 373:                 Vmotor_Time = 5000;
-[e = _Vmotor_Time -> -> 5000 `i `ui ]
-"374
-[; ;main.c: 374:                 break;
-[e $U 647  ]
-"375
-[; ;main.c: 375:         }
-}
-[e $U 647  ]
-[e :U 648 ]
-[e [\ -> _vib_Time `i , $ -> 129 `i 649
- , $ -> 130 `i 650
- , $ -> 131 `i 652
- , $ -> 132 `i 653
- , $ -> 133 `i 654
- 651 ]
 [e :U 647 ]
-"376
-[; ;main.c: 376:     }
-}
+[e [\ -> _vib_Time `i , $ -> 129 `i 648
+ , $ -> 130 `i 649
+ , $ -> 131 `i 651
+ , $ -> 132 `i 652
+ , $ -> 133 `i 653
+ 650 ]
 [e :U 646 ]
-"381
-[; ;main.c: 381:         PWM_reg = 0x3F;
+"332
+[; ;main.c: 332:     }
+}
+[e :U 645 ]
+"337
+[; ;main.c: 337:         PWM_reg = 0x3F;
 [e = _PWM_reg -> -> 63 `i `uc ]
-"383
-[; ;main.c: 383:     INTCONbits.GIE=0;
+"339
+[; ;main.c: 339:     INTCONbits.GIE=0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"384
-[; ;main.c: 384:     ETemp = read_i2c(0x0030);
+"340
+[; ;main.c: 340:     ETemp = read_i2c(0x0030);
 [e = _ETemp -> ( _read_i2c (1 -> -> 48 `i `l `ui ]
-"385
-[; ;main.c: 385:     INTCONbits.GIE=1;
+"341
+[; ;main.c: 341:     INTCONbits.GIE=1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"387
-[; ;main.c: 387:     PWM_reg = ETemp & 0x00FF;
+"343
+[; ;main.c: 343:     PWM_reg = ETemp & 0x00FF;
 [e = _PWM_reg -> & _ETemp -> -> 255 `i `ui `uc ]
-"389
-[; ;main.c: 389:     if( (PWM_reg!=0x00 && PWM_reg!=0x3F && PWM_reg!=0x7F) )
-[e $ ! && && != -> _PWM_reg `i -> 0 `i != -> _PWM_reg `i -> 63 `i != -> _PWM_reg `i -> 127 `i 655  ]
-"390
-[; ;main.c: 390:     {
+"345
+[; ;main.c: 345:     if( (PWM_reg!=0x00 && PWM_reg!=0x3F && PWM_reg!=0x7F) )
+[e $ ! && && != -> _PWM_reg `i -> 0 `i != -> _PWM_reg `i -> 63 `i != -> _PWM_reg `i -> 127 `i 654  ]
+"346
+[; ;main.c: 346:     {
 {
-"391
-[; ;main.c: 391:         PWM_reg=0x3F;
+"347
+[; ;main.c: 347:         PWM_reg=0x3F;
 [e = _PWM_reg -> -> 63 `i `uc ]
-"393
-[; ;main.c: 393:         INTCONbits.GIE=0;
+"349
+[; ;main.c: 349:         INTCONbits.GIE=0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"394
-[; ;main.c: 394:         write_i2c(0x0030,PWM_reg);
+"350
+[; ;main.c: 350:         write_i2c(0x0030,PWM_reg);
 [e ( _write_i2c (2 , -> -> 48 `i `l -> _PWM_reg `i ]
-"395
-[; ;main.c: 395:         INTCONbits.GIE=1;
+"351
+[; ;main.c: 351:         INTCONbits.GIE=1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"396
-[; ;main.c: 396:     }
+"352
+[; ;main.c: 352:     }
 }
-[e :U 655 ]
-"398
-[; ;main.c: 398:     errorcounter = 30;
+[e :U 654 ]
+"354
+[; ;main.c: 354:     errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"399
-[; ;main.c: 399:     MotorPosition_Init();
+"355
+[; ;main.c: 355:     MotorPosition_Init();
 [e ( _MotorPosition_Init ..  ]
-"400
-[; ;main.c: 400:     LATDbits.LATD1 = 0;
+"356
+[; ;main.c: 356:     LATDbits.LATD1 = 0;
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
-"405
-[; ;main.c: 405:     while (1) {
-[e :U 657 ]
+"361
+[; ;main.c: 361:     while (1) {
+[e :U 656 ]
 {
-"419
-[; ;main.c: 419:         __asm(" clrwdt");
+"362
+[; ;main.c: 362:         __asm(" clrwdt");
 [; <"  clrwdt ;# ">
-"420
-[; ;main.c: 420:         errorcounter = 30;
+"363
+[; ;main.c: 363:         errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"421
-[; ;main.c: 421:         AD_capture_BattVoltage();
+"364
+[; ;main.c: 364:         AD_capture_BattVoltage();
 [e ( _AD_capture_BattVoltage ..  ]
-"423
-[; ;main.c: 423:         switch (OpMode) {
-[e $U 660  ]
+"366
+[; ;main.c: 366:         switch (OpMode) {
+[e $U 659  ]
 {
-"427
-[; ;main.c: 427:             case MANUAL_MODE:
-[e :U 661 ]
-"429
-[; ;main.c: 429:                 NUM = NUM_REC;
+"370
+[; ;main.c: 370:             case MANUAL_MODE:
+[e :U 660 ]
+"372
+[; ;main.c: 372:                 NUM = NUM_REC;
 [e = _NUM _NUM_REC ]
-"430
-[; ;main.c: 430:                 if (PORTBbits.RB4 == 0) {
-[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 662  ]
+"373
+[; ;main.c: 373:                 if (PORTBbits.RB4 == 0) {
+[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 661  ]
 {
-"431
-[; ;main.c: 431:                     do {
-[e :U 665 ]
-{
-"432
-[; ;main.c: 432:                         if (PORTBbits.RB2 == 0) {
-[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 666  ]
-{
-"433
-[; ;main.c: 433:                             ToggleVIB_Mode();
-[e ( _ToggleVIB_Mode ..  ]
-"434
-[; ;main.c: 434:                         }
-}
-[e :U 666 ]
-"436
-[; ;main.c: 436:                         WriteSTLED316SVibMode(vibration_mode);
-[e ( _WriteSTLED316SVibMode (1 -> _vibration_mode `uc ]
-"437
-[; ;main.c: 437:                         _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"439
-[; ;main.c: 439:                     } while (PORTBbits.RB4 == 0);
-}
-[e $ == -> . . _PORTBbits 0 4 `i -> 0 `i 665  ]
+"374
+[; ;main.c: 374:                     do {
 [e :U 664 ]
-"440
-[; ;main.c: 440:                 }
+{
+"375
+[; ;main.c: 375:                         if (PORTBbits.RB2 == 0) {
+[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 665  ]
+{
+"376
+[; ;main.c: 376:                             ToggleVIB_Mode();
+[e ( _ToggleVIB_Mode ..  ]
+"377
+[; ;main.c: 377:                         }
 }
-[e :U 662 ]
-"441
-[; ;main.c: 441:                 if ((PORTBbits.RB3 == 0) && NUM != 99) {
-[e $ ! && == -> . . _PORTBbits 0 3 `i -> 0 `i != _NUM -> -> 99 `i `ui 667  ]
+[e :U 665 ]
+"379
+[; ;main.c: 379:                         WriteSTLED316SVibMode(vibration_mode);
+[e ( _WriteSTLED316SVibMode (1 -> _vibration_mode `uc ]
+"380
+[; ;main.c: 380:                         _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"382
+[; ;main.c: 382:                     } while (PORTBbits.RB4 == 0);
+}
+[e $ == -> . . _PORTBbits 0 4 `i -> 0 `i 664  ]
+[e :U 663 ]
+"383
+[; ;main.c: 383:                 }
+}
+[e :U 661 ]
+"384
+[; ;main.c: 384:                 if ((PORTBbits.RB3 == 0) && NUM != 99) {
+[e $ ! && == -> . . _PORTBbits 0 3 `i -> 0 `i != _NUM -> -> 99 `i `ui 666  ]
 {
-"442
-[; ;main.c: 442:                     NUM = NUM + 1;
-[e = _NUM + _NUM -> -> 1 `i `ui ]
-"444
-[; ;main.c: 444:                     WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"445
-[; ;main.c: 445:                     _delay((unsigned long)((250)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"446
-[; ;main.c: 446:                     while (PORTBbits.RB3 == 0){
-[e $U 668  ]
-[e :U 669 ]
+"385
+[; ;main.c: 385:                     if(PORTBbits.RB3 == 0){
+[e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 667  ]
 {
-"447
-[; ;main.c: 447:                       _delay((unsigned long)((1000)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"451
-[; ;main.c: 451:                       if(PORTBbits.RB3 == 0 && NUM <= 89)
-[e $ ! && == -> . . _PORTBbits 0 3 `i -> 0 `i <= _NUM -> -> 89 `i `ui 671  ]
-"452
-[; ;main.c: 452:                       {
+"387
+[; ;main.c: 387:                       if (holdTimeRight >= 1000 && NUM <= 89)
+[e $ ! && >= _holdTimeRight -> 1000 `i <= _NUM -> -> 89 `i `ui 668  ]
+"388
+[; ;main.c: 388:                       {
 {
-"453
-[; ;main.c: 453:                         NUM = NUM + 10;
+"389
+[; ;main.c: 389:                         _delay((unsigned long)((500)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"390
+[; ;main.c: 390:                         NUM = NUM + 10;
 [e = _NUM + _NUM -> -> 10 `i `ui ]
-"454
-[; ;main.c: 454:                         WriteSTLED316SData(NUM, vibration_mode);
+"391
+[; ;main.c: 391:                         WriteSTLED316SData(NUM, vibration_mode);
 [e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"455
-[; ;main.c: 455:                       }
+"392
+[; ;main.c: 392:                       }
+}
+[e $U 669  ]
+"393
+[; ;main.c: 393:                       else if (holdTimeRight < 1000)
+[e :U 668 ]
+[e $ ! < _holdTimeRight -> 1000 `i 670  ]
+"394
+[; ;main.c: 394:                       {
+{
+"395
+[; ;main.c: 395:                         NUM = NUM + 1;
+[e = _NUM + _NUM -> -> 1 `i `ui ]
+"396
+[; ;main.c: 396:                         WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"398
+[; ;main.c: 398:                         _delay((unsigned long)((150)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 150 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"399
+[; ;main.c: 399:                         holdTimeRight = 0;
+[e = _holdTimeRight -> 0 `i ]
+"400
+[; ;main.c: 400:                       }
+}
+[e :U 670 ]
+[e :U 669 ]
+"403
+[; ;main.c: 403:                       if(PORTBbits.RB3 == 0 && PORTAbits.RA5 == 0)
+[e $ ! && == -> . . _PORTBbits 0 3 `i -> 0 `i == -> . . _PORTAbits 0 5 `i -> 0 `i 671  ]
+"404
+[; ;main.c: 404:                       {
+{
+"405
+[; ;main.c: 405:                           NUM = 0;
+[e = _NUM -> -> 0 `i `ui ]
+"406
+[; ;main.c: 406:                           WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"408
+[; ;main.c: 408:                       }
 }
 [e :U 671 ]
-"459
-[; ;main.c: 459:                       if(PORTBbits.RB3 == 0 && PORTAbits.RA5 == 0)
-[e $ ! && == -> . . _PORTBbits 0 3 `i -> 0 `i == -> . . _PORTAbits 0 5 `i -> 0 `i 672  ]
-"460
-[; ;main.c: 460:                       {
+"409
+[; ;main.c: 409:                       while(PORTBbits.RB3 == 0 && holdTimeRight < 1000)
+[e $U 672  ]
+[e :U 673 ]
+"410
+[; ;main.c: 410:                       {
 {
-"461
-[; ;main.c: 461:                           NUM = 0;
-[e = _NUM -> -> 0 `i `ui ]
-"462
-[; ;main.c: 462:                           WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"463
-[; ;main.c: 463:                       }
+"411
+[; ;main.c: 411:                         _delay((unsigned long)((10)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"412
+[; ;main.c: 412:                         holdTimeRight += 10;
+[e =+ _holdTimeRight -> 10 `i ]
+"413
+[; ;main.c: 413:                       }
 }
 [e :U 672 ]
-"464
-[; ;main.c: 464:                     };
-}
-[e :U 668 ]
-"446
-[; ;main.c: 446:                     while (PORTBbits.RB3 == 0){
-[e $ == -> . . _PORTBbits 0 3 `i -> 0 `i 669  ]
-[e :U 670 ]
-"465
-[; ;main.c: 465:                 }
+"409
+[; ;main.c: 409:                       while(PORTBbits.RB3 == 0 && holdTimeRight < 1000)
+[e $ && == -> . . _PORTBbits 0 3 `i -> 0 `i < _holdTimeRight -> 1000 `i 673  ]
+[e :U 674 ]
+"414
+[; ;main.c: 414:                     }
 }
 [e :U 667 ]
-"467
-[; ;main.c: 467:                 if (PORTAbits.RA5 == 0 && NUM != 0) {
-[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i != _NUM -> -> 0 `i `ui 673  ]
+"415
+[; ;main.c: 415:                 }
+}
+[e $U 675  ]
+"416
+[; ;main.c: 416:                 else {
+[e :U 666 ]
 {
-"468
-[; ;main.c: 468:                     NUM = NUM - 1;
-[e = _NUM - _NUM -> -> 1 `i `ui ]
-"470
-[; ;main.c: 470:                     WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"471
-[; ;main.c: 471:                     _delay((unsigned long)((250)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"472
-[; ;main.c: 472:                     while (PORTAbits.RA5 == 0){
-[e $U 674  ]
+"417
+[; ;main.c: 417:                   holdTimeRight = 0;
+[e = _holdTimeRight -> 0 `i ]
+"418
+[; ;main.c: 418:                 }
+}
 [e :U 675 ]
+"420
+[; ;main.c: 420:                 if (PORTAbits.RA5 == 0 && NUM != 0) {
+[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i != _NUM -> -> 0 `i `ui 676  ]
 {
-"473
-[; ;main.c: 473:                       _delay((unsigned long)((1000)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"477
-[; ;main.c: 477:                       if(PORTAbits.RA5 == 0 && NUM >= 10){
-[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i >= _NUM -> -> 10 `i `ui 677  ]
+"421
+[; ;main.c: 421:                     if(PORTAbits.RA5 == 0){
+[e $ ! == -> . . _PORTAbits 0 5 `i -> 0 `i 677  ]
 {
-"478
-[; ;main.c: 478:                         NUM = NUM - 10;
+"423
+[; ;main.c: 423:                       if (holdTimeLeft >= 1000 && NUM >= 10)
+[e $ ! && >= _holdTimeLeft -> 1000 `i >= _NUM -> -> 10 `i `ui 678  ]
+"424
+[; ;main.c: 424:                       {
+{
+"425
+[; ;main.c: 425:                         _delay((unsigned long)((500)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"426
+[; ;main.c: 426:                         NUM = NUM - 10;
 [e = _NUM - _NUM -> -> 10 `i `ui ]
-"479
-[; ;main.c: 479:                         WriteSTLED316SData(NUM, vibration_mode);
+"427
+[; ;main.c: 427:                         WriteSTLED316SData(NUM, vibration_mode);
 [e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"480
-[; ;main.c: 480:                       }
+"428
+[; ;main.c: 428:                       }
+}
+[e $U 679  ]
+"429
+[; ;main.c: 429:                       else if (holdTimeLeft < 1000)
+[e :U 678 ]
+[e $ ! < _holdTimeLeft -> 1000 `i 680  ]
+"430
+[; ;main.c: 430:                       {
+{
+"431
+[; ;main.c: 431:                         NUM = NUM - 1;
+[e = _NUM - _NUM -> -> 1 `i `ui ]
+"432
+[; ;main.c: 432:                         WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"434
+[; ;main.c: 434:                         _delay((unsigned long)((150)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 150 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"435
+[; ;main.c: 435:                         holdTimeLeft = 0;
+[e = _holdTimeLeft -> 0 `i ]
+"436
+[; ;main.c: 436:                       }
+}
+[e :U 680 ]
+[e :U 679 ]
+"439
+[; ;main.c: 439:                       if(PORTAbits.RA5 == 0 && PORTBbits.RB3 == 0)
+[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i == -> . . _PORTBbits 0 3 `i -> 0 `i 681  ]
+"440
+[; ;main.c: 440:                       {
+{
+"441
+[; ;main.c: 441:                           NUM = 0;
+[e = _NUM -> -> 0 `i `ui ]
+"442
+[; ;main.c: 442:                           WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"443
+[; ;main.c: 443:                       }
+}
+[e :U 681 ]
+"444
+[; ;main.c: 444:                       while(PORTAbits.RA5 == 0 && holdTimeLeft < 1000)
+[e $U 682  ]
+[e :U 683 ]
+"445
+[; ;main.c: 445:                       {
+{
+"446
+[; ;main.c: 446:                         _delay((unsigned long)((10)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"447
+[; ;main.c: 447:                         holdTimeLeft += 10;
+[e =+ _holdTimeLeft -> 10 `i ]
+"448
+[; ;main.c: 448:                       }
+}
+[e :U 682 ]
+"444
+[; ;main.c: 444:                       while(PORTAbits.RA5 == 0 && holdTimeLeft < 1000)
+[e $ && == -> . . _PORTAbits 0 5 `i -> 0 `i < _holdTimeLeft -> 1000 `i 683  ]
+[e :U 684 ]
+"449
+[; ;main.c: 449:                     }
 }
 [e :U 677 ]
-"484
-[; ;main.c: 484:                       if(PORTAbits.RA5 == 0 && PORTBbits.RB3 == 0)
-[e $ ! && == -> . . _PORTAbits 0 5 `i -> 0 `i == -> . . _PORTBbits 0 3 `i -> 0 `i 678  ]
-"485
-[; ;main.c: 485:                       {
-{
-"486
-[; ;main.c: 486:                           NUM = 0;
-[e = _NUM -> -> 0 `i `ui ]
-"487
-[; ;main.c: 487:                           WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"488
-[; ;main.c: 488:                       }
+"450
+[; ;main.c: 450:                 }
 }
-[e :U 678 ]
-"489
-[; ;main.c: 489:                     };
-}
-[e :U 674 ]
-"472
-[; ;main.c: 472:                     while (PORTAbits.RA5 == 0){
-[e $ == -> . . _PORTAbits 0 5 `i -> 0 `i 675  ]
+[e $U 685  ]
+"451
+[; ;main.c: 451:                 else {
 [e :U 676 ]
-"490
-[; ;main.c: 490:                 }
+{
+"452
+[; ;main.c: 452:                   holdTimeLeft = 0;
+[e = _holdTimeLeft -> 0 `i ]
+"453
+[; ;main.c: 453:                 }
 }
-[e :U 673 ]
-"492
-[; ;main.c: 492:                 if (PORTAbits.RA4 == 0 && NUM <= 89) {
-[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i <= _NUM -> -> 89 `i `ui 679  ]
+[e :U 685 ]
+"455
+[; ;main.c: 455:                 if (PORTAbits.RA4 == 0 && NUM <= 89) {
+[e $ ! && == -> . . _PORTAbits 0 4 `i -> 0 `i <= _NUM -> -> 89 `i `ui 686  ]
+{
+"456
+[; ;main.c: 456:                     NUM = NUM + 10;
+[e = _NUM + _NUM -> -> 10 `i `ui ]
+"457
+[; ;main.c: 457:                     while (PORTAbits.RA4 == 0);
+[e $U 687  ]
+[e :U 688 ]
+[e :U 687 ]
+[e $ == -> . . _PORTAbits 0 4 `i -> 0 `i 688  ]
+[e :U 689 ]
+"458
+[; ;main.c: 458:                 }
+}
+[e :U 686 ]
+"460
+[; ;main.c: 460:                 if (PORTAbits.RA3 == 0 && NUM >= 10) {
+[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i >= _NUM -> -> 10 `i `ui 690  ]
+{
+"461
+[; ;main.c: 461:                     NUM = NUM - 10;
+[e = _NUM - _NUM -> -> 10 `i `ui ]
+"462
+[; ;main.c: 462:                     while (PORTAbits.RA3 == 0);
+[e $U 691  ]
+[e :U 692 ]
+[e :U 691 ]
+[e $ == -> . . _PORTAbits 0 3 `i -> 0 `i 692  ]
+[e :U 693 ]
+"463
+[; ;main.c: 463:                 }
+}
+[e :U 690 ]
+"465
+[; ;main.c: 465:                 NUM_REC = NUM;
+[e = _NUM_REC _NUM ]
+"466
+[; ;main.c: 466:                 WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"471
+[; ;main.c: 471:                 if(dispense == 1)
+[e $ ! == _dispense -> 1 `i 694  ]
+"472
+[; ;main.c: 472:                 {
+{
+"473
+[; ;main.c: 473:                     Busy = 1;
+[e = _Busy -> -> 1 `i `uc ]
+"474
+[; ;main.c: 474:                     errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"475
+[; ;main.c: 475:                     Homing_Again_Manual();
+[e ( _Homing_Again_Manual ..  ]
+"476
+[; ;main.c: 476:                     Stop = 0;
+[e = _Stop -> -> 0 `i `uc ]
+"477
+[; ;main.c: 477:                     Busy = 0;
+[e = _Busy -> -> 0 `i `uc ]
+"484
+[; ;main.c: 484:                 }
+}
+[e :U 694 ]
+"489
+[; ;main.c: 489:             case AUTO_MODE:
+[e :U 695 ]
+"491
+[; ;main.c: 491:                 if (Serial_Flag == 1) {
+[e $ ! == -> _Serial_Flag `i -> 1 `i 696  ]
 {
 "493
-[; ;main.c: 493:                     NUM = NUM + 10;
-[e = _NUM + _NUM -> -> 10 `i `ui ]
+[; ;main.c: 493:                     switch (Serial_Buffer[1]) {
+[e $U 698  ]
+{
 "494
-[; ;main.c: 494:                     while (PORTAbits.RA4 == 0);
-[e $U 680  ]
-[e :U 681 ]
-[e :U 680 ]
-[e $ == -> . . _PORTAbits 0 4 `i -> 0 `i 681  ]
-[e :U 682 ]
-"495
-[; ;main.c: 495:                 }
-}
-[e :U 679 ]
+[; ;main.c: 494:                         case 0x44:
+[e :U 699 ]
+"496
+[; ;main.c: 496:                             if (Serial_Buffer[2] == 0xF1 && Busy == 0)
+[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 241 `i == -> _Busy `i -> 0 `i 700  ]
 "497
-[; ;main.c: 497:                 if (PORTAbits.RA3 == 0 && NUM >= 10) {
-[e $ ! && == -> . . _PORTAbits 0 3 `i -> 0 `i >= _NUM -> -> 10 `i `ui 683  ]
+[; ;main.c: 497:                             {
 {
 "498
-[; ;main.c: 498:                     NUM = NUM - 10;
-[e = _NUM - _NUM -> -> 10 `i `ui ]
+[; ;main.c: 498:                                 Stop = 0;
+[e = _Stop -> -> 0 `i `uc ]
 "499
-[; ;main.c: 499:                     while (PORTAbits.RA3 == 0);
-[e $U 684  ]
-[e :U 685 ]
-[e :U 684 ]
-[e $ == -> . . _PORTAbits 0 3 `i -> 0 `i 685  ]
-[e :U 686 ]
+[; ;main.c: 499:                                 Busy = 1;
+[e = _Busy -> -> 1 `i `uc ]
 "500
-[; ;main.c: 500:                 }
-}
-[e :U 683 ]
+[; ;main.c: 500:                                 NUM = NUM_REC;
+[e = _NUM _NUM_REC ]
 "502
-[; ;main.c: 502:                 NUM_REC = NUM;
-[e = _NUM_REC _NUM ]
+[; ;main.c: 502:                                 errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
 "503
-[; ;main.c: 503:                 WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"508
-[; ;main.c: 508:                 if(dispense == 1)
-[e $ ! == _dispense -> 1 `i 687  ]
-"509
-[; ;main.c: 509:                 {
-{
-"510
-[; ;main.c: 510:                     Busy = 1;
-[e = _Busy -> -> 1 `i `uc ]
-"511
-[; ;main.c: 511:                     errorcounter = 30;
-[e = _errorcounter -> -> 30 `i `l ]
-"512
-[; ;main.c: 512:                     Homing_Again_Manual();
-[e ( _Homing_Again_Manual ..  ]
-"513
-[; ;main.c: 513:                     Stop = 0;
-[e = _Stop -> -> 0 `i `uc ]
-"514
-[; ;main.c: 514:                     Busy = 0;
-[e = _Busy -> -> 0 `i `uc ]
-"521
-[; ;main.c: 521:                 }
-}
-[e :U 687 ]
-"526
-[; ;main.c: 526:             case AUTO_MODE:
-[e :U 688 ]
-"528
-[; ;main.c: 528:                 if (Serial_Flag == 1) {
-[e $ ! == -> _Serial_Flag `i -> 1 `i 689  ]
-{
-"530
-[; ;main.c: 530:                     switch (Serial_Buffer[1]) {
-[e $U 691  ]
-{
-"531
-[; ;main.c: 531:                         case 0x44:
-[e :U 692 ]
-"533
-[; ;main.c: 533:                             if (Serial_Buffer[2] == 0xF1 && Busy == 0)
-[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 241 `i == -> _Busy `i -> 0 `i 693  ]
-"534
-[; ;main.c: 534:                             {
-{
-"535
-[; ;main.c: 535:                                 Stop = 0;
-[e = _Stop -> -> 0 `i `uc ]
-"536
-[; ;main.c: 536:                                 Busy = 1;
-[e = _Busy -> -> 1 `i `uc ]
-"537
-[; ;main.c: 537:                                 NUM = NUM_REC;
-[e = _NUM _NUM_REC ]
-"539
-[; ;main.c: 539:                                 errorcounter = 30;
-[e = _errorcounter -> -> 30 `i `l ]
-"540
-[; ;main.c: 540:                                 Homing_Again_Auto();
+[; ;main.c: 503:                                 Homing_Again_Auto();
 [e ( _Homing_Again_Auto ..  ]
-"542
-[; ;main.c: 542:                             } else if (Serial_Buffer[2] == 0xF2 && Busy == 0)
+"505
+[; ;main.c: 505:                             } else if (Serial_Buffer[2] == 0xF2 && Busy == 0)
 }
-[e $U 694  ]
-[e :U 693 ]
-[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 242 `i == -> _Busy `i -> 0 `i 695  ]
-"543
-[; ;main.c: 543:                             {
-{
-"544
-[; ;main.c: 544:                                 Stop = 0;
-[e = _Stop -> -> 0 `i `uc ]
-"545
-[; ;main.c: 545:                                 Busy = 1;
-[e = _Busy -> -> 1 `i `uc ]
-"546
-[; ;main.c: 546:                                 NUM = NUM_REC;
-[e = _NUM _NUM_REC ]
-"547
-[; ;main.c: 547:                                 WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"549
-[; ;main.c: 549:                                 errorcounter = 30;
-[e = _errorcounter -> -> 30 `i `l ]
-"550
-[; ;main.c: 550:                                 Homing_Again_Manual();
-[e ( _Homing_Again_Manual ..  ]
-"553
-[; ;main.c: 553:                                 if (Stop == 0) {
-[e $ ! == -> _Stop `i -> 0 `i 696  ]
-{
-"554
-[; ;main.c: 554:                                     Serial_Buffer_Out[0] = 0xA5;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 0 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 165 `i `uc ]
-"555
-[; ;main.c: 555:                                     Serial_Buffer_Out[1] = 0x44;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 68 `i `uc ]
-"556
-[; ;main.c: 556:                                     Serial_Buffer_Out[2] = 0xF9;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 249 `i `uc ]
-"557
-[; ;main.c: 557:                                     Serial_Buffer_Out[3] = 0X3D;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 61 `i `uc ]
-"558
-[; ;main.c: 558:                                     Serial_Buffer_Out[4] = 0x5A;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 4 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 90 `i `uc ]
-"560
-[; ;main.c: 560:                                     INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"561
-[; ;main.c: 561:                                     for (i = 0; i < 5; i++) {
-{
-[e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 697  ]
-[e $U 698  ]
-[e :U 697 ]
-{
-"562
-[; ;main.c: 562:                                         Write1USART(Serial_Buffer_Out[i]);
-[e ( _Write1USART (1 -> *U + &U _Serial_Buffer_Out * -> _i `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux `uc ]
-"563
-[; ;main.c: 563:                                     }
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 697  ]
-[e :U 698 ]
-}
-"564
-[; ;main.c: 564:                                     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"565
-[; ;main.c: 565:                                 }
-}
-[e :U 696 ]
-"567
-[; ;main.c: 567:                             }
-}
-[e :U 695 ]
-[e :U 694 ]
-"568
-[; ;main.c: 568:                             flush();
-[e ( _flush ..  ]
-"569
-[; ;main.c: 569:                             flushOut();
-[e ( _flushOut ..  ]
-"570
-[; ;main.c: 570:                             Stop = 0;
-[e = _Stop -> -> 0 `i `uc ]
-"571
-[; ;main.c: 571:                             Busy = 0;
-[e = _Busy -> -> 0 `i `uc ]
-"572
-[; ;main.c: 572:                             break;
-[e $U 690  ]
-"575
-[; ;main.c: 575:                         case 0x23:
+[e $U 701  ]
 [e :U 700 ]
-"577
-[; ;main.c: 577:                             if (Busy == 0) {
-[e $ ! == -> _Busy `i -> 0 `i 701  ]
+[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 242 `i == -> _Busy `i -> 0 `i 702  ]
+"506
+[; ;main.c: 506:                             {
 {
-"578
-[; ;main.c: 578:                                 Busy = 1;
+"507
+[; ;main.c: 507:                                 Stop = 0;
+[e = _Stop -> -> 0 `i `uc ]
+"508
+[; ;main.c: 508:                                 Busy = 1;
 [e = _Busy -> -> 1 `i `uc ]
-"582
-[; ;main.c: 582:                                 pause_Time = Serial_Buffer[2];
-[e = _pause_Time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
-"583
-[; ;main.c: 583:                                 switch (pause_Time) {
-[e $U 703  ]
+"509
+[; ;main.c: 509:                                 NUM = NUM_REC;
+[e = _NUM _NUM_REC ]
+"510
+[; ;main.c: 510:                                 WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"512
+[; ;main.c: 512:                                 errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"513
+[; ;main.c: 513:                                 Homing_Again_Manual();
+[e ( _Homing_Again_Manual ..  ]
+"516
+[; ;main.c: 516:                                 if (Stop == 0) {
+[e $ ! == -> _Stop `i -> 0 `i 703  ]
 {
-"584
-[; ;main.c: 584:                                     case 0x30:
-[e :U 704 ]
-"585
-[; ;main.c: 585:                                     default:
-[e :U 705 ]
-"586
-[; ;main.c: 586:                                         Motor_Pause_Time = 0;
-[e = _Motor_Pause_Time -> -> 0 `i `ui ]
-"587
-[; ;main.c: 587:                                         pause_Time = 0x30;
-[e = _pause_Time -> -> 48 `i `uc ]
-"588
-[; ;main.c: 588:                                         break;
-[e $U 702  ]
-"590
-[; ;main.c: 590:                                     case 0x31:
-[e :U 706 ]
-"591
-[; ;main.c: 591:                                         Motor_Pause_Time = 1000;
-[e = _Motor_Pause_Time -> -> 1000 `i `ui ]
-"592
-[; ;main.c: 592:                                         break;
-[e $U 702  ]
-"594
-[; ;main.c: 594:                                     case 0x32:
-[e :U 707 ]
-"595
-[; ;main.c: 595:                                         Motor_Pause_Time = 2000;
-[e = _Motor_Pause_Time -> -> 2000 `i `ui ]
-"596
-[; ;main.c: 596:                                         break;
-[e $U 702  ]
-"598
-[; ;main.c: 598:                                     case 0x33:
-[e :U 708 ]
-"599
-[; ;main.c: 599:                                         Motor_Pause_Time = 3000;
-[e = _Motor_Pause_Time -> -> 3000 `i `ui ]
-"600
-[; ;main.c: 600:                                         break;
-[e $U 702  ]
-"602
-[; ;main.c: 602:                                     case 0x34:
-[e :U 709 ]
-"603
-[; ;main.c: 603:                                         Motor_Pause_Time = 4000;
-[e = _Motor_Pause_Time -> -> 4000 `i `ui ]
-"604
-[; ;main.c: 604:                                         break;
-[e $U 702  ]
-"606
-[; ;main.c: 606:                                     case 0x35:
-[e :U 710 ]
-"607
-[; ;main.c: 607:                                         Motor_Pause_Time = 5000;
-[e = _Motor_Pause_Time -> -> 5000 `i `ui ]
-"608
-[; ;main.c: 608:                                         break;
-[e $U 702  ]
-"609
-[; ;main.c: 609:                                 }
-}
-[e $U 702  ]
-[e :U 703 ]
-[e [\ -> _pause_Time `i , $ -> 48 `i 704
- , $ -> 49 `i 706
- , $ -> 50 `i 707
- , $ -> 51 `i 708
- , $ -> 52 `i 709
- , $ -> 53 `i 710
- 705 ]
-[e :U 702 ]
-"613
-[; ;main.c: 613:                                 INTCONbits.GIE = 0;
+"517
+[; ;main.c: 517:                                     Serial_Buffer_Out[0] = 0xA5;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 0 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 165 `i `uc ]
+"518
+[; ;main.c: 518:                                     Serial_Buffer_Out[1] = 0x44;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 68 `i `uc ]
+"519
+[; ;main.c: 519:                                     Serial_Buffer_Out[2] = 0xF9;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 249 `i `uc ]
+"520
+[; ;main.c: 520:                                     Serial_Buffer_Out[3] = 0X3D;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 61 `i `uc ]
+"521
+[; ;main.c: 521:                                     Serial_Buffer_Out[4] = 0x5A;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 4 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 90 `i `uc ]
+"523
+[; ;main.c: 523:                                     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"614
-[; ;main.c: 614:                                 write_i2c(0x0060, pause_Time);
-[e ( _write_i2c (2 , -> -> 96 `i `l -> _pause_Time `i ]
-"615
-[; ;main.c: 615:                                 INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"617
-[; ;main.c: 617:                                 flush();
-[e ( _flush ..  ]
-"618
-[; ;main.c: 618:                                 Busy = 0;
-[e = _Busy -> -> 0 `i `uc ]
-"619
-[; ;main.c: 619:                             }
-}
-[e :U 701 ]
-"620
-[; ;main.c: 620:                             break;
-[e $U 690  ]
-"623
-[; ;main.c: 623:                         case 0x51:
-[e :U 711 ]
-"625
-[; ;main.c: 625:                             if (Busy == 0) {
-[e $ ! == -> _Busy `i -> 0 `i 712  ]
-{
-"626
-[; ;main.c: 626:                                 if (Serial_Buffer[2] == 0x00) {
-[e $ ! == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 0 `i 713  ]
-{
-"627
-[; ;main.c: 627:                                     Busy = 1;
-[e = _Busy -> -> 1 `i `uc ]
-"629
-[; ;main.c: 629:                                     INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"630
-[; ;main.c: 630:                                     pause_Time = read_i2c(0x0060);
-[e = _pause_Time -> ( _read_i2c (1 -> -> 96 `i `l `uc ]
-"631
-[; ;main.c: 631:                                     vib_Time = read_i2c(0x0040);
-[e = _vib_Time -> ( _read_i2c (1 -> -> 64 `i `l `uc ]
-"632
-[; ;main.c: 632:                                     Motor_Speed = read_i2c(0x0030);
-[e = _Motor_Speed -> ( _read_i2c (1 -> -> 48 `i `l `ui ]
-"633
-[; ;main.c: 633:                                     delay_motor_stop_time = read_i2c(0x0050);
-[e = _delay_motor_stop_time -> ( _read_i2c (1 -> -> 80 `i `l `uc ]
-"634
-[; ;main.c: 634:                                     INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"636
-[; ;main.c: 636:                                     Serial_Buffer_Out[0] = 0x51;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 0 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 81 `i `uc ]
-"637
-[; ;main.c: 637:                                     Serial_Buffer_Out[1] = pause_Time;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux _pause_Time ]
-"638
-[; ;main.c: 638:                                     Serial_Buffer_Out[2] = Motor_Speed;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> _Motor_Speed `uc ]
-"639
-[; ;main.c: 639:                                     Serial_Buffer_Out[3] = vib_Time;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux _vib_Time ]
-"640
-[; ;main.c: 640:                                     Serial_Buffer_Out[4] = delay_motor_stop_time;
-[e = *U + &U _Serial_Buffer_Out * -> -> -> 4 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux _delay_motor_stop_time ]
-"642
-[; ;main.c: 642:                                     _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"644
-[; ;main.c: 644:                                     INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"645
-[; ;main.c: 645:                                     for (i = 0; i < 5; i++) {
+"524
+[; ;main.c: 524:                                     for (i = 0; i < 5; i++) {
 {
 [e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 714  ]
-[e $U 715  ]
-[e :U 714 ]
+[e $ < _i -> -> 5 `i `ui 704  ]
+[e $U 705  ]
+[e :U 704 ]
 {
-"646
-[; ;main.c: 646:                                         Write1USART(Serial_Buffer_Out[i]);
+"525
+[; ;main.c: 525:                                         Write1USART(Serial_Buffer_Out[i]);
 [e ( _Write1USART (1 -> *U + &U _Serial_Buffer_Out * -> _i `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux `uc ]
-"647
-[; ;main.c: 647:                                     }
+"526
+[; ;main.c: 526:                                     }
 }
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 5 `i `ui 714  ]
-[e :U 715 ]
+[e $ < _i -> -> 5 `i `ui 704  ]
+[e :U 705 ]
 }
-"648
-[; ;main.c: 648:                                     INTCONbits.GIE = 1;
+"527
+[; ;main.c: 527:                                     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"649
-[; ;main.c: 649:                                 }
+"528
+[; ;main.c: 528:                                 }
 }
-[e :U 713 ]
-"650
-[; ;main.c: 650:                                 flushOut();
+[e :U 703 ]
+"530
+[; ;main.c: 530:                             }
+}
+[e :U 702 ]
+[e :U 701 ]
+"531
+[; ;main.c: 531:                             flush();
+[e ( _flush ..  ]
+"532
+[; ;main.c: 532:                             flushOut();
 [e ( _flushOut ..  ]
-"651
-[; ;main.c: 651:                                 Busy = 0;
+"533
+[; ;main.c: 533:                             Stop = 0;
+[e = _Stop -> -> 0 `i `uc ]
+"534
+[; ;main.c: 534:                             Busy = 0;
 [e = _Busy -> -> 0 `i `uc ]
-"652
-[; ;main.c: 652:                             }
-}
+"535
+[; ;main.c: 535:                             break;
+[e $U 697  ]
+"538
+[; ;main.c: 538:                         case 0x23:
+[e :U 707 ]
+"540
+[; ;main.c: 540:                             if (Busy == 0) {
+[e $ ! == -> _Busy `i -> 0 `i 708  ]
+{
+"541
+[; ;main.c: 541:                                 Busy = 1;
+[e = _Busy -> -> 1 `i `uc ]
+"545
+[; ;main.c: 545:                                 pause_Time = Serial_Buffer[2];
+[e = _pause_Time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
+"546
+[; ;main.c: 546:                                 switch (pause_Time) {
+[e $U 710  ]
+{
+"547
+[; ;main.c: 547:                                     case 0x30:
+[e :U 711 ]
+"548
+[; ;main.c: 548:                                     default:
 [e :U 712 ]
-"653
-[; ;main.c: 653:                             break;
-[e $U 690  ]
-"685
-[; ;main.c: 685:                         case 0x65:
+"549
+[; ;main.c: 549:                                         Motor_Pause_Time = 0;
+[e = _Motor_Pause_Time -> -> 0 `i `ui ]
+"550
+[; ;main.c: 550:                                         pause_Time = 0x30;
+[e = _pause_Time -> -> 48 `i `uc ]
+"551
+[; ;main.c: 551:                                         break;
+[e $U 709  ]
+"553
+[; ;main.c: 553:                                     case 0x31:
+[e :U 713 ]
+"554
+[; ;main.c: 554:                                         Motor_Pause_Time = 1000;
+[e = _Motor_Pause_Time -> -> 1000 `i `ui ]
+"555
+[; ;main.c: 555:                                         break;
+[e $U 709  ]
+"557
+[; ;main.c: 557:                                     case 0x32:
+[e :U 714 ]
+"558
+[; ;main.c: 558:                                         Motor_Pause_Time = 2000;
+[e = _Motor_Pause_Time -> -> 2000 `i `ui ]
+"559
+[; ;main.c: 559:                                         break;
+[e $U 709  ]
+"561
+[; ;main.c: 561:                                     case 0x33:
+[e :U 715 ]
+"562
+[; ;main.c: 562:                                         Motor_Pause_Time = 3000;
+[e = _Motor_Pause_Time -> -> 3000 `i `ui ]
+"563
+[; ;main.c: 563:                                         break;
+[e $U 709  ]
+"565
+[; ;main.c: 565:                                     case 0x34:
+[e :U 716 ]
+"566
+[; ;main.c: 566:                                         Motor_Pause_Time = 4000;
+[e = _Motor_Pause_Time -> -> 4000 `i `ui ]
+"567
+[; ;main.c: 567:                                         break;
+[e $U 709  ]
+"569
+[; ;main.c: 569:                                     case 0x35:
 [e :U 717 ]
-"687
-[; ;main.c: 687:                             if (Busy == 0) {
-[e $ ! == -> _Busy `i -> 0 `i 718  ]
-{
-"688
-[; ;main.c: 688:                                 Busy = 1;
-[e = _Busy -> -> 1 `i `uc ]
-"689
-[; ;main.c: 689:                                 vib_Time = Serial_Buffer[2];
-[e = _vib_Time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
-"691
-[; ;main.c: 691:                                 switch (vib_Time) {
-[e $U 720  ]
-{
-"692
-[; ;main.c: 692:                                     case 0x81:
-[e :U 721 ]
-"693
-[; ;main.c: 693:                                         Vmotor_Time = 1000;
-[e = _Vmotor_Time -> -> 1000 `i `ui ]
-"694
-[; ;main.c: 694:                                         break;
-[e $U 719  ]
-"696
-[; ;main.c: 696:                                     case 0x82:
-[e :U 722 ]
-"697
-[; ;main.c: 697:                                     default:
-[e :U 723 ]
-"698
-[; ;main.c: 698:                                         Vmotor_Time = 2000;
-[e = _Vmotor_Time -> -> 2000 `i `ui ]
-"699
-[; ;main.c: 699:                                         vib_Time = 0x82;
-[e = _vib_Time -> -> 130 `i `uc ]
-"700
-[; ;main.c: 700:                                         break;
-[e $U 719  ]
-"702
-[; ;main.c: 702:                                     case 0x83:
-[e :U 724 ]
-"703
-[; ;main.c: 703:                                         Vmotor_Time = 3000;
-[e = _Vmotor_Time -> -> 3000 `i `ui ]
-"704
-[; ;main.c: 704:                                         break;
-[e $U 719  ]
-"706
-[; ;main.c: 706:                                     case 0x84:
-[e :U 725 ]
-"707
-[; ;main.c: 707:                                         Vmotor_Time = 4000;
-[e = _Vmotor_Time -> -> 4000 `i `ui ]
-"708
-[; ;main.c: 708:                                         break;
-[e $U 719  ]
-"710
-[; ;main.c: 710:                                     case 0x85:
-[e :U 726 ]
-"711
-[; ;main.c: 711:                                         Vmotor_Time = 5000;
-[e = _Vmotor_Time -> -> 5000 `i `ui ]
-"712
-[; ;main.c: 712:                                         break;
-[e $U 719  ]
-"713
-[; ;main.c: 713:                                 }
+"570
+[; ;main.c: 570:                                         Motor_Pause_Time = 5000;
+[e = _Motor_Pause_Time -> -> 5000 `i `ui ]
+"571
+[; ;main.c: 571:                                         break;
+[e $U 709  ]
+"572
+[; ;main.c: 572:                                 }
 }
-[e $U 719  ]
-[e :U 720 ]
-[e [\ -> _vib_Time `i , $ -> 129 `i 721
- , $ -> 130 `i 722
- , $ -> 131 `i 724
- , $ -> 132 `i 725
- , $ -> 133 `i 726
- 723 ]
-[e :U 719 ]
-"714
-[; ;main.c: 714:                                 INTCONbits.GIE = 0;
+[e $U 709  ]
+[e :U 710 ]
+[e [\ -> _pause_Time `i , $ -> 48 `i 711
+ , $ -> 49 `i 713
+ , $ -> 50 `i 714
+ , $ -> 51 `i 715
+ , $ -> 52 `i 716
+ , $ -> 53 `i 717
+ 712 ]
+[e :U 709 ]
+"576
+[; ;main.c: 576:                                 INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"715
-[; ;main.c: 715:                                 write_i2c(0x0040, vib_Time);
-[e ( _write_i2c (2 , -> -> 64 `i `l -> _vib_Time `i ]
-"716
-[; ;main.c: 716:                                 INTCONbits.GIE = 1;
+"577
+[; ;main.c: 577:                                 write_i2c(0x0060, pause_Time);
+[e ( _write_i2c (2 , -> -> 96 `i `l -> _pause_Time `i ]
+"578
+[; ;main.c: 578:                                 INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"718
-[; ;main.c: 718:                                 Busy = 0;
+"580
+[; ;main.c: 580:                                 flush();
+[e ( _flush ..  ]
+"581
+[; ;main.c: 581:                                 Busy = 0;
 [e = _Busy -> -> 0 `i `uc ]
-"719
-[; ;main.c: 719:                             }
+"582
+[; ;main.c: 582:                             }
 }
+[e :U 708 ]
+"583
+[; ;main.c: 583:                             break;
+[e $U 697  ]
+"586
+[; ;main.c: 586:                         case 0x51:
 [e :U 718 ]
-"721
-[; ;main.c: 721:                         case 0x66:
-[e :U 727 ]
-"723
-[; ;main.c: 723:                             if (Busy == 0) {
-[e $ ! == -> _Busy `i -> 0 `i 728  ]
+"588
+[; ;main.c: 588:                             if (Busy == 0) {
+[e $ ! == -> _Busy `i -> 0 `i 719  ]
 {
-"724
-[; ;main.c: 724:                                 Busy = 1;
+"589
+[; ;main.c: 589:                                 if (Serial_Buffer[2] == 0x00) {
+[e $ ! == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 0 `i 720  ]
+{
+"590
+[; ;main.c: 590:                                     Busy = 1;
 [e = _Busy -> -> 1 `i `uc ]
-"725
-[; ;main.c: 725:                                 delay_motor_stop_time = Serial_Buffer[2];
-[e = _delay_motor_stop_time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
-"726
-[; ;main.c: 726:                                 Motor_Stop_Delay_Time = delay_motor_stop_time;
-[e = _Motor_Stop_Delay_Time -> _delay_motor_stop_time `ui ]
-"728
-[; ;main.c: 728:                                 INTCONbits.GIE = 0;
+"592
+[; ;main.c: 592:                                     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"729
-[; ;main.c: 729:                                 write_i2c(0x0050, delay_motor_stop_time);
-[e ( _write_i2c (2 , -> -> 80 `i `l -> _delay_motor_stop_time `i ]
-"730
-[; ;main.c: 730:                                 INTCONbits.GIE = 1;
+"593
+[; ;main.c: 593:                                     pause_Time = read_i2c(0x0060);
+[e = _pause_Time -> ( _read_i2c (1 -> -> 96 `i `l `uc ]
+"594
+[; ;main.c: 594:                                     vib_Time = read_i2c(0x0040);
+[e = _vib_Time -> ( _read_i2c (1 -> -> 64 `i `l `uc ]
+"595
+[; ;main.c: 595:                                     Motor_Speed = read_i2c(0x0030);
+[e = _Motor_Speed -> ( _read_i2c (1 -> -> 48 `i `l `ui ]
+"596
+[; ;main.c: 596:                                     delay_motor_stop_time = read_i2c(0x0050);
+[e = _delay_motor_stop_time -> ( _read_i2c (1 -> -> 80 `i `l `uc ]
+"597
+[; ;main.c: 597:                                     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"732
-[; ;main.c: 732:                                 Busy = 0;
-[e = _Busy -> -> 0 `i `uc ]
-"733
-[; ;main.c: 733:                             }
-}
-[e :U 728 ]
-"735
-[; ;main.c: 735:                             break;
-[e $U 690  ]
-"737
-[; ;main.c: 737:                     }
-}
-[e $U 690  ]
-[e :U 691 ]
-[e [\ -> *U + &U _Serial_Buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i , $ -> 68 `i 692
- , $ -> 35 `i 700
- , $ -> 81 `i 711
- , $ -> 101 `i 717
- , $ -> 102 `i 727
- 690 ]
-[e :U 690 ]
-"739
-[; ;main.c: 739:                     Serial_Flag = 0;
-[e = _Serial_Flag -> -> 0 `i `uc ]
-"740
-[; ;main.c: 740:                     Serial_GData = 0;
-[e = _Serial_GData -> -> 0 `i `uc ]
-"741
-[; ;main.c: 741:                     OpMode = MANUAL_MODE;
-[e = _OpMode -> . `E5436 0 `uc ]
-"742
-[; ;main.c: 742:                 } else {
-}
-[e $U 729  ]
-[e :U 689 ]
+"599
+[; ;main.c: 599:                                     Serial_Buffer_Out[0] = 0x51;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 0 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 81 `i `uc ]
+"600
+[; ;main.c: 600:                                     Serial_Buffer_Out[1] = pause_Time;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux _pause_Time ]
+"601
+[; ;main.c: 601:                                     Serial_Buffer_Out[2] = Motor_Speed;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> _Motor_Speed `uc ]
+"602
+[; ;main.c: 602:                                     Serial_Buffer_Out[3] = vib_Time;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux _vib_Time ]
+"603
+[; ;main.c: 603:                                     Serial_Buffer_Out[4] = delay_motor_stop_time;
+[e = *U + &U _Serial_Buffer_Out * -> -> -> 4 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux _delay_motor_stop_time ]
+"605
+[; ;main.c: 605:                                     _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"607
+[; ;main.c: 607:                                     INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"608
+[; ;main.c: 608:                                     for (i = 0; i < 5; i++) {
 {
-"743
-[; ;main.c: 743:                     OpMode = MANUAL_MODE;
-[e = _OpMode -> . `E5436 0 `uc ]
-"744
-[; ;main.c: 744:                 }
+[e = _i -> -> 0 `i `ui ]
+[e $ < _i -> -> 5 `i `ui 721  ]
+[e $U 722  ]
+[e :U 721 ]
+{
+"609
+[; ;main.c: 609:                                         Write1USART(Serial_Buffer_Out[i]);
+[e ( _Write1USART (1 -> *U + &U _Serial_Buffer_Out * -> _i `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux `uc ]
+"610
+[; ;main.c: 610:                                     }
 }
+[e ++ _i -> -> 1 `i `ui ]
+[e $ < _i -> -> 5 `i `ui 721  ]
+[e :U 722 ]
+}
+"611
+[; ;main.c: 611:                                     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"612
+[; ;main.c: 612:                                 }
+}
+[e :U 720 ]
+"613
+[; ;main.c: 613:                                 flushOut();
+[e ( _flushOut ..  ]
+"614
+[; ;main.c: 614:                                 Busy = 0;
+[e = _Busy -> -> 0 `i `uc ]
+"615
+[; ;main.c: 615:                             }
+}
+[e :U 719 ]
+"616
+[; ;main.c: 616:                             break;
+[e $U 697  ]
+"648
+[; ;main.c: 648:                         case 0x65:
+[e :U 724 ]
+"650
+[; ;main.c: 650:                             if (Busy == 0) {
+[e $ ! == -> _Busy `i -> 0 `i 725  ]
+{
+"651
+[; ;main.c: 651:                                 Busy = 1;
+[e = _Busy -> -> 1 `i `uc ]
+"652
+[; ;main.c: 652:                                 vib_Time = Serial_Buffer[2];
+[e = _vib_Time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
+"654
+[; ;main.c: 654:                                 switch (vib_Time) {
+[e $U 727  ]
+{
+"655
+[; ;main.c: 655:                                     case 0x81:
+[e :U 728 ]
+"656
+[; ;main.c: 656:                                         Vmotor_Time = 1000;
+[e = _Vmotor_Time -> -> 1000 `i `ui ]
+"657
+[; ;main.c: 657:                                         break;
+[e $U 726  ]
+"659
+[; ;main.c: 659:                                     case 0x82:
 [e :U 729 ]
-"747
-[; ;main.c: 747:         }
+"660
+[; ;main.c: 660:                                     default:
+[e :U 730 ]
+"661
+[; ;main.c: 661:                                         Vmotor_Time = 2000;
+[e = _Vmotor_Time -> -> 2000 `i `ui ]
+"662
+[; ;main.c: 662:                                         vib_Time = 0x82;
+[e = _vib_Time -> -> 130 `i `uc ]
+"663
+[; ;main.c: 663:                                         break;
+[e $U 726  ]
+"665
+[; ;main.c: 665:                                     case 0x83:
+[e :U 731 ]
+"666
+[; ;main.c: 666:                                         Vmotor_Time = 3000;
+[e = _Vmotor_Time -> -> 3000 `i `ui ]
+"667
+[; ;main.c: 667:                                         break;
+[e $U 726  ]
+"669
+[; ;main.c: 669:                                     case 0x84:
+[e :U 732 ]
+"670
+[; ;main.c: 670:                                         Vmotor_Time = 4000;
+[e = _Vmotor_Time -> -> 4000 `i `ui ]
+"671
+[; ;main.c: 671:                                         break;
+[e $U 726  ]
+"673
+[; ;main.c: 673:                                     case 0x85:
+[e :U 733 ]
+"674
+[; ;main.c: 674:                                         Vmotor_Time = 5000;
+[e = _Vmotor_Time -> -> 5000 `i `ui ]
+"675
+[; ;main.c: 675:                                         break;
+[e $U 726  ]
+"676
+[; ;main.c: 676:                                 }
 }
-[e $U 659  ]
-[e :U 660 ]
-[e [\ -> _OpMode `i , $ . `E5436 0 661
- , $ . `E5436 2 688
- 659 ]
+[e $U 726  ]
+[e :U 727 ]
+[e [\ -> _vib_Time `i , $ -> 129 `i 728
+ , $ -> 130 `i 729
+ , $ -> 131 `i 731
+ , $ -> 132 `i 732
+ , $ -> 133 `i 733
+ 730 ]
+[e :U 726 ]
+"677
+[; ;main.c: 677:                                 INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"678
+[; ;main.c: 678:                                 write_i2c(0x0040, vib_Time);
+[e ( _write_i2c (2 , -> -> 64 `i `l -> _vib_Time `i ]
+"679
+[; ;main.c: 679:                                 INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"681
+[; ;main.c: 681:                                 Busy = 0;
+[e = _Busy -> -> 0 `i `uc ]
+"682
+[; ;main.c: 682:                             }
+}
+[e :U 725 ]
+"684
+[; ;main.c: 684:                         case 0x66:
+[e :U 734 ]
+"686
+[; ;main.c: 686:                             if (Busy == 0) {
+[e $ ! == -> _Busy `i -> 0 `i 735  ]
+{
+"687
+[; ;main.c: 687:                                 Busy = 1;
+[e = _Busy -> -> 1 `i `uc ]
+"688
+[; ;main.c: 688:                                 delay_motor_stop_time = Serial_Buffer[2];
+[e = _delay_motor_stop_time *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux ]
+"689
+[; ;main.c: 689:                                 Motor_Stop_Delay_Time = delay_motor_stop_time;
+[e = _Motor_Stop_Delay_Time -> _delay_motor_stop_time `ui ]
+"691
+[; ;main.c: 691:                                 INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"692
+[; ;main.c: 692:                                 write_i2c(0x0050, delay_motor_stop_time);
+[e ( _write_i2c (2 , -> -> 80 `i `l -> _delay_motor_stop_time `i ]
+"693
+[; ;main.c: 693:                                 INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"695
+[; ;main.c: 695:                                 Busy = 0;
+[e = _Busy -> -> 0 `i `uc ]
+"696
+[; ;main.c: 696:                             }
+}
+[e :U 735 ]
+"698
+[; ;main.c: 698:                             break;
+[e $U 697  ]
+"700
+[; ;main.c: 700:                     }
+}
+[e $U 697  ]
+[e :U 698 ]
+[e [\ -> *U + &U _Serial_Buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i , $ -> 68 `i 699
+ , $ -> 35 `i 707
+ , $ -> 81 `i 718
+ , $ -> 101 `i 724
+ , $ -> 102 `i 734
+ 697 ]
+[e :U 697 ]
+"702
+[; ;main.c: 702:                     Serial_Flag = 0;
+[e = _Serial_Flag -> -> 0 `i `uc ]
+"703
+[; ;main.c: 703:                     Serial_GData = 0;
+[e = _Serial_GData -> -> 0 `i `uc ]
+"704
+[; ;main.c: 704:                     OpMode = MANUAL_MODE;
+[e = _OpMode -> . `E5436 0 `uc ]
+"705
+[; ;main.c: 705:                 } else {
+}
+[e $U 736  ]
+[e :U 696 ]
+{
+"706
+[; ;main.c: 706:                     OpMode = MANUAL_MODE;
+[e = _OpMode -> . `E5436 0 `uc ]
+"707
+[; ;main.c: 707:                 }
+}
+[e :U 736 ]
+"710
+[; ;main.c: 710:         }
+}
+[e $U 658  ]
 [e :U 659 ]
-"748
-[; ;main.c: 748:     }
-}
-[e :U 656 ]
-[e $U 657  ]
+[e [\ -> _OpMode `i , $ . `E5436 0 660
+ , $ . `E5436 2 695
+ 658 ]
 [e :U 658 ]
-"752
-[; ;main.c: 752: }
-[e :UE 629 ]
+"711
+[; ;main.c: 711:     }
+}
+[e :U 655 ]
+[e $U 656  ]
+[e :U 657 ]
+"715
+[; ;main.c: 715: }
+[e :UE 628 ]
 }
 [v $root$_high_isr `(v ~T0 @X0 0 e ]
-"757
-[; ;main.c: 757: void __attribute__((picinterrupt(("")))) high_isr(void) {
+"720
+[; ;main.c: 720: void __attribute__((picinterrupt(("")))) high_isr(void) {
 [v _high_isr `(v ~T109 @X0 1 ef ]
 {
 [e :U _high_isr ]
 [f ]
-"758
-[; ;main.c: 758:     unsigned char c, i;
+"721
+[; ;main.c: 721:     unsigned char c, i;
 [v _c `uc ~T0 @X0 1 a ]
 [v _i `uc ~T0 @X0 1 a ]
-"759
-[; ;main.c: 759:     unsigned char Temp;
+"722
+[; ;main.c: 722:     unsigned char Temp;
 [v _Temp `uc ~T0 @X0 1 a ]
-"761
-[; ;main.c: 761:     if ((PIR1bits.RC1IF))
-[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 731  ]
-"762
-[; ;main.c: 762:     {
+"724
+[; ;main.c: 724:     if ((PIR1bits.RC1IF))
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 738  ]
+"725
+[; ;main.c: 725:     {
 {
-"764
-[; ;main.c: 764:         c = Read1USART();
+"727
+[; ;main.c: 727:         c = Read1USART();
 [e = _c -> ( _Read1USART ..  `uc ]
-"766
-[; ;main.c: 766:         if ((c == 0xA5) && ((Serial_Flag == 0) || (Busy == 1))) {
-[e $ ! && == -> _c `i -> 165 `i || == -> _Serial_Flag `i -> 0 `i == -> _Busy `i -> 1 `i 732  ]
+"729
+[; ;main.c: 729:         if ((c == 0xA5) && ((Serial_Flag == 0) || (Busy == 1))) {
+[e $ ! && == -> _c `i -> 165 `i || == -> _Serial_Flag `i -> 0 `i == -> _Busy `i -> 1 `i 739  ]
 {
-"767
-[; ;main.c: 767:             Serial_GData = 1;
+"730
+[; ;main.c: 730:             Serial_GData = 1;
 [e = _Serial_GData -> -> 1 `i `uc ]
-"768
-[; ;main.c: 768:             Serial_Count = 0;
+"731
+[; ;main.c: 731:             Serial_Count = 0;
 [e = _Serial_Count -> -> 0 `i `ui ]
-"769
-[; ;main.c: 769:             Serial_Buffer[Serial_Count] = c;
+"732
+[; ;main.c: 732:             Serial_Buffer[Serial_Count] = c;
 [e = *U + &U _Serial_Buffer * -> _Serial_Count `ux -> -> # *U &U _Serial_Buffer `ui `ux _c ]
-"770
-[; ;main.c: 770:             Serial_Count++;
+"733
+[; ;main.c: 733:             Serial_Count++;
 [e ++ _Serial_Count -> -> 1 `i `ui ]
-"771
-[; ;main.c: 771:         } else if (Serial_GData == 1) {
+"734
+[; ;main.c: 734:         } else if (Serial_GData == 1) {
 }
-[e $U 733  ]
-[e :U 732 ]
-[e $ ! == -> _Serial_GData `i -> 1 `i 734  ]
-{
-"772
-[; ;main.c: 772:             Serial_Buffer[Serial_Count] = c;
-[e = *U + &U _Serial_Buffer * -> _Serial_Count `ux -> -> # *U &U _Serial_Buffer `ui `ux _c ]
-"774
-[; ;main.c: 774:             if (Serial_Count < 5) {
-[e $ ! < _Serial_Count -> -> 5 `i `ui 735  ]
-{
-"775
-[; ;main.c: 775:                 if (c == 0x5A) {
-[e $ ! == -> _c `i -> 90 `i 736  ]
-{
-"776
-[; ;main.c: 776:                     Temp = Serial_Buffer[1] + Serial_Buffer[2];
-[e = _Temp -> + -> *U + &U _Serial_Buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i `uc ]
-"778
-[; ;main.c: 778:                     if (Temp == Serial_Buffer[3]) {
-[e $ ! == -> _Temp `i -> *U + &U _Serial_Buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i 737  ]
-{
-"779
-[; ;main.c: 779:                         if (Busy == 0 || Serial_Buffer[2] == 0xF5) {
-[e $ ! || == -> _Busy `i -> 0 `i == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i 738  ]
-{
-"780
-[; ;main.c: 780:                             INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"781
-[; ;main.c: 781:                             for (i = 0; i < 5; i++) {
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 739  ]
 [e $U 740  ]
 [e :U 739 ]
+[e $ ! == -> _Serial_GData `i -> 1 `i 741  ]
 {
-"782
-[; ;main.c: 782:                                 Write1USART(Serial_Buffer[i]);
-[e ( _Write1USART (1 -> *U + &U _Serial_Buffer * -> _i `ux -> -> # *U &U _Serial_Buffer `ui `ux `uc ]
-"783
-[; ;main.c: 783:                             }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 739  ]
-[e :U 740 ]
-}
-"784
-[; ;main.c: 784:                             INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"785
-[; ;main.c: 785:                         } else {
-}
-[e $U 742  ]
-[e :U 738 ]
+"735
+[; ;main.c: 735:             Serial_Buffer[Serial_Count] = c;
+[e = *U + &U _Serial_Buffer * -> _Serial_Count `ux -> -> # *U &U _Serial_Buffer `ui `ux _c ]
+"737
+[; ;main.c: 737:             if (Serial_Count < 5) {
+[e $ ! < _Serial_Count -> -> 5 `i `ui 742  ]
 {
-"786
-[; ;main.c: 786:                             INTCONbits.GIE = 0;
+"738
+[; ;main.c: 738:                 if (c == 0x5A) {
+[e $ ! == -> _c `i -> 90 `i 743  ]
+{
+"739
+[; ;main.c: 739:                     Temp = Serial_Buffer[1] + Serial_Buffer[2];
+[e = _Temp -> + -> *U + &U _Serial_Buffer * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i `uc ]
+"741
+[; ;main.c: 741:                     if (Temp == Serial_Buffer[3]) {
+[e $ ! == -> _Temp `i -> *U + &U _Serial_Buffer * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i 744  ]
+{
+"742
+[; ;main.c: 742:                         if (Busy == 0 || Serial_Buffer[2] == 0xF5) {
+[e $ ! || == -> _Busy `i -> 0 `i == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i 745  ]
+{
+"743
+[; ;main.c: 743:                             INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"787
-[; ;main.c: 787:                             for (i = 0; i < 5; i++) {
+"744
+[; ;main.c: 744:                             for (i = 0; i < 5; i++) {
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 743  ]
-[e $U 744  ]
-[e :U 743 ]
-{
-"788
-[; ;main.c: 788:                                 Write1USART(0x16);
-[e ( _Write1USART (1 -> -> 22 `i `uc ]
-"789
-[; ;main.c: 789:                             }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 743  ]
-[e :U 744 ]
-}
-"790
-[; ;main.c: 790:                             INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"791
-[; ;main.c: 791:                         }
-}
-[e :U 742 ]
-"793
-[; ;main.c: 793:                         Serial_Flag = 1;
-[e = _Serial_Flag -> -> 1 `i `uc ]
-"794
-[; ;main.c: 794:                         Serial_Count = 0;
-[e = _Serial_Count -> -> 0 `i `ui ]
-"795
-[; ;main.c: 795:                         OpMode = AUTO_MODE;
-[e = _OpMode -> . `E5436 2 `uc ]
-"797
-[; ;main.c: 797:                     } else {
-}
-[e $U 746  ]
-[e :U 737 ]
-{
-"798
-[; ;main.c: 798:                         Serial_Flag = 0;
-[e = _Serial_Flag -> -> 0 `i `uc ]
-"799
-[; ;main.c: 799:                         Serial_Count = 0;
-[e = _Serial_Count -> -> 0 `i `ui ]
-"801
-[; ;main.c: 801:                         INTCONbits.GIE = 0;
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"802
-[; ;main.c: 802:                         for (i = 0; i < 5; i++) {
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 5 `i 747  ]
-[e $U 748  ]
-[e :U 747 ]
-{
-"803
-[; ;main.c: 803:                             Write1USART(0x15);
-[e ( _Write1USART (1 -> -> 21 `i `uc ]
-"804
-[; ;main.c: 804:                         }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 5 `i 747  ]
-[e :U 748 ]
-}
-"805
-[; ;main.c: 805:                         INTCONbits.GIE = 1;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"806
-[; ;main.c: 806:                     }
-}
+[e $ < -> _i `i -> 5 `i 746  ]
+[e $U 747  ]
 [e :U 746 ]
-"808
-[; ;main.c: 808:                     if (Serial_Buffer[2] == 0xF5 && OpMode == AUTO_MODE) {
-[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i == -> _OpMode `i -> . `E5436 2 `i 750  ]
 {
-"809
-[; ;main.c: 809:                         Stop = 1;
-[e = _Stop -> -> 1 `i `uc ]
-"810
-[; ;main.c: 810:                     }
+"745
+[; ;main.c: 745:                                 Write1USART(Serial_Buffer[i]);
+[e ( _Write1USART (1 -> *U + &U _Serial_Buffer * -> _i `ux -> -> # *U &U _Serial_Buffer `ui `ux `uc ]
+"746
+[; ;main.c: 746:                             }
 }
-[e :U 750 ]
-"811
-[; ;main.c: 811:                 }
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 746  ]
+[e :U 747 ]
 }
-[e :U 736 ]
-"812
-[; ;main.c: 812:             } else {
+"747
+[; ;main.c: 747:                             INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"748
+[; ;main.c: 748:                         } else {
 }
+[e $U 749  ]
+[e :U 745 ]
+{
+"749
+[; ;main.c: 749:                             INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"750
+[; ;main.c: 750:                             for (i = 0; i < 5; i++) {
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 5 `i 750  ]
 [e $U 751  ]
-[e :U 735 ]
+[e :U 750 ]
 {
-"813
-[; ;main.c: 813:                 Serial_GData = 0;
-[e = _Serial_GData -> -> 0 `i `uc ]
-"814
-[; ;main.c: 814:             }
+"751
+[; ;main.c: 751:                                 Write1USART(0x16);
+[e ( _Write1USART (1 -> -> 22 `i `uc ]
+"752
+[; ;main.c: 752:                             }
 }
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 750  ]
 [e :U 751 ]
-"816
-[; ;main.c: 816:             Serial_Count++;
-[e ++ _Serial_Count -> -> 1 `i `ui ]
-"817
-[; ;main.c: 817:         }
 }
-[e :U 734 ]
-[e :U 733 ]
-"818
-[; ;main.c: 818:     } else {
+"753
+[; ;main.c: 753:                             INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"754
+[; ;main.c: 754:                         }
 }
-[e $U 752  ]
-[e :U 731 ]
+[e :U 749 ]
+"756
+[; ;main.c: 756:                         Serial_Flag = 1;
+[e = _Serial_Flag -> -> 1 `i `uc ]
+"757
+[; ;main.c: 757:                         Serial_Count = 0;
+[e = _Serial_Count -> -> 0 `i `ui ]
+"758
+[; ;main.c: 758:                         OpMode = AUTO_MODE;
+[e = _OpMode -> . `E5436 2 `uc ]
+"760
+[; ;main.c: 760:                     } else {
+}
+[e $U 753  ]
+[e :U 744 ]
 {
-"819
-[; ;main.c: 819:         if (RCSTA1bits.OERR == 1) {
-[e $ ! == -> . . _RCSTA1bits 0 1 `i -> 1 `i 753  ]
+"761
+[; ;main.c: 761:                         Serial_Flag = 0;
+[e = _Serial_Flag -> -> 0 `i `uc ]
+"762
+[; ;main.c: 762:                         Serial_Count = 0;
+[e = _Serial_Count -> -> 0 `i `ui ]
+"764
+[; ;main.c: 764:                         INTCONbits.GIE = 0;
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"765
+[; ;main.c: 765:                         for (i = 0; i < 5; i++) {
 {
-"820
-[; ;main.c: 820:             RCSTA1bits.OERR = 0;
-[e = . . _RCSTA1bits 0 1 -> -> 0 `i `uc ]
-"821
-[; ;main.c: 821:             RCSTA1bits.CREN = 0;
-[e = . . _RCSTA1bits 0 4 -> -> 0 `i `uc ]
-"822
-[; ;main.c: 822:             RCSTA1bits.CREN = 1;
-[e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
-"823
-[; ;main.c: 823:         }
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 5 `i 754  ]
+[e $U 755  ]
+[e :U 754 ]
+{
+"766
+[; ;main.c: 766:                             Write1USART(0x15);
+[e ( _Write1USART (1 -> -> 21 `i `uc ]
+"767
+[; ;main.c: 767:                         }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 754  ]
+[e :U 755 ]
+}
+"768
+[; ;main.c: 768:                         INTCONbits.GIE = 1;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"769
+[; ;main.c: 769:                     }
 }
 [e :U 753 ]
-"824
-[; ;main.c: 824:     }
+"771
+[; ;main.c: 771:                     if (Serial_Buffer[2] == 0xF5 && OpMode == AUTO_MODE) {
+[e $ ! && == -> *U + &U _Serial_Buffer * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux `i -> 245 `i == -> _OpMode `i -> . `E5436 2 `i 757  ]
+{
+"772
+[; ;main.c: 772:                         Stop = 1;
+[e = _Stop -> -> 1 `i `uc ]
+"773
+[; ;main.c: 773:                     }
 }
-[e :U 752 ]
-"826
-[; ;main.c: 826:     if (TMR1IF_triggered == 1) {
-[e $ ! == -> _TMR1IF_triggered `i -> 1 `i 754  ]
-{
-"827
-[; ;main.c: 827:         if (errorcounter > 0) {
-[e $ ! > _errorcounter -> -> 0 `i `l 755  ]
-{
-"828
-[; ;main.c: 828:             errorcounter--;
-[e -- _errorcounter -> -> 1 `i `Vl ]
-"829
-[; ;main.c: 829:         } else {
+[e :U 757 ]
+"774
+[; ;main.c: 774:                 }
 }
-[e $U 756  ]
-[e :U 755 ]
-{
-"830
-[; ;main.c: 830:             errorcounter = 0;
-[e = _errorcounter -> -> 0 `i `l ]
-"831
-[; ;main.c: 831:         }
-}
-[e :U 756 ]
-"833
-[; ;main.c: 833:         if (LowPowerCounter > 0) {
-[e $ ! > _LowPowerCounter -> -> 0 `i `l 757  ]
-{
-"834
-[; ;main.c: 834:             LowPowerCounter--;
-[e -- _LowPowerCounter -> -> 1 `i `Vl ]
-"835
-[; ;main.c: 835:         } else {
+[e :U 743 ]
+"775
+[; ;main.c: 775:             } else {
 }
 [e $U 758  ]
-[e :U 757 ]
+[e :U 742 ]
 {
-"836
-[; ;main.c: 836:             LowPowerCounter = 20;
-[e = _LowPowerCounter -> -> 20 `i `l ]
-"837
-[; ;main.c: 837:             Low_Power_Indicator();
-[e ( _Low_Power_Indicator ..  ]
-"838
-[; ;main.c: 838:         }
+"776
+[; ;main.c: 776:                 Serial_GData = 0;
+[e = _Serial_GData -> -> 0 `i `uc ]
+"777
+[; ;main.c: 777:             }
 }
 [e :U 758 ]
-"840
-[; ;main.c: 840:         TMR1IF_triggered = 0;
-[e = _TMR1IF_triggered -> -> 0 `i `uc ]
-"841
-[; ;main.c: 841:     }
+"779
+[; ;main.c: 779:             Serial_Count++;
+[e ++ _Serial_Count -> -> 1 `i `ui ]
+"780
+[; ;main.c: 780:         }
 }
-[e :U 754 ]
-"843
-[; ;main.c: 843:     if (TMR1IF) {
-[e $ ! _TMR1IF 759  ]
-{
-"844
-[; ;main.c: 844:         TMR1 = 0x9E57;
-[e = _TMR1 -> -> 40535 `ui `us ]
-"845
-[; ;main.c: 845:         TMR1IF = 0;
-[e = _TMR1IF -> -> 0 `i `b ]
-"846
-[; ;main.c: 846:         TMR1IF_triggered = 1;
-[e = _TMR1IF_triggered -> -> 1 `i `uc ]
-"847
-[; ;main.c: 847:     }
+[e :U 741 ]
+[e :U 740 ]
+"781
+[; ;main.c: 781:     } else {
 }
-[e :U 759 ]
-"851
-[; ;main.c: 851:     if(INTCON3bits.INT2F == 1) {
-[e $ ! == -> . . _INTCON3bits 1 1 `i -> 1 `i 760  ]
+[e $U 759  ]
+[e :U 738 ]
 {
-"853
-[; ;main.c: 853:       if (dispense == 0 && PORTBbits.RB4 != 0)
-[e $ ! && == _dispense -> 0 `i != -> . . _PORTBbits 0 4 `i -> 0 `i 761  ]
-"854
-[; ;main.c: 854:       {
+"782
+[; ;main.c: 782:         if (RCSTA1bits.OERR == 1) {
+[e $ ! == -> . . _RCSTA1bits 0 1 `i -> 1 `i 760  ]
 {
-"856
-[; ;main.c: 856:         dispense = 1;
-[e = _dispense -> 1 `i ]
-"857
-[; ;main.c: 857:       }
-}
-[e $U 762  ]
-"859
-[; ;main.c: 859:       else if (dispense == 1 && PORTBbits.RB4 != 0)
-[e :U 761 ]
-[e $ ! && == _dispense -> 1 `i != -> . . _PORTBbits 0 4 `i -> 0 `i 763  ]
-"860
-[; ;main.c: 860:       {
-{
-"862
-[; ;main.c: 862:         dispense = 0;
-[e = _dispense -> 0 `i ]
-"863
-[; ;main.c: 863:       }
-}
-[e :U 763 ]
-[e :U 762 ]
-"865
-[; ;main.c: 865:       INTCON3bits.INT2F = 0;
-[e = . . _INTCON3bits 1 1 -> -> 0 `i `uc ]
-"866
-[; ;main.c: 866:       return;
-[e $UE 730  ]
-"867
-[; ;main.c: 867:     }
+"783
+[; ;main.c: 783:             RCSTA1bits.OERR = 0;
+[e = . . _RCSTA1bits 0 1 -> -> 0 `i `uc ]
+"784
+[; ;main.c: 784:             RCSTA1bits.CREN = 0;
+[e = . . _RCSTA1bits 0 4 -> -> 0 `i `uc ]
+"785
+[; ;main.c: 785:             RCSTA1bits.CREN = 1;
+[e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
+"786
+[; ;main.c: 786:         }
 }
 [e :U 760 ]
-"868
-[; ;main.c: 868: }
-[e :UE 730 ]
+"787
+[; ;main.c: 787:     }
 }
-"873
-[; ;main.c: 873: void delay_1ms(unsigned int time) {
+[e :U 759 ]
+"789
+[; ;main.c: 789:     if (TMR1IF_triggered == 1) {
+[e $ ! == -> _TMR1IF_triggered `i -> 1 `i 761  ]
+{
+"790
+[; ;main.c: 790:         if (errorcounter > 0) {
+[e $ ! > _errorcounter -> -> 0 `i `l 762  ]
+{
+"791
+[; ;main.c: 791:             errorcounter--;
+[e -- _errorcounter -> -> 1 `i `Vl ]
+"792
+[; ;main.c: 792:         } else {
+}
+[e $U 763  ]
+[e :U 762 ]
+{
+"793
+[; ;main.c: 793:             errorcounter = 0;
+[e = _errorcounter -> -> 0 `i `l ]
+"794
+[; ;main.c: 794:         }
+}
+[e :U 763 ]
+"796
+[; ;main.c: 796:         if (LowPowerCounter > 0) {
+[e $ ! > _LowPowerCounter -> -> 0 `i `l 764  ]
+{
+"797
+[; ;main.c: 797:             LowPowerCounter--;
+[e -- _LowPowerCounter -> -> 1 `i `Vl ]
+"798
+[; ;main.c: 798:         } else {
+}
+[e $U 765  ]
+[e :U 764 ]
+{
+"799
+[; ;main.c: 799:             LowPowerCounter = 20;
+[e = _LowPowerCounter -> -> 20 `i `l ]
+"800
+[; ;main.c: 800:             Low_Power_Indicator();
+[e ( _Low_Power_Indicator ..  ]
+"801
+[; ;main.c: 801:         }
+}
+[e :U 765 ]
+"803
+[; ;main.c: 803:         TMR1IF_triggered = 0;
+[e = _TMR1IF_triggered -> -> 0 `i `uc ]
+"804
+[; ;main.c: 804:     }
+}
+[e :U 761 ]
+"806
+[; ;main.c: 806:     if (TMR1IF) {
+[e $ ! _TMR1IF 766  ]
+{
+"807
+[; ;main.c: 807:         TMR1 = 0x9E57;
+[e = _TMR1 -> -> 40535 `ui `us ]
+"808
+[; ;main.c: 808:         TMR1IF = 0;
+[e = _TMR1IF -> -> 0 `i `b ]
+"809
+[; ;main.c: 809:         TMR1IF_triggered = 1;
+[e = _TMR1IF_triggered -> -> 1 `i `uc ]
+"810
+[; ;main.c: 810:     }
+}
+[e :U 766 ]
+"814
+[; ;main.c: 814:     if(INTCON3bits.INT2F == 1) {
+[e $ ! == -> . . _INTCON3bits 1 1 `i -> 1 `i 767  ]
+{
+"816
+[; ;main.c: 816:       if (dispense == 0 && PORTBbits.RB4 != 0)
+[e $ ! && == _dispense -> 0 `i != -> . . _PORTBbits 0 4 `i -> 0 `i 768  ]
+"817
+[; ;main.c: 817:       {
+{
+"819
+[; ;main.c: 819:         dispense = 1;
+[e = _dispense -> 1 `i ]
+"820
+[; ;main.c: 820:       }
+}
+[e $U 769  ]
+"822
+[; ;main.c: 822:       else if (dispense == 1 && PORTBbits.RB4 != 0)
+[e :U 768 ]
+[e $ ! && == _dispense -> 1 `i != -> . . _PORTBbits 0 4 `i -> 0 `i 770  ]
+"823
+[; ;main.c: 823:       {
+{
+"825
+[; ;main.c: 825:         dispense = 0;
+[e = _dispense -> 0 `i ]
+"826
+[; ;main.c: 826:       }
+}
+[e :U 770 ]
+[e :U 769 ]
+"828
+[; ;main.c: 828:       INTCON3bits.INT2F = 0;
+[e = . . _INTCON3bits 1 1 -> -> 0 `i `uc ]
+"829
+[; ;main.c: 829:       return;
+[e $UE 737  ]
+"830
+[; ;main.c: 830:     }
+}
+[e :U 767 ]
+"831
+[; ;main.c: 831: }
+[e :UE 737 ]
+}
+"836
+[; ;main.c: 836: void delay_1ms(unsigned int time) {
 [v _delay_1ms `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _delay_1ms ]
 [v _time `ui ~T0 @X0 1 r1 ]
 [f ]
-"874
-[; ;main.c: 874:     while (time > 0) {
-[e $U 765  ]
-[e :U 766 ]
+"837
+[; ;main.c: 837:     while (time > 0) {
+[e $U 772  ]
+[e :U 773 ]
 {
-"875
-[; ;main.c: 875:         _delay((unsigned long)((1)*(8000000/4000.0)));
+"838
+[; ;main.c: 838:         _delay((unsigned long)((1)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"876
-[; ;main.c: 876:         time--;
+"839
+[; ;main.c: 839:         time--;
 [e -- _time -> -> 1 `i `ui ]
-"877
-[; ;main.c: 877:     }
+"840
+[; ;main.c: 840:     }
 }
-[e :U 765 ]
-"874
-[; ;main.c: 874:     while (time > 0) {
-[e $ > _time -> -> 0 `i `ui 766  ]
-[e :U 767 ]
-"878
-[; ;main.c: 878: }
-[e :UE 764 ]
+[e :U 772 ]
+"837
+[; ;main.c: 837:     while (time > 0) {
+[e $ > _time -> -> 0 `i `ui 773  ]
+[e :U 774 ]
+"841
+[; ;main.c: 841: }
+[e :UE 771 ]
 }
-"883
-[; ;main.c: 883: unsigned int Read_IR(void) {
+"846
+[; ;main.c: 846: unsigned int Read_IR(void) {
 [v _Read_IR `(ui ~T0 @X0 1 ef ]
 {
 [e :U _Read_IR ]
 [f ]
-"885
-[; ;main.c: 885:     if (PORTAbits.RA1 == 1)
-[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 769  ]
-"886
-[; ;main.c: 886:     {
+"848
+[; ;main.c: 848:     if (PORTAbits.RA1 == 1)
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 776  ]
+"849
+[; ;main.c: 849:     {
 {
-"887
-[; ;main.c: 887:         return 0;
+"850
+[; ;main.c: 850:         return 0;
 [e ) -> -> 0 `i `ui ]
-[e $UE 768  ]
-"888
-[; ;main.c: 888:     } else
+[e $UE 775  ]
+"851
+[; ;main.c: 851:     } else
 }
-[e $U 770  ]
-[e :U 769 ]
-"889
-[; ;main.c: 889:     {
+[e $U 777  ]
+[e :U 776 ]
+"852
+[; ;main.c: 852:     {
 {
-"890
-[; ;main.c: 890:         return 1;
+"853
+[; ;main.c: 853:         return 1;
 [e ) -> -> 1 `i `ui ]
-[e $UE 768  ]
-"891
-[; ;main.c: 891:     }
+[e $UE 775  ]
+"854
+[; ;main.c: 854:     }
 }
-[e :U 770 ]
-"893
-[; ;main.c: 893: }
-[e :UE 768 ]
+[e :U 777 ]
+"856
+[; ;main.c: 856: }
+[e :UE 775 ]
 }
-"898
-[; ;main.c: 898: void MotorPosition_Init(void) {
+"861
+[; ;main.c: 861: void MotorPosition_Init(void) {
 [v _MotorPosition_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _MotorPosition_Init ]
 [f ]
-"899
-[; ;main.c: 899:     LATAbits.LATA2 = 1;
+"862
+[; ;main.c: 862:     LATAbits.LATA2 = 1;
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-"900
-[; ;main.c: 900:     MotorON();
+"863
+[; ;main.c: 863:     MotorON();
 [e ( _MotorON ..  ]
-"901
-[; ;main.c: 901:     _delay((unsigned long)((350)*(8000000/4000.0)));
+"864
+[; ;main.c: 864:     _delay((unsigned long)((350)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"902
-[; ;main.c: 902:     errorcounter = 30;
+"865
+[; ;main.c: 865:     errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"904
-[; ;main.c: 904:     do {
-[e :U 774 ]
+"867
+[; ;main.c: 867:     do {
+[e :U 781 ]
 {
-"905
-[; ;main.c: 905:         IR_SENSORF = Read_IR();
+"868
+[; ;main.c: 868:         IR_SENSORF = Read_IR();
 [e = _IR_SENSORF ( _Read_IR ..  ]
-"906
-[; ;main.c: 906:         if (errorcounter == 0) {
-[e $ ! == _errorcounter -> -> 0 `i `l 775  ]
+"869
+[; ;main.c: 869:         if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 782  ]
 {
-"907
-[; ;main.c: 907:             WriteSTLED316SErr('1');
+"870
+[; ;main.c: 870:             WriteSTLED316SErr('1');
 [e ( _WriteSTLED316SErr (1 -> -> 49 `ui `uc ]
-"908
-[; ;main.c: 908:             MotorBREAK();
+"871
+[; ;main.c: 871:             MotorBREAK();
 [e ( _MotorBREAK ..  ]
-"909
-[; ;main.c: 909:         }
+"872
+[; ;main.c: 872:         }
 }
-[e :U 775 ]
-"911
-[; ;main.c: 911:     } while (IR_SENSORF != 0);
+[e :U 782 ]
+"874
+[; ;main.c: 874:     } while (IR_SENSORF != 0);
 }
-[e $ != _IR_SENSORF -> -> 0 `i `ui 774  ]
-[e :U 773 ]
-"913
-[; ;main.c: 913:     _delay((unsigned long)((30)*(8000000/4000.0)));
+[e $ != _IR_SENSORF -> -> 0 `i `ui 781  ]
+[e :U 780 ]
+"876
+[; ;main.c: 876:     _delay((unsigned long)((30)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"914
-[; ;main.c: 914:     errorcounter = 30;
+"877
+[; ;main.c: 877:     errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"915
-[; ;main.c: 915:     do {
-[e :U 778 ]
+"878
+[; ;main.c: 878:     do {
+[e :U 785 ]
 {
-"916
-[; ;main.c: 916:         IR_SENSORF = Read_IR();
+"879
+[; ;main.c: 879:         IR_SENSORF = Read_IR();
 [e = _IR_SENSORF ( _Read_IR ..  ]
-"917
-[; ;main.c: 917:         if (errorcounter == 0) {
-[e $ ! == _errorcounter -> -> 0 `i `l 779  ]
+"880
+[; ;main.c: 880:         if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 786  ]
 {
-"918
-[; ;main.c: 918:             WriteSTLED316SErr('2');
+"881
+[; ;main.c: 881:             WriteSTLED316SErr('2');
 [e ( _WriteSTLED316SErr (1 -> -> 50 `ui `uc ]
-"919
-[; ;main.c: 919:             MotorBREAK();
+"882
+[; ;main.c: 882:             MotorBREAK();
 [e ( _MotorBREAK ..  ]
-"920
-[; ;main.c: 920:         }
+"883
+[; ;main.c: 883:         }
 }
-[e :U 779 ]
-"922
-[; ;main.c: 922:     } while (IR_SENSORF != 1);
+[e :U 786 ]
+"885
+[; ;main.c: 885:     } while (IR_SENSORF != 1);
 }
-[e $ != _IR_SENSORF -> -> 1 `i `ui 778  ]
-[e :U 777 ]
-"924
-[; ;main.c: 924:     errorcounter = 30;
+[e $ != _IR_SENSORF -> -> 1 `i `ui 785  ]
+[e :U 784 ]
+"887
+[; ;main.c: 887:     errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"926
-[; ;main.c: 926:     delay_1ms(Motor_Stop_Delay_Time);
+"889
+[; ;main.c: 889:     delay_1ms(Motor_Stop_Delay_Time);
 [e ( _delay_1ms (1 _Motor_Stop_Delay_Time ]
-"927
-[; ;main.c: 927:     MotorBREAK();
+"890
+[; ;main.c: 890:     MotorBREAK();
 [e ( _MotorBREAK ..  ]
-"928
-[; ;main.c: 928:     _delay((unsigned long)((500)*(8000000/4000.0)));
+"891
+[; ;main.c: 891:     _delay((unsigned long)((500)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"929
-[; ;main.c: 929:     IR_SENSORF = 0;
+"892
+[; ;main.c: 892:     IR_SENSORF = 0;
 [e = _IR_SENSORF -> -> 0 `i `ui ]
-"931
-[; ;main.c: 931:     LATAbits.LATA2 = 0;
+"894
+[; ;main.c: 894:     LATAbits.LATA2 = 0;
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-"933
-[; ;main.c: 933: }
-[e :UE 771 ]
+"896
+[; ;main.c: 896: }
+[e :UE 778 ]
 }
-"938
-[; ;main.c: 938: void ToggleVIB_Mode(void) {
+"901
+[; ;main.c: 901: void ToggleVIB_Mode(void) {
 [v _ToggleVIB_Mode `(v ~T0 @X0 1 ef ]
 {
 [e :U _ToggleVIB_Mode ]
 [f ]
-"939
-[; ;main.c: 939:     if (vibration_mode)
-[e $ ! != -> _vibration_mode `i -> 0 `i 781  ]
-"940
-[; ;main.c: 940:         vibration_mode = 0;
+"902
+[; ;main.c: 902:     if (vibration_mode)
+[e $ ! != -> _vibration_mode `i -> 0 `i 788  ]
+"903
+[; ;main.c: 903:         vibration_mode = 0;
 [e = _vibration_mode -> -> 0 `i `uc ]
-[e $U 782  ]
-"941
-[; ;main.c: 941:     else
-[e :U 781 ]
-"942
-[; ;main.c: 942:         vibration_mode = 1;
+[e $U 789  ]
+"904
+[; ;main.c: 904:     else
+[e :U 788 ]
+"905
+[; ;main.c: 905:         vibration_mode = 1;
 [e = _vibration_mode -> -> 1 `i `uc ]
-[e :U 782 ]
-"949
-[; ;main.c: 949:     INTCONbits.GIE = 0;
+[e :U 789 ]
+"912
+[; ;main.c: 912:     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"950
-[; ;main.c: 950:     write_i2c(0x0010, vibration_mode);
+"913
+[; ;main.c: 913:     write_i2c(0x0010, vibration_mode);
 [e ( _write_i2c (2 , -> -> 16 `i `l -> _vibration_mode `i ]
-"951
-[; ;main.c: 951:     INTCONbits.GIE = 1;
+"914
+[; ;main.c: 914:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"954
-[; ;main.c: 954: }
-[e :UE 780 ]
+"917
+[; ;main.c: 917: }
+[e :UE 787 ]
 }
-"959
-[; ;main.c: 959: void Homing_Again_Manual(void) {
+"922
+[; ;main.c: 922: void Homing_Again_Manual(void) {
 [v _Homing_Again_Manual `(v ~T0 @X0 1 ef ]
 {
 [e :U _Homing_Again_Manual ]
 [f ]
-"962
-[; ;main.c: 962:     if (vibration_mode == 1) {
-[e $ ! == -> _vibration_mode `i -> 1 `i 784  ]
+"925
+[; ;main.c: 925:     if (vibration_mode == 1) {
+[e $ ! == -> _vibration_mode `i -> 1 `i 791  ]
 {
-"963
-[; ;main.c: 963:         LATCbits.LATC1 = 1;
+"926
+[; ;main.c: 926:         LATCbits.LATC1 = 1;
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-"964
-[; ;main.c: 964:         delay_1ms(Vmotor_Time);
+"927
+[; ;main.c: 927:         delay_1ms(Vmotor_Time);
 [e ( _delay_1ms (1 _Vmotor_Time ]
-"965
-[; ;main.c: 965:         LATCbits.LATC1 = 0;
+"928
+[; ;main.c: 928:         LATCbits.LATC1 = 0;
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"966
-[; ;main.c: 966:         _delay((unsigned long)((300)*(8000000/4000.0)));
+"929
+[; ;main.c: 929:         _delay((unsigned long)((300)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"967
-[; ;main.c: 967:     } else {
+"930
+[; ;main.c: 930:     } else {
 }
-[e $U 785  ]
-[e :U 784 ]
+[e $U 792  ]
+[e :U 791 ]
 {
-"968
-[; ;main.c: 968:         LATCbits.LATC1 = 0;
+"931
+[; ;main.c: 931:         LATCbits.LATC1 = 0;
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"969
-[; ;main.c: 969:         _delay((unsigned long)((300)*(8000000/4000.0)));
+"932
+[; ;main.c: 932:         _delay((unsigned long)((300)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"970
-[; ;main.c: 970:     }
+"933
+[; ;main.c: 933:     }
 }
-[e :U 785 ]
-"972
-[; ;main.c: 972:     LATAbits.LATA2 = 1;
+[e :U 792 ]
+"935
+[; ;main.c: 935:     LATAbits.LATA2 = 1;
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-"973
-[; ;main.c: 973:     int NUMInit = NUM;
+"936
+[; ;main.c: 936:     int NUMInit = NUM;
 [v _NUMInit `i ~T0 @X0 1 a ]
 [e = _NUMInit -> _NUM `i ]
-"975
-[; ;main.c: 975:     if (NUM == 0) {
-[e $ ! == _NUM -> -> 0 `i `ui 786  ]
+"938
+[; ;main.c: 938:     if (NUM == 0) {
+[e $ ! == _NUM -> -> 0 `i `ui 793  ]
 {
-"976
-[; ;main.c: 976:         i_RUN_ZERO = 1;
+"939
+[; ;main.c: 939:         i_RUN_ZERO = 1;
 [e = _i_RUN_ZERO -> -> 1 `i `ui ]
-"977
-[; ;main.c: 977:     }
+"940
+[; ;main.c: 940:     }
 }
-[e $U 787  ]
-"978
-[; ;main.c: 978:     else
-[e :U 786 ]
-"979
-[; ;main.c: 979:     {
-{
-"980
-[; ;main.c: 980:         i_RUN_ZERO = 0;
-[e = _i_RUN_ZERO -> -> 0 `i `ui ]
-"981
-[; ;main.c: 981:     }
-}
-[e :U 787 ]
-"984
-[; ;main.c: 984:     while (NUM > 0 || i_RUN_ZERO == 1) {
-[e $U 788  ]
-[e :U 789 ]
-{
-"985
-[; ;main.c: 985:         __asm(" clrwdt");
-[; <"  clrwdt ;# ">
-"986
-[; ;main.c: 986:         readWeighingData();
-[e ( _readWeighingData ..  ]
-"987
-[; ;main.c: 987:         AD_capture_BattVoltage();
-[e ( _AD_capture_BattVoltage ..  ]
-"988
-[; ;main.c: 988:         delay_1ms(Motor_Pause_Time);
-[e ( _delay_1ms (1 _Motor_Pause_Time ]
-"989
-[; ;main.c: 989:         MotorON();
-[e ( _MotorON ..  ]
-"990
-[; ;main.c: 990:         _delay((unsigned long)((350)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"991
-[; ;main.c: 991:         errorcounter = 30;
-[e = _errorcounter -> -> 30 `i `l ]
-"994
-[; ;main.c: 994:         do {
+[e $U 794  ]
+"941
+[; ;main.c: 941:     else
 [e :U 793 ]
+"942
+[; ;main.c: 942:     {
 {
-"995
-[; ;main.c: 995:             IR_SENSORF = Read_IR();
-[e = _IR_SENSORF ( _Read_IR ..  ]
-"996
-[; ;main.c: 996:             if (errorcounter == 0) {
-[e $ ! == _errorcounter -> -> 0 `i `l 794  ]
-{
-"997
-[; ;main.c: 997:                 WriteSTLED316SErr('1');
-[e ( _WriteSTLED316SErr (1 -> -> 49 `ui `uc ]
-"998
-[; ;main.c: 998:                 MotorBREAK();
-[e ( _MotorBREAK ..  ]
-"999
-[; ;main.c: 999:             }
+"943
+[; ;main.c: 943:         i_RUN_ZERO = 0;
+[e = _i_RUN_ZERO -> -> 0 `i `ui ]
+"944
+[; ;main.c: 944:     }
 }
 [e :U 794 ]
-"1001
-[; ;main.c: 1001:         } while (IR_SENSORF != 0);
-}
-[e $ != _IR_SENSORF -> -> 0 `i `ui 793  ]
-[e :U 792 ]
-"1003
-[; ;main.c: 1003:         _delay((unsigned long)((30)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1005
-[; ;main.c: 1005:         errorcounter = 30;
-[e = _errorcounter -> -> 30 `i `l ]
-"1007
-[; ;main.c: 1007:         do {
-[e :U 797 ]
-{
-"1008
-[; ;main.c: 1008:             IR_SENSORF = Read_IR();
-[e = _IR_SENSORF ( _Read_IR ..  ]
-"1009
-[; ;main.c: 1009:             if (errorcounter == 0) {
-[e $ ! == _errorcounter -> -> 0 `i `l 798  ]
-{
-"1010
-[; ;main.c: 1010:                 WriteSTLED316SErr('2');
-[e ( _WriteSTLED316SErr (1 -> -> 50 `ui `uc ]
-"1011
-[; ;main.c: 1011:                 MotorBREAK();
-[e ( _MotorBREAK ..  ]
-"1012
-[; ;main.c: 1012:             }
-}
-[e :U 798 ]
-"1013
-[; ;main.c: 1013:         } while (IR_SENSORF != 1);
-}
-[e $ != _IR_SENSORF -> -> 1 `i `ui 797  ]
+"947
+[; ;main.c: 947:     while (NUM > 0 || i_RUN_ZERO == 1) {
+[e $U 795  ]
 [e :U 796 ]
-"1016
-[; ;main.c: 1016:         errorcounter = 30;
+{
+"948
+[; ;main.c: 948:         __asm(" clrwdt");
+[; <"  clrwdt ;# ">
+"949
+[; ;main.c: 949:         readWeighingData();
+[e ( _readWeighingData ..  ]
+"950
+[; ;main.c: 950:         AD_capture_BattVoltage();
+[e ( _AD_capture_BattVoltage ..  ]
+"951
+[; ;main.c: 951:         delay_1ms(Motor_Pause_Time);
+[e ( _delay_1ms (1 _Motor_Pause_Time ]
+"952
+[; ;main.c: 952:         MotorON();
+[e ( _MotorON ..  ]
+"953
+[; ;main.c: 953:         _delay((unsigned long)((350)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"954
+[; ;main.c: 954:         errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"1017
-[; ;main.c: 1017:         delay_1ms(Motor_Stop_Delay_Time);
-[e ( _delay_1ms (1 _Motor_Stop_Delay_Time ]
-"1018
-[; ;main.c: 1018:         MotorBREAK();
-[e ( _MotorBREAK ..  ]
-"1021
-[; ;main.c: 1021:         if (NUM > 0 && i_RUN_ZERO != 1) {
-[e $ ! && > _NUM -> -> 0 `i `ui != _i_RUN_ZERO -> -> 1 `i `ui 799  ]
-{
-"1022
-[; ;main.c: 1022:             NUM--;
-[e -- _NUM -> -> 1 `i `ui ]
-"1023
-[; ;main.c: 1023:         }
-}
-[e :U 799 ]
-"1025
-[; ;main.c: 1025:         WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"1026
-[; ;main.c: 1026:         if (vibration_mode == 1 && (NUM != 0 || i_RUN_ZERO == 1)) {
-[e $ ! && == -> _vibration_mode `i -> 1 `i || != _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 800  ]
-{
-"1027
-[; ;main.c: 1027:             LATCbits.LATC1 = 1;
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-"1028
-[; ;main.c: 1028:             delay_1ms(Vmotor_Time);
-[e ( _delay_1ms (1 _Vmotor_Time ]
-"1029
-[; ;main.c: 1029:             LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1030
-[; ;main.c: 1030:             _delay((unsigned long)((300)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1032
-[; ;main.c: 1032:         } else if (vibration_mode == 0 && (NUM != 0 || i_RUN_ZERO == 1)) {
-}
-[e $U 801  ]
+"957
+[; ;main.c: 957:         do {
 [e :U 800 ]
-[e $ ! && == -> _vibration_mode `i -> 0 `i || != _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 802  ]
 {
-"1033
-[; ;main.c: 1033:             LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1034
-[; ;main.c: 1034:             if (NUM != 0 || i_RUN_ZERO == 1) {
-[e $ ! || != _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 803  ]
+"958
+[; ;main.c: 958:             IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"959
+[; ;main.c: 959:             if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 801  ]
 {
-"1035
-[; ;main.c: 1035:                 delay_1ms(Vmotor_Time);
-[e ( _delay_1ms (1 _Vmotor_Time ]
-"1036
-[; ;main.c: 1036:             } else {
+"960
+[; ;main.c: 960:                 WriteSTLED316SErr('1');
+[e ( _WriteSTLED316SErr (1 -> -> 49 `ui `uc ]
+"961
+[; ;main.c: 961:                 MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"962
+[; ;main.c: 962:             }
 }
-[e $U 804  ]
-[e :U 803 ]
-{
-"1037
-[; ;main.c: 1037:                 _delay((unsigned long)((500)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1038
-[; ;main.c: 1038:             }
-}
-[e :U 804 ]
-"1040
-[; ;main.c: 1040:         }
-}
-[e :U 802 ]
 [e :U 801 ]
-"1043
-[; ;main.c: 1043:         if (Stop == 1)
-[e $ ! == -> _Stop `i -> 1 `i 805  ]
-"1044
-[; ;main.c: 1044:             break;
-[e $U 790  ]
-[e :U 805 ]
-"1049
-[; ;main.c: 1049:         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
-[e $U 806  ]
-[e :U 807 ]
+"964
+[; ;main.c: 964:         } while (IR_SENSORF != 0);
+}
+[e $ != _IR_SENSORF -> -> 0 `i `ui 800  ]
+[e :U 799 ]
+"966
+[; ;main.c: 966:         _delay((unsigned long)((30)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"968
+[; ;main.c: 968:         errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"970
+[; ;main.c: 970:         do {
+[e :U 804 ]
 {
-"1050
-[; ;main.c: 1050:             i_RUN_ZERO = 2;
-[e = _i_RUN_ZERO -> -> 2 `i `ui ]
-"1051
-[; ;main.c: 1051:             WriteSTLED316SData(NUM, !vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> -> ! != -> _vibration_mode `i -> 0 `i `i `uc ]
-"1052
-[; ;main.c: 1052:             _delay((unsigned long)((50)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1053
-[; ;main.c: 1053:             WriteSTLED316SData(NUM, vibration_mode);
-[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"1054
-[; ;main.c: 1054:             _delay((unsigned long)((50)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1055
-[; ;main.c: 1055:         }
+"971
+[; ;main.c: 971:             IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"972
+[; ;main.c: 972:             if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 805  ]
+{
+"973
+[; ;main.c: 973:                 WriteSTLED316SErr('2');
+[e ( _WriteSTLED316SErr (1 -> -> 50 `ui `uc ]
+"974
+[; ;main.c: 974:                 MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"975
+[; ;main.c: 975:             }
+}
+[e :U 805 ]
+"976
+[; ;main.c: 976:         } while (IR_SENSORF != 1);
+}
+[e $ != _IR_SENSORF -> -> 1 `i `ui 804  ]
+[e :U 803 ]
+"979
+[; ;main.c: 979:         errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"980
+[; ;main.c: 980:         delay_1ms(Motor_Stop_Delay_Time);
+[e ( _delay_1ms (1 _Motor_Stop_Delay_Time ]
+"981
+[; ;main.c: 981:         MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"984
+[; ;main.c: 984:         if (NUM > 0 && i_RUN_ZERO != 1) {
+[e $ ! && > _NUM -> -> 0 `i `ui != _i_RUN_ZERO -> -> 1 `i `ui 806  ]
+{
+"985
+[; ;main.c: 985:             NUM--;
+[e -- _NUM -> -> 1 `i `ui ]
+"986
+[; ;main.c: 986:         }
 }
 [e :U 806 ]
-"1049
-[; ;main.c: 1049:         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
-[e $ && == _dispense -> 0 `i || == _i_RUN_ZERO -> -> 1 `i `ui == _i_RUN_ZERO -> -> 0 `i `ui 807  ]
-[e :U 808 ]
-"1056
-[; ;main.c: 1056:         WriteSTLED316SData(NUM, vibration_mode);
+"988
+[; ;main.c: 988:         WriteSTLED316SData(NUM, vibration_mode);
 [e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
-"1059
-[; ;main.c: 1059:         if(dispense == 0 && NUM != 0)
-[e $ ! && == _dispense -> 0 `i != _NUM -> -> 0 `i `ui 809  ]
-"1060
-[; ;main.c: 1060:         {
+"989
+[; ;main.c: 989:         if (vibration_mode == 1 && (NUM != 0 || i_RUN_ZERO == 1)) {
+[e $ ! && == -> _vibration_mode `i -> 1 `i || != _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 807  ]
 {
-"1061
-[; ;main.c: 1061:             NUM_REC = NUM;
-[e = _NUM_REC _NUM ]
-"1062
-[; ;main.c: 1062:             NUM = 0;
-[e = _NUM -> -> 0 `i `ui ]
-"1063
-[; ;main.c: 1063:         }
-}
-[e :U 809 ]
-"1064
-[; ;main.c: 1064:         _delay((unsigned long)((50)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1065
-[; ;main.c: 1065:     }
-}
-[e :U 788 ]
-"984
-[; ;main.c: 984:     while (NUM > 0 || i_RUN_ZERO == 1) {
-[e $ || > _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 789  ]
-[e :U 790 ]
-"1068
-[; ;main.c: 1068:     LATAbits.LATA2 = 0;
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-"1070
-[; ;main.c: 1070:     if ((NUM == 0 || Stop == 1) && i_RUN_ZERO == 0) {
-[e $ ! && || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i == _i_RUN_ZERO -> -> 0 `i `ui 810  ]
-{
-"1072
-[; ;main.c: 1072:         if (vibration_mode == 1) {
-[e $ ! == -> _vibration_mode `i -> 1 `i 811  ]
-{
-"1073
-[; ;main.c: 1073:             LATCbits.LATC1 = 1;
+"990
+[; ;main.c: 990:             LATCbits.LATC1 = 1;
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-"1074
-[; ;main.c: 1074:             delay_1ms(Vmotor_Time);
+"991
+[; ;main.c: 991:             delay_1ms(Vmotor_Time);
 [e ( _delay_1ms (1 _Vmotor_Time ]
-"1076
-[; ;main.c: 1076:             LATCbits.LATC1 = 0;
+"992
+[; ;main.c: 992:             LATCbits.LATC1 = 0;
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1077
-[; ;main.c: 1077:             _delay((unsigned long)((300)*(8000000/4000.0)));
+"993
+[; ;main.c: 993:             _delay((unsigned long)((300)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1078
-[; ;main.c: 1078:         }
+"995
+[; ;main.c: 995:         } else if (vibration_mode == 0 && (NUM != 0 || i_RUN_ZERO == 1)) {
+}
+[e $U 808  ]
+[e :U 807 ]
+[e $ ! && == -> _vibration_mode `i -> 0 `i || != _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 809  ]
+{
+"996
+[; ;main.c: 996:             LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+"997
+[; ;main.c: 997:             if (NUM != 0 || i_RUN_ZERO == 1) {
+[e $ ! || != _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 810  ]
+{
+"998
+[; ;main.c: 998:                 delay_1ms(Vmotor_Time);
+[e ( _delay_1ms (1 _Vmotor_Time ]
+"999
+[; ;main.c: 999:             } else {
+}
+[e $U 811  ]
+[e :U 810 ]
+{
+"1000
+[; ;main.c: 1000:                 _delay((unsigned long)((500)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1001
+[; ;main.c: 1001:             }
 }
 [e :U 811 ]
-"1080
-[; ;main.c: 1080:     }
+"1003
+[; ;main.c: 1003:         }
 }
-[e :U 810 ]
-"1081
-[; ;main.c: 1081:     i_RUN_ZERO = 0;
-[e = _i_RUN_ZERO -> -> 0 `i `ui ]
-"1082
-[; ;main.c: 1082:     NUM = 0;
+[e :U 809 ]
+[e :U 808 ]
+"1006
+[; ;main.c: 1006:         if (Stop == 1)
+[e $ ! == -> _Stop `i -> 1 `i 812  ]
+"1007
+[; ;main.c: 1007:             break;
+[e $U 797  ]
+[e :U 812 ]
+"1012
+[; ;main.c: 1012:         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
+[e $U 813  ]
+[e :U 814 ]
+{
+"1013
+[; ;main.c: 1013:             i_RUN_ZERO = 2;
+[e = _i_RUN_ZERO -> -> 2 `i `ui ]
+"1014
+[; ;main.c: 1014:             WriteSTLED316SData(NUM, !vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> -> ! != -> _vibration_mode `i -> 0 `i `i `uc ]
+"1015
+[; ;main.c: 1015:             _delay((unsigned long)((50)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1016
+[; ;main.c: 1016:             WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"1017
+[; ;main.c: 1017:             _delay((unsigned long)((50)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1018
+[; ;main.c: 1018:         }
+}
+[e :U 813 ]
+"1012
+[; ;main.c: 1012:         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
+[e $ && == _dispense -> 0 `i || == _i_RUN_ZERO -> -> 1 `i `ui == _i_RUN_ZERO -> -> 0 `i `ui 814  ]
+[e :U 815 ]
+"1019
+[; ;main.c: 1019:         WriteSTLED316SData(NUM, vibration_mode);
+[e ( _WriteSTLED316SData (2 , -> _NUM `i -> _vibration_mode `uc ]
+"1022
+[; ;main.c: 1022:         if(dispense == 0 && NUM != 0)
+[e $ ! && == _dispense -> 0 `i != _NUM -> -> 0 `i `ui 816  ]
+"1023
+[; ;main.c: 1023:         {
+{
+"1024
+[; ;main.c: 1024:             NUM_REC = NUM;
+[e = _NUM_REC _NUM ]
+"1025
+[; ;main.c: 1025:             NUM = 0;
 [e = _NUM -> -> 0 `i `ui ]
-"1084
-[; ;main.c: 1084:     dispense = 0;
-[e = _dispense -> 0 `i ]
-"1085
-[; ;main.c: 1085:     OpMode = MANUAL_MODE;
-[e = _OpMode -> . `E5436 0 `uc ]
-"1087
-[; ;main.c: 1087: }
-[e :UE 783 ]
+"1026
+[; ;main.c: 1026:         }
 }
-"1092
-[; ;main.c: 1092: void Homing_Again_Auto(void) {
+[e :U 816 ]
+"1027
+[; ;main.c: 1027:         _delay((unsigned long)((50)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1028
+[; ;main.c: 1028:     }
+}
+[e :U 795 ]
+"947
+[; ;main.c: 947:     while (NUM > 0 || i_RUN_ZERO == 1) {
+[e $ || > _NUM -> -> 0 `i `ui == _i_RUN_ZERO -> -> 1 `i `ui 796  ]
+[e :U 797 ]
+"1031
+[; ;main.c: 1031:     LATAbits.LATA2 = 0;
+[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
+"1033
+[; ;main.c: 1033:     if ((NUM == 0 || Stop == 1) && i_RUN_ZERO == 0) {
+[e $ ! && || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i == _i_RUN_ZERO -> -> 0 `i `ui 817  ]
+{
+"1035
+[; ;main.c: 1035:         if (vibration_mode == 1) {
+[e $ ! == -> _vibration_mode `i -> 1 `i 818  ]
+{
+"1036
+[; ;main.c: 1036:             LATCbits.LATC1 = 1;
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+"1037
+[; ;main.c: 1037:             delay_1ms(Vmotor_Time);
+[e ( _delay_1ms (1 _Vmotor_Time ]
+"1039
+[; ;main.c: 1039:             LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+"1040
+[; ;main.c: 1040:             _delay((unsigned long)((300)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1041
+[; ;main.c: 1041:         }
+}
+[e :U 818 ]
+"1043
+[; ;main.c: 1043:     }
+}
+[e :U 817 ]
+"1044
+[; ;main.c: 1044:     i_RUN_ZERO = 0;
+[e = _i_RUN_ZERO -> -> 0 `i `ui ]
+"1045
+[; ;main.c: 1045:     NUM = 0;
+[e = _NUM -> -> 0 `i `ui ]
+"1047
+[; ;main.c: 1047:     dispense = 0;
+[e = _dispense -> 0 `i ]
+"1048
+[; ;main.c: 1048:     OpMode = MANUAL_MODE;
+[e = _OpMode -> . `E5436 0 `uc ]
+"1050
+[; ;main.c: 1050: }
+[e :UE 790 ]
+}
+"1055
+[; ;main.c: 1055: void Homing_Again_Auto(void) {
 [v _Homing_Again_Auto `(v ~T0 @X0 1 ef ]
 {
 [e :U _Homing_Again_Auto ]
 [f ]
-"1094
-[; ;main.c: 1094:     IR_SENSORF = 0;
+"1057
+[; ;main.c: 1057:     IR_SENSORF = 0;
 [e = _IR_SENSORF -> -> 0 `i `ui ]
-"1095
-[; ;main.c: 1095:     WriteSTLED316SMode('A');
+"1058
+[; ;main.c: 1058:     WriteSTLED316SMode('A');
 [e ( _WriteSTLED316SMode (1 -> -> 65 `ui `uc ]
-"1097
-[; ;main.c: 1097:     if (vibration_mode == 1) {
-[e $ ! == -> _vibration_mode `i -> 1 `i 813  ]
+"1060
+[; ;main.c: 1060:     if (vibration_mode == 1) {
+[e $ ! == -> _vibration_mode `i -> 1 `i 820  ]
 {
-"1098
-[; ;main.c: 1098:         LATCbits.LATC1 = 1;
+"1061
+[; ;main.c: 1061:         LATCbits.LATC1 = 1;
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-"1099
-[; ;main.c: 1099:         delay_1ms(Vmotor_Time);
+"1062
+[; ;main.c: 1062:         delay_1ms(Vmotor_Time);
 [e ( _delay_1ms (1 _Vmotor_Time ]
-"1100
-[; ;main.c: 1100:         LATCbits.LATC1 = 0;
+"1063
+[; ;main.c: 1063:         LATCbits.LATC1 = 0;
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1101
-[; ;main.c: 1101:         _delay((unsigned long)((300)*(8000000/4000.0)));
+"1064
+[; ;main.c: 1064:         _delay((unsigned long)((300)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1102
-[; ;main.c: 1102:     } else {
+"1065
+[; ;main.c: 1065:     } else {
 }
-[e $U 814  ]
-[e :U 813 ]
-{
-"1103
-[; ;main.c: 1103:         LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1104
-[; ;main.c: 1104:         _delay((unsigned long)((300)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1105
-[; ;main.c: 1105:     }
-}
-[e :U 814 ]
-"1107
-[; ;main.c: 1107:     LATAbits.LATA2 = 1;
-[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-"1109
-[; ;main.c: 1109:     while (Stop == 0) {
-[e $U 815  ]
-[e :U 816 ]
-{
-"1110
-[; ;main.c: 1110:         __asm(" clrwdt");
-[; <"  clrwdt ;# ">
-"1111
-[; ;main.c: 1111:         readWeighingData();
-[e ( _readWeighingData ..  ]
-"1112
-[; ;main.c: 1112:         AD_capture_BattVoltage();
-[e ( _AD_capture_BattVoltage ..  ]
-"1113
-[; ;main.c: 1113:         delay_1ms(Motor_Pause_Time);
-[e ( _delay_1ms (1 _Motor_Pause_Time ]
-"1114
-[; ;main.c: 1114:         MotorON();
-[e ( _MotorON ..  ]
-"1115
-[; ;main.c: 1115:         _delay((unsigned long)((350)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1117
-[; ;main.c: 1117:         errorcounter = 30;
-[e = _errorcounter -> -> 30 `i `l ]
-"1119
-[; ;main.c: 1119:         do {
+[e $U 821  ]
 [e :U 820 ]
 {
-"1120
-[; ;main.c: 1120:             IR_SENSORF = Read_IR();
-[e = _IR_SENSORF ( _Read_IR ..  ]
-"1121
-[; ;main.c: 1121:             if (errorcounter == 0) {
-[e $ ! == _errorcounter -> -> 0 `i `l 821  ]
-{
-"1122
-[; ;main.c: 1122:                 WriteSTLED316SErr('1');
-[e ( _WriteSTLED316SErr (1 -> -> 49 `ui `uc ]
-"1123
-[; ;main.c: 1123:                 MotorBREAK();
-[e ( _MotorBREAK ..  ]
-"1124
-[; ;main.c: 1124:             }
+"1066
+[; ;main.c: 1066:         LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+"1067
+[; ;main.c: 1067:         _delay((unsigned long)((300)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1068
+[; ;main.c: 1068:     }
 }
 [e :U 821 ]
-"1125
-[; ;main.c: 1125:         } while (IR_SENSORF != 0);
-}
-[e $ != _IR_SENSORF -> -> 0 `i `ui 820  ]
-[e :U 819 ]
-"1127
-[; ;main.c: 1127:         _delay((unsigned long)((30)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1128
-[; ;main.c: 1128:         errorcounter = 30;
-[e = _errorcounter -> -> 30 `i `l ]
-"1130
-[; ;main.c: 1130:         do {
-[e :U 824 ]
-{
-"1131
-[; ;main.c: 1131:             IR_SENSORF = Read_IR();
-[e = _IR_SENSORF ( _Read_IR ..  ]
-"1132
-[; ;main.c: 1132:             if (errorcounter == 0) {
-[e $ ! == _errorcounter -> -> 0 `i `l 825  ]
-{
-"1133
-[; ;main.c: 1133:                 WriteSTLED316SErr('2');
-[e ( _WriteSTLED316SErr (1 -> -> 50 `ui `uc ]
-"1134
-[; ;main.c: 1134:                 MotorBREAK();
-[e ( _MotorBREAK ..  ]
-"1135
-[; ;main.c: 1135:             }
-}
-[e :U 825 ]
-"1136
-[; ;main.c: 1136:         } while (IR_SENSORF != 1);
-}
-[e $ != _IR_SENSORF -> -> 1 `i `ui 824  ]
+"1070
+[; ;main.c: 1070:     LATAbits.LATA2 = 1;
+[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
+"1072
+[; ;main.c: 1072:     while (Stop == 0) {
+[e $U 822  ]
 [e :U 823 ]
-"1138
-[; ;main.c: 1138:         errorcounter = 30;
+{
+"1073
+[; ;main.c: 1073:         __asm(" clrwdt");
+[; <"  clrwdt ;# ">
+"1074
+[; ;main.c: 1074:         readWeighingData();
+[e ( _readWeighingData ..  ]
+"1075
+[; ;main.c: 1075:         AD_capture_BattVoltage();
+[e ( _AD_capture_BattVoltage ..  ]
+"1076
+[; ;main.c: 1076:         delay_1ms(Motor_Pause_Time);
+[e ( _delay_1ms (1 _Motor_Pause_Time ]
+"1077
+[; ;main.c: 1077:         MotorON();
+[e ( _MotorON ..  ]
+"1078
+[; ;main.c: 1078:         _delay((unsigned long)((350)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 350 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1080
+[; ;main.c: 1080:         errorcounter = 30;
 [e = _errorcounter -> -> 30 `i `l ]
-"1140
-[; ;main.c: 1140:         delay_1ms(Motor_Stop_Delay_Time);
-[e ( _delay_1ms (1 _Motor_Stop_Delay_Time ]
-"1141
-[; ;main.c: 1141:         MotorBREAK();
-[e ( _MotorBREAK ..  ]
-"1143
-[; ;main.c: 1143:         if (vibration_mode == 1) {
-[e $ ! == -> _vibration_mode `i -> 1 `i 826  ]
-{
-"1144
-[; ;main.c: 1144:             LATCbits.LATC1 = 1;
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-"1145
-[; ;main.c: 1145:             delay_1ms(Vmotor_Time);
-[e ( _delay_1ms (1 _Vmotor_Time ]
-"1147
-[; ;main.c: 1147:             LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1148
-[; ;main.c: 1148:             _delay((unsigned long)((300)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1149
-[; ;main.c: 1149:         } else {
-}
-[e $U 827  ]
-[e :U 826 ]
-{
-"1150
-[; ;main.c: 1150:             LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1151
-[; ;main.c: 1151:             delay_1ms(Vmotor_Time);
-[e ( _delay_1ms (1 _Vmotor_Time ]
-"1152
-[; ;main.c: 1152:         }
-}
+"1082
+[; ;main.c: 1082:         do {
 [e :U 827 ]
-"1154
-[; ;main.c: 1154:         if (Stop == 1)
-[e $ ! == -> _Stop `i -> 1 `i 828  ]
-"1155
-[; ;main.c: 1155:             break;
-[e $U 817  ]
+{
+"1083
+[; ;main.c: 1083:             IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"1084
+[; ;main.c: 1084:             if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 828  ]
+{
+"1085
+[; ;main.c: 1085:                 WriteSTLED316SErr('1');
+[e ( _WriteSTLED316SErr (1 -> -> 49 `ui `uc ]
+"1086
+[; ;main.c: 1086:                 MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"1087
+[; ;main.c: 1087:             }
+}
 [e :U 828 ]
-"1157
-[; ;main.c: 1157:     }
+"1088
+[; ;main.c: 1088:         } while (IR_SENSORF != 0);
 }
-[e :U 815 ]
-"1109
-[; ;main.c: 1109:     while (Stop == 0) {
-[e $ == -> _Stop `i -> 0 `i 816  ]
-[e :U 817 ]
-"1159
-[; ;main.c: 1159:     LATAbits.LATA2 = 0;
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-"1161
-[; ;main.c: 1161:     if (NUM == 0 || Stop == 1) {
-[e $ ! || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i 829  ]
+[e $ != _IR_SENSORF -> -> 0 `i `ui 827  ]
+[e :U 826 ]
+"1090
+[; ;main.c: 1090:         _delay((unsigned long)((30)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1091
+[; ;main.c: 1091:         errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"1093
+[; ;main.c: 1093:         do {
+[e :U 831 ]
 {
-"1163
-[; ;main.c: 1163:         if (vibration_mode == 1) {
-[e $ ! == -> _vibration_mode `i -> 1 `i 830  ]
+"1094
+[; ;main.c: 1094:             IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"1095
+[; ;main.c: 1095:             if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 832  ]
 {
-"1164
-[; ;main.c: 1164:             LATCbits.LATC1 = 1;
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-"1165
-[; ;main.c: 1165:             delay_1ms(Vmotor_Time);
-[e ( _delay_1ms (1 _Vmotor_Time ]
-"1167
-[; ;main.c: 1167:             LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"1168
-[; ;main.c: 1168:             _delay((unsigned long)((300)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"1169
-[; ;main.c: 1169:         }
+"1096
+[; ;main.c: 1096:                 WriteSTLED316SErr('2');
+[e ( _WriteSTLED316SErr (1 -> -> 50 `ui `uc ]
+"1097
+[; ;main.c: 1097:                 MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"1098
+[; ;main.c: 1098:             }
 }
+[e :U 832 ]
+"1099
+[; ;main.c: 1099:         } while (IR_SENSORF != 1);
+}
+[e $ != _IR_SENSORF -> -> 1 `i `ui 831  ]
 [e :U 830 ]
-"1171
-[; ;main.c: 1171:     }
+"1101
+[; ;main.c: 1101:         errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"1103
+[; ;main.c: 1103:         delay_1ms(Motor_Stop_Delay_Time);
+[e ( _delay_1ms (1 _Motor_Stop_Delay_Time ]
+"1104
+[; ;main.c: 1104:         MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"1106
+[; ;main.c: 1106:         if (vibration_mode == 1) {
+[e $ ! == -> _vibration_mode `i -> 1 `i 833  ]
+{
+"1107
+[; ;main.c: 1107:             LATCbits.LATC1 = 1;
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+"1108
+[; ;main.c: 1108:             delay_1ms(Vmotor_Time);
+[e ( _delay_1ms (1 _Vmotor_Time ]
+"1110
+[; ;main.c: 1110:             LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+"1111
+[; ;main.c: 1111:             _delay((unsigned long)((300)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1112
+[; ;main.c: 1112:         } else {
 }
-[e :U 829 ]
-"1173
-[; ;main.c: 1173:     NUM = 0;
+[e $U 834  ]
+[e :U 833 ]
+{
+"1113
+[; ;main.c: 1113:             LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+"1114
+[; ;main.c: 1114:             delay_1ms(Vmotor_Time);
+[e ( _delay_1ms (1 _Vmotor_Time ]
+"1115
+[; ;main.c: 1115:         }
+}
+[e :U 834 ]
+"1117
+[; ;main.c: 1117:         if (Stop == 1)
+[e $ ! == -> _Stop `i -> 1 `i 835  ]
+"1118
+[; ;main.c: 1118:             break;
+[e $U 824  ]
+[e :U 835 ]
+"1120
+[; ;main.c: 1120:     }
+}
+[e :U 822 ]
+"1072
+[; ;main.c: 1072:     while (Stop == 0) {
+[e $ == -> _Stop `i -> 0 `i 823  ]
+[e :U 824 ]
+"1122
+[; ;main.c: 1122:     LATAbits.LATA2 = 0;
+[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
+"1124
+[; ;main.c: 1124:     if (NUM == 0 || Stop == 1) {
+[e $ ! || == _NUM -> -> 0 `i `ui == -> _Stop `i -> 1 `i 836  ]
+{
+"1126
+[; ;main.c: 1126:         if (vibration_mode == 1) {
+[e $ ! == -> _vibration_mode `i -> 1 `i 837  ]
+{
+"1127
+[; ;main.c: 1127:             LATCbits.LATC1 = 1;
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+"1128
+[; ;main.c: 1128:             delay_1ms(Vmotor_Time);
+[e ( _delay_1ms (1 _Vmotor_Time ]
+"1130
+[; ;main.c: 1130:             LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+"1131
+[; ;main.c: 1131:             _delay((unsigned long)((300)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"1132
+[; ;main.c: 1132:         }
+}
+[e :U 837 ]
+"1134
+[; ;main.c: 1134:     }
+}
+[e :U 836 ]
+"1136
+[; ;main.c: 1136:     NUM = 0;
 [e = _NUM -> -> 0 `i `ui ]
-"1174
-[; ;main.c: 1174:     OpMode = AUTO_MODE;
+"1137
+[; ;main.c: 1137:     OpMode = AUTO_MODE;
 [e = _OpMode -> . `E5436 2 `uc ]
-"1176
-[; ;main.c: 1176: }
-[e :UE 812 ]
+"1139
+[; ;main.c: 1139: }
+[e :UE 819 ]
 }
-"1181
-[; ;main.c: 1181: void flush(void) {
+"1144
+[; ;main.c: 1144: void flush(void) {
 [v _flush `(v ~T0 @X0 1 ef ]
 {
 [e :U _flush ]
 [f ]
-"1182
-[; ;main.c: 1182:     int i;
+"1145
+[; ;main.c: 1145:     int i;
 [v _i `i ~T0 @X0 1 a ]
-"1184
-[; ;main.c: 1184:     for (i = 0; i < 16; i++) {
+"1147
+[; ;main.c: 1147:     for (i = 0; i < 16; i++) {
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 16 `i 832  ]
-[e $U 833  ]
-[e :U 832 ]
+[e $ < _i -> 16 `i 839  ]
+[e $U 840  ]
+[e :U 839 ]
 {
-"1185
-[; ;main.c: 1185:         Serial_Buffer[i] = 0x00;
+"1148
+[; ;main.c: 1148:         Serial_Buffer[i] = 0x00;
 [e = *U + &U _Serial_Buffer * -> -> _i `ui `ux -> -> # *U &U _Serial_Buffer `ui `ux -> -> 0 `i `uc ]
-"1186
-[; ;main.c: 1186:     }
+"1149
+[; ;main.c: 1149:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 16 `i 832  ]
-[e :U 833 ]
+[e $ < _i -> 16 `i 839  ]
+[e :U 840 ]
 }
-"1187
-[; ;main.c: 1187: }
-[e :UE 831 ]
+"1150
+[; ;main.c: 1150: }
+[e :UE 838 ]
 }
-"1192
-[; ;main.c: 1192: void flushOut(void) {
+"1155
+[; ;main.c: 1155: void flushOut(void) {
 [v _flushOut `(v ~T0 @X0 1 ef ]
 {
 [e :U _flushOut ]
 [f ]
-"1193
-[; ;main.c: 1193:     int i;
+"1156
+[; ;main.c: 1156:     int i;
 [v _i `i ~T0 @X0 1 a ]
-"1195
-[; ;main.c: 1195:     for (i = 0; i < 16; i++) {
+"1158
+[; ;main.c: 1158:     for (i = 0; i < 16; i++) {
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 16 `i 836  ]
-[e $U 837  ]
-[e :U 836 ]
+[e $ < _i -> 16 `i 843  ]
+[e $U 844  ]
+[e :U 843 ]
 {
-"1196
-[; ;main.c: 1196:         Serial_Buffer_Out[i] = 0x00;
+"1159
+[; ;main.c: 1159:         Serial_Buffer_Out[i] = 0x00;
 [e = *U + &U _Serial_Buffer_Out * -> -> _i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 0 `i `uc ]
-"1197
-[; ;main.c: 1197:     }
+"1160
+[; ;main.c: 1160:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 16 `i 836  ]
-[e :U 837 ]
+[e $ < _i -> 16 `i 843  ]
+[e :U 844 ]
 }
-"1198
-[; ;main.c: 1198: }
-[e :UE 835 ]
+"1161
+[; ;main.c: 1161: }
+[e :UE 842 ]
 }
-"1203
-[; ;main.c: 1203: void readWeighingData(void) {
+"1166
+[; ;main.c: 1166: void readWeighingData(void) {
 [v _readWeighingData `(v ~T0 @X0 1 ef ]
 {
 [e :U _readWeighingData ]
 [f ]
-"1204
-[; ;main.c: 1204:     int i;
+"1167
+[; ;main.c: 1167:     int i;
 [v _i `i ~T0 @X0 1 a ]
-"1206
-[; ;main.c: 1206:     Serial_Buffer_Out[0] = 0xA5;
+"1169
+[; ;main.c: 1169:     Serial_Buffer_Out[0] = 0xA5;
 [e = *U + &U _Serial_Buffer_Out * -> -> -> 0 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 165 `i `uc ]
-"1207
-[; ;main.c: 1207:     Serial_Buffer_Out[1] = 0x45;
+"1170
+[; ;main.c: 1170:     Serial_Buffer_Out[1] = 0x45;
 [e = *U + &U _Serial_Buffer_Out * -> -> -> 1 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 69 `i `uc ]
-"1208
-[; ;main.c: 1208:     Serial_Buffer_Out[2] = 0x00;
+"1171
+[; ;main.c: 1171:     Serial_Buffer_Out[2] = 0x00;
 [e = *U + &U _Serial_Buffer_Out * -> -> -> 2 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 0 `i `uc ]
-"1209
-[; ;main.c: 1209:     Serial_Buffer_Out[3] = 0x45;
+"1172
+[; ;main.c: 1172:     Serial_Buffer_Out[3] = 0x45;
 [e = *U + &U _Serial_Buffer_Out * -> -> -> 3 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 69 `i `uc ]
-"1210
-[; ;main.c: 1210:     Serial_Buffer_Out[4] = 0x5A;
+"1173
+[; ;main.c: 1173:     Serial_Buffer_Out[4] = 0x5A;
 [e = *U + &U _Serial_Buffer_Out * -> -> -> 4 `i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux -> -> 90 `i `uc ]
-"1212
-[; ;main.c: 1212:     INTCONbits.GIE = 0;
+"1175
+[; ;main.c: 1175:     INTCONbits.GIE = 0;
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"1213
-[; ;main.c: 1213:     for (i = 0; i < 5; i++) {
+"1176
+[; ;main.c: 1176:     for (i = 0; i < 5; i++) {
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 840  ]
-[e $U 841  ]
-[e :U 840 ]
+[e $ < _i -> 5 `i 847  ]
+[e $U 848  ]
+[e :U 847 ]
 {
-"1214
-[; ;main.c: 1214:         Write1USART(Serial_Buffer_Out[i]);
+"1177
+[; ;main.c: 1177:         Write1USART(Serial_Buffer_Out[i]);
 [e ( _Write1USART (1 -> *U + &U _Serial_Buffer_Out * -> -> _i `ui `ux -> -> # *U &U _Serial_Buffer_Out `ui `ux `uc ]
-"1215
-[; ;main.c: 1215:     }
+"1178
+[; ;main.c: 1178:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 5 `i 840  ]
-[e :U 841 ]
+[e $ < _i -> 5 `i 847  ]
+[e :U 848 ]
 }
-"1216
-[; ;main.c: 1216:     INTCONbits.GIE = 1;
+"1179
+[; ;main.c: 1179:     INTCONbits.GIE = 1;
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"1218
-[; ;main.c: 1218:     flushOut();
+"1181
+[; ;main.c: 1181:     flushOut();
 [e ( _flushOut ..  ]
-"1219
-[; ;main.c: 1219: }
-[e :UE 839 ]
+"1182
+[; ;main.c: 1182: }
+[e :UE 846 ]
 }
-"1221
-[; ;main.c: 1221: void InitTimer1(void) {
+"1184
+[; ;main.c: 1184: void InitTimer1(void) {
 [v _InitTimer1 `(v ~T0 @X0 1 ef ]
 {
 [e :U _InitTimer1 ]
 [f ]
-"1222
-[; ;main.c: 1222:     T1CON = 0b00110001;
+"1185
+[; ;main.c: 1185:     T1CON = 0b00110001;
 [e = _T1CON -> -> 49 `i `uc ]
-"1225
-[; ;main.c: 1225:     TMR1 = 0x9E57;
+"1188
+[; ;main.c: 1188:     TMR1 = 0x9E57;
 [e = _TMR1 -> -> 40535 `ui `us ]
-"1226
-[; ;main.c: 1226:     TMR1IF = 0;
+"1189
+[; ;main.c: 1189:     TMR1IF = 0;
 [e = _TMR1IF -> -> 0 `i `b ]
-"1227
-[; ;main.c: 1227:     TMR1IE = 1;
+"1190
+[; ;main.c: 1190:     TMR1IE = 1;
 [e = _TMR1IE -> -> 1 `i `b ]
-"1228
-[; ;main.c: 1228:     IPR1bits.TMR1IP = 1;
+"1191
+[; ;main.c: 1191:     IPR1bits.TMR1IP = 1;
 [e = . . _IPR1bits 0 0 -> -> 1 `i `uc ]
-"1230
-[; ;main.c: 1230:     TMR1IF_triggered = 0;
+"1193
+[; ;main.c: 1193:     TMR1IF_triggered = 0;
 [e = _TMR1IF_triggered -> -> 0 `i `uc ]
-"1231
-[; ;main.c: 1231: }
-[e :UE 843 ]
+"1194
+[; ;main.c: 1194: }
+[e :UE 850 ]
 }
-"1235
-[; ;main.c: 1235: void AD_capture_BattVoltage(void) {
+"1198
+[; ;main.c: 1198: void AD_capture_BattVoltage(void) {
 [v _AD_capture_BattVoltage `(v ~T0 @X0 1 ef ]
 {
 [e :U _AD_capture_BattVoltage ]
 [f ]
-"1237
-[; ;main.c: 1237:     ADCON0bits.CHS0 = 0;
+"1200
+[; ;main.c: 1200:     ADCON0bits.CHS0 = 0;
 [e = . . _ADCON0bits 2 2 -> -> 0 `i `uc ]
-"1238
-[; ;main.c: 1238:     ADCON0bits.CHS1 = 0;
+"1201
+[; ;main.c: 1201:     ADCON0bits.CHS1 = 0;
 [e = . . _ADCON0bits 2 3 -> -> 0 `i `uc ]
-"1239
-[; ;main.c: 1239:     ADCON0bits.CHS2 = 0;
+"1202
+[; ;main.c: 1202:     ADCON0bits.CHS2 = 0;
 [e = . . _ADCON0bits 2 4 -> -> 0 `i `uc ]
-"1240
-[; ;main.c: 1240:     ADCON0bits.CHS3 = 0;
+"1203
+[; ;main.c: 1203:     ADCON0bits.CHS3 = 0;
 [e = . . _ADCON0bits 2 5 -> -> 0 `i `uc ]
-"1242
-[; ;main.c: 1242:     ADCON0bits.ADON = 1;
+"1205
+[; ;main.c: 1205:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 1 0 -> -> 1 `i `uc ]
-"1243
-[; ;main.c: 1243:     delay_1ms(5);
+"1206
+[; ;main.c: 1206:     delay_1ms(5);
 [e ( _delay_1ms (1 -> -> 5 `i `ui ]
-"1244
-[; ;main.c: 1244:     ADCON0bits.GO = 1;
+"1207
+[; ;main.c: 1207:     ADCON0bits.GO = 1;
 [e = . . _ADCON0bits 4 1 -> -> 1 `i `uc ]
-"1246
-[; ;main.c: 1246:     while (ADCON0bits.GO == 1) {
-[e $U 845  ]
-[e :U 846 ]
+"1209
+[; ;main.c: 1209:     while (ADCON0bits.GO == 1) {
+[e $U 852  ]
+[e :U 853 ]
 {
-"1248
-[; ;main.c: 1248:     }
+"1211
+[; ;main.c: 1211:     }
 }
-[e :U 845 ]
-"1246
-[; ;main.c: 1246:     while (ADCON0bits.GO == 1) {
-[e $ == -> . . _ADCON0bits 4 1 `i -> 1 `i 846  ]
-[e :U 847 ]
-"1250
-[; ;main.c: 1250:     VOLTAGE = (ADRESH * 256) | (ADRESL);
+[e :U 852 ]
+"1209
+[; ;main.c: 1209:     while (ADCON0bits.GO == 1) {
+[e $ == -> . . _ADCON0bits 4 1 `i -> 1 `i 853  ]
+[e :U 854 ]
+"1213
+[; ;main.c: 1213:     VOLTAGE = (ADRESH * 256) | (ADRESL);
 [e = _VOLTAGE -> | * -> _ADRESH `i -> 256 `i -> _ADRESL `i `ui ]
-"1251
-[; ;main.c: 1251: }
-[e :UE 844 ]
+"1214
+[; ;main.c: 1214: }
+[e :UE 851 ]
 }
-"1253
-[; ;main.c: 1253: void Low_Power_Indicator(void) {
+"1216
+[; ;main.c: 1216: void Low_Power_Indicator(void) {
 [v _Low_Power_Indicator `(v ~T0 @X0 1 ef ]
 {
 [e :U _Low_Power_Indicator ]
 [f ]
-"1255
-[; ;main.c: 1255:     if (VOLTAGE <= 0x0366)
-[e $ ! <= _VOLTAGE -> -> 870 `i `ui 849  ]
-"1256
-[; ;main.c: 1256:     {
+"1218
+[; ;main.c: 1218:     if (VOLTAGE <= 0x0366)
+[e $ ! <= _VOLTAGE -> -> 870 `i `ui 856  ]
+"1219
+[; ;main.c: 1219:     {
 {
-"1258
-[; ;main.c: 1258:         LATDbits.LATD1 = 1;
+"1221
+[; ;main.c: 1221:         LATDbits.LATD1 = 1;
 [e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
-"1260
-[; ;main.c: 1260:     } else if (VOLTAGE >= 0x03C0)
+"1223
+[; ;main.c: 1223:     } else if (VOLTAGE >= 0x03C0)
 }
-[e $U 850  ]
-[e :U 849 ]
-[e $ ! >= _VOLTAGE -> -> 960 `i `ui 851  ]
-"1261
-[; ;main.c: 1261:     {
+[e $U 857  ]
+[e :U 856 ]
+[e $ ! >= _VOLTAGE -> -> 960 `i `ui 858  ]
+"1224
+[; ;main.c: 1224:     {
 {
-"1262
-[; ;main.c: 1262:         LATDbits.LATD1 = 0;
+"1225
+[; ;main.c: 1225:         LATDbits.LATD1 = 0;
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
-"1263
-[; ;main.c: 1263:     }
+"1226
+[; ;main.c: 1226:     }
 }
-[e :U 851 ]
-[e :U 850 ]
-"1265
-[; ;main.c: 1265: }
-[e :UE 848 ]
+[e :U 858 ]
+[e :U 857 ]
+"1228
+[; ;main.c: 1228: }
+[e :UE 855 ]
 }
