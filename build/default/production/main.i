@@ -7,7 +7,7 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 16 "main.c"
+# 19 "main.c"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -9252,10 +9252,10 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\\pic\\include\\xc.h" 2 3
-# 16 "main.c" 2
+# 19 "main.c" 2
 
 # 1 "./IO.h" 1
-# 17 "main.c" 2
+# 20 "main.c" 2
 
 # 1 "./DRV8872.h" 1
 # 16 "./DRV8872.h"
@@ -9270,7 +9270,7 @@ unsigned char __t3rd16on(void);
 
     void Clr_RG3_PWM(void);
     void Clr_RG4_PWM(void);
-# 18 "main.c" 2
+# 21 "main.c" 2
 
 # 1 "./main.h" 1
 # 16 "./main.h"
@@ -9336,17 +9336,17 @@ unsigned char __t3rd16on(void);
     void flushOut(void);
     void readWeighingData(void);
     void Homing_Again_Auto(void);
-# 19 "main.c" 2
+# 22 "main.c" 2
 
 # 1 "./Led_Display.h" 1
-# 20 "main.c" 2
+# 23 "main.c" 2
 
 # 1 "./i2c.h" 1
-# 21 "main.c" 2
+# 24 "main.c" 2
 
 # 1 "./pic18f65j50.h" 1
-# 22 "main.c" 2
-# 66 "main.c"
+# 25 "main.c" 2
+# 69 "main.c"
 enum Op_Mode {
     MANUAL_MODE, IDLE_MODE, AUTO_MODE
 };
@@ -9428,17 +9428,10 @@ void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
 
-
-uint16_t pwm_count = 0;
-uint16_t pwm_mode = 0;
-
 int dispense = 0;
 int temp = 0;
-
-void pwm_set(uint16_t duty){
-    CCP2CONbits.DC2B = (uint8_t)(duty & 0x0003);
-    CCPR2L = (uint8_t)(duty >> 2);
-}
+int holdTimeRight = 0;
+int holdTimeLeft = 0;
 
 
 
@@ -9451,7 +9444,7 @@ void main(void) {
     i2c_Init();
     initUSART();
     InitTimer1();
-# 211 "main.c"
+
     LATCbits.LATC1 = 0;
     LATAbits.LATA2 = 0;
     errorcounter = 30;
@@ -9469,14 +9462,14 @@ void main(void) {
 
 
 
-
+    WDTCONbits.SWDTEN = 0;
     LATDbits.LATD0 = 1;
     LATDbits.LATD1 = 1;
 
     WriteSTLED316SData(36, 0xFF);
     _delay((unsigned long)((500)*(8000000/4000.0)));
     AD_capture_BattVoltage();
-# 243 "main.c"
+# 199 "main.c"
     INTCONbits.GIE = 0;
     ETemp = read_i2c(0x0010);
     INTCONbits.GIE = 1;
@@ -9640,7 +9633,6 @@ void main(void) {
 
 
     while (1) {
-# 419 "main.c"
         __asm(" clrwdt");
         errorcounter = 30;
         AD_capture_BattVoltage();
@@ -9664,46 +9656,58 @@ void main(void) {
                     } while (PORTBbits.RB4 == 0);
                 }
                 if ((PORTBbits.RB3 == 0) && NUM != 99) {
-                    NUM = NUM + 1;
+                    if(PORTBbits.RB3 == 0){
 
-                    WriteSTLED316SData(NUM, vibration_mode);
-                    _delay((unsigned long)((250)*(8000000/4000.0)));
-                    while (PORTBbits.RB3 == 0){
-                      _delay((unsigned long)((1000)*(8000000/4000.0)));
-
-
-
-                      if(PORTBbits.RB3 == 0 && NUM <= 89)
+                      if (holdTimeRight >= 1000 && NUM <= 89)
                       {
+                        _delay((unsigned long)((500)*(8000000/4000.0)));
                         NUM = NUM + 10;
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
+                      else if (holdTimeRight < 1000)
+                      {
+                        NUM = NUM + 1;
+                        WriteSTLED316SData(NUM, vibration_mode);
 
+                        _delay((unsigned long)((150)*(8000000/4000.0)));
+                        holdTimeRight = 0;
+                      }
 
 
                       if(PORTBbits.RB3 == 0 && PORTAbits.RA5 == 0)
                       {
                           NUM = 0;
                           WriteSTLED316SData(NUM, vibration_mode);
+
                       }
-                    };
+                      while(PORTBbits.RB3 == 0 && holdTimeRight < 1000)
+                      {
+                        _delay((unsigned long)((10)*(8000000/4000.0)));
+                        holdTimeRight += 10;
+                      }
+                    }
+                }
+                else {
+                  holdTimeRight = 0;
                 }
 
                 if (PORTAbits.RA5 == 0 && NUM != 0) {
-                    NUM = NUM - 1;
+                    if(PORTAbits.RA5 == 0){
 
-                    WriteSTLED316SData(NUM, vibration_mode);
-                    _delay((unsigned long)((250)*(8000000/4000.0)));
-                    while (PORTAbits.RA5 == 0){
-                      _delay((unsigned long)((1000)*(8000000/4000.0)));
-
-
-
-                      if(PORTAbits.RA5 == 0 && NUM >= 10){
+                      if (holdTimeLeft >= 1000 && NUM >= 10)
+                      {
+                        _delay((unsigned long)((500)*(8000000/4000.0)));
                         NUM = NUM - 10;
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
+                      else if (holdTimeLeft < 1000)
+                      {
+                        NUM = NUM - 1;
+                        WriteSTLED316SData(NUM, vibration_mode);
 
+                        _delay((unsigned long)((150)*(8000000/4000.0)));
+                        holdTimeLeft = 0;
+                      }
 
 
                       if(PORTAbits.RA5 == 0 && PORTBbits.RB3 == 0)
@@ -9711,7 +9715,15 @@ void main(void) {
                           NUM = 0;
                           WriteSTLED316SData(NUM, vibration_mode);
                       }
-                    };
+                      while(PORTAbits.RA5 == 0 && holdTimeLeft < 1000)
+                      {
+                        _delay((unsigned long)((10)*(8000000/4000.0)));
+                        holdTimeLeft += 10;
+                      }
+                    }
+                }
+                else {
+                  holdTimeLeft = 0;
                 }
 
                 if (PORTAbits.RA4 == 0 && NUM <= 89) {
@@ -9876,7 +9888,7 @@ void main(void) {
                                 Busy = 0;
                             }
                             break;
-# 685 "main.c"
+# 648 "main.c"
                         case 0x65:
 
                             if (Busy == 0) {
