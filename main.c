@@ -7,9 +7,16 @@
  *               ii. remove old timer and change to use XC8 timer
  * Created: 2022-12-08, 4:00PM
  * Author: erdiongson
- * Version 3.6 : i. Adding PWM Control for the Vibration Motor
- *               ii. User enabled control for PWM Duty Cycle
- *                   Controls with 25%, 50%, 75% and 100% Duty Cycle
+ * Version 3.6 : i. Increments and Decrements by 10 when the ?UP? or ?DOWN? 
+ *                  Button is pressed - 12/12
+ *               ii. Pause for continuous (00) and limited (01-99) dispense - 12/19
+ *               iii. Dispense count user reset to zero (00) - 12/20
+ * Created: 2022-16-02, 10:46AM
+ * Version 3.61 : i. [BUG FIX] De-bounce adjustment for UP and DOWN buttons
+ *                ii. Added haltTimeRight and haltTimeLeft for timing of increment
+ *                    or decrement of 10
+ * Created:
+ * Version 3.7 : i. [CODE UPDATE] Added PWM Control for Vibration Motor
  */
 
 
@@ -46,11 +53,13 @@
 /******************************************************************************
 * Vibration Motor Duration Selection
 ******************************************************************************/
-#define one_sec     0x81
-#define two_sec     0x82
-#define three_sec   0x83
-#define four_sec    0x84
-#define five_sec    0x85
+#define one_sec      0x81
+#define two_sec      0x82
+#define three_sec    0x83
+#define four_sec     0x84
+#define five_sec     0x85
+#define dot_eight    0x86 //20230323 - erdiongson: 0.8 Seconds
+#define one_dot_five 0x87 //20230323 - erdiongson: 1.5 Seconds
 
 /******************************************************************************
 * PWM Duty Cycle Selection
@@ -93,7 +102,7 @@ unsigned int Motor_Stop_Delay_Time = 0;
 unsigned int Device_ID;
 unsigned int Motor_Pause_Time = 0;
 unsigned int NUM;
-unsigned int i_RUN_ZERO = 0; //0: Limited; 1: Unlimited; 2: Reset/Stop
+unsigned int i_RUN_ZERO = 0; //0: Limited; 1: Continuous Dispense; 2: Pause/Stop
 unsigned int NUM_REC;
 unsigned int i = 0;
 unsigned int IR_SENSORF = 0;
@@ -152,6 +161,7 @@ void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
 unsigned int PWM_Selection (unsigned int msg);
+void Test_LED (void);
 
 //
 unsigned int duty_cycle = 0;
@@ -159,6 +169,10 @@ uint16_t pwm_count = 0;
 uint16_t pwm_mode = 0;
 //20221214 - (erdiongson) Interrupt Declaration for toggle on and off
 int dispense = 0;
+int temp = 0;
+int holdTimeRight = 0; //Hold time for Increment
+int holdTimeLeft = 0; //Hold time for Decrement
+int test_redled = 0; //use only for testing RED LED IO
 
 void pwm_set(uint16_t duty){
     CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
@@ -234,7 +248,7 @@ void main(void) {
     //PIE1bits.RCIE=1;
 
     //RCSTA1bits.CREN = 1; // Continuos receiver
-
+    WDTCONbits.SWDTEN = OFF; // turn ON watchdog timer
     GREEN_LED = 1;
     AMBER_LED = 1;
 
@@ -352,10 +366,11 @@ void main(void) {
      **************************************************************************/
     INTCONbits.GIE = 0;
     ETemp = read_i2c(EEPROM_VibTime);
-    INTCONbits.GIE = 1
-            ;
+    INTCONbits.GIE = 1;
     vib_Time = ETemp & 0x00FF;
-    if ((vib_Time != one_sec && vib_Time != two_sec && vib_Time != three_sec && vib_Time != four_sec && vib_Time != five_sec)) {
+    //vib_Time = two_sec;
+    if ((vib_Time != one_sec && vib_Time != two_sec && vib_Time != three_sec && vib_Time != four_sec && vib_Time != five_sec
+            && vib_Time != dot_eight && vib_Time != one_dot_five)) {
         Vmotor_Time = 2000; // default is 2 sec
         vib_Time = two_sec;
 
@@ -380,6 +395,12 @@ void main(void) {
                 break;
             case 0x85:
                 Vmotor_Time = 5000;
+                break;
+            case 0x86:
+                Vmotor_Time = 800;
+                break;
+            case 0x87:
+                Vmotor_Time = 1500;
                 break;
         }
     }
@@ -413,6 +434,7 @@ void main(void) {
      **************************************************************************/    
     INTCONbits.GIE=0; 
     ETemp = read_i2c(EEPROM_PWMDutyCycle);
+    //ETemp = fifty_percent;
     INTCONbits.GIE=1;
     
     dutyCycle_reg = ETemp & 0xFF;
@@ -430,10 +452,10 @@ void main(void) {
           duty_cycle = 0;
           break;
         case twentyfive_percent:
-          duty_cycle = 9;
+          duty_cycle = 7;
           break;       
         case fifty_percent:
-          duty_cycle = 14;
+          duty_cycle = 10;
           break;
         case hundred_percent:
           duty_cycle = 20;
@@ -475,14 +497,14 @@ void main(void) {
 
                 NUM = NUM_REC;
                 if (CENTER == 0) {
-                  duty_cycle = PWM_Selection(dutyCycle_reg);
-                  dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
-                  ToggleVIB_Mode();
-                      
-                  WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
-                  __delay_ms(100);
-                  while (CENTER == 0);
-                    
+                    if (CENTER == 0){
+                      duty_cycle = PWM_Selection(dutyCycle_reg);
+                      dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                      ToggleVIB_Mode();
+                      WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
+                      __delay_ms(500);
+                    }
+                                          
                     //duty_cycle = PWM_Selection(dutyCycle_reg);
                     //dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
                     //duty_cycle += 5;
@@ -505,47 +527,77 @@ void main(void) {
                 //PORTCbits.RC1 = CCP2CONbits.CCP2X;
                 
                 if ((RIGHT == 0) && NUM != 99) {
-                    NUM = NUM + 1;
-                    //20221212 - (erdiongson) added increase in 10 digits when button is pressed longer
-                    WriteSTLED316SData(NUM, vibration_mode);
-                    __delay_ms(250);
-                    while (RIGHT == 0){
-                      __delay_ms(1000);
-                      //Making sure that the Button is still pressed after a second
-                      if(RIGHT == 0 && NUM <= 89)
+                    if(RIGHT == 0){
+                      //20221212: erdiongson - added increase in 10 digits when button is pressed longer
+                      if (holdTimeRight >= 1000 && NUM <= 89)
                       {
+                        __delay_ms(500); //decrease this delay if you want to increment 10 faster
                         NUM = NUM + 10; 
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
+                      else if (holdTimeRight < 1000)
+                      {
+                        NUM = NUM + 1;
+                        WriteSTLED316SData(NUM, vibration_mode);
+                        //20230210: erdiongson - adjust this delay for debounce of UP button
+                        __delay_ms(150);
+                        holdTimeRight = 0;
+                      }
+                      //20221220: erdiongson - pressing both UP and DOWN button resets
+                      //                       the number to zero '00'
                       if(RIGHT == 0 && LEFT == 0)
                       {
                           NUM = 0;
                           WriteSTLED316SData(NUM, vibration_mode);
+                          //holdTime = 500;
+                      }                      
+                      while(RIGHT == 0 && holdTimeRight < 1000)
+                      {
+                        __delay_ms(10);
+                        holdTimeRight += 10;
                       }
-                    };
+                    }
+                }
+                else {
+                  holdTimeRight = 0;
                 }
 
                 if (LEFT == 0 && NUM != 0) {
-                    NUM = NUM - 1;
-                    //20221212 - (erdiongson) added decrease in 10 digits when button is pressed longer
-                    WriteSTLED316SData(NUM, vibration_mode);
-                    __delay_ms(250);
-                    while (LEFT == 0){
-                      __delay_ms(1000);
-                      //Making sure that the Button is still pressed after a second
-                      if(LEFT == 0 && NUM >= 10){
-                        NUM = NUM - 10;
+                    if(LEFT == 0){
+                      //20221212 - (erdiongson) added decrease in 10 digits when button is pressed longer
+                      if (holdTimeLeft >= 1000 && NUM >= 10)
+                      {
+                        __delay_ms(500); //decrease this delay if you want to decrement 10 faster
+                        NUM = NUM - 10; 
                         WriteSTLED316SData(NUM, vibration_mode);
                       }
+                      else if (holdTimeLeft < 1000)
+                      {
+                        NUM = NUM - 1;
+                        WriteSTLED316SData(NUM, vibration_mode);
+                        //20230210: erdiongson - adjust this delay for debounce of DOWN button
+                        __delay_ms(150);
+                        holdTimeLeft = 0;
+                      }
+                      //20221220: erdiongson - pressing both UP and DOWN button resets
+                      //                       the number to zero '00'
                       if(LEFT == 0 && RIGHT == 0)
                       {
                           NUM = 0;
                           WriteSTLED316SData(NUM, vibration_mode);
+                      }                      
+                      while(LEFT == 0 && holdTimeLeft < 1000)
+                      {
+                        __delay_ms(10);
+                        holdTimeLeft += 10;
                       }
-                    };
+                    }                    
+                }
+                else {
+                  holdTimeLeft = 0;
                 }
 
-                if (DOWN == 0 && NUM <= 89) {
+                /*if (DOWN == 0 && NUM <= 89) {
                     NUM = NUM + 10;
                     while (DOWN == 0);
                 }
@@ -553,7 +605,7 @@ void main(void) {
                 if (UP == 0 && NUM >= 10) {
                     NUM = NUM - 10;
                     while (UP == 0);
-                }
+                }*/
 
                 NUM_REC = NUM;
                 WriteSTLED316SData(NUM, vibration_mode);
@@ -900,7 +952,8 @@ void __interrupt() high_isr(void) {
         TMR1IF_triggered = true;
     }
     
-    //Turn on and off of Dispensing
+    //20221219: erdiongson - to use the dispense button as both pause and start,
+    //                       we turn it as an interrupt toggle
     if(INTCON3bits.INT2F == 1) {
       //If the motor is currently off
       if (dispense == 0 && CENTER != 0)
@@ -1105,6 +1158,8 @@ void Homing_Again_Manual(void) {
         }  */      
         
         //while (!MOTOR_ON_BUT && NUM == 0) {
+        //20221219: erdiongson - checking if the dispense button is pressed at any
+        //                       point on the process
         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {    
             i_RUN_ZERO = 2;
             WriteSTLED316SData(NUM, !vibration_mode);
@@ -1118,6 +1173,7 @@ void Homing_Again_Manual(void) {
             }*/
         }
         WriteSTLED316SData(NUM, vibration_mode);
+        //remembers the last NUM value for Pause process        
         if(dispense == 0 && NUM != 0)
         {
             NUM_REC = NUM;
@@ -1142,7 +1198,7 @@ void Homing_Again_Manual(void) {
     }
     i_RUN_ZERO = 0;
     NUM = 0;
-    //NUM = NUMInit;
+    //resets the dispense variable for START/PASUSE/STOP command button
     dispense = 0;
     OpMode = MANUAL_MODE;
 
@@ -1332,13 +1388,13 @@ unsigned int PWM_Selection (unsigned int msg){
     int dcSelected;
     switch(msg){
         case zero_percent:
-            dcSelected = 9; //The duty cycle can be selected from 0-20
+            dcSelected = 7; //The duty cycle can be selected from 0-20
             INTCONbits.GIE = 0;
             write_i2c(EEPROM_PWMDutyCycle, twentyfive_percent);
             INTCONbits.GIE = 1;
             break;
         case twentyfive_percent:
-            dcSelected = 14;
+            dcSelected = 10;
             INTCONbits.GIE = 0;
             write_i2c(EEPROM_PWMDutyCycle, fifty_percent);
             INTCONbits.GIE = 1;
@@ -1359,4 +1415,22 @@ unsigned int PWM_Selection (unsigned int msg){
             break;
     }
     return(dcSelected);
+}
+
+/****************************************************************************
+Function:		I/0 Test Function using AMBER LED (RED LED)
+                -  Use this function if you want some testing with RED LED IO
+ ******************************************************************************/
+void Test_LED (void){
+    if (test_redled == 0)
+    {
+        AMBER_LED = 1;
+        test_redled = 1;
+
+    }
+    else
+    {
+        AMBER_LED = 0;
+        test_redled = 0;
+    }
 }

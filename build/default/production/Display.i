@@ -9564,7 +9564,7 @@ void WriteSTLED316SMode(char msg) {
     LATCbits.LATC4 = 1;
 }
 
-void WriteSTLED316SVibMode(char v_mode) {
+void WriteSTLED316SVibMode(unsigned int dc_reg, char v_mode) {
 
     LATCbits.LATC4 = 0;
 
@@ -9581,12 +9581,21 @@ void WriteSTLED316SVibMode(char v_mode) {
 
 
 
-    if (v_mode == 1) {
-        STLED316s_SPI_SendData(0x00);
-        STLED316s_SPI_SendData(0xBE);
-    } else {
-        STLED316s_SPI_SendData(0x00);
+    if (v_mode == 1 && dc_reg == 0x01) {
         STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0x86);
+    }
+    else if(v_mode == 1 && dc_reg == 0x02){
+        STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0xDB);
+    }
+    else if(v_mode == 1 && dc_reg == 0x03){
+        STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0xCF);
+    }
+    else if (v_mode == 0 && dc_reg == 0x00){
+        STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0xBF);
     }
 
     LATCbits.LATC4 = 1;

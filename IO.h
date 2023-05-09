@@ -17,8 +17,8 @@ extern "C" {
     //#define 		 	PORTAbits.RA0		//AN0 - Battery supply 
 #define IR_Status 		PORTAbits.RA1		//AN1 - IR sensor 
 #define IR_ON	 		LATAbits.LATA2
-#define UP		     	PORTAbits.RA3
-#define DOWN			PORTAbits.RA4
+//#define UP		     	PORTAbits.RA3
+//#define DOWN			PORTAbits.RA4
 #define LEFT			PORTAbits.RA5
     //#define 			PORTAbits.RA6		//OSC1
     //#define 			PORTAbits.RA7		//OSC2

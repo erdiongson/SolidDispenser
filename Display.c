@@ -270,7 +270,7 @@ void WriteSTLED316SVibMode(unsigned int dc_reg, char v_mode) {
         STLED316s_SPI_SendData(Seg_U); //0
         STLED316s_SPI_SendData(Seg_3dot); //0
     }
-    else {
+    else if (v_mode == 0 && dc_reg == 0x00){
         STLED316s_SPI_SendData(Seg_U); //0
         STLED316s_SPI_SendData(Seg_0dot); //0
     }
