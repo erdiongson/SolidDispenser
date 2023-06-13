@@ -24,6 +24,12 @@
  *               iii. [CODE UPDATE] Enhancement on viewing what is the current 
  *                  mode of the SDB by pressing once and changing the mode by 
  *                  holding the press. [10-May 2023]
+ * Created: 2023-06-05
+ * Author: erdiongson, 4:17PM
+ * Version 3.71 : i. [CODE UPDATE] Enhancement to IR sensor to identify the small
+ *                  black marker when using small heads.
+ *               ii. [CODE UPDATE] Enhancement on the debounce when using the 
+ *                 foot switch.
  */
 
 
@@ -968,6 +974,9 @@ void __interrupt() high_isr(void) {
     //20221219: erdiongson - to use the dispense button as both pause and start,
     //                       we turn it as an interrupt toggle
     if(INTCON3bits.INT2F == 1) {
+      //20230605: erdiongson - this delay helps you control the debounce of pedal
+      //                       switch. Adjust if necessary.
+      __delay_ms(500);        
       //If the motor is currently off
       if (dispense == 0 && CENTER != 0)
       {
@@ -1106,7 +1115,8 @@ void Homing_Again_Manual(void) {
         AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
         MotorON(); // Turn ON motor
-        __delay_ms(350); //default 350
+        //default delay 350 ms
+        __delay_ms(150); //20230605: ediongson - changed to 150 for small head
         errorcounter = errorTime0;
         //Dispense motor stops at IR Sensor Detection
         //IR sensor aligned with the marker
@@ -1243,7 +1253,8 @@ void Homing_Again_Auto(void) {
         AD_capture_BattVoltage();
         delay_1ms(Motor_Pause_Time);
         MotorON(); // Turn ON motor
-        __delay_ms(350); //default350
+        //default delay 350 ms
+        __delay_ms(150); //20230605: ediongson - changed to 150 for small head
 
         errorcounter = errorTime0;
 
