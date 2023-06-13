@@ -113,6 +113,7 @@
 #define Seg_1dot	0x86	//0b1000 0110
 #define Seg_2dot	0xDB	//0b1101 1011
 #define Seg_3dot 	0xCF	//0b1100 1111
+#define Seg_4dot 	0xE6	//0b1110 0110
 
 #define Seg_C	0x39	//0b0011 1001
 #define Seg_P	0x73	//0b0111 0011
