@@ -48,6 +48,7 @@ extern "C" {
 #define EEPROM_VibTime              0x0040
 #define EEPROM_MotorStopPosition    0x0050
 #define EEPROM_MotorPauseTime       0x0060
+#define EEPROM_PWMDutyCycle         0x0070
 
 #define Busy1USART( )  (!TXSTA1bits.TRMT)
 #define DataRdy1USART( ) (PIR1bits.RC1IF)
