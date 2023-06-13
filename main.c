@@ -11,11 +11,6 @@
  *                  Button is pressed - 12/12
  *               ii. Pause for continuous (00) and limited (01-99) dispense - 12/19
  *               iii. Dispense count user reset to zero (00) - 12/20
-<<<<<<< HEAD
- * Version 3.61 : i. [BUG FIX] De-bounce adjustment for UP and DOWN buttons
- *                ii. Added haltTimeRight and haltTimeLeft for timing of increment
- *                    or decrement of 10
-=======
  * Created: 2022-02-16, 10:46AM
  * Author: erdiongson
  * Version 3.61 : i. [BUG FIX] De-bounce adjustment for UP and DOWN buttons
@@ -35,7 +30,6 @@
  *                  black marker when using small heads.
  *               ii. [CODE UPDATE] Enhancement on the debounce when using the 
  *                 foot switch.
->>>>>>> Version_3.71
  */
 
 
@@ -50,11 +44,7 @@
 /******************************************************************************
 * Please change this version every time the code is updated.
 ******************************************************************************/
-<<<<<<< HEAD
-#define VERSION     36 //Bug-fix v3.61: Debounce for UP and DOWN buttons
-=======
 #define VERSION     37
->>>>>>> Version_3.71
 
 /******************************************************************************
 * Watch dog timer enable
@@ -196,8 +186,6 @@ int dispense = 0;
 int temp = 0;
 int holdTimeRight = 0; //Hold time for Increment
 int holdTimeLeft = 0; //Hold time for Decrement
-<<<<<<< HEAD
-=======
 int holdTimeMode = 0; //Hold time for Mode (Center Button)
 int test_redled = 0; //use only for testing RED LED IO
 
@@ -205,7 +193,6 @@ void pwm_set(uint16_t duty){
     CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
     CCPR1L = (uint8_t)(duty >> 2);
 }
->>>>>>> Version_3.71
 
 /****************************************************************************
 Function:		Main Loop
