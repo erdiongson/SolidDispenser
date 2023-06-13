@@ -11,12 +11,19 @@
  *                  Button is pressed - 12/12
  *               ii. Pause for continuous (00) and limited (01-99) dispense - 12/19
  *               iii. Dispense count user reset to zero (00) - 12/20
- * Created: 2022-16-02, 10:46AM
+ * Created: 2022-02-16, 10:46AM
+ * Author: erdiongson
  * Version 3.61 : i. [BUG FIX] De-bounce adjustment for UP and DOWN buttons
  *                ii. Added haltTimeRight and haltTimeLeft for timing of increment
  *                    or decrement of 10
- * Created:
+ * Created: 2023-05-05
+ * Author: erdiongson, 3:00PM
  * Version 3.7 : i. [CODE UPDATE] Added PWM Control for Vibration Motor
+ *               ii. [CODE UPDATE] Mode Button Features: additional duty cycle 
+ *                  mode V0 to V4 and saved in EEPROM. [10-May 2023]
+ *               iii. [CODE UPDATE] Enhancement on viewing what is the current 
+ *                  mode of the SDB by pressing once and changing the mode by 
+ *                  holding the press. [10-May 2023]
  */
 
 
@@ -67,7 +74,8 @@
 #define zero_percent       0x00
 #define twentyfive_percent 0x01
 #define fifty_percent      0x02
-#define hundred_percent    0x03
+#define seventyfive_percent 0x03
+#define hundred_percent    0x04
 /******************************************************************************
 * Write USART Data
 ******************************************************************************/
@@ -172,6 +180,7 @@ int dispense = 0;
 int temp = 0;
 int holdTimeRight = 0; //Hold time for Increment
 int holdTimeLeft = 0; //Hold time for Decrement
+int holdTimeMode = 0; //Hold time for Mode (Center Button)
 int test_redled = 0; //use only for testing RED LED IO
 
 void pwm_set(uint16_t duty){
@@ -439,7 +448,7 @@ void main(void) {
     
     dutyCycle_reg = ETemp & 0xFF;
     
-    if(dutyCycle_reg != zero_percent && dutyCycle_reg != twentyfive_percent && dutyCycle_reg != fifty_percent && dutyCycle_reg != hundred_percent)
+    if(dutyCycle_reg != zero_percent && dutyCycle_reg != twentyfive_percent && dutyCycle_reg != fifty_percent && dutyCycle_reg != seventyfive_percent && dutyCycle_reg != hundred_percent)
     {
         dutyCycle_reg = zero_percent;
         INTCONbits.GIE=0;
@@ -455,14 +464,18 @@ void main(void) {
           duty_cycle = 7;
           break;       
         case fifty_percent:
-          duty_cycle = 10;
+          //duty_cycle = 10;
+          duty_cycle = 9;
+          break;
+        case seventyfive_percent:
+          duty_cycle = 12;
           break;
         case hundred_percent:
           duty_cycle = 20;
           break;
         default:
           duty_cycle = 0;
-          break;          
+          break;       
         }   
     }
                    
@@ -497,34 +510,34 @@ void main(void) {
 
                 NUM = NUM_REC;
                 if (CENTER == 0) {
-                    if (CENTER == 0){
-                      duty_cycle = PWM_Selection(dutyCycle_reg);
-                      dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
-                      ToggleVIB_Mode();
+                    do{
                       WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
-                      __delay_ms(500);
-                    }
-                                          
-                    //duty_cycle = PWM_Selection(dutyCycle_reg);
-                    //dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
-                    //duty_cycle += 5;
-                    /*pwm_set(pwm_count); //change the pwm_count to any duty cycle you want
-                                        
-                    if(pwm_count >= 0x50){
-                      pwm_count = 0;
-                    }*/
-                    /*
-                    duty_cycle += 25;
-                    if(duty_cycle > 100)
-                    {
-                       duty_cycle = 25;
-                    }
-                    //Set the PWM duty cycle by writing to the CCP1CON and CCPR1L registers
-                    CCP2CONbits.DC2B = (duty_cycle & 0x03);
-                    CCPR2L = (duty_cycle >> 2);*/
+                      //20221212: erdiongson - added increase in 10 digits when button is pressed longer
+                      if (holdTimeMode >= 2000)
+                      {
+                        duty_cycle = PWM_Selection(dutyCycle_reg);
+                        dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                        ToggleVIB_Mode();
+                        WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
+                        __delay_ms(500);
+                      }
+                      else if (holdTimeMode < 2000)
+                      {
+                        WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
+                        __delay_ms(150);
+                        holdTimeMode = 0;                        
+                      }
+                      while(holdTimeMode < 2000)
+                      {
+                        WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
+                        __delay_ms(10);
+                        holdTimeMode += 10;
+                      }
+                    } while (CENTER == 0);
                 }
-                // Output the PWM signal to the digital output pin VIBRATION_MODE for testing
-                //PORTCbits.RC1 = CCP2CONbits.CCP2X;
+                else {
+                  holdTimeMode = 0;
+                }
                 
                 if ((RIGHT == 0) && NUM != 99) {
                     if(RIGHT == 0){
@@ -1383,6 +1396,7 @@ void Low_Power_Indicator(void) {
 }
 /****************************************************************************
 Function:		Selecting the PWM duty cycle
+Special request: June 5, 2023 - for one customer (0,7,9,10,20)
  ******************************************************************************/
 unsigned int PWM_Selection (unsigned int msg){
     int dcSelected;
@@ -1394,17 +1408,23 @@ unsigned int PWM_Selection (unsigned int msg){
             INTCONbits.GIE = 1;
             break;
         case twentyfive_percent:
-            dcSelected = 10;
+            dcSelected = 9;
             INTCONbits.GIE = 0;
             write_i2c(EEPROM_PWMDutyCycle, fifty_percent);
             INTCONbits.GIE = 1;
             break;            
         case fifty_percent:
+            dcSelected = 12;
+            INTCONbits.GIE = 0;
+            write_i2c(EEPROM_PWMDutyCycle, seventyfive_percent);
+            INTCONbits.GIE = 1;            
+            break;
+        case seventyfive_percent:
             dcSelected = 20;
             INTCONbits.GIE = 0;
             write_i2c(EEPROM_PWMDutyCycle, hundred_percent);
             INTCONbits.GIE = 1;            
-            break;
+            break;            
         case hundred_percent:
             dcSelected = 0;            
             INTCONbits.GIE = 0;
