@@ -9265,7 +9265,7 @@ unsigned char __t3rd16on(void);
 # 10 "MotorDriver.c" 2
 
 # 1 "./main.h" 1
-# 16 "./main.h"
+# 21 "./main.h"
 #pragma config WDTEN = OFF
 #pragma config PLLDIV = 1
 #pragma config STVREN = ON
@@ -9289,8 +9289,15 @@ unsigned char __t3rd16on(void);
 
 #pragma config CCP2MX = DEFAULT
 #pragma config MSSPMSK = MSK5
-# 56 "./main.h"
- extern unsigned char PWM_reg;
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdbool.h" 1 3
+# 48 "./main.h" 2
+# 67 "./main.h"
+    extern unsigned char PWM_reg;
 
     void init(void);
     void initMotor(void);
@@ -9328,6 +9335,20 @@ unsigned char __t3rd16on(void);
     void flushOut(void);
     void readWeighingData(void);
     void Homing_Again_Auto(void);
+
+    void Write2USART(char data);
+    char Read2USART(void);
+
+
+    unsigned int duty_cycle = 0;
+    volatile unsigned char PWM_Duty_Cycle;
+    void vibrationMotorControl(_Bool powerState, unsigned int pwm_msg);
+
+    void PWM1_Init(long desiredFrequency);
+    void PWM1_SetDutyCycle(unsigned int dutyCycle);
+
+    void PWM1_Start();
+    void PWM1_Stop();
 # 11 "MotorDriver.c" 2
 
 

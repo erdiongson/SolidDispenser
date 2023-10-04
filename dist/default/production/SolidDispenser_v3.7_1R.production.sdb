@@ -1,0 +1,1651 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F65J50 ]
+[d frameptr 4065 ]
+"125 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[e E6019 Op_Mode `uc
+MANUAL_MODE 0
+IDLE_MODE 1
+AUTO_MODE 2
+]
+"364 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\usart.c
+[e E5927 . `uc
+Handshake 6
+Vibrate_Mode_ON 193
+Vibrate_Mode_OFF 194
+SDB_Dispense_START 195
+SDB_Dispense_PAUSE 196
+SDB_Dispense_STOP 197
+IR_Censor_Failure 225
+Marker_Not_Detected 226
+]
+"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aodiv.c
+[v ___aodiv __aodiv `(o  1 e 8 0 ]
+"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aomod.c
+[v ___aomod __aomod `(o  1 e 8 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"133 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _pad pad `(v  1 s 1 pad ]
+"443
+[v _dtoa dtoa `(v  1 s 1 dtoa ]
+"934
+[v _xtoa xtoa `(v  1 s 1 xtoa ]
+"1007
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+"1520
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"43 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
+[v _isdigit isdigit `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
+[v _isspace isspace `(i  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\printf.c
+[v _printf printf `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+"14 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\Display.c
+[v _InitSTLED316 InitSTLED316 `(v  1 e 1 0 ]
+"88
+[v _STLED316s_SPI_SendData STLED316s_SPI_SendData `(v  1 e 1 0 ]
+"104
+[v _Get7Seg Get7Seg `(uc  1 e 1 0 ]
+"145
+[v _WriteSTLED316SData WriteSTLED316SData `(v  1 e 1 0 ]
+"184
+[v _WriteSTLED316SMode WriteSTLED316SMode `(v  1 e 1 0 ]
+"287
+[v _WriteSTLED316SErr WriteSTLED316SErr `(v  1 e 1 0 ]
+"25 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\i2c.c
+[v _i2c_Init i2c_Init `(v  1 e 1 0 ]
+"43
+[v _i2c_Wait i2c_Wait `(v  1 e 1 0 ]
+"49
+[v _i2c_Start i2c_Start `(v  1 e 1 0 ]
+"56
+[v _i2c_Restart i2c_Restart `(v  1 e 1 0 ]
+"63
+[v _i2c_Stop i2c_Stop `(v  1 e 1 0 ]
+"70
+[v _i2c_Write i2c_Write `(v  1 e 1 0 ]
+"78
+[v _i2c_Address i2c_Address `(v  1 e 1 0 ]
+"89
+[v _i2c_Read i2c_Read `(i  1 e 2 0 ]
+"109
+[v _write_i2c write_i2c `(v  1 e 1 0 ]
+"120
+[v _read_i2c read_i2c `(i  1 e 2 0 ]
+"18 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\IO.c
+[v _init init `(v  1 e 1 0 ]
+"195 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _pwm_set pwm_set `(v  1 e 1 0 ]
+"203
+[v _main main `(v  1 e 1 0 ]
+"500
+[v _high_isr high_isr `IIH(v  1 e 1 0 ]
+"681
+[v _delay_1ms delay_1ms `(v  1 e 1 0 ]
+"691
+[v _Read_IR Read_IR `(ui  1 e 2 0 ]
+"706
+[v _MotorPosition_Init MotorPosition_Init `(v  1 e 1 0 ]
+"1003
+[v _flushOut flushOut `(v  1 e 1 0 ]
+"1014
+[v _readWeighingData readWeighingData `(v  1 e 1 0 ]
+"1032
+[v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
+"1046
+[v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
+"1064
+[v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
+"1081
+[v _PWM_Selection PWM_Selection `(ui  1 e 2 0 ]
+"1124
+[v _vibrationMotorControl vibrationMotorControl `(v  1 e 1 0 ]
+"1139
+[v _PWM1_Init PWM1_Init `(v  1 e 1 0 ]
+"1145
+[v _PWM1_SetDutyCycle PWM1_SetDutyCycle `(v  1 e 1 0 ]
+"21 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\MotorDriver.c
+[v _initMotor initMotor `(v  1 e 1 0 ]
+"28
+[v _Set_RG3 Set_RG3 `(v  1 e 1 0 ]
+"35
+[v _Clr_RG3 Clr_RG3 `(v  1 e 1 0 ]
+"40
+[v _MotorON MotorON `(v  1 e 1 0 ]
+"47
+[v _MotorBREAK MotorBREAK `(v  1 e 1 0 ]
+"34 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\usart.c
+[v _initUSART initUSART `(v  1 e 1 0 ]
+"85
+[v _Write1USART Write1USART `(v  1 e 1 0 ]
+"143
+[v _uart_print uart_print `(v  1 e 1 0 ]
+"158
+[v _uart_print_hex uart_print_hex `(v  1 e 1 0 ]
+"193
+[v _sendData sendData `(v  1 e 1 0 ]
+"212
+[v _receiveData receiveData `(uc  1 e 1 0 ]
+"224
+[v _sendResponse sendResponse `(v  1 e 1 0 ]
+"236
+[v _delay2_1ms delay2_1ms `(v  1 e 1 0 ]
+"243
+[v _handle_uart_communication handle_uart_communication `(v  1 e 1 0 ]
+"371
+[v _uart_config uart_config `(v  1 e 1 0 ]
+"444
+[v _uart_send uart_send `(v  1 e 1 0 ]
+"459
+[v _uart_receive uart_receive `(uc  1 e 1 0 ]
+"111 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R/main.h
+[v _PWM_Duty_Cycle PWM_Duty_Cycle `VEuc  1 e 1 0 ]
+"2850 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
+[v _SSP2CON2 SSP2CON2 `VEuc  1 e 1 @3947 ]
+"3028
+[v _SSP2CON1 SSP2CON1 `VEuc  1 e 1 @3948 ]
+"3148
+[v _SSP2STAT SSP2STAT `VEuc  1 e 1 @3949 ]
+"3575
+[v _SSP2ADD SSP2ADD `VEuc  1 e 1 @3950 ]
+"3699
+[v _SSP2BUF SSP2BUF `VEuc  1 e 1 @3951 ]
+"3821
+[v _CCP4CON CCP4CON `VEuc  1 e 1 @3955 ]
+"3936
+[v _T4CON T4CON `VEuc  1 e 1 @3958 ]
+[s S2305 . 1 `uc 1 T4CKPS 1 0 :2:0 
+`uc 1 TMR4ON 1 0 :1:2 
+`uc 1 T4OUTPS 1 0 :4:3 
+]
+"3957
+[s S2309 . 1 `uc 1 T4CKPS0 1 0 :1:0 
+`uc 1 T4CKPS1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 T4OUTPS0 1 0 :1:3 
+`uc 1 T4OUTPS1 1 0 :1:4 
+`uc 1 T4OUTPS2 1 0 :1:5 
+`uc 1 T4OUTPS3 1 0 :1:6 
+]
+[u S2317 . 1 `S2305 1 . 1 0 `S2309 1 . 1 0 ]
+[v _T4CONbits T4CONbits `VES2317  1 e 1 @3958 ]
+"4007
+[v _PR4 PR4 `VEuc  1 e 1 @3959 ]
+[s S2239 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_T3SYNC 1 0 :1:2 
+]
+"4141
+[s S2242 . 1 `uc 1 TMR3ON 1 0 :1:0 
+`uc 1 TMR3CS 1 0 :1:1 
+`uc 1 nT3SYNC 1 0 :1:2 
+`uc 1 T3CCP1 1 0 :1:3 
+`uc 1 T3CKPS 1 0 :2:4 
+`uc 1 T3CCP2 1 0 :1:6 
+`uc 1 RD16 1 0 :1:7 
+]
+[s S2250 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 T3SYNC 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 T3CKPS0 1 0 :1:4 
+`uc 1 T3CKPS1 1 0 :1:5 
+]
+[s S2256 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 T3INSYNC 1 0 :1:2 
+]
+[s S2259 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 SOSCEN3 1 0 :1:3 
+`uc 1 . 1 0 :3:4 
+`uc 1 RD163 1 0 :1:7 
+]
+[s S2264 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 T3RD16 1 0 :1:7 
+]
+[u S2267 . 1 `S2239 1 . 1 0 `S2242 1 . 1 0 `S2250 1 . 1 0 `S2256 1 . 1 0 `S2259 1 . 1 0 `S2264 1 . 1 0 ]
+[v _T3CONbits T3CONbits `VES2267  1 e 1 @3961 ]
+[s S1431 . 1 `uc 1 ABDEN 1 0 :1:0 
+`uc 1 WUE 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 BRG16 1 0 :1:3 
+`uc 1 TXCKP 1 0 :1:4 
+`uc 1 RXDTP 1 0 :1:5 
+`uc 1 RCIDL 1 0 :1:6 
+`uc 1 ABDOVF 1 0 :1:7 
+]
+"4281
+[s S1440 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 SCKP 1 0 :1:4 
+`uc 1 DTRXP 1 0 :1:5 
+`uc 1 RCMT 1 0 :1:6 
+]
+[s S1567 . 1 `uc 1 ABDEN2 1 0 :1:0 
+`uc 1 WUE2 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 BRG162 1 0 :1:3 
+`uc 1 SCKP2 1 0 :1:4 
+`uc 1 DTRXP2 1 0 :1:5 
+`uc 1 RCIDL2 1 0 :1:6 
+`uc 1 ABDOVF2 1 0 :1:7 
+]
+[s S1576 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TXCKP2 1 0 :1:4 
+`uc 1 RXDTP2 1 0 :1:5 
+`uc 1 RCMT2 1 0 :1:6 
+]
+[u S1581 . 1 `S1431 1 . 1 0 `S1440 1 . 1 0 `S1567 1 . 1 0 `S1576 1 . 1 0 ]
+[v _BAUDCON2bits BAUDCON2bits `VES1581  1 e 1 @3964 ]
+"4386
+[v _SPBRGH2 SPBRGH2 `VEuc  1 e 1 @3965 ]
+"4453
+[s S1445 . 1 `uc 1 ABDEN1 1 0 :1:0 
+`uc 1 WUE1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 BRG161 1 0 :1:3 
+`uc 1 CKTXP 1 0 :1:4 
+`uc 1 DTRXP1 1 0 :1:5 
+`uc 1 RCIDL1 1 0 :1:6 
+`uc 1 ABDOVF1 1 0 :1:7 
+]
+[s S1454 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 SCKP1 1 0 :1:4 
+`uc 1 RXDTP1 1 0 :1:5 
+`uc 1 RCMT1 1 0 :1:6 
+]
+[s S1459 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 TXCKP1 1 0 :1:4 
+]
+[s S1462 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 RXCKP 1 0 :1:5 
+]
+[s S1465 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 W4E 1 0 :1:1 
+]
+[u S1468 . 1 `S1431 1 . 1 0 `S1440 1 . 1 0 `S1445 1 . 1 0 `S1454 1 . 1 0 `S1459 1 . 1 0 `S1462 1 . 1 0 `S1465 1 . 1 0 ]
+[v _BAUDCON1bits BAUDCON1bits `VES1468  1 e 1 @3966 ]
+"4900
+[v _SPBRGH1 SPBRGH1 `VEuc  1 e 1 @3967 ]
+[s S594 . 1 `uc 1 RA0 1 0 :1:0 
+`uc 1 RA1 1 0 :1:1 
+`uc 1 RA2 1 0 :1:2 
+`uc 1 RA3 1 0 :1:3 
+`uc 1 RA4 1 0 :1:4 
+`uc 1 RA5 1 0 :1:5 
+`uc 1 RA6 1 0 :1:6 
+`uc 1 RA7 1 0 :1:7 
+]
+"4953
+[s S603 . 1 `uc 1 AN0 1 0 :1:0 
+`uc 1 AN1 1 0 :1:1 
+`uc 1 AN2 1 0 :1:2 
+`uc 1 AN3 1 0 :1:3 
+`uc 1 T0CKI 1 0 :1:4 
+`uc 1 AN4 1 0 :1:5 
+`uc 1 OSC2 1 0 :1:6 
+]
+[s S611 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 VREFM 1 0 :1:2 
+`uc 1 VREFP 1 0 :1:3 
+`uc 1 . 1 0 :1:4 
+`uc 1 C2INA 1 0 :1:5 
+`uc 1 CLKO 1 0 :1:6 
+]
+[s S618 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+`uc 1 . 1 0 :4:1 
+`uc 1 LVDIN 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 RJPU 1 0 :1:7 
+]
+[u S624 . 1 `S594 1 . 1 0 `S603 1 . 1 0 `S611 1 . 1 0 `S618 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES624  1 e 1 @3968 ]
+[s S338 . 1 `uc 1 LATA0 1 0 :1:0 
+`uc 1 LATA1 1 0 :1:1 
+`uc 1 LATA2 1 0 :1:2 
+`uc 1 LATA3 1 0 :1:3 
+`uc 1 LATA4 1 0 :1:4 
+`uc 1 LATA5 1 0 :1:5 
+`uc 1 LATA6 1 0 :1:6 
+`uc 1 LATA7 1 0 :1:7 
+]
+"6131
+[s S347 . 1 `uc 1 LA0 1 0 :1:0 
+`uc 1 LA1 1 0 :1:1 
+`uc 1 LA2 1 0 :1:2 
+`uc 1 LA3 1 0 :1:3 
+`uc 1 LA4 1 0 :1:4 
+`uc 1 LA5 1 0 :1:5 
+`uc 1 LA6 1 0 :1:6 
+`uc 1 LA7 1 0 :1:7 
+]
+[u S356 . 1 `S338 1 . 1 0 `S347 1 . 1 0 ]
+[v _LATAbits LATAbits `VES356  1 e 1 @3977 ]
+[s S298 . 1 `uc 1 LATC0 1 0 :1:0 
+`uc 1 LATC1 1 0 :1:1 
+`uc 1 LATC2 1 0 :1:2 
+`uc 1 LATC3 1 0 :1:3 
+`uc 1 LATC4 1 0 :1:4 
+`uc 1 LATC5 1 0 :1:5 
+`uc 1 LATC6 1 0 :1:6 
+`uc 1 LATC7 1 0 :1:7 
+]
+"6355
+[s S307 . 1 `uc 1 LC0 1 0 :1:0 
+`uc 1 LC1 1 0 :1:1 
+`uc 1 LC2 1 0 :1:2 
+`uc 1 LC3 1 0 :1:3 
+`uc 1 LC4 1 0 :1:4 
+`uc 1 LC5 1 0 :1:5 
+`uc 1 LC6 1 0 :1:6 
+`uc 1 LC7 1 0 :1:7 
+]
+[u S316 . 1 `S298 1 . 1 0 `S307 1 . 1 0 ]
+[v _LATCbits LATCbits `VES316  1 e 1 @3979 ]
+[s S519 . 1 `uc 1 LATD0 1 0 :1:0 
+`uc 1 LATD1 1 0 :1:1 
+`uc 1 LATD2 1 0 :1:2 
+`uc 1 LATD3 1 0 :1:3 
+`uc 1 LATD4 1 0 :1:4 
+`uc 1 LATD5 1 0 :1:5 
+`uc 1 LATD6 1 0 :1:6 
+`uc 1 LATD7 1 0 :1:7 
+]
+"6467
+[s S528 . 1 `uc 1 LD0 1 0 :1:0 
+`uc 1 LD1 1 0 :1:1 
+`uc 1 LD2 1 0 :1:2 
+`uc 1 LD3 1 0 :1:3 
+`uc 1 LD4 1 0 :1:4 
+`uc 1 LD5 1 0 :1:5 
+`uc 1 LD6 1 0 :1:6 
+`uc 1 LD7 1 0 :1:7 
+]
+[u S537 . 1 `S519 1 . 1 0 `S528 1 . 1 0 ]
+[v _LATDbits LATDbits `VES537  1 e 1 @3980 ]
+[s S2333 . 1 `uc 1 LATG0 1 0 :1:0 
+`uc 1 LATG1 1 0 :1:1 
+`uc 1 LATG2 1 0 :1:2 
+`uc 1 LATG3 1 0 :1:3 
+`uc 1 LATG4 1 0 :1:4 
+]
+"6775
+[s S2339 . 1 `uc 1 LG0 1 0 :1:0 
+`uc 1 LG1 1 0 :1:1 
+`uc 1 LG2 1 0 :1:2 
+`uc 1 LG3 1 0 :1:3 
+`uc 1 LG4 1 0 :1:4 
+]
+[u S2345 . 1 `S2333 1 . 1 0 `S2339 1 . 1 0 ]
+[v _LATGbits LATGbits `VES2345  1 e 1 @3983 ]
+"6830
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"7052
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+[s S229 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"7084
+[s S238 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+[u S247 . 1 `S229 1 . 1 0 `S238 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES247  1 e 1 @3987 ]
+"7274
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+[s S189 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+`uc 1 TRISC6 1 0 :1:6 
+`uc 1 TRISC7 1 0 :1:7 
+]
+"7306
+[s S198 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+[u S207 . 1 `S189 1 . 1 0 `S198 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES207  1 e 1 @3988 ]
+"7496
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"7718
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"7940
+[v _TRISF TRISF `VEuc  1 e 1 @3991 ]
+"8118
+[v _TRISG TRISG `VEuc  1 e 1 @3992 ]
+[s S1245 . 1 `uc 1 TRISG0 1 0 :1:0 
+`uc 1 TRISG1 1 0 :1:1 
+`uc 1 TRISG2 1 0 :1:2 
+`uc 1 TRISG3 1 0 :1:3 
+`uc 1 TRISG4 1 0 :1:4 
+]
+"8144
+[s S1251 . 1 `uc 1 RG0 1 0 :1:0 
+`uc 1 RG1 1 0 :1:1 
+`uc 1 RG2 1 0 :1:2 
+`uc 1 RG3 1 0 :1:3 
+`uc 1 RG4 1 0 :1:4 
+]
+[u S1257 . 1 `S1245 1 . 1 0 `S1251 1 . 1 0 ]
+[v _TRISGbits TRISGbits `VES1257  1 e 1 @3992 ]
+[s S1168 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"8383
+[s S1177 . 1 `uc 1 RCD8 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 RC9 1 0 :1:6 
+]
+[s S1181 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 NOT_RC8 1 0 :1:6 
+]
+[s S1184 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 nRC8 1 0 :1:6 
+]
+[s S1187 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RC8_9 1 0 :1:6 
+]
+[s S1367 . 1 `uc 1 RX9D2 1 0 :1:0 
+`uc 1 OERR2 1 0 :1:1 
+`uc 1 FERR2 1 0 :1:2 
+`uc 1 ADDEN2 1 0 :1:3 
+`uc 1 CREN2 1 0 :1:4 
+`uc 1 SREN2 1 0 :1:5 
+`uc 1 RX92 1 0 :1:6 
+`uc 1 SPEN2 1 0 :1:7 
+]
+[s S1376 . 1 `uc 1 RCD82 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 RC8_92 1 0 :1:6 
+]
+[s S1380 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RC92 1 0 :1:6 
+]
+[u S1383 . 1 `S1168 1 . 1 0 `S1177 1 . 1 0 `S1181 1 . 1 0 `S1184 1 . 1 0 `S1187 1 . 1 0 `S1367 1 . 1 0 `S1376 1 . 1 0 `S1380 1 . 1 0 ]
+[v _RCSTA2bits RCSTA2bits `VES1383  1 e 1 @3996 ]
+[s S1514 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSP1IE 1 0 :1:3 
+`uc 1 TX1IE 1 0 :1:4 
+`uc 1 RC1IE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+`uc 1 PMPIE 1 0 :1:7 
+]
+"8535
+[s S1523 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+]
+[s S1528 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 PSPIE 1 0 :1:7 
+]
+[u S1531 . 1 `S1514 1 . 1 0 `S1523 1 . 1 0 `S1528 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES1531  1 e 1 @3997 ]
+[s S1708 . 1 `uc 1 TMR1IF 1 0 :1:0 
+`uc 1 TMR2IF 1 0 :1:1 
+`uc 1 CCP1IF 1 0 :1:2 
+`uc 1 SSP1IF 1 0 :1:3 
+`uc 1 TX1IF 1 0 :1:4 
+`uc 1 RC1IF 1 0 :1:5 
+`uc 1 ADIF 1 0 :1:6 
+`uc 1 PMPIF 1 0 :1:7 
+]
+"8627
+[s S1717 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 SSPIF 1 0 :1:3 
+`uc 1 TXIF 1 0 :1:4 
+`uc 1 RCIF 1 0 :1:5 
+]
+[s S1722 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 PSPIF 1 0 :1:7 
+]
+[u S1725 . 1 `S1708 1 . 1 0 `S1717 1 . 1 0 `S1722 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES1725  1 e 1 @3998 ]
+[s S454 . 1 `uc 1 TMR1IP 1 0 :1:0 
+`uc 1 TMR2IP 1 0 :1:1 
+`uc 1 CCP1IP 1 0 :1:2 
+`uc 1 SSP1IP 1 0 :1:3 
+`uc 1 TX1IP 1 0 :1:4 
+`uc 1 RC1IP 1 0 :1:5 
+`uc 1 ADIP 1 0 :1:6 
+`uc 1 PMPIP 1 0 :1:7 
+]
+"8719
+[s S463 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 SSPIP 1 0 :1:3 
+`uc 1 TXIP 1 0 :1:4 
+`uc 1 RCIP 1 0 :1:5 
+]
+[s S468 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 PSPIP 1 0 :1:7 
+]
+[u S471 . 1 `S454 1 . 1 0 `S463 1 . 1 0 `S468 1 . 1 0 ]
+[v _IPR1bits IPR1bits `VES471  1 e 1 @3999 ]
+[s S1615 . 1 `uc 1 CCP3IE 1 0 :1:0 
+`uc 1 CCP4IE 1 0 :1:1 
+`uc 1 CCP5IE 1 0 :1:2 
+`uc 1 TMR4IE 1 0 :1:3 
+`uc 1 TX2IE 1 0 :1:4 
+`uc 1 RC2IE 1 0 :1:5 
+`uc 1 BCL2IE 1 0 :1:6 
+`uc 1 SSP2IE 1 0 :1:7 
+]
+"9054
+[s S1624 . 1 `uc 1 RXB0IE 1 0 :1:0 
+`uc 1 RXB1IE 1 0 :1:1 
+`uc 1 TXB0IE 1 0 :1:2 
+`uc 1 TXB1IE 1 0 :1:3 
+`uc 1 TXB2IE 1 0 :1:4 
+]
+[s S1630 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 RXBNIE 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 TXBNIE 1 0 :1:4 
+]
+[u S1635 . 1 `S1615 1 . 1 0 `S1624 1 . 1 0 `S1630 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES1635  1 e 1 @4003 ]
+[s S1667 . 1 `uc 1 CCP3IF 1 0 :1:0 
+`uc 1 CCP4IF 1 0 :1:1 
+`uc 1 CCP5IF 1 0 :1:2 
+`uc 1 TMR4IF 1 0 :1:3 
+`uc 1 TX2IF 1 0 :1:4 
+`uc 1 RC2IF 1 0 :1:5 
+`uc 1 BCL2IF 1 0 :1:6 
+`uc 1 SSP2IF 1 0 :1:7 
+]
+"9157
+[s S1676 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 RXBNIF 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 TXBNIF 1 0 :1:4 
+]
+[u S1681 . 1 `S1667 1 . 1 0 `S1676 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES1681  1 e 1 @4004 ]
+[s S1105 . 1 `uc 1 TX9D 1 0 :1:0 
+`uc 1 TRMT 1 0 :1:1 
+`uc 1 BRGH 1 0 :1:2 
+`uc 1 SENDB 1 0 :1:3 
+`uc 1 SYNC 1 0 :1:4 
+`uc 1 TXEN 1 0 :1:5 
+`uc 1 TX9 1 0 :1:6 
+`uc 1 CSRC 1 0 :1:7 
+]
+"9387
+[s S1114 . 1 `uc 1 TXD8 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 TX8_9 1 0 :1:6 
+]
+[s S1118 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 NOT_TX8 1 0 :1:6 
+]
+[s S1121 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 nTX8 1 0 :1:6 
+]
+[s S1292 . 1 `uc 1 TX9D2 1 0 :1:0 
+`uc 1 TRMT2 1 0 :1:1 
+`uc 1 BRGH2 1 0 :1:2 
+`uc 1 SENDB2 1 0 :1:3 
+`uc 1 SYNC2 1 0 :1:4 
+`uc 1 TXEN2 1 0 :1:5 
+`uc 1 TX92 1 0 :1:6 
+`uc 1 CSRC2 1 0 :1:7 
+]
+[s S1301 . 1 `uc 1 TXD82 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 TX8_92 1 0 :1:6 
+]
+[u S1305 . 1 `S1105 1 . 1 0 `S1114 1 . 1 0 `S1118 1 . 1 0 `S1121 1 . 1 0 `S1292 1 . 1 0 `S1301 1 . 1 0 ]
+[v _TXSTA2bits TXSTA2bits `VES1305  1 e 1 @4008 ]
+"9502
+[v _TXREG2 TXREG2 `VEuc  1 e 1 @4009 ]
+"9509
+[v _RCREG2 RCREG2 `VEuc  1 e 1 @4010 ]
+"9516
+[v _SPBRG2 SPBRG2 `VEuc  1 e 1 @4011 ]
+"9576
+[s S1190 . 1 `uc 1 RX9D1 1 0 :1:0 
+`uc 1 OERR1 1 0 :1:1 
+`uc 1 FERR1 1 0 :1:2 
+`uc 1 ADDEN1 1 0 :1:3 
+`uc 1 CREN1 1 0 :1:4 
+`uc 1 SREN1 1 0 :1:5 
+`uc 1 RX91 1 0 :1:6 
+`uc 1 SPEN1 1 0 :1:7 
+]
+[s S1199 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 SRENA 1 0 :1:5 
+]
+[u S1202 . 1 `S1168 1 . 1 0 `S1177 1 . 1 0 `S1181 1 . 1 0 `S1184 1 . 1 0 `S1187 1 . 1 0 `S1190 1 . 1 0 `S1199 1 . 1 0 ]
+[v _RCSTA1bits RCSTA1bits `VES1202  1 e 1 @4012 ]
+"9892
+[s S1124 . 1 `uc 1 TX9D1 1 0 :1:0 
+`uc 1 TRMT1 1 0 :1:1 
+`uc 1 BRGH1 1 0 :1:2 
+`uc 1 SENDB1 1 0 :1:3 
+`uc 1 SYNC1 1 0 :1:4 
+`uc 1 TXEN1 1 0 :1:5 
+`uc 1 TX91 1 0 :1:6 
+`uc 1 CSRC1 1 0 :1:7 
+]
+[u S1133 . 1 `S1105 1 . 1 0 `S1114 1 . 1 0 `S1118 1 . 1 0 `S1121 1 . 1 0 `S1124 1 . 1 0 ]
+[v _TXSTA1bits TXSTA1bits `VES1133  1 e 1 @4013 ]
+"10135
+[v _TXREG1 TXREG1 `VEuc  1 e 1 @4014 ]
+"10147
+[v _RCREG1 RCREG1 `VEuc  1 e 1 @4015 ]
+"10159
+[v _SPBRG1 SPBRG1 `VEuc  1 e 1 @4016 ]
+"11106
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @4027 ]
+[s S28 . 1 `uc 1 CCP1M 1 0 :4:0 
+`uc 1 DC1B 1 0 :2:4 
+`uc 1 P1M 1 0 :2:6 
+]
+"11223
+[s S32 . 1 `uc 1 CCP1M0 1 0 :1:0 
+`uc 1 CCP1M1 1 0 :1:1 
+`uc 1 CCP1M2 1 0 :1:2 
+`uc 1 CCP1M3 1 0 :1:3 
+`uc 1 DC1B0 1 0 :1:4 
+`uc 1 DC1B1 1 0 :1:5 
+`uc 1 P1M0 1 0 :1:6 
+`uc 1 P1M1 1 0 :1:7 
+]
+[s S41 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 CCP1Y 1 0 :1:4 
+`uc 1 CCP1X 1 0 :1:5 
+]
+[u S45 . 1 `S28 1 . 1 0 `S32 1 . 1 0 `S41 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES45  1 e 1 @4027 ]
+"11300
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @4028 ]
+[s S493 . 1 `uc 1 SWDTEN 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 ADSHR 1 0 :1:4 
+`uc 1 . 1 0 :1:5 
+`uc 1 LVDSTAT 1 0 :1:6 
+`uc 1 REGSLP 1 0 :1:7 
+]
+"11586
+[s S500 . 1 `uc 1 SWDTE 1 0 :1:0 
+`uc 1 . 1 0 :3:1 
+`uc 1 DEVCFG 1 0 :1:4 
+]
+[u S504 . 1 `S493 1 . 1 0 `S500 1 . 1 0 ]
+[v _WDTCONbits WDTCONbits `VES504  1 e 1 @4032 ]
+[s S2081 . 1 `uc 1 ADCS 1 0 :3:0 
+`uc 1 ACQT 1 0 :3:3 
+`uc 1 ADCAL 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"11648
+[s S2086 . 1 `uc 1 ADCS0 1 0 :1:0 
+`uc 1 ADCS1 1 0 :1:1 
+`uc 1 ADCS2 1 0 :1:2 
+`uc 1 ACQT0 1 0 :1:3 
+`uc 1 ACQT1 1 0 :1:4 
+`uc 1 ACQT2 1 0 :1:5 
+]
+[s S2093 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 CHSN3 1 0 :1:3 
+`uc 1 VCFG01 1 0 :1:4 
+`uc 1 VCFG11 1 0 :1:5 
+]
+[u S2098 . 1 `S2081 1 . 1 0 `S2086 1 . 1 0 `S2093 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES2098  1 e 1 @4033 ]
+[s S2135 . 1 `uc 1 PCFGL 1 0 :8:0 
+]
+"11742
+[s S2137 . 1 `uc 1 PCFG0 1 0 :1:0 
+`uc 1 PCFG1 1 0 :1:1 
+`uc 1 PCFG2 1 0 :1:2 
+`uc 1 PCFG3 1 0 :1:3 
+`uc 1 PCFG4 1 0 :1:4 
+`uc 1 . 1 0 :2:5 
+`uc 1 PCFG7 1 0 :1:7 
+]
+[s S2145 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 PCFG5 1 0 :1:5 
+`uc 1 PCFG6 1 0 :1:6 
+]
+[u S2149 . 1 `S2135 1 . 1 0 `S2137 1 . 1 0 `S2145 1 . 1 0 ]
+[v _ANCON0bits ANCON0bits `VES2149  1 e 1 @4033 ]
+[s S691 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_NOT_DONE 1 0 :1:1 
+]
+"11837
+[s S694 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 VCFG 1 0 :2:6 
+]
+[s S699 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 DONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 VCFG0 1 0 :1:6 
+`uc 1 VCFG1 1 0 :1:7 
+]
+[s S708 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[s S711 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[s S714 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_DONE 1 0 :1:1 
+]
+[s S717 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GODONE 1 0 :1:1 
+`uc 1 . 1 0 :5:2 
+`uc 1 ADCAL 1 0 :1:7 
+]
+[u S722 . 1 `S691 1 . 1 0 `S694 1 . 1 0 `S699 1 . 1 0 `S708 1 . 1 0 `S711 1 . 1 0 `S714 1 . 1 0 `S717 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES722  1 e 1 @4034 ]
+"12000
+[v _ADRES ADRES `VEus  1 e 2 @4035 ]
+"12007
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"12014
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"13507
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+[s S269 . 1 `uc 1 T2CKPS 1 0 :2:0 
+`uc 1 TMR2ON 1 0 :1:2 
+`uc 1 TOUTPS 1 0 :4:3 
+]
+"13528
+[s S273 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+`uc 1 T2CKPS1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 T2OUTPS0 1 0 :1:3 
+`uc 1 T2OUTPS1 1 0 :1:4 
+`uc 1 T2OUTPS2 1 0 :1:5 
+`uc 1 T2OUTPS3 1 0 :1:6 
+]
+[u S281 . 1 `S269 1 . 1 0 `S273 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES281  1 e 1 @4042 ]
+"13578
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"13723
+[v _T1CON T1CON `VEuc  1 e 1 @4045 ]
+"13861
+[v _TMR1 TMR1 `VEus  1 e 2 @4046 ]
+[s S378 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+]
+"14014
+[s S380 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_POR 1 0 :1:1 
+]
+[s S383 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_PD 1 0 :1:2 
+]
+[s S386 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_TO 1 0 :1:3 
+]
+[s S389 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 NOT_RI 1 0 :1:4 
+]
+[s S392 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_CM 1 0 :1:5 
+]
+[s S395 . 1 `uc 1 nBOR 1 0 :1:0 
+`uc 1 nPOR 1 0 :1:1 
+`uc 1 nPD 1 0 :1:2 
+`uc 1 nTO 1 0 :1:3 
+`uc 1 nRI 1 0 :1:4 
+`uc 1 nCM 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 IPEN 1 0 :1:7 
+]
+[s S404 . 1 `uc 1 BOR 1 0 :1:0 
+`uc 1 POR 1 0 :1:1 
+`uc 1 PD 1 0 :1:2 
+`uc 1 TO 1 0 :1:3 
+`uc 1 RI 1 0 :1:4 
+`uc 1 CM 1 0 :1:5 
+]
+[u S411 . 1 `S378 1 . 1 0 `S380 1 . 1 0 `S383 1 . 1 0 `S386 1 . 1 0 `S389 1 . 1 0 `S392 1 . 1 0 `S395 1 . 1 0 `S404 1 . 1 0 ]
+[v _RCONbits RCONbits `VES411  1 e 1 @4048 ]
+[s S159 . 1 `uc 1 SCS 1 0 :2:0 
+`uc 1 . 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+`uc 1 IDLEN 1 0 :1:7 
+]
+"14772
+[s S165 . 1 `uc 1 SCS0 1 0 :1:0 
+`uc 1 SCS1 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S172 . 1 `S159 1 . 1 0 `S165 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES172  1 e 1 @4051 ]
+[s S104 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"15474
+[s S113 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S122 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S126 . 1 `S104 1 . 1 0 `S113 1 . 1 0 `S122 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES126  1 e 1 @4082 ]
+"15822
+[v _ACKDT2 ACKDT2 `VEb  1 e 0 @31581 ]
+"15831
+[v _ACKEN2 ACKEN2 `VEb  1 e 0 @31580 ]
+"17088
+[v _GIE GIE `VEb  1 e 0 @32663 ]
+"17946
+[v _PEN2 PEN2 `VEb  1 e 0 @31578 ]
+"18306
+[v _RCEN2 RCEN2 `VEb  1 e 0 @31579 ]
+"18480
+[v _RSEN2 RSEN2 `VEb  1 e 0 @31577 ]
+"18606
+[v _SEN2 SEN2 `VEb  1 e 0 @31576 ]
+"18969
+[v _TMR1IE TMR1IE `VEb  1 e 0 @31976 ]
+"18972
+[v _TMR1IF TMR1IF `VEb  1 e 0 @31984 ]
+"19077
+[v _TRISC2 TRISC2 `VEb  1 e 0 @31906 ]
+"19110
+[v _TRISD5 TRISD5 `VEb  1 e 0 @31917 ]
+"19113
+[v _TRISD6 TRISD6 `VEb  1 e 0 @31918 ]
+"19215
+[v _TX1IF TX1IF `VEb  1 e 0 @31988 ]
+"19227
+[v _TX2IF TX2IF `VEb  1 e 0 @32036 ]
+"99 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _prec prec `i  1 s 2 prec ]
+[v _width width `i  1 s 2 width ]
+"100
+[v _flags flags `uc  1 s 1 flags ]
+"125
+[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
+"102 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _Serial_Buffer Serial_Buffer `[16]uc  1 e 16 0 ]
+"104
+[v _Serial_Buffer_Out Serial_Buffer_Out `[16]uc  1 e 16 0 ]
+"108
+[v _vibration_mode vibration_mode `uc  1 e 1 0 ]
+"112
+[v _ETemp ETemp `ui  1 e 2 0 ]
+"114
+[v _Vmotor_Time Vmotor_Time `ui  1 e 2 0 ]
+"115
+[v _Motor_Stop_Delay_Time Motor_Stop_Delay_Time `ui  1 e 2 0 ]
+"116
+[v _Device_ID Device_ID `ui  1 e 2 0 ]
+"117
+[v _Motor_Pause_Time Motor_Pause_Time `ui  1 e 2 0 ]
+"118
+[v _NUM NUM `ui  1 e 2 0 ]
+"119
+[v _i_RUN_ZERO i_RUN_ZERO `ui  1 e 2 0 ]
+"120
+[v _NUM_REC NUM_REC `ui  1 e 2 0 ]
+"122
+[v _IR_SENSORF IR_SENSORF `ui  1 e 2 0 ]
+"123
+[v _VOLTAGE VOLTAGE `ui  1 e 2 0 ]
+"125
+[v _OpMode OpMode `VEuc  1 e 1 0 ]
+"126
+[v _errorcounter errorcounter `VEl  1 e 4 0 ]
+"127
+[v _LowPowerCounter LowPowerCounter `VEl  1 e 4 0 ]
+"129
+[v _pause_Time pause_Time `VEuc  1 e 1 0 ]
+"130
+[v _vib_Time vib_Time `VEuc  1 e 1 0 ]
+"131
+[v _delay_motor_stop_time delay_motor_stop_time `VEuc  1 e 1 0 ]
+"133
+[v _TMR1IF_triggered TMR1IF_triggered `VEuc  1 e 1 0 ]
+"135
+[v _dutyCycle_reg dutyCycle_reg `ui  1 e 2 0 ]
+"188
+[v _dispense dispense `i  1 e 2 0 ]
+"19 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\MotorDriver.c
+[v _PWM_reg PWM_reg `uc  1 e 1 0 ]
+"203 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"495
+} 0
+"371 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\usart.c
+[v _uart_config uart_config `(v  1 e 1 0 ]
+{
+[v uart_config@uart_num uart_num `ui  1 p 2 2 ]
+"440
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\printf.c
+[v _printf printf `(i  1 e 2 0 ]
+{
+"8
+[v printf@ap ap `[1]*.39v  1 a 2 0 ]
+"5
+[v printf@fmt fmt `*.32Cuc  1 p 2 92 ]
+"13
+} 0
+"120 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\i2c.c
+[v _read_i2c read_i2c `(i  1 e 2 0 ]
+{
+"121
+[v read_i2c@read_byte read_byte `i  1 a 2 18 ]
+"120
+[v read_i2c@address address `l  1 p 4 14 ]
+"137
+} 0
+"56
+[v _i2c_Restart i2c_Restart `(v  1 e 1 0 ]
+{
+"59
+} 0
+"89
+[v _i2c_Read i2c_Read `(i  1 e 2 0 ]
+{
+[v i2c_Read@ack ack `uc  1 a 1 wreg ]
+"93
+[v i2c_Read@i2cReadData i2cReadData `uc  1 a 1 4 ]
+"89
+[v i2c_Read@ack ack `uc  1 a 1 wreg ]
+"95
+[v i2c_Read@ack ack `uc  1 a 1 3 ]
+"107
+} 0
+"195 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _pwm_set pwm_set `(v  1 e 1 0 ]
+{
+[v pwm_set@duty duty `us  1 p 2 0 ]
+"198
+} 0
+"34 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\usart.c
+[v _initUSART initUSART `(v  1 e 1 0 ]
+{
+"80
+} 0
+"21 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\MotorDriver.c
+[v _initMotor initMotor `(v  1 e 1 0 ]
+{
+"26
+} 0
+"18 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\IO.c
+[v _init init `(v  1 e 1 0 ]
+{
+"83
+} 0
+"25 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\i2c.c
+[v _i2c_Init i2c_Init `(v  1 e 1 0 ]
+{
+"39
+} 0
+"243 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\usart.c
+[v _handle_uart_communication handle_uart_communication `(v  1 e 1 0 ]
+{
+"258
+[v handle_uart_communication@i i `i  1 a 2 59 ]
+"252
+[v handle_uart_communication@receivedBytes receivedBytes `[5]uc  1 a 5 52 ]
+"268
+[v handle_uart_communication@eot eot `uc  1 a 1 58 ]
+"265
+[v handle_uart_communication@command command `uc  1 a 1 57 ]
+"267
+[v handle_uart_communication@data2 data2 `uc  1 a 1 51 ]
+"245
+[v handle_uart_communication@IR_SENSORF IR_SENSORF `ui  1 a 2 61 ]
+"243
+[v handle_uart_communication@Motor_Stop_Delay_Time Motor_Stop_Delay_Time `ui  1 p 2 43 ]
+[v handle_uart_communication@errorcounter errorcounter `VEl  1 p 4 45 ]
+"367
+} 0
+"1124 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _vibrationMotorControl vibrationMotorControl `(v  1 e 1 0 ]
+{
+[v vibrationMotorControl@powerState powerState `a  1 a 1 wreg ]
+"1129
+[v vibrationMotorControl@dc dc `ui  1 a 2 2 ]
+"1124
+[v vibrationMotorControl@powerState powerState `a  1 a 1 wreg ]
+[v vibrationMotorControl@pwm_msg pwm_msg `ui  1 p 2 0 ]
+[v vibrationMotorControl@powerState powerState `a  1 a 1 4 ]
+"1137
+} 0
+"1081
+[v _PWM_Selection PWM_Selection `(ui  1 e 2 0 ]
+{
+"1082
+[v PWM_Selection@dcSelected dcSelected `i  1 a 2 24 ]
+"1081
+[v PWM_Selection@msg msg `ui  1 p 2 20 ]
+"1118
+} 0
+"109 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\i2c.c
+[v _write_i2c write_i2c `(v  1 e 1 0 ]
+{
+[v write_i2c@address address `l  1 p 4 14 ]
+[v write_i2c@data data `i  1 p 2 18 ]
+"116
+} 0
+"70
+[v _i2c_Write i2c_Write `(v  1 e 1 0 ]
+{
+[v i2c_Write@data data `uc  1 a 1 wreg ]
+[v i2c_Write@data data `uc  1 a 1 wreg ]
+[v i2c_Write@data data `uc  1 a 1 1 ]
+"73
+} 0
+"63
+[v _i2c_Stop i2c_Stop `(v  1 e 1 0 ]
+{
+"66
+} 0
+"49
+[v _i2c_Start i2c_Start `(v  1 e 1 0 ]
+{
+"52
+} 0
+"78
+[v _i2c_Address i2c_Address `(v  1 e 1 0 ]
+{
+[v i2c_Address@address address `uc  1 a 1 wreg ]
+"79
+[v i2c_Address@l_address l_address `uc  1 a 1 3 ]
+"78
+[v i2c_Address@address address `uc  1 a 1 wreg ]
+[v i2c_Address@mode mode `uc  1 p 1 1 ]
+"81
+[v i2c_Address@address address `uc  1 a 1 2 ]
+"85
+} 0
+"43
+[v _i2c_Wait i2c_Wait `(v  1 e 1 0 ]
+{
+"45
+} 0
+"1145 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _PWM1_SetDutyCycle PWM1_SetDutyCycle `(v  1 e 1 0 ]
+{
+[v PWM1_SetDutyCycle@dutyCycle dutyCycle `ui  1 p 2 90 ]
+"1152
+} 0
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+{
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+"13
+[v ___xxtofl@arg arg `ul  1 a 4 10 ]
+"12
+[v ___xxtofl@exp exp `uc  1 a 1 9 ]
+"10
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+[v ___xxtofl@val val `l  1 p 4 0 ]
+"15
+[v ___xxtofl@sign sign `uc  1 a 1 8 ]
+"44
+} 0
+"43 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+{
+"45
+[v ___fltol@exp1 exp1 `uc  1 a 1 89 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 88 ]
+"43
+[v ___fltol@f1 f1 `d  1 p 4 80 ]
+"70
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+{
+[s S2688 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+"13
+[s S2693 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S2696 . 4 `l 1 i 4 0 `d 1 f 4 0 `S2688 1 fAsBytes 4 0 `S2693 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S2696  1 a 4 58 ]
+"12
+[v ___flmul@grs grs `ul  1 a 4 52 ]
+[s S2764 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+"14
+[u S2767 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2764 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S2767  1 a 2 62 ]
+"10
+[v ___flmul@bexp bexp `uc  1 a 1 57 ]
+"11
+[v ___flmul@aexp aexp `uc  1 a 1 56 ]
+"9
+[v ___flmul@sign sign `uc  1 a 1 51 ]
+"8
+[v ___flmul@b b `d  1 p 4 39 ]
+[v ___flmul@a a `d  1 p 4 43 ]
+"205
+} 0
+"11 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+{
+"21
+[v ___fldiv@grs grs `ul  1 a 4 33 ]
+"22
+[v ___fldiv@rem rem `ul  1 a 4 26 ]
+"20
+[v ___fldiv@new_exp new_exp `s  1 a 2 31 ]
+"19
+[v ___fldiv@aexp aexp `uc  1 a 1 38 ]
+"18
+[v ___fldiv@bexp bexp `uc  1 a 1 37 ]
+"16
+[v ___fldiv@sign sign `uc  1 a 1 30 ]
+"11
+[v ___fldiv@b b `d  1 p 4 14 ]
+[v ___fldiv@a a `d  1 p 4 18 ]
+"185
+} 0
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+{
+"17
+[v ___fladd@grs grs `uc  1 a 1 79 ]
+"15
+[v ___fladd@bexp bexp `uc  1 a 1 78 ]
+"16
+[v ___fladd@aexp aexp `uc  1 a 1 77 ]
+"13
+[v ___fladd@signs signs `uc  1 a 1 76 ]
+"10
+[v ___fladd@b b `d  1 p 4 64 ]
+[v ___fladd@a a `d  1 p 4 68 ]
+"237
+} 0
+"224 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\usart.c
+[v _sendResponse sendResponse `(v  1 e 1 0 ]
+{
+[v sendResponse@sot sot `uc  1 a 1 wreg ]
+"225
+[v sendResponse@responseData responseData `[5]uc  1 a 5 38 ]
+"224
+[v sendResponse@sot sot `uc  1 a 1 wreg ]
+[v sendResponse@response response `uc  1 p 1 33 ]
+[v sendResponse@data1 data1 `uc  1 p 1 34 ]
+[v sendResponse@data2 data2 `uc  1 p 1 35 ]
+[v sendResponse@eot eot `uc  1 p 1 36 ]
+[v sendResponse@sot sot `uc  1 a 1 37 ]
+"234
+} 0
+"193
+[v _sendData sendData `(v  1 e 1 0 ]
+{
+"194
+[v sendData@i i `i  1 a 2 92 ]
+"193
+[v sendData@data data `*.39uc  1 p 2 25 ]
+[v sendData@length length `i  1 p 2 27 ]
+[v sendData@uart_channel uart_channel `uc  1 p 1 29 ]
+"210
+} 0
+"158
+[v _uart_print_hex uart_print_hex `(v  1 e 1 0 ]
+{
+[v uart_print_hex@num num `uc  1 a 1 wreg ]
+"159
+[v uart_print_hex@buf buf `[5]uc  1 a 5 19 ]
+"158
+[v uart_print_hex@num num `uc  1 a 1 wreg ]
+"160
+[v uart_print_hex@num num `uc  1 a 1 24 ]
+"162
+} 0
+"143
+[v _uart_print uart_print `(v  1 e 1 0 ]
+{
+[v uart_print@str str `*.36Cuc  1 p 3 0 ]
+"149
+} 0
+"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[u S2823 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+"13
+[s S2826 _IO_FILE 11 `S2823 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v sprintf@f f `S2826  1 a 11 8 ]
+"12
+[v sprintf@ap ap `[1]*.39v  1 a 2 6 ]
+"9
+[v sprintf@s s `*.39uc  1 p 2 0 ]
+[v sprintf@fmt fmt `*.32Cuc  1 p 2 2 ]
+"23
+} 0
+"1520 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+{
+"1523
+[v vfprintf@cfmt cfmt `*.32uc  1 a 2 90 ]
+[s S2858 _IO_FILE 0 ]
+"1520
+[v vfprintf@fp fp `*.39S2858  1 p 2 84 ]
+[v vfprintf@fmt fmt `*.32Cuc  1 p 2 86 ]
+[v vfprintf@ap ap `*.39*.39v  1 p 2 88 ]
+"1543
+} 0
+"1007
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+{
+[u S2876 . 8 `o 1 ll 8 0 `uo 1 llu 8 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
+"1016
+[v vfpfcnvrt@convarg convarg `S2876  1 a 8 74 ]
+"1009
+[v vfpfcnvrt@cp cp `*.32uc  1 a 2 82 ]
+"1010
+[v vfpfcnvrt@done done `i  1 a 2 72 ]
+[s S2858 _IO_FILE 0 ]
+"1007
+[v vfpfcnvrt@fp fp `*.39S2858  1 p 2 62 ]
+[v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 64 ]
+[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 66 ]
+"1517
+} 0
+"934
+[v _xtoa xtoa `(v  1 s 1 xtoa ]
+{
+"940
+[v xtoa@n n `uo  1 a 8 51 ]
+"939
+[v xtoa@i i `i  1 a 2 59 ]
+[v xtoa@w w `i  1 a 2 49 ]
+[v xtoa@p p `i  1 a 2 47 ]
+"938
+[v xtoa@c c `uc  1 a 1 61 ]
+[s S2858 _IO_FILE 0 ]
+"934
+[v xtoa@fp fp `*.39S2858  1 p 2 27 ]
+[v xtoa@d d `uo  1 p 8 29 ]
+"1001
+} 0
+"443
+[v _dtoa dtoa `(v  1 s 1 dtoa ]
+{
+"447
+[v dtoa@n n `o  1 a 8 51 ]
+"446
+[v dtoa@i i `i  1 a 2 59 ]
+[v dtoa@w w `i  1 a 2 49 ]
+[v dtoa@p p `i  1 a 2 47 ]
+"445
+[v dtoa@s s `uc  1 a 1 61 ]
+[s S2858 _IO_FILE 0 ]
+"443
+[v dtoa@fp fp `*.39S2858  1 p 2 27 ]
+[v dtoa@d d `o  1 p 8 29 ]
+"502
+} 0
+"133
+[v _pad pad `(v  1 s 1 pad ]
+{
+"135
+[v pad@w w `i  1 a 2 25 ]
+[v pad@i i `i  1 a 2 23 ]
+[s S2858 _IO_FILE 0 ]
+"133
+[v pad@fp fp `*.39S2858  1 p 2 16 ]
+[v pad@buf buf `*.39uc  1 p 2 18 ]
+[v pad@p p `i  1 p 2 20 ]
+"164
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+{
+"11
+[v fputs@i i `i  1 a 2 14 ]
+"10
+[v fputs@c c `uc  1 a 1 13 ]
+"8
+[v fputs@s s `*.39Cuc  1 p 2 9 ]
+[u S2823 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S2826 _IO_FILE 11 `S2823 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputs@fp fp `*.39S2826  1 p 2 11 ]
+"19
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 0 ]
+[u S2823 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S2826 _IO_FILE 11 `S2823 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.39S2826  1 p 2 2 ]
+"24
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+{
+"9
+} 0
+"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
+{
+[v abs@a a `i  1 p 2 18 ]
+"4
+} 0
+"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aomod.c
+[v ___aomod __aomod `(o  1 e 8 0 ]
+{
+"12
+[v ___aomod@sign sign `uc  1 a 1 17 ]
+[v ___aomod@counter counter `uc  1 a 1 16 ]
+"9
+[v ___aomod@dividend dividend `o  1 p 8 0 ]
+[v ___aomod@divisor divisor `o  1 p 8 8 ]
+"36
+} 0
+"9 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aodiv.c
+[v ___aodiv __aodiv `(o  1 e 8 0 ]
+{
+"12
+[v ___aodiv@quotient quotient `o  1 a 8 18 ]
+"13
+[v ___aodiv@sign sign `uc  1 a 1 17 ]
+[v ___aodiv@counter counter `uc  1 a 1 16 ]
+"9
+[v ___aodiv@dividend dividend `o  1 p 8 0 ]
+[v ___aodiv@divisor divisor `o  1 p 8 8 ]
+"43
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+{
+"6
+[v atoi@n n `i  1 a 2 13 ]
+[v atoi@neg neg `i  1 a 2 11 ]
+"4
+[v atoi@s s `*.32Cuc  1 p 2 6 ]
+"16
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
+[v _isspace isspace `(i  1 e 2 0 ]
+{
+[v isspace@c c `i  1 p 2 0 ]
+"8
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
+[v _isdigit isdigit `(i  1 e 2 0 ]
+{
+[v isdigit@c c `i  1 p 2 0 ]
+"8
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"212 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\usart.c
+[v _receiveData receiveData `(uc  1 e 1 0 ]
+{
+[v receiveData@uart_channel uart_channel `uc  1 a 1 wreg ]
+"213
+[v receiveData@receivedData receivedData `uc  1 a 1 0 ]
+"212
+[v receiveData@uart_channel uart_channel `uc  1 a 1 wreg ]
+"214
+[v receiveData@uart_channel uart_channel `uc  1 a 1 1 ]
+"222
+} 0
+"236
+[v _delay2_1ms delay2_1ms `(v  1 e 1 0 ]
+{
+[v delay2_1ms@time time `ui  1 p 2 0 ]
+"241
+} 0
+"145 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\Display.c
+[v _WriteSTLED316SData WriteSTLED316SData `(v  1 e 1 0 ]
+{
+"147
+[v WriteSTLED316SData@NUM_DIG1 NUM_DIG1 `i  1 a 2 13 ]
+[v WriteSTLED316SData@NUM_DIG0 NUM_DIG0 `i  1 a 2 11 ]
+"146
+[v WriteSTLED316SData@data4 data4 `uc  1 a 1 16 ]
+[v WriteSTLED316SData@data3 data3 `uc  1 a 1 15 ]
+"145
+[v WriteSTLED316SData@number number `i  1 p 2 8 ]
+[v WriteSTLED316SData@v_mode v_mode `uc  1 p 1 10 ]
+"182
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 5 ]
+[v ___awmod@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 0 ]
+[v ___awmod@divisor divisor `i  1 p 2 2 ]
+"34
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 6 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 5 ]
+[v ___awdiv@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 0 ]
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
+"41
+} 0
+"104 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\Display.c
+[v _Get7Seg Get7Seg `(uc  1 e 1 0 ]
+{
+"105
+[v Get7Seg@Data Data `uc  1 a 1 4 ]
+"104
+[v Get7Seg@Digit Digit `i  1 p 2 0 ]
+"143
+} 0
+"1139 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _PWM1_Init PWM1_Init `(v  1 e 1 0 ]
+{
+[v PWM1_Init@desiredFrequency desiredFrequency `l  1 p 4 14 ]
+"1143
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+{
+"10
+[v ___aldiv@quotient quotient `l  1 a 4 10 ]
+"11
+[v ___aldiv@sign sign `uc  1 a 1 9 ]
+[v ___aldiv@counter counter `uc  1 a 1 8 ]
+"7
+[v ___aldiv@dividend dividend `l  1 p 4 0 ]
+[v ___aldiv@divisor divisor `l  1 p 4 4 ]
+"41
+} 0
+"706 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _MotorPosition_Init MotorPosition_Init `(v  1 e 1 0 ]
+{
+"741
+} 0
+"287 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\Display.c
+[v _WriteSTLED316SErr WriteSTLED316SErr `(v  1 e 1 0 ]
+{
+[v WriteSTLED316SErr@msg msg `uc  1 a 1 wreg ]
+[v WriteSTLED316SErr@msg msg `uc  1 a 1 wreg ]
+[v WriteSTLED316SErr@msg msg `uc  1 a 1 8 ]
+"339
+} 0
+"691 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _Read_IR Read_IR `(ui  1 e 2 0 ]
+{
+"701
+} 0
+"40 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\MotorDriver.c
+[v _MotorON MotorON `(v  1 e 1 0 ]
+{
+"45
+} 0
+"28
+[v _Set_RG3 Set_RG3 `(v  1 e 1 0 ]
+{
+"33
+} 0
+"47
+[v _MotorBREAK MotorBREAK `(v  1 e 1 0 ]
+{
+"53
+} 0
+"35
+[v _Clr_RG3 Clr_RG3 `(v  1 e 1 0 ]
+{
+"38
+} 0
+"1032 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
+{
+"1042
+} 0
+"14 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\Display.c
+[v _InitSTLED316 InitSTLED316 `(v  1 e 1 0 ]
+{
+[v InitSTLED316@Brightness Brightness `uc  1 a 1 wreg ]
+[v InitSTLED316@Brightness Brightness `uc  1 a 1 wreg ]
+"18
+[v InitSTLED316@Brightness Brightness `uc  1 a 1 8 ]
+"80
+} 0
+"88
+[v _STLED316s_SPI_SendData STLED316s_SPI_SendData `(v  1 e 1 0 ]
+{
+[v STLED316s_SPI_SendData@Data Data `uc  1 a 1 wreg ]
+"89
+[v STLED316s_SPI_SendData@t t `uc  1 a 1 5 ]
+[v STLED316s_SPI_SendData@i i `uc  1 a 1 4 ]
+[v STLED316s_SPI_SendData@temp temp `uc  1 a 1 3 ]
+"88
+[v STLED316s_SPI_SendData@Data Data `uc  1 a 1 wreg ]
+"91
+[v STLED316s_SPI_SendData@Data Data `uc  1 a 1 2 ]
+"102
+} 0
+"1046 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\20230814_XYTable_Version_new\Candidate(Dispenser board)\SolidDispenser_v3.7_1R\main.c
+[v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
+{
+"1062
+} 0
+"681
+[v _delay_1ms delay_1ms `(v  1 e 1 0 ]
+{
+[v delay_1ms@time time `ui  1 p 2 0 ]
+"686
+} 0
+"500
+[v _high_isr high_isr `IIH(v  1 e 1 0 ]
+{
+"675
+} 0
+"1064
+[v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
+{
+"1076
+} 0

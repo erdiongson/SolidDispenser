@@ -3,6 +3,11 @@
  * Author: victorlu
  *
  * Created on November 29, 2019, 2:43 PM
+ * 
+ * Created: 2023-04-19, 12:00PM
+ * Author: erdiongson
+ * Version 3.7_1R : i. Created version dedicated for SDB1R product
+ *                  ii. Added UART2 for communication with Arduino AtMega
  */
 
 #ifndef MAIN_H
@@ -40,6 +45,8 @@ extern "C" {
 
     //#include <xc.h>
 
+#include <stdbool.h>
+
 #define _XTAL_FREQ 8000000
 
 #define EEPROM_VibMode              0x0010
@@ -52,6 +59,10 @@ extern "C" {
 
 #define Busy1USART( )  (!TXSTA1bits.TRMT)
 #define DataRdy1USART( ) (PIR1bits.RC1IF)
+
+    //20230419 (SDB1R): erdiongson - Added for UART2
+#define Busy2USART( )  (!TXSTA2bits.TRMT)
+#define DataRdy2USART( ) (PIR3bits.RC2IF)    
 
     extern unsigned char PWM_reg;
 
@@ -91,7 +102,20 @@ extern "C" {
     void flushOut(void);
     void readWeighingData(void);
     void Homing_Again_Auto(void);
+    //20230419 : erdiongson - Added Write2USART and Read2USART for SDB1R
+    void Write2USART(char data);
+    char Read2USART(void);
 
+    //Added by leo
+    unsigned int duty_cycle = 0;
+    volatile unsigned char PWM_Duty_Cycle;
+    void vibrationMotorControl(bool powerState, unsigned int pwm_msg);
+
+    void PWM1_Init(long desiredFrequency);
+    void PWM1_SetDutyCycle(unsigned int dutyCycle);
+
+    void PWM1_Start();
+    void PWM1_Stop();
 
 #ifdef	__cplusplus
 }

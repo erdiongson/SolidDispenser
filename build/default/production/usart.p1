@@ -76,6 +76,91 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9576
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9576: extern volatile RCSTA1bits_t RCSTA1bits __attribute__((address(0xFAC)));
 [v _RCSTA1bits `VS366 ~T0 @X0 0 e@4012 ]
+"8129
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8129:     struct {
+[s S307 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S307 . TRISG0 TRISG1 TRISG2 TRISG3 TRISG4 ]
+"8136
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8136:     struct {
+[s S308 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S308 . RG0 RG1 RG2 RG3 RG4 ]
+"8128
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8128: typedef union {
+[u S306 `S307 1 `S308 1 ]
+[n S306 . . . ]
+"8144
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8144: extern volatile TRISGbits_t TRISGbits __attribute__((address(0xF98)));
+[v _TRISGbits `VS306 ~T0 @X0 0 e@3992 ]
+"9348
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9348:     struct {
+[s S360 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S360 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
+"9358
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9358:     struct {
+[s S361 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S361 . TXD8 . TX8_9 ]
+"9363
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9363:     struct {
+[s S362 :6 `uc 1 :1 `uc 1 ]
+[n S362 . . NOT_TX8 ]
+"9367
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9367:     struct {
+[s S363 :6 `uc 1 :1 `uc 1 ]
+[n S363 . . nTX8 ]
+"9371
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9371:     struct {
+[s S364 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S364 . TX9D2 TRMT2 BRGH2 SENDB2 SYNC2 TXEN2 TX92 CSRC2 ]
+"9381
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9381:     struct {
+[s S365 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S365 . TXD82 . TX8_92 ]
+"9347
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9347: typedef union {
+[u S359 `S360 1 `S361 1 `S362 1 `S363 1 `S364 1 `S365 1 ]
+[n S359 . . . . . . . ]
+"9387
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9387: extern volatile TXSTA2bits_t TXSTA2bits __attribute__((address(0xFA8)));
+[v _TXSTA2bits `VS359 ~T0 @X0 0 e@4008 ]
+"8336
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8336:     struct {
+[s S315 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S315 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"8346
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8346:     struct {
+[s S316 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S316 . RCD8 . RC9 ]
+"8351
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8351:     struct {
+[s S317 :6 `uc 1 :1 `uc 1 ]
+[n S317 . . NOT_RC8 ]
+"8355
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8355:     struct {
+[s S318 :6 `uc 1 :1 `uc 1 ]
+[n S318 . . nRC8 ]
+"8359
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8359:     struct {
+[s S319 :6 `uc 1 :1 `uc 1 ]
+[n S319 . . RC8_9 ]
+"8363
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8363:     struct {
+[s S320 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S320 . RX9D2 OERR2 FERR2 ADDEN2 CREN2 SREN2 RX92 SPEN2 ]
+"8373
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8373:     struct {
+[s S321 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S321 . RCD82 . RC8_92 ]
+"8378
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8378:     struct {
+[s S322 :6 `uc 1 :1 `uc 1 ]
+[n S322 . . RC92 ]
+"8335
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8335: typedef union {
+[u S314 `S315 1 `S316 1 `S317 1 `S318 1 `S319 1 `S320 1 `S321 1 `S322 1 ]
+[n S314 . . . . . . . . . ]
+"8383
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8383: extern volatile RCSTA2bits_t RCSTA2bits __attribute__((address(0xF9C)));
+[v _RCSTA2bits `VS314 ~T0 @X0 0 e@3996 ]
 "4408
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4408:     struct {
 [s S183 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -130,18 +215,171 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8535
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8535: extern volatile PIE1bits_t PIE1bits __attribute__((address(0xF9D)));
 [v _PIE1bits `VS323 ~T0 @X0 0 e@3997 ]
+"4248
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4248:     struct {
+[s S178 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S178 . ABDEN WUE . BRG16 TXCKP RXDTP RCIDL ABDOVF ]
+"4258
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4258:     struct {
+[s S179 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S179 . . SCKP DTRXP RCMT ]
+"4264
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4264:     struct {
+[s S180 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S180 . ABDEN2 WUE2 . BRG162 SCKP2 DTRXP2 RCIDL2 ABDOVF2 ]
+"4274
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4274:     struct {
+[s S181 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S181 . . TXCKP2 RXDTP2 RCMT2 ]
+"4247
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4247: typedef union {
+[u S177 `S178 1 `S179 1 `S180 1 `S181 1 ]
+[n S177 . . . . . ]
+"4281
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4281: extern volatile BAUDCON2bits_t BAUDCON2bits __attribute__((address(0xF7C)));
+[v _BAUDCON2bits `VS177 ~T0 @X0 0 e@3964 ]
+"9030
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9030:     struct {
+[s S348 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S348 . CCP3IE CCP4IE CCP5IE TMR4IE TX2IE RC2IE BCL2IE SSP2IE ]
+"9040
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9040:     struct {
+[s S349 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S349 . RXB0IE RXB1IE TXB0IE TXB1IE TXB2IE ]
+"9047
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9047:     struct {
+[s S350 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S350 . . RXBNIE . TXBNIE ]
+"9029
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9029: typedef union {
+[u S347 `S348 1 `S349 1 `S350 1 ]
+[n S347 . . . . ]
+"9054
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9054: extern volatile PIE3bits_t PIE3bits __attribute__((address(0xFA3)));
+[v _PIE3bits `VS347 ~T0 @X0 0 e@4003 ]
 "10159
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10159: extern volatile unsigned char SPBRG1 __attribute__((address(0xFB0)));
 [v _SPBRG1 `Vuc ~T0 @X0 0 e@4016 ]
 "4900
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4900: extern volatile unsigned char SPBRGH1 __attribute__((address(0xF7F)));
 [v _SPBRGH1 `Vuc ~T0 @X0 0 e@3967 ]
+"9516
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9516: extern volatile unsigned char SPBRG2 __attribute__((address(0xFAB)));
+[v _SPBRG2 `Vuc ~T0 @X0 0 e@4011 ]
+"4386
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 4386: extern volatile unsigned char SPBRGH2 __attribute__((address(0xF7D)));
+[v _SPBRGH2 `Vuc ~T0 @X0 0 e@3965 ]
 "10135
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10135: extern volatile unsigned char TXREG1 __attribute__((address(0xFAE)));
 [v _TXREG1 `Vuc ~T0 @X0 0 e@4014 ]
 "10147
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 10147: extern volatile unsigned char RCREG1 __attribute__((address(0xFAF)));
 [v _RCREG1 `Vuc ~T0 @X0 0 e@4015 ]
+"9502
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9502: extern volatile unsigned char TXREG2 __attribute__((address(0xFA9)));
+[v _TXREG2 `Vuc ~T0 @X0 0 e@4009 ]
+"9140
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9140:     struct {
+[s S352 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S352 . CCP3IF CCP4IF CCP5IF TMR4IF TX2IF RC2IF BCL2IF SSP2IF ]
+"9150
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9150:     struct {
+[s S353 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S353 . . RXBNIF . TXBNIF ]
+"9139
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9139: typedef union {
+[u S351 `S352 1 `S353 1 ]
+[n S351 . . . ]
+"9157
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9157: extern volatile PIR3bits_t PIR3bits __attribute__((address(0xFA4)));
+[v _PIR3bits `VS351 ~T0 @X0 0 e@4004 ]
+"9509
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 9509: extern volatile unsigned char RCREG2 __attribute__((address(0xFAA)));
+[v _RCREG2 `Vuc ~T0 @X0 0 e@4010 ]
+"19215
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 19215: extern volatile __bit TX1IF __attribute__((address(0x7CF4)));
+[v _TX1IF `Vb ~T0 @X0 0 e@31988 ]
+"109 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"19227 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 19227: extern volatile __bit TX2IF __attribute__((address(0x7D24)));
+[v _TX2IF `Vb ~T0 @X0 0 e@32036 ]
+"8606
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8606:     struct {
+[s S328 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S328 . TMR1IF TMR2IF CCP1IF SSP1IF TX1IF RC1IF ADIF PMPIF ]
+"8616
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8616:     struct {
+[s S329 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S329 . . SSPIF TXIF RCIF ]
+"8622
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8622:     struct {
+[s S330 :7 `uc 1 :1 `uc 1 ]
+[n S330 . . PSPIF ]
+"8605
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8605: typedef union {
+[u S327 `S328 1 `S329 1 `S330 1 ]
+[n S327 . . . . ]
+"8627
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 8627: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
+[v _PIR1bits `VS327 ~T0 @X0 0 e@3998 ]
+[v F192 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\builtins.h
+[v __delay `JF192 ~T0 @X0 0 e ]
+[p i __delay ]
+"6110 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6110:     struct {
+[s S250 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S250 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"6120
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6120:     struct {
+[s S251 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S251 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"6109
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6109: typedef union {
+[u S249 `S250 1 `S251 1 ]
+[n S249 . . . ]
+"6131
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6131: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
+[v _LATAbits `VS249 ~T0 @X0 0 e@3977 ]
+"6334
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6334:     struct {
+[s S256 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S256 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"6344
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6344:     struct {
+[s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S257 . LC0 LC1 LC2 LC3 LC4 LC5 LC6 LC7 ]
+"6333
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6333: typedef union {
+[u S255 `S256 1 `S257 1 ]
+[n S255 . . . ]
+"6355
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6355: extern volatile LATCbits_t LATCbits __attribute__((address(0xF8B)));
+[v _LATCbits `VS255 ~T0 @X0 0 e@3979 ]
+"112 ./main.h
+[; ;./main.h: 112:     void vibrationMotorControl(_Bool powerState, unsigned int pwm_msg);
+[v _vibrationMotorControl `(v ~T0 @X0 0 ef2`a`ui ]
+"73
+[; ;./main.h: 73:     void MotorON(void);
+[v _MotorON `(v ~T0 @X0 0 ef ]
+"75
+[; ;./main.h: 75:     unsigned int Read_IR(void);
+[v _Read_IR `(ui ~T0 @X0 0 ef ]
+"74
+[; ;./main.h: 74:     void MotorBREAK(void);
+[v _MotorBREAK `(v ~T0 @X0 0 ef ]
+"364 usart.c
+[; ;usart.c: 364:             }
+[c E5927 6 193 194 195 196 197 225 226 .. ]
+[n E5927 . Handshake Vibrate_Mode_ON Vibrate_Mode_OFF SDB_Dispense_START SDB_Dispense_PAUSE SDB_Dispense_STOP IR_Censor_Failure Marker_Not_Detected  ]
+"105 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\stdio.h: 105: int printf(const char *restrict, ...);
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"54 C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\string.h
+[; ;C:\Program Files\Microchip\xc8\v2.40\pic\include\c99\string.h: 54: size_t strlen (const char *);
+[v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 55: __asm("PMSTAT equ 0F40h");
 [; <" PMSTAT equ 0F40h ;# ">
@@ -895,154 +1133,1605 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15783
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 15783: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./main.h
+"21 ./main.h
 [p x WDTEN  =  OFF       ]
-"17
+"22
 [p x PLLDIV  =  1  ]
-"18
-[p x STVREN  =  ON  ]
-"19
-[p x XINST  =  OFF       ]
-"20
-[p x DEBUG  =  OFF ]
 "23
-[p x CPUDIV  =  OSC1     ]
+[p x STVREN  =  ON  ]
 "24
-[p x CP0  =  OFF         ]
-"27
-[p x FOSC  =  INTOSCPLLO  ]
+[p x XINST  =  OFF       ]
+"25
+[p x DEBUG  =  OFF ]
 "28
-[p x FCMEN  =  OFF  ]
+[p x CPUDIV  =  OSC1     ]
 "29
-[p x IESO  =  OFF  ]
+[p x CP0  =  OFF         ]
 "32
-[p x WDTPS  =  2048     ]
+[p x FOSC  =  INTOSCPLLO  ]
+"33
+[p x FCMEN  =  OFF  ]
+"34
+[p x IESO  =  OFF  ]
 "37
+[p x WDTPS  =  2048     ]
+"42
 [p x CCP2MX  =  DEFAULT  ]
-"38
+"43
 [p x MSSPMSK  =  MSK5  ]
-"20 usart.c
-[; ;usart.c: 20: void initUSART(void) {
+"110
+[; ;./main.h: 110:     unsigned int duty_cycle = 0;
+[v _duty_cycle `ui ~T0 @X0 1 e ]
+[i _duty_cycle
+-> -> 0 `i `ui
+]
+"111
+[; ;./main.h: 111:     volatile unsigned char PWM_Duty_Cycle;
+[v _PWM_Duty_Cycle `Vuc ~T0 @X0 1 e ]
+"34 usart.c
+[; ;usart.c: 34: void initUSART(void) {
 [v _initUSART `(v ~T0 @X0 1 ef ]
 {
 [e :U _initUSART ]
 [f ]
-"22
-[; ;usart.c: 22:     TRISCbits.TRISC6 = 0;
-[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
-"23
-[; ;usart.c: 23:     TRISCbits.TRISC7 = 1;
-[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
-"24
-[; ;usart.c: 24:     TXSTA1bits.SYNC = 0;
-[e = . . _TXSTA1bits 0 4 -> -> 0 `i `uc ]
-"25
-[; ;usart.c: 25:     TXSTA1bits.TX9 = 0;
-[e = . . _TXSTA1bits 0 6 -> -> 0 `i `uc ]
-"26
-[; ;usart.c: 26:     TXSTA1bits.TXEN = 1;
-[e = . . _TXSTA1bits 0 5 -> -> 1 `i `uc ]
-"27
-[; ;usart.c: 27:     RCSTA1bits.RX9 = 0;
-[e = . . _RCSTA1bits 0 6 -> -> 0 `i `uc ]
-"28
-[; ;usart.c: 28:     RCSTA1bits.CREN = 1;
-[e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
-"29
-[; ;usart.c: 29:     TXSTA1bits.CSRC = 0;
-[e = . . _TXSTA1bits 0 7 -> -> 0 `i `uc ]
-"30
-[; ;usart.c: 30:     RCSTA1bits.ADDEN = 1;
-[e = . . _RCSTA1bits 0 3 -> -> 1 `i `uc ]
-"31
-[; ;usart.c: 31:     RCSTA1bits.SPEN = 1;
-[e = . . _RCSTA1bits 0 7 -> -> 1 `i `uc ]
-"34
-[; ;usart.c: 34:     BAUDCON1bits.BRG16 = 0;
-[e = . . _BAUDCON1bits 0 3 -> -> 0 `i `uc ]
-"35
-[; ;usart.c: 35:     TXSTA1bits.BRGH = 1;
-[e = . . _TXSTA1bits 0 2 -> -> 1 `i `uc ]
 "36
-[; ;usart.c: 36:     PIE1bits.RC1IE = 1;
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+[; ;usart.c: 36:     TRISCbits.TRISC6 = 0;
+[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
 "37
-[; ;usart.c: 37:     PIE1bits.TX1IE = 0;
-[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
+[; ;usart.c: 37:     TRISCbits.TRISC7 = 1;
+[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
 "39
-[; ;usart.c: 39:     SPBRG1 = 25;
-[e = _SPBRG1 -> -> 25 `i `uc ]
+[; ;usart.c: 39:     TXSTA1bits.SYNC = 0;
+[e = . . _TXSTA1bits 0 4 -> -> 0 `i `uc ]
 "40
-[; ;usart.c: 40:     SPBRGH1 = 0;
-[e = _SPBRGH1 -> -> 0 `i `uc ]
+[; ;usart.c: 40:     TXSTA1bits.TX9 = 0;
+[e = . . _TXSTA1bits 0 6 -> -> 0 `i `uc ]
+"41
+[; ;usart.c: 41:     TXSTA1bits.TXEN = 1;
+[e = . . _TXSTA1bits 0 5 -> -> 1 `i `uc ]
 "42
-[; ;usart.c: 42: }
-[e :UE 628 ]
+[; ;usart.c: 42:     RCSTA1bits.RX9 = 0;
+[e = . . _RCSTA1bits 0 6 -> -> 0 `i `uc ]
+"43
+[; ;usart.c: 43:     RCSTA1bits.CREN = 1;
+[e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
+"44
+[; ;usart.c: 44:     TXSTA1bits.CSRC = 0;
+[e = . . _TXSTA1bits 0 7 -> -> 0 `i `uc ]
+"45
+[; ;usart.c: 45:     RCSTA1bits.ADDEN = 1;
+[e = . . _RCSTA1bits 0 3 -> -> 1 `i `uc ]
+"46
+[; ;usart.c: 46:     RCSTA1bits.SPEN = 1;
+[e = . . _RCSTA1bits 0 7 -> -> 1 `i `uc ]
+"49
+[; ;usart.c: 49:     TRISGbits.TRISG1 = 0;
+[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
+"50
+[; ;usart.c: 50:     TRISGbits.TRISG2 = 1;
+[e = . . _TRISGbits 0 2 -> -> 1 `i `uc ]
+"51
+[; ;usart.c: 51:     TXSTA2bits.SYNC = 0;
+[e = . . _TXSTA2bits 0 4 -> -> 0 `i `uc ]
+"52
+[; ;usart.c: 52:     TXSTA2bits.TX9 = 0;
+[e = . . _TXSTA2bits 0 6 -> -> 0 `i `uc ]
+"53
+[; ;usart.c: 53:     TXSTA2bits.TXEN = 1;
+[e = . . _TXSTA2bits 0 5 -> -> 1 `i `uc ]
+"54
+[; ;usart.c: 54:     RCSTA2bits.RX9 = 0;
+[e = . . _RCSTA2bits 0 6 -> -> 0 `i `uc ]
+"55
+[; ;usart.c: 55:     RCSTA2bits.CREN = 1;
+[e = . . _RCSTA2bits 0 4 -> -> 1 `i `uc ]
+"56
+[; ;usart.c: 56:     TXSTA2bits.CSRC = 0;
+[e = . . _TXSTA2bits 0 7 -> -> 0 `i `uc ]
+"57
+[; ;usart.c: 57:     RCSTA2bits.ADDEN = 1;
+[e = . . _RCSTA2bits 0 3 -> -> 1 `i `uc ]
+"58
+[; ;usart.c: 58:     RCSTA2bits.SPEN = 1;
+[e = . . _RCSTA2bits 0 7 -> -> 1 `i `uc ]
+"62
+[; ;usart.c: 62:     BAUDCON1bits.BRG16 = 0;
+[e = . . _BAUDCON1bits 0 3 -> -> 0 `i `uc ]
+"63
+[; ;usart.c: 63:     TXSTA1bits.BRGH = 1;
+[e = . . _TXSTA1bits 0 2 -> -> 1 `i `uc ]
+"64
+[; ;usart.c: 64:     PIE1bits.RC1IE = 1;
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+"65
+[; ;usart.c: 65:     PIE1bits.TX1IE = 0;
+[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
+"67
+[; ;usart.c: 67:     BAUDCON2bits.BRG16 = 0;
+[e = . . _BAUDCON2bits 0 3 -> -> 0 `i `uc ]
+"68
+[; ;usart.c: 68:     TXSTA2bits.BRGH = 1;
+[e = . . _TXSTA2bits 0 2 -> -> 1 `i `uc ]
+"69
+[; ;usart.c: 69:     PIE3bits.RC2IE = 1;
+[e = . . _PIE3bits 0 5 -> -> 1 `i `uc ]
+"70
+[; ;usart.c: 70:     PIE3bits.TX2IE = 0;
+[e = . . _PIE3bits 0 4 -> -> 0 `i `uc ]
+"74
+[; ;usart.c: 74:     SPBRG1 = 25;
+[e = _SPBRG1 -> -> 25 `i `uc ]
+"75
+[; ;usart.c: 75:     SPBRGH1 = 0;
+[e = _SPBRGH1 -> -> 0 `i `uc ]
+"77
+[; ;usart.c: 77:     SPBRG2 = 25;
+[e = _SPBRG2 -> -> 25 `i `uc ]
+"78
+[; ;usart.c: 78:     SPBRGH2 = 0;
+[e = _SPBRGH2 -> -> 0 `i `uc ]
+"80
+[; ;usart.c: 80: }
+[e :UE 631 ]
 }
-"47
-[; ;usart.c: 47: void Write1USART(char data) {
+"85
+[; ;usart.c: 85: void Write1USART(char data) {
 [v _Write1USART `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _Write1USART ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-"48
-[; ;usart.c: 48:     TXREG1 = data;
+"86
+[; ;usart.c: 86:     TXREG1 = data;
 [e = _TXREG1 -> _data `uc ]
-"50
-[; ;usart.c: 50:     while ((!TXSTA1bits.TRMT));
-[e $U 630  ]
-[e :U 631 ]
-[e :U 630 ]
-[e $ ! != -> . . _TXSTA1bits 0 1 `i -> 0 `i 631  ]
-[e :U 632 ]
-"51
-[; ;usart.c: 51: }
-[e :UE 629 ]
+"88
+[; ;usart.c: 88:     while ((!TXSTA1bits.TRMT));
+[e $U 633  ]
+[e :U 634 ]
+[e :U 633 ]
+[e $ ! != -> . . _TXSTA1bits 0 1 `i -> 0 `i 634  ]
+[e :U 635 ]
+"89
+[; ;usart.c: 89: }
+[e :UE 632 ]
 }
-"56
-[; ;usart.c: 56: char Read1USART(void) {
+"94
+[; ;usart.c: 94: char Read1USART(void) {
 [v _Read1USART `(uc ~T0 @X0 1 ef ]
 {
 [e :U _Read1USART ]
 [f ]
-"57
-[; ;usart.c: 57:     char result;
+"95
+[; ;usart.c: 95:     char result;
 [v _result `uc ~T0 @X0 1 a ]
-"59
-[; ;usart.c: 59:     if (RCSTA1bits.OERR) {
-[e $ ! != -> . . _RCSTA1bits 0 1 `i -> 0 `i 634  ]
+"97
+[; ;usart.c: 97:     if (RCSTA1bits.OERR) {
+[e $ ! != -> . . _RCSTA1bits 0 1 `i -> 0 `i 637  ]
 {
-"60
-[; ;usart.c: 60:         RCSTA1bits.CREN = 0;
+"98
+[; ;usart.c: 98:         RCSTA1bits.CREN = 0;
 [e = . . _RCSTA1bits 0 4 -> -> 0 `i `uc ]
-"61
-[; ;usart.c: 61:         result = RCREG1;
+"99
+[; ;usart.c: 99:         result = RCREG1;
 [e = _result -> _RCREG1 `uc ]
-"62
-[; ;usart.c: 62:         result = RCREG1;
+"100
+[; ;usart.c: 100:         result = RCREG1;
 [e = _result -> _RCREG1 `uc ]
-"63
-[; ;usart.c: 63:         RCSTA1bits.CREN = 1;
+"101
+[; ;usart.c: 101:         RCSTA1bits.CREN = 1;
 [e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
-"64
-[; ;usart.c: 64:     } else {
+"102
+[; ;usart.c: 102:     } else {
 }
-[e $U 635  ]
-[e :U 634 ]
+[e $U 638  ]
+[e :U 637 ]
 {
-"65
-[; ;usart.c: 65:         result = RCREG1;
+"103
+[; ;usart.c: 103:         result = RCREG1;
 [e = _result -> _RCREG1 `uc ]
-"66
-[; ;usart.c: 66:     }
+"104
+[; ;usart.c: 104:     }
 }
-[e :U 635 ]
-"68
-[; ;usart.c: 68:     return result;
+[e :U 638 ]
+"106
+[; ;usart.c: 106:     return result;
 [e ) _result ]
-[e $UE 633  ]
-"69
-[; ;usart.c: 69: }
-[e :UE 633 ]
+[e $UE 636  ]
+"107
+[; ;usart.c: 107: }
+[e :UE 636 ]
 }
+"114
+[; ;usart.c: 114: void Write2USART(char data) {
+[v _Write2USART `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _Write2USART ]
+[v _data `uc ~T0 @X0 1 r1 ]
+[f ]
+"115
+[; ;usart.c: 115:     TXREG2 = data;
+[e = _TXREG2 -> _data `uc ]
+"117
+[; ;usart.c: 117:     while ((!TXSTA2bits.TRMT));
+[e $U 640  ]
+[e :U 641 ]
+[e :U 640 ]
+[e $ ! != -> . . _TXSTA2bits 0 1 `i -> 0 `i 641  ]
+[e :U 642 ]
+"118
+[; ;usart.c: 118: }
+[e :UE 639 ]
+}
+"125
+[; ;usart.c: 125: char Read2USART(void) {
+[v _Read2USART `(uc ~T0 @X0 1 ef ]
+{
+[e :U _Read2USART ]
+[f ]
+"126
+[; ;usart.c: 126:     char result;
+[v _result `uc ~T0 @X0 1 a ]
+"131
+[; ;usart.c: 131:     while (!(PIR3bits.RC2IF));
+[e $U 644  ]
+[e :U 645 ]
+[e :U 644 ]
+[e $ ! != -> . . _PIR3bits 0 5 `i -> 0 `i 645  ]
+[e :U 646 ]
+"132
+[; ;usart.c: 132:     result = RCREG2;
+[e = _result -> _RCREG2 `uc ]
+"138
+[; ;usart.c: 138:     return result;
+[e ) _result ]
+[e $UE 643  ]
+"139
+[; ;usart.c: 139: }
+[e :UE 643 ]
+}
+"143
+[; ;usart.c: 143: void uart_print(const char *str) {
+[v _uart_print `(v ~T0 @X0 1 ef1`*Cuc ]
+{
+[e :U _uart_print ]
+[v _str `*Cuc ~T0 @X0 1 r1 ]
+[f ]
+"144
+[; ;usart.c: 144:     while (*str) {
+[e $U 648  ]
+[e :U 649 ]
+{
+"145
+[; ;usart.c: 145:         while (!TX1IF);
+[e $U 651  ]
+[e :U 652 ]
+[e :U 651 ]
+[e $ ! _TX1IF 652  ]
+[e :U 653 ]
+"146
+[; ;usart.c: 146:         TXREG1 = *str;
+[e = _TXREG1 -> *U _str `uc ]
+"147
+[; ;usart.c: 147:         str++;
+[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"148
+[; ;usart.c: 148:     }
+}
+[e :U 648 ]
+"144
+[; ;usart.c: 144:     while (*str) {
+[e $ != -> *U _str `i -> 0 `i 649  ]
+[e :U 650 ]
+"149
+[; ;usart.c: 149: }
+[e :UE 647 ]
+}
+"151
+[; ;usart.c: 151: void uart_println(unsigned char num) {
+[v _uart_println `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _uart_println ]
+[v _num `uc ~T0 @X0 1 r1 ]
+[f ]
+"152
+[; ;usart.c: 152:     char buf[5];
+[v _buf `uc ~T0 @X0 -> 5 `i a ]
+"153
+[; ;usart.c: 153:     sprintf(buf, "%d", num);
+[e ( _sprintf (1 , (. , &U _buf :s 1C -> _num `i ]
+"154
+[; ;usart.c: 154:     uart_print(buf);
+[e ( _uart_print (1 -> &U _buf `*Cuc ]
+"155
+[; ;usart.c: 155:     uart_print("\r\n");
+[e ( _uart_print (1 :s 2C ]
+"156
+[; ;usart.c: 156: }
+[e :UE 654 ]
+}
+"158
+[; ;usart.c: 158: void uart_print_hex(unsigned char num) {
+[v _uart_print_hex `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _uart_print_hex ]
+[v _num `uc ~T0 @X0 1 r1 ]
+[f ]
+"159
+[; ;usart.c: 159:     char buf[5];
+[v _buf `uc ~T0 @X0 -> 5 `i a ]
+"160
+[; ;usart.c: 160:     sprintf(buf, "0x%02X", num);
+[e ( _sprintf (1 , (. , &U _buf :s 3C -> _num `i ]
+"161
+[; ;usart.c: 161:     uart_print(buf);
+[e ( _uart_print (1 -> &U _buf `*Cuc ]
+"162
+[; ;usart.c: 162: }
+[e :UE 655 ]
+}
+"166
+[; ;usart.c: 166: void print_received_block(unsigned char uart_channel, unsigned char *data, unsigned int size) {
+[v _print_received_block `(v ~T0 @X0 1 ef3`uc`*uc`ui ]
+{
+[e :U _print_received_block ]
+[v _uart_channel `uc ~T0 @X0 1 r1 ]
+[v _data `*uc ~T0 @X0 1 r2 ]
+[v _size `ui ~T0 @X0 1 r3 ]
+[f ]
+"167
+[; ;usart.c: 167:     uart_print("Received data (UART");
+[e ( _uart_print (1 :s 4C ]
+"168
+[; ;usart.c: 168:     uart_print(uart_channel);
+[e ( _uart_print (1 -> _uart_channel `*Cuc ]
+"169
+[; ;usart.c: 169:     uart_print("): ");
+[e ( _uart_print (1 :s 5C ]
+"170
+[; ;usart.c: 170:     for (unsigned int i = 0; i < size; i++) {
+{
+[v _i `ui ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `ui ]
+[e $U 660  ]
+[e :U 657 ]
+{
+"171
+[; ;usart.c: 171:         uart_print_hex(data[i]);
+[e ( _uart_print_hex (1 *U + _data * -> _i `ux -> -> # *U _data `ui `ux ]
+"172
+[; ;usart.c: 172:         if (i < (size - 1)) {
+[e $ ! < _i - _size -> -> 1 `i `ui 661  ]
+{
+"173
+[; ;usart.c: 173:             uart_print(", ");
+[e ( _uart_print (1 :s 6C ]
+"174
+[; ;usart.c: 174:         }
+}
+[e :U 661 ]
+"175
+[; ;usart.c: 175:     }
+}
+[e ++ _i -> -> 1 `i `ui ]
+[e :U 660 ]
+[e $ < _i _size 657  ]
+[e :U 658 ]
+}
+"176
+[; ;usart.c: 176:     uart_print("\r\n");
+[e ( _uart_print (1 :s 7C ]
+"177
+[; ;usart.c: 177: }
+[e :UE 656 ]
+}
+"193
+[; ;usart.c: 193: void sendData(unsigned char *data, int length, unsigned char uart_channel) {
+[v _sendData `(v ~T0 @X0 1 ef3`*uc`i`uc ]
+{
+[e :U _sendData ]
+[v _data `*uc ~T0 @X0 1 r1 ]
+[v _length `i ~T0 @X0 1 r2 ]
+[v _uart_channel `uc ~T0 @X0 1 r3 ]
+[f ]
+"194
+[; ;usart.c: 194:     for (int i = 0; i < length; i++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 666  ]
+[e :U 663 ]
+{
+"195
+[; ;usart.c: 195:         if (uart_channel == 1) {
+[e $ ! == -> _uart_channel `i -> 1 `i 667  ]
+{
+"196
+[; ;usart.c: 196:             while (!TX1IF);
+[e $U 668  ]
+[e :U 669 ]
+[e :U 668 ]
+[e $ ! _TX1IF 669  ]
+[e :U 670 ]
+"197
+[; ;usart.c: 197:             TXREG1 = data[i];
+[e = _TXREG1 *U + _data * -> _i `x -> -> # *U _data `i `x ]
+"198
+[; ;usart.c: 198:             uart_print("Sent response (UART1): ");
+[e ( _uart_print (1 :s 8C ]
+"199
+[; ;usart.c: 199:             uart_print_hex(data[i]);
+[e ( _uart_print_hex (1 *U + _data * -> _i `x -> -> # *U _data `i `x ]
+"200
+[; ;usart.c: 200:             if (i < (length - 1)) {
+[e $ ! < _i - _length -> 1 `i 671  ]
+{
+"201
+[; ;usart.c: 201:                 uart_print(", ");
+[e ( _uart_print (1 :s 9C ]
+"202
+[; ;usart.c: 202:             } else {
+}
+[e $U 672  ]
+[e :U 671 ]
+{
+"203
+[; ;usart.c: 203:                 uart_print("\r\n");
+[e ( _uart_print (1 :s 10C ]
+"204
+[; ;usart.c: 204:             }
+}
+[e :U 672 ]
+"205
+[; ;usart.c: 205:         } else if (uart_channel == 2) {
+}
+[e $U 673  ]
+[e :U 667 ]
+[e $ ! == -> _uart_channel `i -> 2 `i 674  ]
+{
+"206
+[; ;usart.c: 206:             while (!TX2IF);
+[e $U 675  ]
+[e :U 676 ]
+[e :U 675 ]
+[e $ ! _TX2IF 676  ]
+[e :U 677 ]
+"207
+[; ;usart.c: 207:             TXREG2 = data[i];
+[e = _TXREG2 *U + _data * -> _i `x -> -> # *U _data `i `x ]
+"208
+[; ;usart.c: 208:         }
+}
+[e :U 674 ]
+[e :U 673 ]
+"209
+[; ;usart.c: 209:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 666 ]
+[e $ < _i _length 663  ]
+[e :U 664 ]
+}
+"210
+[; ;usart.c: 210: }
+[e :UE 662 ]
+}
+"212
+[; ;usart.c: 212: unsigned char receiveData(unsigned char uart_channel) {
+[v _receiveData `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _receiveData ]
+[v _uart_channel `uc ~T0 @X0 1 r1 ]
+[f ]
+"213
+[; ;usart.c: 213:     unsigned char receivedData;
+[v _receivedData `uc ~T0 @X0 1 a ]
+"214
+[; ;usart.c: 214:     if (uart_channel == 1) {
+[e $ ! == -> _uart_channel `i -> 1 `i 679  ]
+{
+"215
+[; ;usart.c: 215:         while (!PIR1bits.RC1IF);
+[e $U 680  ]
+[e :U 681 ]
+[e :U 680 ]
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 681  ]
+[e :U 682 ]
+"216
+[; ;usart.c: 216:         receivedData = RCREG1;
+[e = _receivedData _RCREG1 ]
+"217
+[; ;usart.c: 217:     } else if (uart_channel == 2) {
+}
+[e $U 683  ]
+[e :U 679 ]
+[e $ ! == -> _uart_channel `i -> 2 `i 684  ]
+{
+"218
+[; ;usart.c: 218:         while (!PIR3bits.RC2IF);
+[e $U 685  ]
+[e :U 686 ]
+[e :U 685 ]
+[e $ ! != -> . . _PIR3bits 0 5 `i -> 0 `i 686  ]
+[e :U 687 ]
+"219
+[; ;usart.c: 219:         receivedData = RCREG2;
+[e = _receivedData _RCREG2 ]
+"220
+[; ;usart.c: 220:     }
+}
+[e :U 684 ]
+[e :U 683 ]
+"221
+[; ;usart.c: 221:     return receivedData;
+[e ) _receivedData ]
+[e $UE 678  ]
+"222
+[; ;usart.c: 222: }
+[e :UE 678 ]
+}
+"224
+[; ;usart.c: 224: void sendResponse(unsigned char sot, unsigned char response, unsigned char data1, unsigned char data2, unsigned char eot) {
+[v _sendResponse `(v ~T0 @X0 1 ef5`uc`uc`uc`uc`uc ]
+{
+[e :U _sendResponse ]
+[v _sot `uc ~T0 @X0 1 r1 ]
+[v _response `uc ~T0 @X0 1 r2 ]
+[v _data1 `uc ~T0 @X0 1 r3 ]
+[v _data2 `uc ~T0 @X0 1 r4 ]
+[v _eot `uc ~T0 @X0 1 r5 ]
+[f ]
+[v F6047 `uc ~T0 @X0 -> 5 `i s ]
+[i F6047
+:U ..
+"225
+[; ;usart.c: 225:     unsigned char responseData[5] = {sot, response, data1, data2, eot};
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+]
+[v _responseData `uc ~T0 @X0 -> 5 `i a ]
+[e = _responseData F6047 ]
+[e ; = *U + &U _responseData * -> -> -> 0 `i `ui `ux -> -> # *U &U _responseData `ui `ux _sot ; = *U + &U _responseData * -> -> -> 1 `i `ui `ux -> -> # *U &U _responseData `ui `ux _response ; = *U + &U _responseData * -> -> -> 2 `i `ui `ux -> -> # *U &U _responseData `ui `ux _data1 ; = *U + &U _responseData * -> -> -> 3 `i `ui `ux -> -> # *U &U _responseData `ui `ux _data2 = *U + &U _responseData * -> -> -> 4 `i `ui `ux -> -> # *U &U _responseData `ui `ux _eot ]
+"231
+[; ;usart.c: 231:     sendData(responseData, 5, 2);
+[e ( _sendData (3 , , &U _responseData -> 5 `i -> -> 2 `i `uc ]
+"234
+[; ;usart.c: 234: }
+[e :UE 688 ]
+}
+"236
+[; ;usart.c: 236: void delay2_1ms(unsigned int time) {
+[v _delay2_1ms `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _delay2_1ms ]
+[v _time `ui ~T0 @X0 1 r1 ]
+[f ]
+"237
+[; ;usart.c: 237:     while (time > 0) {
+[e $U 690  ]
+[e :U 691 ]
+{
+"238
+[; ;usart.c: 238:         _delay((unsigned long)((1)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"239
+[; ;usart.c: 239:         time--;
+[e -- _time -> -> 1 `i `ui ]
+"240
+[; ;usart.c: 240:     }
+}
+[e :U 690 ]
+"237
+[; ;usart.c: 237:     while (time > 0) {
+[e $ > _time -> -> 0 `i `ui 691  ]
+[e :U 692 ]
+"241
+[; ;usart.c: 241: }
+[e :UE 689 ]
+}
+"243
+[; ;usart.c: 243: void handle_uart_communication(unsigned int Motor_Stop_Delay_Time, volatile long errorcounter) {
+[v _handle_uart_communication `(v ~T0 @X0 1 ef2`ui`Vl ]
+{
+[e :U _handle_uart_communication ]
+[v _Motor_Stop_Delay_Time `ui ~T0 @X0 1 r1 ]
+[v _errorcounter `Vl ~T0 @X0 1 r2 ]
+[f ]
+"245
+[; ;usart.c: 245:     unsigned int IR_SENSORF = 0;
+[v _IR_SENSORF `ui ~T0 @X0 1 a ]
+[e = _IR_SENSORF -> -> 0 `i `ui ]
+"247
+[; ;usart.c: 247:     LATAbits.LATA2 = 1;
+[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
+"251
+[; ;usart.c: 251:     while (1) {
+[e :U 695 ]
+{
+"252
+[; ;usart.c: 252:         unsigned char receivedBytes[5];
+[v _receivedBytes `uc ~T0 @X0 -> 5 `i a ]
+"255
+[; ;usart.c: 255:         while ((receivedBytes[0] = receiveData(2)) != 0xA5);
+[e $U 697  ]
+[e :U 698 ]
+[e :U 697 ]
+[e $ != -> = *U + &U _receivedBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _receivedBytes `ui `ux ( _receiveData (1 -> -> 2 `i `uc `i -> 165 `i 698  ]
+[e :U 699 ]
+"258
+[; ;usart.c: 258:         for (int i = 1; i < 5; i++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 1 `i ]
+[e $ < _i -> 5 `i 700  ]
+[e $U 701  ]
+[e :U 700 ]
+{
+"259
+[; ;usart.c: 259:             receivedBytes[i] = receiveData(2);
+[e = *U + &U _receivedBytes * -> -> _i `ui `ux -> -> # *U &U _receivedBytes `ui `ux ( _receiveData (1 -> -> 2 `i `uc ]
+"260
+[; ;usart.c: 260:         }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 5 `i 700  ]
+[e :U 701 ]
+}
+"265
+[; ;usart.c: 265:         unsigned char command = receivedBytes[1];
+[v _command `uc ~T0 @X0 1 a ]
+[e = _command *U + &U _receivedBytes * -> -> -> 1 `i `ui `ux -> -> # *U &U _receivedBytes `ui `ux ]
+"266
+[; ;usart.c: 266:         unsigned char data1 = receivedBytes[2];
+[v _data1 `uc ~T0 @X0 1 a ]
+[e = _data1 *U + &U _receivedBytes * -> -> -> 2 `i `ui `ux -> -> # *U &U _receivedBytes `ui `ux ]
+"267
+[; ;usart.c: 267:         unsigned char data2 = receivedBytes[3];
+[v _data2 `uc ~T0 @X0 1 a ]
+[e = _data2 *U + &U _receivedBytes * -> -> -> 3 `i `ui `ux -> -> # *U &U _receivedBytes `ui `ux ]
+"268
+[; ;usart.c: 268:         unsigned char eot = receivedBytes[4];
+[v _eot `uc ~T0 @X0 1 a ]
+[e = _eot *U + &U _receivedBytes * -> -> -> 4 `i `ui `ux -> -> # *U &U _receivedBytes `ui `ux ]
+"270
+[; ;usart.c: 270:         if (receivedBytes[0] == 0xA5 && eot == 0x5A) {
+[e $ ! && == -> *U + &U _receivedBytes * -> -> -> 0 `i `ui `ux -> -> # *U &U _receivedBytes `ui `ux `i -> 165 `i == -> _eot `i -> 90 `i 703  ]
+{
+"272
+[; ;usart.c: 272:             switch (command) {
+[e $U 705  ]
+{
+"273
+[; ;usart.c: 273:                 case Handshake:
+[e :U 706 ]
+"274
+[; ;usart.c: 274:                     sendResponse(0xA5, 0x60, 0x00, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 0 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"275
+[; ;usart.c: 275:                     break;
+[e $U 704  ]
+"276
+[; ;usart.c: 276:                 case Vibrate_Mode_ON:
+[e :U 707 ]
+"280
+[; ;usart.c: 280:                     LATCbits.LATC1 = 1;
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+"284
+[; ;usart.c: 284:                     vibrationMotorControl(1, 0x03);
+[e ( _vibrationMotorControl (2 , -> -> 1 `i `a -> -> 3 `i `ui ]
+"286
+[; ;usart.c: 286:                     sendResponse(0xA5, 0x60, 0x1C, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 28 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"287
+[; ;usart.c: 287:                     break;
+[e $U 704  ]
+"288
+[; ;usart.c: 288:                 case Vibrate_Mode_OFF:
+[e :U 708 ]
+"291
+[; ;usart.c: 291:                     LATCbits.LATC1 = 0;
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+"294
+[; ;usart.c: 294:                     vibrationMotorControl(0, 0x00);
+[e ( _vibrationMotorControl (2 , -> -> 0 `i `a -> -> 0 `i `ui ]
+"296
+[; ;usart.c: 296:                     sendResponse(0xA5, 0x60, 0x2C, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 44 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"297
+[; ;usart.c: 297:                     break;
+[e $U 704  ]
+"298
+[; ;usart.c: 298:                 case SDB_Dispense_START:
+[e :U 709 ]
+"302
+[; ;usart.c: 302:                     LATAbits.LATA2 = 1;
+[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
+"303
+[; ;usart.c: 303:                     MotorON();
+[e ( _MotorON ..  ]
+"306
+[; ;usart.c: 306:                     _delay((unsigned long)((150)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 150 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"307
+[; ;usart.c: 307:                     errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"308
+[; ;usart.c: 308:                     do {
+[e :U 712 ]
+{
+"309
+[; ;usart.c: 309:                         IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"310
+[; ;usart.c: 310:                         if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 713  ]
+{
+"311
+[; ;usart.c: 311:                             MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"312
+[; ;usart.c: 312:                         }
+}
+[e :U 713 ]
+"313
+[; ;usart.c: 313:                     } while (IR_SENSORF != 0);
+}
+[e $ != _IR_SENSORF -> -> 0 `i `ui 712  ]
+[e :U 711 ]
+"314
+[; ;usart.c: 314:                      _delay((unsigned long)((30)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"315
+[; ;usart.c: 315:                     errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"317
+[; ;usart.c: 317:                     do {
+[e :U 716 ]
+{
+"318
+[; ;usart.c: 318:                         IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"319
+[; ;usart.c: 319:                         if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 717  ]
+{
+"320
+[; ;usart.c: 320:                             MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"321
+[; ;usart.c: 321:                         }
+}
+[e :U 717 ]
+"322
+[; ;usart.c: 322:                     } while (IR_SENSORF != 1);
+}
+[e $ != _IR_SENSORF -> -> 1 `i `ui 716  ]
+[e :U 715 ]
+"323
+[; ;usart.c: 323:                     errorcounter = 30;
+[e = _errorcounter -> -> 30 `i `l ]
+"324
+[; ;usart.c: 324:                     delay2_1ms(Motor_Stop_Delay_Time);
+[e ( _delay2_1ms (1 _Motor_Stop_Delay_Time ]
+"326
+[; ;usart.c: 326:                     MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"327
+[; ;usart.c: 327:                     sendResponse(0xA5, 0x60, 0x3C, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 60 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"328
+[; ;usart.c: 328:                     break;
+[e $U 704  ]
+"329
+[; ;usart.c: 329:                 case SDB_Dispense_PAUSE:
+[e :U 718 ]
+"332
+[; ;usart.c: 332:                     MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"333
+[; ;usart.c: 333:                     sendResponse(0xA5, 0x60, 0x3C, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 60 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"334
+[; ;usart.c: 334:                     break;
+[e $U 704  ]
+"335
+[; ;usart.c: 335:                 case SDB_Dispense_STOP:
+[e :U 719 ]
+"338
+[; ;usart.c: 338:                     MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"339
+[; ;usart.c: 339:                     sendResponse(0xA5, 0x60, 0x3C, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 60 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"340
+[; ;usart.c: 340:                     break;
+[e $U 704  ]
+"341
+[; ;usart.c: 341:                 case IR_Censor_Failure:
+[e :U 720 ]
+"343
+[; ;usart.c: 343:                     do {
+[e :U 723 ]
+{
+"344
+[; ;usart.c: 344:                         IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"345
+[; ;usart.c: 345:                         if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 724  ]
+{
+"346
+[; ;usart.c: 346:                             sendResponse(0xA5, 0x60, 0xE1, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 225 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"347
+[; ;usart.c: 347:                             MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"348
+[; ;usart.c: 348:                         }
+}
+[e :U 724 ]
+"349
+[; ;usart.c: 349:                     } while (IR_SENSORF != 0);
+}
+[e $ != _IR_SENSORF -> -> 0 `i `ui 723  ]
+[e :U 722 ]
+"350
+[; ;usart.c: 350:                     break;
+[e $U 704  ]
+"351
+[; ;usart.c: 351:                 case Marker_Not_Detected:
+[e :U 725 ]
+"353
+[; ;usart.c: 353:                     do {
+[e :U 728 ]
+{
+"354
+[; ;usart.c: 354:                         IR_SENSORF = Read_IR();
+[e = _IR_SENSORF ( _Read_IR ..  ]
+"355
+[; ;usart.c: 355:                         if (errorcounter == 0) {
+[e $ ! == _errorcounter -> -> 0 `i `l 729  ]
+{
+"356
+[; ;usart.c: 356:                             sendResponse(0xA5, 0x60, 0xE2, 0x00, 0x5A);
+[e ( _sendResponse (4 , , , , -> -> 165 `i `uc -> -> 96 `i `uc -> -> 226 `i `uc -> -> 0 `i `uc -> -> 90 `i `uc ]
+"357
+[; ;usart.c: 357:                             MotorBREAK();
+[e ( _MotorBREAK ..  ]
+"358
+[; ;usart.c: 358:                         }
+}
+[e :U 729 ]
+"359
+[; ;usart.c: 359:                     } while (IR_SENSORF != 1);
+}
+[e $ != _IR_SENSORF -> -> 1 `i `ui 728  ]
+[e :U 727 ]
+"360
+[; ;usart.c: 360:                     break;
+[e $U 704  ]
+"361
+[; ;usart.c: 361:                 default:
+[e :U 730 ]
+"363
+[; ;usart.c: 363:                     break;
+[e $U 704  ]
+"364
+[; ;usart.c: 364:             }
+}
+[e $U 704  ]
+[e :U 705 ]
+[e [\ -> _command `i , $ . `E5927 0 706
+ , $ . `E5927 1 707
+ , $ . `E5927 2 708
+ , $ . `E5927 3 709
+ , $ . `E5927 4 718
+ , $ . `E5927 5 719
+ , $ . `E5927 6 720
+ , $ . `E5927 7 725
+ 730 ]
+[e :U 704 ]
+"365
+[; ;usart.c: 365:         }
+}
+[e :U 703 ]
+"366
+[; ;usart.c: 366:     }
+}
+[e :U 694 ]
+[e $U 695  ]
+[e :U 696 ]
+"367
+[; ;usart.c: 367: }
+[e :UE 693 ]
+}
+"371
+[; ;usart.c: 371: void uart_config(unsigned int uart_num) {
+[v _uart_config `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _uart_config ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[f ]
+"372
+[; ;usart.c: 372:     if (uart_num == 1) {
+[e $ ! == _uart_num -> -> 1 `i `ui 732  ]
+{
+"376
+[; ;usart.c: 376:         PIE1bits.RC1IE = 1;
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+"377
+[; ;usart.c: 377:         PIE1bits.TX1IE = 1;
+[e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
+"379
+[; ;usart.c: 379:         TRISCbits.TRISC7 = 1;
+[e = . . _TRISCbits 0 7 -> -> 1 `i `uc ]
+"380
+[; ;usart.c: 380:         TRISCbits.TRISC6 = 0;
+[e = . . _TRISCbits 0 6 -> -> 0 `i `uc ]
+"382
+[; ;usart.c: 382:         SPBRG1 = ((8000000/16/19200) - 1);
+[e = _SPBRG1 -> - / / -> 8000000 `l -> -> 16 `i `l -> -> 19200 `i `l -> -> 1 `i `l `uc ]
+"385
+[; ;usart.c: 385:         TXSTA1bits.TX9 = 0;
+[e = . . _TXSTA1bits 0 6 -> -> 0 `i `uc ]
+"386
+[; ;usart.c: 386:         TXSTA1bits.TXEN = 1;
+[e = . . _TXSTA1bits 0 5 -> -> 1 `i `uc ]
+"387
+[; ;usart.c: 387:         TXSTA1bits.SYNC = 0;
+[e = . . _TXSTA1bits 0 4 -> -> 0 `i `uc ]
+"388
+[; ;usart.c: 388:         TXSTA1bits.SENDB = 0;
+[e = . . _TXSTA1bits 0 3 -> -> 0 `i `uc ]
+"389
+[; ;usart.c: 389:         TXSTA1bits.BRGH = 1;
+[e = . . _TXSTA1bits 0 2 -> -> 1 `i `uc ]
+"390
+[; ;usart.c: 390:         TXSTA1bits.TRMT = 0;
+[e = . . _TXSTA1bits 0 1 -> -> 0 `i `uc ]
+"391
+[; ;usart.c: 391:         TXSTA1bits.TX9D = 0;
+[e = . . _TXSTA1bits 0 0 -> -> 0 `i `uc ]
+"394
+[; ;usart.c: 394:         RCSTA1bits.SPEN = 1;
+[e = . . _RCSTA1bits 0 7 -> -> 1 `i `uc ]
+"395
+[; ;usart.c: 395:         RCSTA1bits.RX9 = 0;
+[e = . . _RCSTA1bits 0 6 -> -> 0 `i `uc ]
+"396
+[; ;usart.c: 396:         RCSTA1bits.SREN = 0;
+[e = . . _RCSTA1bits 0 5 -> -> 0 `i `uc ]
+"397
+[; ;usart.c: 397:         RCSTA1bits.CREN = 1;
+[e = . . _RCSTA1bits 0 4 -> -> 1 `i `uc ]
+"398
+[; ;usart.c: 398:         RCSTA1bits.ADDEN = 0;
+[e = . . _RCSTA1bits 0 3 -> -> 0 `i `uc ]
+"399
+[; ;usart.c: 399:         RCSTA1bits.FERR = 0;
+[e = . . _RCSTA1bits 0 2 -> -> 0 `i `uc ]
+"400
+[; ;usart.c: 400:         RCSTA1bits.FERR = 0;
+[e = . . _RCSTA1bits 0 2 -> -> 0 `i `uc ]
+"401
+[; ;usart.c: 401:         RCSTA1bits.RX9D = 0;
+[e = . . _RCSTA1bits 0 0 -> -> 0 `i `uc ]
+"404
+[; ;usart.c: 404:     } else if (uart_num == 2) {
+}
+[e $U 733  ]
+[e :U 732 ]
+[e $ ! == _uart_num -> -> 2 `i `ui 734  ]
+{
+"408
+[; ;usart.c: 408:         PIE3bits.RC2IE = 1;
+[e = . . _PIE3bits 0 5 -> -> 1 `i `uc ]
+"409
+[; ;usart.c: 409:         PIE3bits.TX2IE = 1;
+[e = . . _PIE3bits 0 4 -> -> 1 `i `uc ]
+"411
+[; ;usart.c: 411:         TRISGbits.TRISG2 = 1;
+[e = . . _TRISGbits 0 2 -> -> 1 `i `uc ]
+"412
+[; ;usart.c: 412:         TRISGbits.TRISG1 = 0;
+[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
+"414
+[; ;usart.c: 414:         SPBRG2 = ((8000000/16/19200) - 1);
+[e = _SPBRG2 -> - / / -> 8000000 `l -> -> 16 `i `l -> -> 19200 `i `l -> -> 1 `i `l `uc ]
+"417
+[; ;usart.c: 417:         TXSTA2bits.TX9 = 0;
+[e = . . _TXSTA2bits 0 6 -> -> 0 `i `uc ]
+"418
+[; ;usart.c: 418:         TXSTA2bits.TXEN = 1;
+[e = . . _TXSTA2bits 0 5 -> -> 1 `i `uc ]
+"419
+[; ;usart.c: 419:         TXSTA2bits.SYNC = 0;
+[e = . . _TXSTA2bits 0 4 -> -> 0 `i `uc ]
+"420
+[; ;usart.c: 420:         TXSTA2bits.SENDB = 0;
+[e = . . _TXSTA2bits 0 3 -> -> 0 `i `uc ]
+"421
+[; ;usart.c: 421:         TXSTA2bits.BRGH = 1;
+[e = . . _TXSTA2bits 0 2 -> -> 1 `i `uc ]
+"422
+[; ;usart.c: 422:         TXSTA2bits.TRMT = 0;
+[e = . . _TXSTA2bits 0 1 -> -> 0 `i `uc ]
+"423
+[; ;usart.c: 423:         TXSTA2bits.TX9D = 0;
+[e = . . _TXSTA2bits 0 0 -> -> 0 `i `uc ]
+"426
+[; ;usart.c: 426:         RCSTA2bits.SPEN = 1;
+[e = . . _RCSTA2bits 0 7 -> -> 1 `i `uc ]
+"427
+[; ;usart.c: 427:         RCSTA2bits.RX9 = 0;
+[e = . . _RCSTA2bits 0 6 -> -> 0 `i `uc ]
+"428
+[; ;usart.c: 428:         RCSTA2bits.SREN = 0;
+[e = . . _RCSTA2bits 0 5 -> -> 0 `i `uc ]
+"429
+[; ;usart.c: 429:         RCSTA2bits.CREN = 1;
+[e = . . _RCSTA2bits 0 4 -> -> 1 `i `uc ]
+"430
+[; ;usart.c: 430:         RCSTA2bits.ADDEN = 0;
+[e = . . _RCSTA2bits 0 3 -> -> 0 `i `uc ]
+"431
+[; ;usart.c: 431:         RCSTA2bits.FERR = 0;
+[e = . . _RCSTA2bits 0 2 -> -> 0 `i `uc ]
+"432
+[; ;usart.c: 432:         RCSTA2bits.FERR = 0;
+[e = . . _RCSTA2bits 0 2 -> -> 0 `i `uc ]
+"433
+[; ;usart.c: 433:         RCSTA2bits.RX9D = 0;
+[e = . . _RCSTA2bits 0 0 -> -> 0 `i `uc ]
+"436
+[; ;usart.c: 436:     } else {
+}
+[e $U 735  ]
+[e :U 734 ]
+{
+"438
+[; ;usart.c: 438:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 11C ]
+"439
+[; ;usart.c: 439:     }
+}
+[e :U 735 ]
+[e :U 733 ]
+"440
+[; ;usart.c: 440: }
+[e :UE 731 ]
+}
+"444
+[; ;usart.c: 444: void uart_send(unsigned int uart_num, unsigned char data) {
+[v _uart_send `(v ~T0 @X0 1 ef2`ui`uc ]
+{
+[e :U _uart_send ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[v _data `uc ~T0 @X0 1 r2 ]
+[f ]
+"445
+[; ;usart.c: 445:     if (uart_num == 1) {
+[e $ ! == _uart_num -> -> 1 `i `ui 737  ]
+{
+"446
+[; ;usart.c: 446:         while (!TXSTA1bits.TRMT1);
+[e $U 738  ]
+[e :U 739 ]
+[e :U 738 ]
+[e $ ! != -> . . _TXSTA1bits 4 1 `i -> 0 `i 739  ]
+[e :U 740 ]
+"447
+[; ;usart.c: 447:         TXREG1 = data;
+[e = _TXREG1 _data ]
+"448
+[; ;usart.c: 448:     } else if (uart_num == 2) {
+}
+[e $U 741  ]
+[e :U 737 ]
+[e $ ! == _uart_num -> -> 2 `i `ui 742  ]
+{
+"449
+[; ;usart.c: 449:         while (!TXSTA2bits.TRMT2);
+[e $U 743  ]
+[e :U 744 ]
+[e :U 743 ]
+[e $ ! != -> . . _TXSTA2bits 4 1 `i -> 0 `i 744  ]
+[e :U 745 ]
+"450
+[; ;usart.c: 450:         TXREG2 = data;
+[e = _TXREG2 _data ]
+"451
+[; ;usart.c: 451:     } else {
+}
+[e $U 746  ]
+[e :U 742 ]
+{
+"453
+[; ;usart.c: 453:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 12C ]
+"454
+[; ;usart.c: 454:     }
+}
+[e :U 746 ]
+[e :U 741 ]
+"455
+[; ;usart.c: 455: }
+[e :UE 736 ]
+}
+"459
+[; ;usart.c: 459: unsigned char uart_receive(unsigned int uart_num) {
+[v _uart_receive `(uc ~T0 @X0 1 ef1`ui ]
+{
+[e :U _uart_receive ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[f ]
+"460
+[; ;usart.c: 460:     if (uart_num == 1) {
+[e $ ! == _uart_num -> -> 1 `i `ui 748  ]
+{
+"461
+[; ;usart.c: 461:         while (!PIR1bits.RC1IF);
+[e $U 749  ]
+[e :U 750 ]
+[e :U 749 ]
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 750  ]
+[e :U 751 ]
+"462
+[; ;usart.c: 462:         return RCREG1;
+[e ) _RCREG1 ]
+[e $UE 747  ]
+"463
+[; ;usart.c: 463:     } else if (uart_num == 2) {
+}
+[e $U 752  ]
+[e :U 748 ]
+[e $ ! == _uart_num -> -> 2 `i `ui 753  ]
+{
+"464
+[; ;usart.c: 464:         while (!PIR3bits.RC2IF);
+[e $U 754  ]
+[e :U 755 ]
+[e :U 754 ]
+[e $ ! != -> . . _PIR3bits 0 5 `i -> 0 `i 755  ]
+[e :U 756 ]
+"465
+[; ;usart.c: 465:         return RCREG2;
+[e ) _RCREG2 ]
+[e $UE 747  ]
+"466
+[; ;usart.c: 466:     } else {
+}
+[e $U 757  ]
+[e :U 753 ]
+{
+"468
+[; ;usart.c: 468:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 13C ]
+"469
+[; ;usart.c: 469:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 747  ]
+"470
+[; ;usart.c: 470:     }
+}
+[e :U 757 ]
+[e :U 752 ]
+"471
+[; ;usart.c: 471: }
+[e :UE 747 ]
+}
+"475
+[; ;usart.c: 475: unsigned char uart_receive_err(unsigned int uart_num) {
+[v _uart_receive_err `(uc ~T0 @X0 1 ef1`ui ]
+{
+[e :U _uart_receive_err ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[f ]
+"476
+[; ;usart.c: 476:     if (uart_num == 1) {
+[e $ ! == _uart_num -> -> 1 `i `ui 759  ]
+{
+"477
+[; ;usart.c: 477:         while (!PIR1bits.RC1IF) {
+[e $U 760  ]
+[e :U 761 ]
+{
+"478
+[; ;usart.c: 478:             if (RCSTA1bits.FERR || RCSTA1bits.OERR) {
+[e $ ! || != -> . . _RCSTA1bits 0 2 `i -> 0 `i != -> . . _RCSTA1bits 0 1 `i -> 0 `i 763  ]
+{
+"480
+[; ;usart.c: 480:                 RCSTA1bits.FERR = 0;
+[e = . . _RCSTA1bits 0 2 -> -> 0 `i `uc ]
+"481
+[; ;usart.c: 481:                 RCSTA1bits.OERR = 0;
+[e = . . _RCSTA1bits 0 1 -> -> 0 `i `uc ]
+"482
+[; ;usart.c: 482:                 return 0xFF;
+[e ) -> -> 255 `i `uc ]
+[e $UE 758  ]
+"483
+[; ;usart.c: 483:             }
+}
+[e :U 763 ]
+"484
+[; ;usart.c: 484:         }
+}
+[e :U 760 ]
+"477
+[; ;usart.c: 477:         while (!PIR1bits.RC1IF) {
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 761  ]
+[e :U 762 ]
+"485
+[; ;usart.c: 485:         return RCREG1;
+[e ) _RCREG1 ]
+[e $UE 758  ]
+"486
+[; ;usart.c: 486:     } else if (uart_num == 2) {
+}
+[e $U 764  ]
+[e :U 759 ]
+[e $ ! == _uart_num -> -> 2 `i `ui 765  ]
+{
+"487
+[; ;usart.c: 487:         while (!PIR3bits.RC2IF) {
+[e $U 766  ]
+[e :U 767 ]
+{
+"488
+[; ;usart.c: 488:             if (RCSTA2bits.FERR || RCSTA2bits.OERR) {
+[e $ ! || != -> . . _RCSTA2bits 0 2 `i -> 0 `i != -> . . _RCSTA2bits 0 1 `i -> 0 `i 769  ]
+{
+"490
+[; ;usart.c: 490:                 RCSTA2bits.FERR = 0;
+[e = . . _RCSTA2bits 0 2 -> -> 0 `i `uc ]
+"491
+[; ;usart.c: 491:                 RCSTA2bits.OERR = 0;
+[e = . . _RCSTA2bits 0 1 -> -> 0 `i `uc ]
+"492
+[; ;usart.c: 492:                 return 0xFF;
+[e ) -> -> 255 `i `uc ]
+[e $UE 758  ]
+"493
+[; ;usart.c: 493:             }
+}
+[e :U 769 ]
+"494
+[; ;usart.c: 494:         }
+}
+[e :U 766 ]
+"487
+[; ;usart.c: 487:         while (!PIR3bits.RC2IF) {
+[e $ ! != -> . . _PIR3bits 0 5 `i -> 0 `i 767  ]
+[e :U 768 ]
+"495
+[; ;usart.c: 495:         return RCREG2;
+[e ) _RCREG2 ]
+[e $UE 758  ]
+"496
+[; ;usart.c: 496:     } else {
+}
+[e $U 770  ]
+[e :U 765 ]
+{
+"498
+[; ;usart.c: 498:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 14C ]
+"499
+[; ;usart.c: 499:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 758  ]
+"500
+[; ;usart.c: 500:     }
+}
+[e :U 770 ]
+[e :U 764 ]
+"501
+[; ;usart.c: 501: }
+[e :UE 758 ]
+}
+"505
+[; ;usart.c: 505: void uart_send_char(unsigned int uart_num, char data) {
+[v _uart_send_char `(v ~T0 @X0 1 ef2`ui`uc ]
+{
+[e :U _uart_send_char ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[v _data `uc ~T0 @X0 1 r2 ]
+[f ]
+"506
+[; ;usart.c: 506:     uart_send(uart_num, data);
+[e ( _uart_send (2 , _uart_num -> _data `uc ]
+"507
+[; ;usart.c: 507: }
+[e :UE 771 ]
+}
+"511
+[; ;usart.c: 511: void uart_send_char_err(unsigned int uart_num, char data) {
+[v _uart_send_char_err `(v ~T0 @X0 1 ef2`ui`uc ]
+{
+[e :U _uart_send_char_err ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[v _data `uc ~T0 @X0 1 r2 ]
+[f ]
+"512
+[; ;usart.c: 512:     if (uart_num == 1 || uart_num == 2) {
+[e $ ! || == _uart_num -> -> 1 `i `ui == _uart_num -> -> 2 `i `ui 773  ]
+{
+"513
+[; ;usart.c: 513:         uart_send(uart_num, data);
+[e ( _uart_send (2 , _uart_num -> _data `uc ]
+"514
+[; ;usart.c: 514:     } else {
+}
+[e $U 774  ]
+[e :U 773 ]
+{
+"515
+[; ;usart.c: 515:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 15C ]
+"516
+[; ;usart.c: 516:     }
+}
+[e :U 774 ]
+"517
+[; ;usart.c: 517: }
+[e :UE 772 ]
+}
+"521
+[; ;usart.c: 521: char uart_receive_char(unsigned int uart_num) {
+[v _uart_receive_char `(uc ~T0 @X0 1 ef1`ui ]
+{
+[e :U _uart_receive_char ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[f ]
+"522
+[; ;usart.c: 522:     return (char) uart_receive(uart_num);
+[e ) -> ( _uart_receive (1 _uart_num `uc ]
+[e $UE 775  ]
+"523
+[; ;usart.c: 523: }
+[e :UE 775 ]
+}
+"527
+[; ;usart.c: 527: char uart_receive_char_err(unsigned int uart_num) {
+[v _uart_receive_char_err `(uc ~T0 @X0 1 ef1`ui ]
+{
+[e :U _uart_receive_char_err ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[f ]
+"528
+[; ;usart.c: 528:     if (uart_num == 1 || uart_num == 2) {
+[e $ ! || == _uart_num -> -> 1 `i `ui == _uart_num -> -> 2 `i `ui 777  ]
+{
+"529
+[; ;usart.c: 529:         return (char) uart_receive(uart_num);
+[e ) -> ( _uart_receive (1 _uart_num `uc ]
+[e $UE 776  ]
+"530
+[; ;usart.c: 530:     } else {
+}
+[e $U 778  ]
+[e :U 777 ]
+{
+"531
+[; ;usart.c: 531:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 16C ]
+"532
+[; ;usart.c: 532:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 776  ]
+"533
+[; ;usart.c: 533:     }
+}
+[e :U 778 ]
+"534
+[; ;usart.c: 534: }
+[e :UE 776 ]
+}
+"538
+[; ;usart.c: 538: void uart_send_string(unsigned int uart_num, const char *data) {
+[v _uart_send_string `(v ~T0 @X0 1 ef2`ui`*Cuc ]
+{
+[e :U _uart_send_string ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[v _data `*Cuc ~T0 @X0 1 r2 ]
+[f ]
+"539
+[; ;usart.c: 539:     int i;
+[v _i `i ~T0 @X0 1 a ]
+"540
+[; ;usart.c: 540:     for (i = 0; i < strlen(data); i++) {
+{
+[e = _i -> 0 `i ]
+[e $U 783  ]
+[e :U 780 ]
+{
+"541
+[; ;usart.c: 541:         uart_send(uart_num, data[i]);
+[e ( _uart_send (2 , _uart_num -> *U + _data * -> _i `x -> -> # *U _data `i `x `uc ]
+"542
+[; ;usart.c: 542:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 783 ]
+[e $ < -> _i `ui ( _strlen (1 _data 780  ]
+[e :U 781 ]
+}
+"543
+[; ;usart.c: 543: }
+[e :UE 779 ]
+}
+"547
+[; ;usart.c: 547: void uart_send_string_err(unsigned int uart_num, const char *data) {
+[v _uart_send_string_err `(v ~T0 @X0 1 ef2`ui`*Cuc ]
+{
+[e :U _uart_send_string_err ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[v _data `*Cuc ~T0 @X0 1 r2 ]
+[f ]
+"548
+[; ;usart.c: 548:     if (uart_num == 1 || uart_num == 2) {
+[e $ ! || == _uart_num -> -> 1 `i `ui == _uart_num -> -> 2 `i `ui 785  ]
+{
+"549
+[; ;usart.c: 549:         int i;
+[v _i `i ~T0 @X0 1 a ]
+"550
+[; ;usart.c: 550:         for (i = 0; i < strlen(data); i++) {
+{
+[e = _i -> 0 `i ]
+[e $U 789  ]
+[e :U 786 ]
+{
+"551
+[; ;usart.c: 551:             uart_send(uart_num, data[i]);
+[e ( _uart_send (2 , _uart_num -> *U + _data * -> _i `x -> -> # *U _data `i `x `uc ]
+"552
+[; ;usart.c: 552:         }
+}
+[e ++ _i -> 1 `i ]
+[e :U 789 ]
+[e $ < -> _i `ui ( _strlen (1 _data 786  ]
+[e :U 787 ]
+}
+"553
+[; ;usart.c: 553:     } else {
+}
+[e $U 790  ]
+[e :U 785 ]
+{
+"554
+[; ;usart.c: 554:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 17C ]
+"555
+[; ;usart.c: 555:     }
+}
+[e :U 790 ]
+"556
+[; ;usart.c: 556: }
+[e :UE 784 ]
+}
+"560
+[; ;usart.c: 560: void uart_receive_string(unsigned int uart_num, char *data) {
+[v _uart_receive_string `(v ~T0 @X0 1 ef2`ui`*uc ]
+{
+[e :U _uart_receive_string ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[v _data `*uc ~T0 @X0 1 r2 ]
+[f ]
+"561
+[; ;usart.c: 561:     int i = 0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"562
+[; ;usart.c: 562:     char c = uart_receive(uart_num);
+[v _c `uc ~T0 @X0 1 a ]
+[e = _c -> ( _uart_receive (1 _uart_num `uc ]
+"563
+[; ;usart.c: 563:     while (c != '\0') {
+[e $U 792  ]
+[e :U 793 ]
+{
+"564
+[; ;usart.c: 564:         data[i++] = c;
+[e = *U + _data * -> ++ _i -> 1 `i `x -> -> # *U _data `i `x _c ]
+"565
+[; ;usart.c: 565:         c = uart_receive(uart_num);
+[e = _c -> ( _uart_receive (1 _uart_num `uc ]
+"566
+[; ;usart.c: 566:     }
+}
+[e :U 792 ]
+"563
+[; ;usart.c: 563:     while (c != '\0') {
+[e $ != -> _c `ui -> 0 `ui 793  ]
+[e :U 794 ]
+"567
+[; ;usart.c: 567:     data[i] = '\0';
+[e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 0 `ui `uc ]
+"568
+[; ;usart.c: 568: }
+[e :UE 791 ]
+}
+"572
+[; ;usart.c: 572: void uart_receive_string_err(unsigned int uart_num, char *data) {
+[v _uart_receive_string_err `(v ~T0 @X0 1 ef2`ui`*uc ]
+{
+[e :U _uart_receive_string_err ]
+[v _uart_num `ui ~T0 @X0 1 r1 ]
+[v _data `*uc ~T0 @X0 1 r2 ]
+[f ]
+"573
+[; ;usart.c: 573:     if (uart_num == 1 || uart_num == 2) {
+[e $ ! || == _uart_num -> -> 1 `i `ui == _uart_num -> -> 2 `i `ui 796  ]
+{
+"574
+[; ;usart.c: 574:         int i = 0;
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+"575
+[; ;usart.c: 575:         char c = uart_receive(uart_num);
+[v _c `uc ~T0 @X0 1 a ]
+[e = _c -> ( _uart_receive (1 _uart_num `uc ]
+"576
+[; ;usart.c: 576:         while (c != '\r') {
+[e $U 797  ]
+[e :U 798 ]
+{
+"577
+[; ;usart.c: 577:             data[i++] = c;
+[e = *U + _data * -> ++ _i -> 1 `i `x -> -> # *U _data `i `x _c ]
+"578
+[; ;usart.c: 578:             c = uart_receive(uart_num);
+[e = _c -> ( _uart_receive (1 _uart_num `uc ]
+"579
+[; ;usart.c: 579:         }
+}
+[e :U 797 ]
+"576
+[; ;usart.c: 576:         while (c != '\r') {
+[e $ != -> _c `ui -> 13 `ui 798  ]
+[e :U 799 ]
+"580
+[; ;usart.c: 580:         data[i] = '\0';
+[e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 0 `ui `uc ]
+"581
+[; ;usart.c: 581:     } else {
+}
+[e $U 800  ]
+[e :U 796 ]
+{
+"582
+[; ;usart.c: 582:         printf("Error: Invalid UART number.\n");
+[e ( _printf :s 18C ]
+"583
+[; ;usart.c: 583:     }
+}
+[e :U 800 ]
+"584
+[; ;usart.c: 584: }
+[e :UE 795 ]
+}
+[p f _printf 8388608 ]
+[p f _sprintf 10518660 ]
+[a 1C 37 100 0 ]
+[a 3C 48 120 37 48 50 88 0 ]
+[a 4C 82 101 99 101 105 118 101 100 32 100 97 116 97 32 40 85 65 82 84 0 ]
+[a 8C 83 101 110 116 32 114 101 115 112 111 110 115 101 32 40 85 65 82 84 49 41 58 32 0 ]
+[a 5C 41 58 32 0 ]
+[a 6C 44 32 0 ]
+[a 9C 44 32 0 ]
+[a 11C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 12C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 13C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 14C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 15C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 16C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 17C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 18C 69 114 114 111 114 58 32 73 110 118 97 108 105 100 32 85 65 82 84 32 110 117 109 98 101 114 46 10 0 ]
+[a 2C 13 10 0 ]
+[a 7C 13 10 0 ]
+[a 10C 13 10 0 ]

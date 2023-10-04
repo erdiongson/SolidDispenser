@@ -9265,7 +9265,7 @@ unsigned char __t3rd16on(void);
 # 10 "Display.c" 2
 
 # 1 "./main.h" 1
-# 16 "./main.h"
+# 21 "./main.h"
 #pragma config WDTEN = OFF
 #pragma config PLLDIV = 1
 #pragma config STVREN = ON
@@ -9289,8 +9289,15 @@ unsigned char __t3rd16on(void);
 
 #pragma config CCP2MX = DEFAULT
 #pragma config MSSPMSK = MSK5
-# 56 "./main.h"
- extern unsigned char PWM_reg;
+
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdbool.h" 1 3
+# 48 "./main.h" 2
+# 67 "./main.h"
+    extern unsigned char PWM_reg;
 
     void init(void);
     void initMotor(void);
@@ -9328,6 +9335,20 @@ unsigned char __t3rd16on(void);
     void flushOut(void);
     void readWeighingData(void);
     void Homing_Again_Auto(void);
+
+    void Write2USART(char data);
+    char Read2USART(void);
+
+
+    unsigned int duty_cycle = 0;
+    volatile unsigned char PWM_Duty_Cycle;
+    void vibrationMotorControl(_Bool powerState, unsigned int pwm_msg);
+
+    void PWM1_Init(long desiredFrequency);
+    void PWM1_SetDutyCycle(unsigned int dutyCycle);
+
+    void PWM1_Start();
+    void PWM1_Stop();
 # 11 "Display.c" 2
 
 # 1 "./Led_Display.h" 1
@@ -9564,7 +9585,7 @@ void WriteSTLED316SMode(char msg) {
     LATCbits.LATC4 = 1;
 }
 
-void WriteSTLED316SVibMode(char v_mode) {
+void WriteSTLED316SVibMode(unsigned int dc_reg, char v_mode) {
 
     LATCbits.LATC4 = 0;
 
@@ -9581,12 +9602,21 @@ void WriteSTLED316SVibMode(char v_mode) {
 
 
 
-    if (v_mode == 1) {
-        STLED316s_SPI_SendData(0x00);
-        STLED316s_SPI_SendData(0xBE);
-    } else {
-        STLED316s_SPI_SendData(0x00);
+    if (v_mode == 1 && dc_reg == 0x01) {
         STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0x86);
+    }
+    else if(v_mode == 1 && dc_reg == 0x02){
+        STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0xDB);
+    }
+    else if(v_mode == 1 && dc_reg == 0x03){
+        STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0xCF);
+    }
+    else {
+        STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0xBF);
     }
 
     LATCbits.LATC4 = 1;

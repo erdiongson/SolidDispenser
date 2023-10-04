@@ -898,32 +898,41 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15783
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 15783: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./main.h
+"21 ./main.h
 [p x WDTEN  =  OFF       ]
-"17
+"22
 [p x PLLDIV  =  1  ]
-"18
-[p x STVREN  =  ON  ]
-"19
-[p x XINST  =  OFF       ]
-"20
-[p x DEBUG  =  OFF ]
 "23
-[p x CPUDIV  =  OSC1     ]
+[p x STVREN  =  ON  ]
 "24
-[p x CP0  =  OFF         ]
-"27
-[p x FOSC  =  INTOSCPLLO  ]
+[p x XINST  =  OFF       ]
+"25
+[p x DEBUG  =  OFF ]
 "28
-[p x FCMEN  =  OFF  ]
+[p x CPUDIV  =  OSC1     ]
 "29
-[p x IESO  =  OFF  ]
+[p x CP0  =  OFF         ]
 "32
-[p x WDTPS  =  2048     ]
+[p x FOSC  =  INTOSCPLLO  ]
+"33
+[p x FCMEN  =  OFF  ]
+"34
+[p x IESO  =  OFF  ]
 "37
+[p x WDTPS  =  2048     ]
+"42
 [p x CCP2MX  =  DEFAULT  ]
-"38
+"43
 [p x MSSPMSK  =  MSK5  ]
+"110
+[; ;./main.h: 110:     unsigned int duty_cycle = 0;
+[v _duty_cycle `ui ~T0 @X0 1 e ]
+[i _duty_cycle
+-> -> 0 `i `ui
+]
+"111
+[; ;./main.h: 111:     volatile unsigned char PWM_Duty_Cycle;
+[v _PWM_Duty_Cycle `Vuc ~T0 @X0 1 e ]
 "18 IO.c
 [; ;IO.c: 18: void init(void) {
 [v _init `(v ~T0 @X0 1 ef ]
