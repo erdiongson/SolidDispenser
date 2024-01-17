@@ -332,11 +332,6 @@ void main(void) {
         INTCONbits.GIE = 1;
     } else {
         switch (pause_Time) {
-            case 0x30:
-            default:
-                Motor_Pause_Time = 0;
-                pause_Time = 0x30;
-                break;
 
             case 0x31:
                 Motor_Pause_Time = 1000;
@@ -357,6 +352,12 @@ void main(void) {
             case 0x35:
                 Motor_Pause_Time = 5000;
                 break;
+                
+            case 0x30:
+            default:
+                Motor_Pause_Time = 0;
+                pause_Time = 0x30;
+                break;                
         }
     }
 
@@ -401,11 +402,6 @@ void main(void) {
             case 0x81:
                 Vmotor_Time = 1000;
                 break;
-            case 0x82:
-            default:
-                Vmotor_Time = 2000; // default is 2 sec  
-                vib_Time = 0x82;
-                break;
             case 0x83:
                 Vmotor_Time = 3000;
                 break;
@@ -421,6 +417,11 @@ void main(void) {
             case 0x87:
                 Vmotor_Time = 1500;
                 break;
+            case 0x82:
+            default:
+                Vmotor_Time = 2000; // default is 2 sec  
+                vib_Time = 0x82;
+                break;                
         }
     }
 
@@ -1090,6 +1091,7 @@ Function:		Homing for Manual Mode
  ******************************************************************************/
 void Homing_Again_Manual(void) {
 
+    while (NUM > 0 || i_RUN_ZERO == 1) {
     //Checks the vibration mode for the process
     if (vibration_mode == 1) {
         VIB_MOTOR_ON = 1;
@@ -1113,7 +1115,7 @@ void Homing_Again_Manual(void) {
     }
 
     //Dispensing Process (unlimited and limited dispense)
-    while (NUM > 0 || i_RUN_ZERO == 1) {
+    //while (NUM > 0 || i_RUN_ZERO == 1) {
         ClrWdt();
         readWeighingData();
         AD_capture_BattVoltage();
@@ -1150,12 +1152,15 @@ void Homing_Again_Manual(void) {
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
 
+        //20240116: ediongson - Added specifically for the 2 minute wait before the next dispense happen
+#ifndef __2MIN_WAIT__
         //Decrement the current number for limited dispense
         if (NUM > 0 && i_RUN_ZERO != 1) {
             NUM--;
         }
 
         WriteSTLED316SData(NUM, vibration_mode);
+#endif        
         if (vibration_mode == 1 && (NUM != 0 ||  i_RUN_ZERO == 1)) {
             VIB_MOTOR_ON = 1;
             delay_1ms(Vmotor_Time);
@@ -1171,9 +1176,18 @@ void Homing_Again_Manual(void) {
             }
             
         }
+        //20240116: ediongson - Added specifically for the 2 minute wait before the next dispense happen
+#ifdef __2MIN_WAIT__        
+        //Decrement the current number for limited dispense
+        if (NUM > 0 && i_RUN_ZERO != 1) {
+            NUM--;
+        }
+
+        WriteSTLED316SData(NUM, vibration_mode);        
+#endif
         
         //Checks if the Stop bit is triggered
-//20240116: ediongson - Added specifically for the 2 minute wait before the next dispense happen
+        //20240116: ediongson - Added specifically for the 2 minute wait before the next dispense happen
 #ifdef __2MIN_WAIT__
         __delay_ms(20000);
         __delay_ms(20000);
@@ -1222,6 +1236,8 @@ void Homing_Again_Manual(void) {
 
     IR_ON = 0; // turn off IR sensor
 
+//20240116: ediongson - Added specifically for the 2 minute wait before the next dispense happen
+#ifndef __2MIN_WAIT__
     if ((NUM == 0 || Stop == 1) && i_RUN_ZERO == 0) {
 
         if (vibration_mode == 1) {
@@ -1233,6 +1249,7 @@ void Homing_Again_Manual(void) {
         }
 
     }
+#endif    
     i_RUN_ZERO = 0;
     NUM = 0;
     //resets the dispense variable for START/PASUSE/STOP command button

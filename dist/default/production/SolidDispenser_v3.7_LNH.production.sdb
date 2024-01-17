@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 18F65J50 ]
 [d frameptr 4065 ]
-"129 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"129 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [e E5436 Op_Mode `uc
 MANUAL_MODE 0
 IDLE_MODE 1
@@ -39,7 +39,7 @@ AUTO_MODE 2
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"14 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\Display.c
+"14 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\Display.c
 [v _InitSTLED316 InitSTLED316 `(v  1 e 1 0 ]
 "88
 [v _STLED316s_SPI_SendData STLED316s_SPI_SendData `(v  1 e 1 0 ]
@@ -53,7 +53,7 @@ AUTO_MODE 2
 [v _WriteSTLED316SVibMode WriteSTLED316SVibMode `(v  1 e 1 0 ]
 "291
 [v _WriteSTLED316SErr WriteSTLED316SErr `(v  1 e 1 0 ]
-"25 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\i2c.c
+"25 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\i2c.c
 [v _i2c_Init i2c_Init `(v  1 e 1 0 ]
 "43
 [v _i2c_Wait i2c_Wait `(v  1 e 1 0 ]
@@ -73,9 +73,9 @@ AUTO_MODE 2
 [v _write_i2c write_i2c `(v  1 e 1 0 ]
 "120
 [v _read_i2c read_i2c `(i  1 e 2 0 ]
-"18 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\IO.c
+"18 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\IO.c
 [v _init init `(v  1 e 1 0 ]
-"196 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"196 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _pwm_set pwm_set `(v  1 e 1 0 ]
 "204
 [v _main main `(v  1 e 1 0 ]
@@ -91,23 +91,23 @@ AUTO_MODE 2
 [v _ToggleVIB_Mode ToggleVIB_Mode `(v  1 e 1 0 ]
 "1091
 [v _Homing_Again_Manual Homing_Again_Manual `(v  1 e 1 0 ]
-"1247
+"1263
 [v _Homing_Again_Auto Homing_Again_Auto `(v  1 e 1 0 ]
-"1337
+"1353
 [v _flush flush `(v  1 e 1 0 ]
-"1348
+"1364
 [v _flushOut flushOut `(v  1 e 1 0 ]
-"1359
+"1375
 [v _readWeighingData readWeighingData `(v  1 e 1 0 ]
-"1377
+"1393
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
-"1391
+"1407
 [v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
-"1409
+"1425
 [v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
-"1426
+"1442
 [v _PWM_Selection PWM_Selection `(ui  1 e 2 0 ]
-"21 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\MotorDriver.c
+"21 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\MotorDriver.c
 [v _initMotor initMotor `(v  1 e 1 0 ]
 "28
 [v _Set_RG3 Set_RG3 `(v  1 e 1 0 ]
@@ -117,7 +117,7 @@ AUTO_MODE 2
 [v _MotorON MotorON `(v  1 e 1 0 ]
 "47
 [v _MotorBREAK MotorBREAK `(v  1 e 1 0 ]
-"20 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\usart.c
+"20 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\usart.c
 [v _initUSART initUSART `(v  1 e 1 0 ]
 "47
 [v _Write1USART Write1USART `(v  1 e 1 0 ]
@@ -811,7 +811,7 @@ AUTO_MODE 2
 [v _TRISD5 TRISD5 `VEb  1 e 0 @31917 ]
 "19113
 [v _TRISD6 TRISD6 `VEb  1 e 0 @31918 ]
-"104 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"104 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _Serial_Flag Serial_Flag `uc  1 e 1 0 ]
 "105
 [v _Serial_GData Serial_GData `uc  1 e 1 0 ]
@@ -881,14 +881,14 @@ AUTO_MODE 2
 [v _holdTimeMode holdTimeMode `i  1 e 2 0 ]
 "194
 [v _test_redled test_redled `i  1 e 2 0 ]
-"19 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\MotorDriver.c
+"19 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\MotorDriver.c
 [v _PWM_reg PWM_reg `uc  1 e 1 0 ]
-"204 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"204 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "881
 } 0
-"120 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\i2c.c
+"120 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\i2c.c
 [v _read_i2c read_i2c `(i  1 e 2 0 ]
 {
 "121
@@ -914,61 +914,61 @@ AUTO_MODE 2
 [v i2c_Read@ack ack `uc  1 a 1 11 ]
 "107
 } 0
-"196 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"196 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _pwm_set pwm_set `(v  1 e 1 0 ]
 {
 [v pwm_set@duty duty `us  1 p 2 8 ]
 "199
 } 0
-"20 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\usart.c
+"20 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\usart.c
 [v _initUSART initUSART `(v  1 e 1 0 ]
 {
 "42
 } 0
-"21 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\MotorDriver.c
+"21 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\MotorDriver.c
 [v _initMotor initMotor `(v  1 e 1 0 ]
 {
 "26
 } 0
-"18 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\IO.c
+"18 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\IO.c
 [v _init init `(v  1 e 1 0 ]
 {
 "83
 } 0
-"25 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\i2c.c
+"25 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\i2c.c
 [v _i2c_Init i2c_Init `(v  1 e 1 0 ]
 {
 "39
 } 0
-"1337 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1353 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _flush flush `(v  1 e 1 0 ]
 {
-"1338
+"1354
 [v flush@i i `i  1 a 2 8 ]
-"1343
+"1359
 } 0
-"244 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\Display.c
+"244 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\Display.c
 [v _WriteSTLED316SVibMode WriteSTLED316SVibMode `(v  1 e 1 0 ]
 {
 [v WriteSTLED316SVibMode@dc_reg dc_reg `ui  1 p 2 14 ]
 [v WriteSTLED316SVibMode@v_mode v_mode `uc  1 p 1 16 ]
 "289
 } 0
-"1069 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1069 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _ToggleVIB_Mode ToggleVIB_Mode `(v  1 e 1 0 ]
 {
 "1086
 } 0
-"1426
+"1442
 [v _PWM_Selection PWM_Selection `(ui  1 e 2 0 ]
 {
-"1427
+"1443
 [v PWM_Selection@dcSelected dcSelected `i  1 a 2 4 ]
-"1426
+"1442
 [v PWM_Selection@msg msg `ui  1 p 2 0 ]
-"1463
+"1479
 } 0
-"109 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\i2c.c
+"109 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\i2c.c
 [v _write_i2c write_i2c `(v  1 e 1 0 ]
 {
 [v write_i2c@address address `l  1 p 4 22 ]
@@ -1024,17 +1024,17 @@ AUTO_MODE 2
 [v ___aldiv@divisor divisor `l  1 p 4 12 ]
 "41
 } 0
-"1029 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1029 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _MotorPosition_Init MotorPosition_Init `(v  1 e 1 0 ]
 {
 "1064
 } 0
-"1377
+"1393
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
 {
-"1387
+"1403
 } 0
-"14 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\Display.c
+"14 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\Display.c
 [v _InitSTLED316 InitSTLED316 `(v  1 e 1 0 ]
 {
 [v InitSTLED316@Brightness Brightness `uc  1 a 1 wreg ]
@@ -1043,12 +1043,12 @@ AUTO_MODE 2
 [v InitSTLED316@Brightness Brightness `uc  1 a 1 16 ]
 "80
 } 0
-"1091 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1091 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _Homing_Again_Manual Homing_Again_Manual `(v  1 e 1 0 ]
 {
-"1242
+"1258
 } 0
-"145 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\Display.c
+"145 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\Display.c
 [v _WriteSTLED316SData WriteSTLED316SData `(v  1 e 1 0 ]
 {
 "147
@@ -1086,7 +1086,7 @@ AUTO_MODE 2
 [v ___awdiv@divisor divisor `i  1 p 2 10 ]
 "41
 } 0
-"104 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\Display.c
+"104 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\Display.c
 [v _Get7Seg Get7Seg `(uc  1 e 1 0 ]
 {
 "105
@@ -1095,26 +1095,26 @@ AUTO_MODE 2
 [v Get7Seg@Digit Digit `i  1 p 2 8 ]
 "143
 } 0
-"1247 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1263 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _Homing_Again_Auto Homing_Again_Auto `(v  1 e 1 0 ]
 {
-"1332
+"1348
 } 0
-"1359
+"1375
 [v _readWeighingData readWeighingData `(v  1 e 1 0 ]
 {
-"1360
+"1376
 [v readWeighingData@i i `i  1 a 2 10 ]
-"1375
+"1391
 } 0
-"1348
+"1364
 [v _flushOut flushOut `(v  1 e 1 0 ]
 {
-"1349
+"1365
 [v flushOut@i i `i  1 a 2 8 ]
-"1354
+"1370
 } 0
-"47 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\usart.c
+"47 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\usart.c
 [v _Write1USART Write1USART `(v  1 e 1 0 ]
 {
 [v Write1USART@data data `uc  1 a 1 wreg ]
@@ -1122,7 +1122,7 @@ AUTO_MODE 2
 [v Write1USART@data data `uc  1 a 1 8 ]
 "51
 } 0
-"184 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\Display.c
+"184 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\Display.c
 [v _WriteSTLED316SMode WriteSTLED316SMode `(v  1 e 1 0 ]
 {
 [v WriteSTLED316SMode@msg msg `uc  1 a 1 wreg ]
@@ -1152,12 +1152,12 @@ AUTO_MODE 2
 [v STLED316s_SPI_SendData@Data Data `uc  1 a 1 10 ]
 "102
 } 0
-"1014 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1014 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _Read_IR Read_IR `(ui  1 e 2 0 ]
 {
 "1024
 } 0
-"40 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\MotorDriver.c
+"40 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\MotorDriver.c
 [v _MotorON MotorON `(v  1 e 1 0 ]
 {
 "45
@@ -1177,10 +1177,10 @@ AUTO_MODE 2
 {
 "38
 } 0
-"1391 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1407 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
 {
-"1407
+"1423
 } 0
 "1004
 [v _delay_1ms delay_1ms `(v  1 e 1 0 ]
@@ -1198,7 +1198,7 @@ AUTO_MODE 2
 [v high_isr@Temp Temp `uc  1 a 1 5 ]
 "999
 } 0
-"47 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\usart.c
+"47 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\usart.c
 [v i2_Write1USART Write1USART `(v  1 e 1 0 ]
 {
 [v i2Write1USART@data data `uc  1 a 1 wreg ]
@@ -1213,8 +1213,8 @@ AUTO_MODE 2
 [v Read1USART@result result `uc  1 a 1 0 ]
 "69
 } 0
-"1409 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7\main.c
+"1425 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.7_LNH\main.c
 [v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
 {
-"1421
+"1437
 } 0

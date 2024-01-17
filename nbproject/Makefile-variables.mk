@@ -6,5 +6,5 @@
 CND_BASEDIR=`pwd`
 # default configuration
 CND_ARTIFACT_DIR_default=dist/default/production
-CND_ARTIFACT_NAME_default=SolidDispenser_v3.7.production.hex
-CND_ARTIFACT_PATH_default=dist/default/production/SolidDispenser_v3.7.production.hex
+CND_ARTIFACT_NAME_default=SolidDispenser_v3.7_LNH.production.hex
+CND_ARTIFACT_PATH_default=dist/default/production/SolidDispenser_v3.7_LNH.production.hex

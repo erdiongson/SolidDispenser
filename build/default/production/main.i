@@ -10274,6 +10274,7 @@ void ToggleVIB_Mode(void) {
 
 void Homing_Again_Manual(void) {
 
+    while (NUM > 0 || i_RUN_ZERO == 1) {
 
     if (vibration_mode == 1) {
         LATCbits.LATC1 = 1;
@@ -10297,7 +10298,7 @@ void Homing_Again_Manual(void) {
     }
 
 
-    while (NUM > 0 || i_RUN_ZERO == 1) {
+
         __asm(" clrwdt");
         readWeighingData();
         AD_capture_BattVoltage();
@@ -10333,13 +10334,7 @@ void Homing_Again_Manual(void) {
         errorcounter = 30;
         delay_1ms(Motor_Stop_Delay_Time);
         MotorBREAK();
-
-
-        if (NUM > 0 && i_RUN_ZERO != 1) {
-            NUM--;
-        }
-
-        WriteSTLED316SData(NUM, vibration_mode);
+# 1163 "main.c"
         if (vibration_mode == 1 && (NUM != 0 || i_RUN_ZERO == 1)) {
             LATCbits.LATC1 = 1;
             delay_1ms(Vmotor_Time);
@@ -10358,18 +10353,27 @@ void Homing_Again_Manual(void) {
 
 
 
+        if (NUM > 0 && i_RUN_ZERO != 1) {
+            NUM--;
+        }
 
-        _delay((unsigned long)((20000)*(8000000/4000.0)));
-        _delay((unsigned long)((20000)*(8000000/4000.0)));
-        _delay((unsigned long)((20000)*(8000000/4000.0)));
-        _delay((unsigned long)((20000)*(8000000/4000.0)));
-        _delay((unsigned long)((20000)*(8000000/4000.0)));
-        _delay((unsigned long)((20000)*(8000000/4000.0)));
+        WriteSTLED316SData(NUM, vibration_mode);
+
+
+
+
+
+        _delay((unsigned long)((2000)*(8000000/4000.0)));
+
+
+
+
+
 
 
         if (Stop == 1)
             break;
-# 1200 "main.c"
+# 1213 "main.c"
         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
             i_RUN_ZERO = 2;
             WriteSTLED316SData(NUM, !vibration_mode);
@@ -10394,18 +10398,7 @@ void Homing_Again_Manual(void) {
 
 
     LATAbits.LATA2 = 0;
-
-    if ((NUM == 0 || Stop == 1) && i_RUN_ZERO == 0) {
-
-        if (vibration_mode == 1) {
-            LATCbits.LATC1 = 1;
-            delay_1ms(Vmotor_Time);
-
-            LATCbits.LATC1 = 0;
-            _delay((unsigned long)((300)*(8000000/4000.0)));
-        }
-
-    }
+# 1252 "main.c"
     i_RUN_ZERO = 0;
     NUM = 0;
 

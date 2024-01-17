@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\SolidDispenser_v3.7.production.hex">
+  <executable name="dist/default/production\SolidDispenser_v3.7_LNH.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>32760</length>
-      <used>10427</used>
-      <free>22333</free>
+      <used>10201</used>
+      <free>22559</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
