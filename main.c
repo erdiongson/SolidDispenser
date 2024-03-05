@@ -30,6 +30,13 @@
  *                  black marker when using small heads.
  *               ii. [CODE UPDATE] Enhancement on the debounce when using the 
  *                 foot switch.
+ * Created: 2024-02-28
+ * Author: erdiongson, 4:17PM
+ * Version 3.72 : i. Redesigned the logic of Read_IR() to compensate with the issue found
+ *                   in handheld;
+ *                ii. Adjusted the debounce of the LEFT, RIGHT, and MODE buttons;
+ *                iii. Adjusted the delay on reading IR sensor to compensate with the changes
+ *                   in Read_IR().
  */
 
 
@@ -45,7 +52,6 @@
 * Please change this version every time the code is updated.
 ******************************************************************************/
 #define VERSION     37
-
 /******************************************************************************
 * Watch dog timer enable
 ******************************************************************************/
@@ -519,7 +525,8 @@ void main(void) {
                     do{
                       WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
                       //20221212: erdiongson - added increase in 10 digits when button is pressed longer
-                      if (holdTimeMode >= 2000)
+                      //20240228: erdiongson - adjusted the holdTimeMode from 2000 to 1000
+                      if (holdTimeMode >= 1000)
                       {
                         duty_cycle = PWM_Selection(dutyCycle_reg);
                         dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
@@ -527,13 +534,13 @@ void main(void) {
                         WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
                         __delay_ms(500);
                       }
-                      else if (holdTimeMode < 2000)
+                      else if (holdTimeMode < 1000)
                       {
                         WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
                         __delay_ms(150);
                         holdTimeMode = 0;                        
                       }
-                      while(holdTimeMode < 2000)
+                      while(holdTimeMode < 1000)
                       {
                         WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
                         __delay_ms(10);
@@ -550,9 +557,12 @@ void main(void) {
                       //20221212: erdiongson - added increase in 10 digits when button is pressed longer
                       if (holdTimeRight >= 1000 && NUM <= 89)
                       {
-                        __delay_ms(500); //decrease this delay if you want to increment 10 faster
+                        //20221212: erdiongson - decrease this delay if you want to increment 10 faster
+                        //__delay_ms(1500); 
                         NUM = NUM + 10; 
                         WriteSTLED316SData(NUM, vibration_mode);
+                        //20240228: erdiongson - decrease this delay if you want to increment 10 faster
+                        __delay_ms(1000); 
                       }
                       else if (holdTimeRight < 1000)
                       {
@@ -586,9 +596,12 @@ void main(void) {
                       //20221212 - (erdiongson) added decrease in 10 digits when button is pressed longer
                       if (holdTimeLeft >= 1000 && NUM >= 10)
                       {
-                        __delay_ms(500); //decrease this delay if you want to decrement 10 faster
+                        //20221212: erdiongson - decrease this delay if you want to decrement 10 faster
+                        //__delay_ms(1500); 
                         NUM = NUM - 10; 
                         WriteSTLED316SData(NUM, vibration_mode);
+                        //20240228: erdiongson - decrease this delay if you want to decrement 10 faster
+                        __delay_ms(1000); 
                       }
                       else if (holdTimeLeft < 1000)
                       {
@@ -751,12 +764,12 @@ void main(void) {
                                 if (Serial_Buffer[2] == 0x00) {
                                     Busy = 1;
 
-                                    INTCONbits.GIE = 0;
+                                    //INTCONbits.GIE = 0;
                                     pause_Time = read_i2c(EEPROM_MotorPauseTime);
                                     vib_Time = read_i2c(EEPROM_VibTime);
                                     Motor_Speed = read_i2c(EEPROM_MotorSpeed);
                                     delay_motor_stop_time = read_i2c(EEPROM_MotorStopPosition);
-                                    INTCONbits.GIE = 1;
+                                    //INTCONbits.GIE = 1;
 
                                     Serial_Buffer_Out[0] = 0x51;
                                     Serial_Buffer_Out[1] = pause_Time;
@@ -766,11 +779,11 @@ void main(void) {
 
                                     __delay_ms(100);
 
-                                    INTCONbits.GIE = 0;
+                                    //INTCONbits.GIE = 0;
                                     for (i = 0; i < 5; i++) {
                                         Write1USART(Serial_Buffer_Out[i]);
                                     }
-                                    INTCONbits.GIE = 1;
+                                    //INTCONbits.GIE = 1;
                                 }
                                 flushOut();
                                 Busy = 0;
@@ -902,17 +915,17 @@ void __interrupt() high_isr(void) {
 
                     if (Temp == Serial_Buffer[3]) {
                         if (Busy == 0 || Serial_Buffer[2] == 0xF5) {
-                            INTCONbits.GIE = 0;
+                            //INTCONbits.GIE = 0;
                             for (i = 0; i < 5; i++) {
                                 Write1USART(Serial_Buffer[i]);
                             }
-                            INTCONbits.GIE = 1;
+                            //INTCONbits.GIE = 1;
                         } else {
-                            INTCONbits.GIE = 0;
+                            //INTCONbits.GIE = 0;
                             for (i = 0; i < 5; i++) {
                                 Write1USART(CMD_BUSY);
                             }
-                            INTCONbits.GIE = 1;
+                            //INTCONbits.GIE = 1;
                         }
 
                         Serial_Flag = 1;
@@ -923,11 +936,11 @@ void __interrupt() high_isr(void) {
                         Serial_Flag = 0;
                         Serial_Count = 0;
 
-                        INTCONbits.GIE = 0;
+                        //INTCONbits.GIE = 0;
                         for (i = 0; i < 5; i++) {
                             Write1USART(NAK);
                         }
-                        INTCONbits.GIE = 1;
+                        //INTCONbits.GIE = 1;
                     }
 
                     if (Serial_Buffer[2] == 0xF5 && OpMode == AUTO_MODE) {
@@ -1011,7 +1024,12 @@ unsigned int Read_IR(void) {
     //IRFlag black is 1 white is 0
     if (IR_Status == 1)//white
     {
-        return 0;
+        //20240228: erdionson - Debounce for Handheld
+        __delay_ms(5);
+        if(IR_Status == 1){
+            return 0;
+        }
+        //return 0;
     } else //black
     {
         return 1;
@@ -1116,7 +1134,9 @@ void Homing_Again_Manual(void) {
         delay_1ms(Motor_Pause_Time);
         MotorON(); // Turn ON motor
         //default delay 350 ms
-        __delay_ms(150); //20230605: ediongson - changed to 150 for small head
+        //20230605: erdiongson - changed to 150 for small head
+        //20240228: erdiongson - changed to 140 to compensate for updated Read_IR
+        __delay_ms(140); 
         errorcounter = errorTime0;
         //Dispense motor stops at IR Sensor Detection
         //IR sensor aligned with the marker
@@ -1168,7 +1188,7 @@ void Homing_Again_Manual(void) {
             
         }
         
-        //Checks if the Stop bit is triggered
+        //Checks if the Stop bit is triggered      
         if (Stop == 1)
             break;
 
@@ -1254,7 +1274,9 @@ void Homing_Again_Auto(void) {
         delay_1ms(Motor_Pause_Time);
         MotorON(); // Turn ON motor
         //default delay 350 ms
-        __delay_ms(150); //20230605: ediongson - changed to 150 for small head
+        //20230605: erdiongson - changed to 150 for small head
+        //20240228: erdiongson - changed to 140 to compensate for updated Read_IR
+        __delay_ms(140);
 
         errorcounter = errorTime0;
 
