@@ -14,8 +14,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6355
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 6355: extern volatile LATCbits_t LATCbits __attribute__((address(0xF8B)));
 [v _LATCbits `VS255 ~T0 @X0 0 e@3979 ]
-"67 ./main.h
-[; ;./main.h: 67:     void STLED316s_SPI_SendData(unsigned char Data);
+"82 ./main.h
+[; ;./main.h: 82:     void STLED316s_SPI_SendData(unsigned char Data);
 [v _STLED316s_SPI_SendData `(v ~T0 @X0 0 ef1`uc ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-J_DFP/1.5.44/xc8\pic\include\proc\pic18f65j50.h: 55: __asm("PMSTAT equ 0F40h");
@@ -796,6 +796,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x CCP2MX  =  DEFAULT  ]
 "38
 [p x MSSPMSK  =  MSK5  ]
+"116
+[; ;./main.h: 116:     unsigned int duty_cycle = 0;
+[v _duty_cycle `ui ~T0 @X0 1 e ]
+[i _duty_cycle
+-> -> 0 `i `ui
+]
+"117
+[; ;./main.h: 117:     volatile unsigned char PWM_Duty_Cycle;
+[v _PWM_Duty_Cycle `Vuc ~T0 @X0 1 e ]
 "14 Display.c
 [; ;Display.c: 14: void InitSTLED316(unsigned char Brightness)
 [v _InitSTLED316 `(v ~T0 @X0 1 ef1`uc ]
@@ -1435,182 +1444,198 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 678  ]
 "273
-[; ;Display.c: 273:     else if (v_mode == 0 && dc_reg == 0x00){
+[; ;Display.c: 273:     else if(v_mode == 1 && dc_reg == 0x04){
 [e :U 677 ]
-[e $ ! && == -> _v_mode `i -> 0 `i == _dc_reg -> -> 0 `i `ui 679  ]
+[e $ ! && == -> _v_mode `i -> 1 `i == _dc_reg -> -> 4 `i `ui 679  ]
 {
 "274
 [; ;Display.c: 274:         STLED316s_SPI_SendData(0x3E);
 [e ( _STLED316s_SPI_SendData (1 -> -> 62 `i `uc ]
 "275
-[; ;Display.c: 275:         STLED316s_SPI_SendData(0xBF);
-[e ( _STLED316s_SPI_SendData (1 -> -> 191 `i `uc ]
+[; ;Display.c: 275:         STLED316s_SPI_SendData(0xE6);
+[e ( _STLED316s_SPI_SendData (1 -> -> 230 `i `uc ]
 "276
 [; ;Display.c: 276:     }
 }
+[e $U 680  ]
+"277
+[; ;Display.c: 277:     else if (v_mode == 0 && dc_reg == 0x00){
 [e :U 679 ]
+[e $ ! && == -> _v_mode `i -> 0 `i == _dc_reg -> -> 0 `i `ui 681  ]
+{
+"278
+[; ;Display.c: 278:         STLED316s_SPI_SendData(0x3E);
+[e ( _STLED316s_SPI_SendData (1 -> -> 62 `i `uc ]
+"279
+[; ;Display.c: 279:         STLED316s_SPI_SendData(0xBF);
+[e ( _STLED316s_SPI_SendData (1 -> -> 191 `i `uc ]
+"280
+[; ;Display.c: 280:     }
+}
+[e :U 681 ]
+[e :U 680 ]
 [e :U 678 ]
 [e :U 676 ]
 [e :U 674 ]
-"278
-[; ;Display.c: 278:     LATCbits.LATC4 = 1;
-[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"280
-[; ;Display.c: 280:     LATCbits.LATC4 = 0;
-[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
 "282
-[; ;Display.c: 282:     STLED316s_SPI_SendData(0x0D);
-[e ( _STLED316s_SPI_SendData (1 -> -> 13 `i `uc ]
-"284
-[; ;Display.c: 284:     LATCbits.LATC4 = 1;
+[; ;Display.c: 282:     LATCbits.LATC4 = 1;
 [e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"285
-[; ;Display.c: 285: }
+"284
+[; ;Display.c: 284:     LATCbits.LATC4 = 0;
+[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
+"286
+[; ;Display.c: 286:     STLED316s_SPI_SendData(0x0D);
+[e ( _STLED316s_SPI_SendData (1 -> -> 13 `i `uc ]
+"288
+[; ;Display.c: 288:     LATCbits.LATC4 = 1;
+[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+"289
+[; ;Display.c: 289: }
 [e :UE 672 ]
 }
-"287
-[; ;Display.c: 287: void WriteSTLED316SErr(char msg) {
+"291
+[; ;Display.c: 291: void WriteSTLED316SErr(char msg) {
 [v _WriteSTLED316SErr `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _WriteSTLED316SErr ]
 [v _msg `uc ~T0 @X0 1 r1 ]
 [f ]
-"288
-[; ;Display.c: 288:     LATCbits.LATC4 = 0;
+"292
+[; ;Display.c: 292:     LATCbits.LATC4 = 0;
 [e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
-"290
-[; ;Display.c: 290:     STLED316s_SPI_SendData(0x00);
+"294
+[; ;Display.c: 294:     STLED316s_SPI_SendData(0x00);
 [e ( _STLED316s_SPI_SendData (1 -> -> 0 `i `uc ]
-"293
-[; ;Display.c: 293:     LATCbits.LATC4 = 1;
-[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"295
-[; ;Display.c: 295:     LATCbits.LATC4 = 0;
-[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
 "297
-[; ;Display.c: 297:     STLED316s_SPI_SendData(0x00);
-[e ( _STLED316s_SPI_SendData (1 -> -> 0 `i `uc ]
+[; ;Display.c: 297:     LATCbits.LATC4 = 1;
+[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
 "299
-[; ;Display.c: 299:     switch (msg) {
-[e $U 682  ]
-{
-"300
-[; ;Display.c: 300:         case 'E':
-[e :U 683 ]
+[; ;Display.c: 299:     LATCbits.LATC4 = 0;
+[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
 "301
-[; ;Display.c: 301:             STLED316s_SPI_SendData(0x79);
-[e ( _STLED316s_SPI_SendData (1 -> -> 121 `i `uc ]
-"302
-[; ;Display.c: 302:             STLED316s_SPI_SendData(0x77);
-[e ( _STLED316s_SPI_SendData (1 -> -> 119 `i `uc ]
+[; ;Display.c: 301:     STLED316s_SPI_SendData(0x00);
+[e ( _STLED316s_SPI_SendData (1 -> -> 0 `i `uc ]
 "303
-[; ;Display.c: 303:             break;
-[e $U 681  ]
+[; ;Display.c: 303:     switch (msg) {
+[e $U 684  ]
+{
 "304
-[; ;Display.c: 304:         case '0':
-[e :U 684 ]
+[; ;Display.c: 304:         case 'E':
+[e :U 685 ]
 "305
 [; ;Display.c: 305:             STLED316s_SPI_SendData(0x79);
 [e ( _STLED316s_SPI_SendData (1 -> -> 121 `i `uc ]
 "306
-[; ;Display.c: 306:             STLED316s_SPI_SendData(0x3F);
-[e ( _STLED316s_SPI_SendData (1 -> -> 63 `i `uc ]
+[; ;Display.c: 306:             STLED316s_SPI_SendData(0x77);
+[e ( _STLED316s_SPI_SendData (1 -> -> 119 `i `uc ]
 "307
 [; ;Display.c: 307:             break;
-[e $U 681  ]
+[e $U 683  ]
 "308
-[; ;Display.c: 308:         case '1':
-[e :U 685 ]
+[; ;Display.c: 308:         case '0':
+[e :U 686 ]
 "309
 [; ;Display.c: 309:             STLED316s_SPI_SendData(0x79);
 [e ( _STLED316s_SPI_SendData (1 -> -> 121 `i `uc ]
 "310
-[; ;Display.c: 310:             STLED316s_SPI_SendData(0x06);
-[e ( _STLED316s_SPI_SendData (1 -> -> 6 `i `uc ]
+[; ;Display.c: 310:             STLED316s_SPI_SendData(0x3F);
+[e ( _STLED316s_SPI_SendData (1 -> -> 63 `i `uc ]
 "311
 [; ;Display.c: 311:             break;
-[e $U 681  ]
+[e $U 683  ]
 "312
-[; ;Display.c: 312:         case '2':
-[e :U 686 ]
+[; ;Display.c: 312:         case '1':
+[e :U 687 ]
 "313
 [; ;Display.c: 313:             STLED316s_SPI_SendData(0x79);
 [e ( _STLED316s_SPI_SendData (1 -> -> 121 `i `uc ]
 "314
-[; ;Display.c: 314:             STLED316s_SPI_SendData(0x5B);
-[e ( _STLED316s_SPI_SendData (1 -> -> 91 `i `uc ]
+[; ;Display.c: 314:             STLED316s_SPI_SendData(0x06);
+[e ( _STLED316s_SPI_SendData (1 -> -> 6 `i `uc ]
 "315
 [; ;Display.c: 315:             break;
-[e $U 681  ]
+[e $U 683  ]
 "316
-[; ;Display.c: 316:         case 'G':
-[e :U 687 ]
+[; ;Display.c: 316:         case '2':
+[e :U 688 ]
 "317
-[; ;Display.c: 317:             STLED316s_SPI_SendData(0x00);
-[e ( _STLED316s_SPI_SendData (1 -> -> 0 `i `uc ]
+[; ;Display.c: 317:             STLED316s_SPI_SendData(0x79);
+[e ( _STLED316s_SPI_SendData (1 -> -> 121 `i `uc ]
 "318
-[; ;Display.c: 318:             STLED316s_SPI_SendData(0x3F);
-[e ( _STLED316s_SPI_SendData (1 -> -> 63 `i `uc ]
+[; ;Display.c: 318:             STLED316s_SPI_SendData(0x5B);
+[e ( _STLED316s_SPI_SendData (1 -> -> 91 `i `uc ]
 "319
 [; ;Display.c: 319:             break;
-[e $U 681  ]
+[e $U 683  ]
 "320
-[; ;Display.c: 320:         case 'S':
-[e :U 688 ]
+[; ;Display.c: 320:         case 'G':
+[e :U 689 ]
 "321
-[; ;Display.c: 321:             STLED316s_SPI_SendData(0x79);
-[e ( _STLED316s_SPI_SendData (1 -> -> 121 `i `uc ]
+[; ;Display.c: 321:             STLED316s_SPI_SendData(0x00);
+[e ( _STLED316s_SPI_SendData (1 -> -> 0 `i `uc ]
 "322
-[; ;Display.c: 322:             STLED316s_SPI_SendData(0x06);
-[e ( _STLED316s_SPI_SendData (1 -> -> 6 `i `uc ]
+[; ;Display.c: 322:             STLED316s_SPI_SendData(0x3F);
+[e ( _STLED316s_SPI_SendData (1 -> -> 63 `i `uc ]
 "323
 [; ;Display.c: 323:             break;
-[e $U 681  ]
+[e $U 683  ]
 "324
-[; ;Display.c: 324:         case 'A':
-[e :U 689 ]
+[; ;Display.c: 324:         case 'S':
+[e :U 690 ]
 "325
-[; ;Display.c: 325:             STLED316s_SPI_SendData(0x77);
-[e ( _STLED316s_SPI_SendData (1 -> -> 119 `i `uc ]
+[; ;Display.c: 325:             STLED316s_SPI_SendData(0x79);
+[e ( _STLED316s_SPI_SendData (1 -> -> 121 `i `uc ]
 "326
-[; ;Display.c: 326:             STLED316s_SPI_SendData(0x3E);
-[e ( _STLED316s_SPI_SendData (1 -> -> 62 `i `uc ]
+[; ;Display.c: 326:             STLED316s_SPI_SendData(0x06);
+[e ( _STLED316s_SPI_SendData (1 -> -> 6 `i `uc ]
 "327
 [; ;Display.c: 327:             break;
-[e $U 681  ]
+[e $U 683  ]
 "328
-[; ;Display.c: 328:         default:
-[e :U 690 ]
+[; ;Display.c: 328:         case 'A':
+[e :U 691 ]
 "329
-[; ;Display.c: 329:             break;
-[e $U 681  ]
+[; ;Display.c: 329:             STLED316s_SPI_SendData(0x77);
+[e ( _STLED316s_SPI_SendData (1 -> -> 119 `i `uc ]
 "330
-[; ;Display.c: 330:     }
-}
-[e $U 681  ]
-[e :U 682 ]
-[e [\ -> _msg `i , $ -> -> 69 `ui `i 683
- , $ -> -> 48 `ui `i 684
- , $ -> -> 49 `ui `i 685
- , $ -> -> 50 `ui `i 686
- , $ -> -> 71 `ui `i 687
- , $ -> -> 83 `ui `i 688
- , $ -> -> 65 `ui `i 689
- 690 ]
-[e :U 681 ]
+[; ;Display.c: 330:             STLED316s_SPI_SendData(0x3E);
+[e ( _STLED316s_SPI_SendData (1 -> -> 62 `i `uc ]
+"331
+[; ;Display.c: 331:             break;
+[e $U 683  ]
 "332
-[; ;Display.c: 332:     LATCbits.LATC4 = 1;
-[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+[; ;Display.c: 332:         default:
+[e :U 692 ]
+"333
+[; ;Display.c: 333:             break;
+[e $U 683  ]
 "334
-[; ;Display.c: 334:     LATCbits.LATC4 = 0;
-[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
+[; ;Display.c: 334:     }
+}
+[e $U 683  ]
+[e :U 684 ]
+[e [\ -> _msg `i , $ -> -> 69 `ui `i 685
+ , $ -> -> 48 `ui `i 686
+ , $ -> -> 49 `ui `i 687
+ , $ -> -> 50 `ui `i 688
+ , $ -> -> 71 `ui `i 689
+ , $ -> -> 83 `ui `i 690
+ , $ -> -> 65 `ui `i 691
+ 692 ]
+[e :U 683 ]
 "336
-[; ;Display.c: 336:     STLED316s_SPI_SendData(0x0D);
-[e ( _STLED316s_SPI_SendData (1 -> -> 13 `i `uc ]
-"338
-[; ;Display.c: 338:     LATCbits.LATC4 = 1;
+[; ;Display.c: 336:     LATCbits.LATC4 = 1;
 [e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"339
-[; ;Display.c: 339: }
-[e :UE 680 ]
+"338
+[; ;Display.c: 338:     LATCbits.LATC4 = 0;
+[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
+"340
+[; ;Display.c: 340:     STLED316s_SPI_SendData(0x0D);
+[e ( _STLED316s_SPI_SendData (1 -> -> 13 `i `uc ]
+"342
+[; ;Display.c: 342:     LATCbits.LATC4 = 1;
+[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+"343
+[; ;Display.c: 343: }
+[e :UE 682 ]
 }

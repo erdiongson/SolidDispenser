@@ -31,6 +31,7 @@
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>UART_PicArduino.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
