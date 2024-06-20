@@ -10328,8 +10328,9 @@ void main(void) {
 
                               dispense = 1;
                               Busy = 1;
-                              NUM = Serial_Buffer[2];
+                              NUM = (unsigned int)Serial_Buffer[2];
                               WriteSTLED316SData(NUM, vibration_mode);
+                              NUM_REC = NUM;
 
                               errorcounter = 30;
 
@@ -10413,7 +10414,7 @@ void main(void) {
                                 Write1USART(Serial_Buffer_Out[i]);
                               }
                               INTCONbits.GIE = 1;
-# 965 "main.c"
+# 966 "main.c"
                             } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
                             {
                                 dispense = 0;
@@ -10481,16 +10482,15 @@ void main(void) {
                                     pause_Time = read_i2c(0x0060);
                                     vib_Time = read_i2c(0x0040);
                                     dutyCycle_reg = read_i2c(0x0070);
-                                    NUM = NUM_REC;
 
 
 
 
-                                    Serial_Buffer_Out[0] = 0x51;
+                                    Serial_Buffer_Out[0] = 0xA5;
                                     Serial_Buffer_Out[1] = pause_Time;
                                     Serial_Buffer_Out[2] = dutyCycle_reg;
                                     Serial_Buffer_Out[3] = vib_Time;
-                                    Serial_Buffer_Out[4] = NUM;
+                                    Serial_Buffer_Out[4] = 0x5A;
 
                                     _delay((unsigned long)((100)*(8000000/4000.0)));
 
@@ -10511,16 +10511,16 @@ void main(void) {
                                     Busy = 1;
 
 
-
                                     productType = read_i2c(0x0090);
                                     fwver = read_i2c(0x0080);
+                                    NUM = NUM_REC;
 
 
-                                    Serial_Buffer_Out[0] = 0x52;
+                                    Serial_Buffer_Out[0] = 0xA5;
                                     Serial_Buffer_Out[1] = productType;
                                     Serial_Buffer_Out[2] = fwver;
-                                    Serial_Buffer_Out[3] = 0x00;
-                                    Serial_Buffer_Out[4] = 0x00;
+                                    Serial_Buffer_Out[3] = NUM;
+                                    Serial_Buffer_Out[4] = 0x5A;
 
                                     _delay((unsigned long)((100)*(8000000/4000.0)));
 
@@ -10591,30 +10591,24 @@ void main(void) {
                                 Busy = 1;
 
                                 if (Serial_Buffer[2] == 0x71){
-                                    dutyCycle_reg = 0x04;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x04);
                                 }
                                 else if (Serial_Buffer[2] == 0x72){
-                                    dutyCycle_reg = 0x00;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x00);
                                 }
                                 else if (Serial_Buffer[2] == 0x73){
-                                    dutyCycle_reg = 0x01;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x01);
                                 }
                                 else if (Serial_Buffer[2] == 0x74){
-                                    dutyCycle_reg = 0x02;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x02);
                                 }
                                 else if (Serial_Buffer[2] == 0x75){
-                                    dutyCycle_reg = 0x03;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x03);
                                 }
-                                else {
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
-                                }
+                                dutyCycle_reg = read_i2c(0x0070);
+                                ToggleVIB_Mode();
                                 WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
-                                _delay((unsigned long)((500)*(8000000/4000.0)));
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
                                 Busy = 0;
                             }
                             break;
@@ -10677,9 +10671,8 @@ void main(void) {
                                 dispense = 1;
                                 Busy = 1;
                                 errorcounter = 30;
-                                NUM = NUM_REC;
                                 Homing_Again_Manual();
-# 1283 "main.c"
+# 1276 "main.c"
                             } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
                             {
                                 dispense = 0;
@@ -10690,6 +10683,108 @@ void main(void) {
                             Busy = 0;
                             break;
 
+                        case 0x46:
+                          if (Serial_Buffer[2] != 0x00 && Busy == 0)
+                            {
+
+                              dispense = 1;
+                              Busy = 1;
+                              NUM = (unsigned int)Serial_Buffer[2];
+                              WriteSTLED316SData(NUM, vibration_mode);
+
+                              errorcounter = 30;
+
+
+
+                              if (vibration_mode == 1) {
+                                LATCbits.LATC1 = 1;
+                                delay2_1ms(Vmotor_Time);
+                                LATCbits.LATC1 = 0;
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
+                              }
+                              else {
+                                LATCbits.LATC1 = 0;
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
+                              }
+
+                              LATAbits.LATA2 = 1;
+                              MotorON();
+                              _delay((unsigned long)((150)*(8000000/4000.0)));
+                              errorcounter = 30;
+                              do{
+                                IR_SENSORF = Read_IR();
+                                if (errorcounter == 0) {
+                                  MotorBREAK();
+                                  Serial_Buffer_Out[0] = 0xA5;
+                                  Serial_Buffer_Out[1] = 0xE1;
+                                  Serial_Buffer_Out[2] = 0x00;
+                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                                  Serial_Buffer_Out[4] = 0x5A;
+
+                                  INTCONbits.GIE = 0;
+                                  for (i = 0; i < 5; i++) {
+                                    Write2USART(Serial_Buffer_Out[i]);
+                                  }
+                                  INTCONbits.GIE = 1;
+                                }
+                              } while (IR_SENSORF != 0);
+                              _delay((unsigned long)((30)*(8000000/4000.0)));
+                              errorcounter = 30;
+
+                              do {
+                                IR_SENSORF = Read_IR();
+                                if (errorcounter == 0) {
+                                  MotorBREAK();
+                                  Serial_Buffer_Out[0] = 0xA5;
+                                  Serial_Buffer_Out[1] = 0xE2;
+                                  Serial_Buffer_Out[2] = 0x00;
+                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                                  Serial_Buffer_Out[4] = 0x5A;
+
+                                  INTCONbits.GIE = 0;
+                                  for (i = 0; i < 5; i++) {
+                                    Write2USART(Serial_Buffer_Out[i]);
+                                  }
+                                  INTCONbits.GIE = 1;
+                                }
+                              } while (IR_SENSORF != 1);
+                              errorcounter = 30;
+                              delay2_1ms(Motor_Stop_Delay_Time);
+
+                              MotorBREAK();
+
+                              if (vibration_mode == 1) {
+                                LATCbits.LATC1 = 1;
+                                delay2_1ms(Vmotor_Time);
+                                LATCbits.LATC1 = 0;
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
+                              }
+                              else {
+                                LATCbits.LATC1 = 0;
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
+                              }
+                              Serial_Buffer_Out[0] = 0xA5;
+                              Serial_Buffer_Out[1] = 0xF9;
+                              Serial_Buffer_Out[2] = 0x00;
+                              Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                              Serial_Buffer_Out[4] = 0x5A;
+
+                              INTCONbits.GIE = 0;
+                              for (i = 0; i < 5; i++) {
+                                Write2USART(Serial_Buffer_Out[i]);
+                              }
+                              INTCONbits.GIE = 1;
+# 1408 "main.c"
+                            } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
+                            {
+                                dispense = 0;
+                            }
+                            flush();
+                            flushOut();
+                            dispense = 0;
+                            Stop = 0;
+                            Busy = 0;
+                            break;
 
                         case 0x23:
 
@@ -10737,8 +10832,6 @@ void main(void) {
                                 Busy = 0;
                             }
                             break;
-
-
                         case 0x51:
 
                             if (Busy == 0) {
@@ -10749,16 +10842,15 @@ void main(void) {
                                     pause_Time = read_i2c(0x0060);
                                     vib_Time = read_i2c(0x0040);
                                     dutyCycle_reg = read_i2c(0x0070);
-                                    NUM = NUM_REC;
 
 
 
 
-                                    Serial_Buffer_Out[0] = 0x51;
+                                    Serial_Buffer_Out[0] = 0xA5;
                                     Serial_Buffer_Out[1] = pause_Time;
                                     Serial_Buffer_Out[2] = dutyCycle_reg;
                                     Serial_Buffer_Out[3] = vib_Time;
-                                    Serial_Buffer_Out[4] = NUM;
+                                    Serial_Buffer_Out[4] = 0x5A;
 
                                     _delay((unsigned long)((100)*(8000000/4000.0)));
 
@@ -10781,13 +10873,14 @@ void main(void) {
 
                                     productType = read_i2c(0x0090);
                                     fwver = read_i2c(0x0080);
+                                    NUM = NUM_REC;
 
 
-                                    Serial_Buffer_Out[0] = 0x52;
+                                    Serial_Buffer_Out[0] = 0xA5;
                                     Serial_Buffer_Out[1] = productType;
                                     Serial_Buffer_Out[2] = fwver;
-                                    Serial_Buffer_Out[3] = 0x00;
-                                    Serial_Buffer_Out[4] = 0x00;
+                                    Serial_Buffer_Out[3] = NUM;
+                                    Serial_Buffer_Out[4] = 0x5A;
 
                                     _delay((unsigned long)((100)*(8000000/4000.0)));
 
@@ -10801,7 +10894,7 @@ void main(void) {
                                 Busy = 0;
                             }
                             break;
-# 1435 "main.c"
+# 1558 "main.c"
                         case 0x65:
 
                             if (Busy == 0) {
@@ -10858,30 +10951,24 @@ void main(void) {
                                 Busy = 1;
 
                                 if (Serial_Buffer[2] == 0x71){
-                                    dutyCycle_reg = 0x04;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x04);
                                 }
                                 else if (Serial_Buffer[2] == 0x72){
-                                    dutyCycle_reg = 0x00;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x00);
                                 }
                                 else if (Serial_Buffer[2] == 0x73){
-                                    dutyCycle_reg = 0x01;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x01);
                                 }
                                 else if (Serial_Buffer[2] == 0x74){
-                                    dutyCycle_reg = 0x02;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x02);
                                 }
                                 else if (Serial_Buffer[2] == 0x75){
-                                    dutyCycle_reg = 0x03;
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
+                                    duty_cycle = PWM_Selection(0x03);
                                 }
-                                else {
-                                    duty_cycle = PWM_Selection(dutyCycle_reg);
-                                }
+                                dutyCycle_reg = read_i2c(0x0070);
+                                ToggleVIB_Mode();
                                 WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
-                                _delay((unsigned long)((500)*(8000000/4000.0)));
+                                _delay((unsigned long)((300)*(8000000/4000.0)));
                                 Busy = 0;
                             }
                             break;
@@ -11302,7 +11389,7 @@ void Homing_Again_Manual(void) {
 
         if (Stop == 1)
             break;
-# 1947 "main.c"
+# 2064 "main.c"
         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
             i_RUN_ZERO = 2;
             WriteSTLED316SData(NUM, !vibration_mode);

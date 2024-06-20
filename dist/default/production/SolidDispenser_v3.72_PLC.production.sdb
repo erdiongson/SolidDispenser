@@ -113,35 +113,35 @@ Response_U4 75
 [v _pwm_set pwm_set `(v  1 e 1 0 ]
 "204
 [v _main main `(v  1 e 1 0 ]
-"1567
+"1684
 [v _high_isr high_isr `IIH(v  1 e 1 0 ]
-"1751
+"1868
 [v _delay_1ms delay_1ms `(v  1 e 1 0 ]
-"1761
+"1878
 [v _Read_IR Read_IR `(ui  1 e 2 0 ]
-"1784
+"1901
 [v _MotorPosition_Init MotorPosition_Init `(v  1 e 1 0 ]
-"1824
+"1941
 [v _ToggleVIB_Mode ToggleVIB_Mode `(v  1 e 1 0 ]
-"1846
+"1963
 [v _Homing_Again_Manual Homing_Again_Manual `(v  1 e 1 0 ]
-"1994
+"2111
 [v _Homing_Again_Auto Homing_Again_Auto `(v  1 e 1 0 ]
-"2091
+"2208
 [v _flush flush `(v  1 e 1 0 ]
-"2102
+"2219
 [v _flushOut flushOut `(v  1 e 1 0 ]
-"2113
+"2230
 [v _readWeighingData readWeighingData `(v  1 e 1 0 ]
-"2137
+"2254
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
-"2151
+"2268
 [v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
-"2169
+"2286
 [v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
-"2186
+"2303
 [v _PWM_Selection PWM_Selection `(ui  1 e 2 0 ]
-"2243
+"2360
 [v _vibrationMotorControl vibrationMotorControl `(v  1 e 1 0 ]
 "21 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\MotorDriver.c
 [v _initMotor initMotor `(v  1 e 1 0 ]
@@ -1089,7 +1089,7 @@ Response_U4 75
 "204 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"1562
+"1679
 } 0
 "120 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\i2c.c
 [v _read_i2c read_i2c `(i  1 e 2 0 ]
@@ -1143,12 +1143,12 @@ Response_U4 75
 {
 "39
 } 0
-"2091 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"2208 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _flush flush `(v  1 e 1 0 ]
 {
-"2092
+"2209
 [v flush@i i `i  1 a 2 8 ]
-"2097
+"2214
 } 0
 "213 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\usart.c
 [v _delay2_1ms delay2_1ms `(v  1 e 1 0 ]
@@ -1163,19 +1163,19 @@ Response_U4 75
 [v WriteSTLED316SVibMode@v_mode v_mode `uc  1 p 1 16 ]
 "289
 } 0
-"1824 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"1941 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _ToggleVIB_Mode ToggleVIB_Mode `(v  1 e 1 0 ]
 {
-"1841
+"1958
 } 0
-"2186
+"2303
 [v _PWM_Selection PWM_Selection `(ui  1 e 2 0 ]
 {
-"2187
+"2304
 [v PWM_Selection@dcSelected dcSelected `i  1 a 2 4 ]
-"2186
+"2303
 [v PWM_Selection@msg msg `ui  1 p 2 0 ]
-"2223
+"2340
 } 0
 "109 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\i2c.c
 [v _write_i2c write_i2c `(v  1 e 1 0 ]
@@ -1233,15 +1233,15 @@ Response_U4 75
 [v ___aldiv@divisor divisor `l  1 p 4 12 ]
 "41
 } 0
-"1784 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"1901 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _MotorPosition_Init MotorPosition_Init `(v  1 e 1 0 ]
 {
-"1819
+"1936
 } 0
-"2137
+"2254
 [v _InitTimer1 InitTimer1 `(v  1 e 1 0 ]
 {
-"2147
+"2264
 } 0
 "14 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\Display.c
 [v _InitSTLED316 InitSTLED316 `(v  1 e 1 0 ]
@@ -1252,10 +1252,10 @@ Response_U4 75
 [v InitSTLED316@Brightness Brightness `uc  1 a 1 16 ]
 "80
 } 0
-"1846 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"1963 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _Homing_Again_Manual Homing_Again_Manual `(v  1 e 1 0 ]
 {
-"1989
+"2106
 } 0
 "145 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\Display.c
 [v _WriteSTLED316SData WriteSTLED316SData `(v  1 e 1 0 ]
@@ -1304,24 +1304,24 @@ Response_U4 75
 [v Get7Seg@Digit Digit `i  1 p 2 8 ]
 "143
 } 0
-"1994 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"2111 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _Homing_Again_Auto Homing_Again_Auto `(v  1 e 1 0 ]
 {
-"2086
+"2203
 } 0
-"2113
+"2230
 [v _readWeighingData readWeighingData `(v  1 e 1 0 ]
 {
-"2114
+"2231
 [v readWeighingData@i i `i  1 a 2 10 ]
-"2135
+"2252
 } 0
-"2102
+"2219
 [v _flushOut flushOut `(v  1 e 1 0 ]
 {
-"2103
+"2220
 [v flushOut@i i `i  1 a 2 8 ]
-"2108
+"2225
 } 0
 "107 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\usart.c
 [v _Write2USART Write2USART `(v  1 e 1 0 ]
@@ -1369,10 +1369,10 @@ Response_U4 75
 [v STLED316s_SPI_SendData@Data Data `uc  1 a 1 10 ]
 "102
 } 0
-"1761 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"1878 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _Read_IR Read_IR `(ui  1 e 2 0 ]
 {
-"1779
+"1896
 } 0
 "40 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\MotorDriver.c
 [v _MotorON MotorON `(v  1 e 1 0 ]
@@ -1394,26 +1394,26 @@ Response_U4 75
 {
 "38
 } 0
-"2151 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"2268 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _AD_capture_BattVoltage AD_capture_BattVoltage `(v  1 e 1 0 ]
 {
-"2167
+"2284
 } 0
-"1751
+"1868
 [v _delay_1ms delay_1ms `(v  1 e 1 0 ]
 {
 [v delay_1ms@time time `ui  1 p 2 8 ]
-"1756
+"1873
 } 0
-"1567
+"1684
 [v _high_isr high_isr `IIH(v  1 e 1 0 ]
 {
-"1568
+"1685
 [v high_isr@i i `uc  1 a 1 7 ]
 [v high_isr@c c `uc  1 a 1 6 ]
-"1569
+"1686
 [v high_isr@Temp Temp `uc  1 a 1 5 ]
-"1746
+"1863
 } 0
 "107 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\usart.c
 [v i2_Write2USART Write2USART `(v  1 e 1 0 ]
@@ -1445,8 +1445,8 @@ Response_U4 75
 [v Read1USART@result result `uc  1 a 1 0 ]
 "100
 } 0
-"2169 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
+"2286 C:\Users\Dell-user-5\Documents\Projects\Code_Repository\SolidDispenser_v3.72_PLC\main.c
 [v _Low_Power_Indicator Low_Power_Indicator `(v  1 e 1 0 ]
 {
-"2181
+"2298
 } 0
