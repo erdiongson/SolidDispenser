@@ -69,6 +69,8 @@ extern "C" {
         
 
     extern unsigned char PWM_reg;
+    extern unsigned int NUM;
+    extern unsigned int NUM_REC;
 
     void init(void);
     void initMotor(void);
@@ -114,8 +116,11 @@ extern "C" {
     //20231005 : erdiongson - Added for reference on Duty Cycle
     // 0 = zero; 7 = 25%; 9 = 50%; 12 = 75%; 20 = 100%;
     unsigned int duty_cycle = 0;
+    unsigned int dutyCycle_reg;
     volatile unsigned char PWM_Duty_Cycle;
     void vibrationMotorControl(unsigned int pwm_msg);
+    unsigned int PWM_Selection (unsigned int msg);
+    void pwm_set(uint16_t duty);
 
     void PWM1_Init(long desiredFrequency);
     void PWM1_SetDutyCycle(unsigned int dutyCycle);

@@ -9297,6 +9297,8 @@ unsigned char __t3rd16on(void);
 # 42 "./main.h" 2
 # 71 "./main.h"
     extern unsigned char PWM_reg;
+    extern unsigned int NUM;
+    extern unsigned int NUM_REC;
 
     void init(void);
     void initMotor(void);
@@ -9342,8 +9344,11 @@ unsigned char __t3rd16on(void);
 
 
     unsigned int duty_cycle = 0;
+    unsigned int dutyCycle_reg;
     volatile unsigned char PWM_Duty_Cycle;
     void vibrationMotorControl(unsigned int pwm_msg);
+    unsigned int PWM_Selection (unsigned int msg);
+    void pwm_set(uint16_t duty);
 
     void PWM1_Init(long desiredFrequency);
     void PWM1_SetDutyCycle(unsigned int dutyCycle);
@@ -9351,6 +9356,12 @@ unsigned char __t3rd16on(void);
     void PWM1_Start();
     void PWM1_Stop();
 # 11 "usart.c" 2
+
+# 1 "./i2c.h" 1
+# 12 "usart.c" 2
+
+# 1 "./Led_Display.h" 1
+# 13 "usart.c" 2
 
 
 
@@ -9562,19 +9573,20 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 26 "./UART_PicArduino.h"
 typedef enum {
     Handshake = 0x06,
-    Vibrate_Mode_ON = 0xC1,
-    Vibrate_Mode_OFF = 0xC2,
-    Vibration_U1 = 0xB1,
-    Vibration_U2 = 0xB2,
-    Vibration_U3 = 0xB3,
-    Vibration_U4 = 0xB4,
-    SDB_Dispense_START = 0xC3,
+    Vibrate_Mode_ON = 0x54,
+    Vibrate_Mode_OFF = 0x71,
+    Vibration_U1 = 0x72,
+    Vibration_U2 = 0x73,
+    Vibration_U3 = 0x74,
+    Vibration_U4 = 0x75,
+    SDB_Dispense_START = 0x46,
+    SDB_ContinuousDisp_START = 0x44,
     SDB_Dispense_PAUSE = 0xC4,
     SDB_Dispense_STOP = 0xC5,
     IR_Censor_Failure = 0xE1,
     Marker_Not_Detected = 0xE2,
     Response_Handshake = 0x60,
-    Response_Start_Dispense = 0x3C,
+    Response_End_Dispense = 0xF9,
     Response_VibModeChange = 0x1C,
     Response_U0 = 0x2C,
     Response_U1 = 0x1B,
@@ -9627,8 +9639,9 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
 unsigned char receiveData(unsigned char uart_channel);
 void delay2_1ms(unsigned int time);
 void ClearRXBuffer();
-# 14 "usart.c" 2
-# 23 "usart.c"
+char* getBuffer(unsigned char buffer[5]);
+# 16 "usart.c" 2
+# 25 "usart.c"
 void initUSART(void) {
 
     TRISCbits.TRISC6 = 0;
@@ -9882,7 +9895,7 @@ void uart_config(unsigned int uart_num) {
 
         SPBRG2 = 25;
         SPBRGH2 = 0;
-# 310 "usart.c"
+# 312 "usart.c"
     } else {
 
         printf("Error: Invalid UART number.\n");
@@ -10040,21 +10053,15 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
 
     unsigned int IR_SENSORF = 0;
 
+    unsigned char receivedBytes[5];
     LATAbits.LATA2 = 1;
-
-
-
-
-        unsigned char receivedBytes[5];
-
-
+# 479 "usart.c"
         while ((receivedBytes[0] = receiveData(2)) != 0xA5);
 
 
         for (int i = 1; i < 5; i++) {
             receivedBytes[i] = receiveData(2);
         }
-
 
 
 
@@ -10083,6 +10090,7 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
 
 
 
+
                       if (vibration_mode == 1) {
                         LATCbits.LATC1 = 1;
                         delay2_1ms(Vmotor_Time);
@@ -10103,8 +10111,9 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                           if (errorcounter == 0) {
                               MotorBREAK();
                               commandSend = IR_Censor_Failure;
+                              data1Send = 0x00;
                               data2Send = commandSend + data1Send;
-                              sendResponse(0xA5, 0xE1, 0x00, 0x00, 0x5A);
+                              sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
                           }
                       } while (IR_SENSORF != 0);
                       _delay((unsigned long)((30)*(8000000/4000.0)));
@@ -10114,7 +10123,10 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                           IR_SENSORF = Read_IR();
                           if (errorcounter == 0) {
                               MotorBREAK();
-                              sendResponse(0xA5, 0xE2, 0x00, 0x00, 0x5A);
+                              commandSend = Marker_Not_Detected;
+                              data1Send = 0x00;
+                              data2Send = commandSend + data1Send;
+                              sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
                           }
                       } while (IR_SENSORF != 1);
                       errorcounter = 30;
@@ -10132,60 +10144,54 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                         LATCbits.LATC1 = 0;
                         _delay((unsigned long)((300)*(8000000/4000.0)));
                       }
-                      sendResponse(0xA5, 0x3C, 0x00, 0x00, 0x5A);
+                      commandSend = Response_End_Dispense;
+                      data1Send = 0x00;
+                      data2Send = commandSend + data1Send;
+                      sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
 
 
                     break;
                 case Vibrate_Mode_ON:
+# 623 "usart.c"
+                    if (data1 == 0x71){
+                      duty_cycle = PWM_Selection(0x04);
+                      vibration_mode = 0;
+                      data1Send = Vibrate_Mode_OFF;
+                    }
+                    else if (data1 == 0x72){
+                      duty_cycle = PWM_Selection(0x00);
+                      data1Send = Vibration_U1;
+                    }
+                    else if (data1 == 0x73){
+                      duty_cycle = PWM_Selection(0x01);
+                      data1Send = Vibration_U2;
+                    }
+                    else if (data1 == 0x74){
+                      duty_cycle = PWM_Selection(0x02);
+                      data1Send = Vibration_U3;
+                    }
+                    else if (data1 == 0x75){
+                      duty_cycle = PWM_Selection(0x03);
+                      data1Send = Vibration_U4;
+                    }
+                    commandSend = Vibrate_Mode_ON;
+                    data2Send = commandSend + data1Send;
+                    sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+                    dutyCycle_reg = read_i2c(0x0070);
+                    ToggleVIB_Mode();
+                    pwm_set(duty_cycle);
+                    _delay((unsigned long)((300)*(8000000/4000.0)));
+                    break;
+                case SDB_ContinuousDisp_START:
+                    if (data1 == 0xF1)
+                    {
+                        NUM = NUM_REC;
 
-                    switch(data1){
-                        case Vibration_U1:
-                            vibrationMotorControl(0x00);
-
-                            commandSend = Response_U1;
-                            data1Send = 0x00;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            break;
-                        case Vibration_U2:
-                            vibrationMotorControl(0x01);
-
-                            commandSend = Response_U2;
-                            data1Send = 0x00;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            break;
-                        case Vibration_U3:
-                            vibrationMotorControl(0x02);
-
-                            commandSend = Response_U3;
-                            data1Send = 0x00;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            break;
-                        case Vibration_U4:
-                            vibrationMotorControl(0x03);
-
-                            commandSend = Response_U4;
-                            data1Send = 0x00;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            break;
-                        case Vibrate_Mode_OFF:
-                            vibrationMotorControl(0x04);
-                            vibration_mode = 0;
-                            commandSend = Response_U0;
-                            data1Send = 0x00;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            break;
-                        default:
-                            break;
                     }
                     break;
                 default:
-
                     break;
+
             }
         }
         return;
@@ -10196,4 +10202,16 @@ void ClearRXBuffer() {
     while (PIR1bits.RC1IF) {
         unsigned char receivedData = receiveData(2);
     }
+}
+
+char* getBuffer(unsigned char buffer[5]){
+
+
+
+    while ((buffer[0] = receiveData(2)) != 0xA5);
+
+    for (int i = 1; i < 5; i++) {
+      buffer[i] = receiveData(2);
+    }
+    return(buffer);
 }

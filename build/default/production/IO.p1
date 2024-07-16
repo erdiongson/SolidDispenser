@@ -924,14 +924,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x CCP2MX  =  DEFAULT  ]
 "38
 [p x MSSPMSK  =  MSK5  ]
-"116
-[; ;./main.h: 116:     unsigned int duty_cycle = 0;
+"118
+[; ;./main.h: 118:     unsigned int duty_cycle = 0;
 [v _duty_cycle `ui ~T0 @X0 1 e ]
 [i _duty_cycle
 -> -> 0 `i `ui
 ]
-"117
-[; ;./main.h: 117:     volatile unsigned char PWM_Duty_Cycle;
+"119
+[; ;./main.h: 119:     unsigned int dutyCycle_reg;
+[v _dutyCycle_reg `ui ~T0 @X0 1 e ]
+"120
+[; ;./main.h: 120:     volatile unsigned char PWM_Duty_Cycle;
 [v _PWM_Duty_Cycle `Vuc ~T0 @X0 1 e ]
 "18 IO.c
 [; ;IO.c: 18: void init(void) {

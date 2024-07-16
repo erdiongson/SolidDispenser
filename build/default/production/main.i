@@ -9305,6 +9305,8 @@ unsigned char __t3rd16on(void);
 # 42 "./main.h" 2
 # 71 "./main.h"
     extern unsigned char PWM_reg;
+    extern unsigned int NUM;
+    extern unsigned int NUM_REC;
 
     void init(void);
     void initMotor(void);
@@ -9350,8 +9352,11 @@ unsigned char __t3rd16on(void);
 
 
     unsigned int duty_cycle = 0;
+    unsigned int dutyCycle_reg;
     volatile unsigned char PWM_Duty_Cycle;
     void vibrationMotorControl(unsigned int pwm_msg);
+    unsigned int PWM_Selection (unsigned int msg);
+    void pwm_set(uint16_t duty);
 
     void PWM1_Init(long desiredFrequency);
     void PWM1_SetDutyCycle(unsigned int dutyCycle);
@@ -9577,19 +9582,20 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 26 "./UART_PicArduino.h"
 typedef enum {
     Handshake = 0x06,
-    Vibrate_Mode_ON = 0xC1,
-    Vibrate_Mode_OFF = 0xC2,
-    Vibration_U1 = 0xB1,
-    Vibration_U2 = 0xB2,
-    Vibration_U3 = 0xB3,
-    Vibration_U4 = 0xB4,
-    SDB_Dispense_START = 0xC3,
+    Vibrate_Mode_ON = 0x54,
+    Vibrate_Mode_OFF = 0x71,
+    Vibration_U1 = 0x72,
+    Vibration_U2 = 0x73,
+    Vibration_U3 = 0x74,
+    Vibration_U4 = 0x75,
+    SDB_Dispense_START = 0x46,
+    SDB_ContinuousDisp_START = 0x44,
     SDB_Dispense_PAUSE = 0xC4,
     SDB_Dispense_STOP = 0xC5,
     IR_Censor_Failure = 0xE1,
     Marker_Not_Detected = 0xE2,
     Response_Handshake = 0x60,
-    Response_Start_Dispense = 0x3C,
+    Response_End_Dispense = 0xF9,
     Response_VibModeChange = 0x1C,
     Response_U0 = 0x2C,
     Response_U1 = 0x1B,
@@ -9642,6 +9648,7 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
 unsigned char receiveData(unsigned char uart_channel);
 void delay2_1ms(unsigned int time);
 void ClearRXBuffer();
+char* getBuffer(unsigned char buffer[5]);
 # 50 "main.c" 2
 # 97 "main.c"
 enum Op_Mode {
@@ -9659,7 +9666,7 @@ unsigned char Busy = 0;
 unsigned char vibration_mode;
 unsigned char data;
 
-unsigned int Serial_Count;
+unsigned int Serial_Count = 0;
 unsigned int EAdd_High, EAdd_Low, ETemp;
 unsigned int Motor_Speed;
 unsigned int Vmotor_Time = 2000;
@@ -9686,7 +9693,7 @@ volatile unsigned char delay_motor_stop_time;
 volatile unsigned char PWM_Duty_Cycle;
 volatile char TMR1IF_triggered = 0;
 unsigned char PWM_reg = 0x3F;
-unsigned int dutyCycle_reg;
+
 
 void init(void);
 void initMotor(void);
@@ -9728,7 +9735,7 @@ void WriteSTLED316SErr(char msg);
 void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
-unsigned int PWM_Selection (unsigned int msg);
+
 void Test_LED (void);
 
 
@@ -9743,10 +9750,7 @@ int holdTimeLeft = 0;
 int holdTimeMode = 0;
 int test_redled = 0;
 
-void pwm_set(uint16_t duty){
-    CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
-    CCPR1L = (uint8_t)(duty >> 2);
-}
+
 
 
 
@@ -9812,7 +9816,7 @@ void main(void) {
 
     IPR1bits.RC1IP = 1;
     IPR3bits.RC2IP = 1;
-# 275 "main.c"
+# 272 "main.c"
     WDTCONbits.SWDTEN = 0;
     LATDbits.LATD0 = 1;
     LATDbits.LATD1 = 1;
@@ -9820,7 +9824,7 @@ void main(void) {
     WriteSTLED316SData(37, 0xFF);
     _delay((unsigned long)((500)*(8000000/4000.0)));
     AD_capture_BattVoltage();
-# 290 "main.c"
+# 287 "main.c"
     INTCONbits.GIE = 0;
     ETemp = read_i2c(0x0010);
     INTCONbits.GIE = 1;
@@ -9871,12 +9875,6 @@ void main(void) {
         INTCONbits.GIE = 1;
     } else {
         switch (pause_Time) {
-            case 0x30:
-            default:
-                Motor_Pause_Time = 0;
-                pause_Time = 0x30;
-                break;
-
             case 0x31:
                 Motor_Pause_Time = 1000;
                 break;
@@ -9895,6 +9893,12 @@ void main(void) {
 
             case 0x35:
                 Motor_Pause_Time = 5000;
+                break;
+
+            case 0x30:
+            default:
+                Motor_Pause_Time = 0;
+                pause_Time = 0x30;
                 break;
         }
     }
@@ -9940,11 +9944,6 @@ void main(void) {
             case 0x81:
                 Vmotor_Time = 1000;
                 break;
-            case 0x82:
-            default:
-                Vmotor_Time = 2000;
-                vib_Time = 0x82;
-                break;
             case 0x83:
                 Vmotor_Time = 3000;
                 break;
@@ -9959,6 +9958,11 @@ void main(void) {
                 break;
             case 0x87:
                 Vmotor_Time = 1500;
+                break;
+            case 0x82:
+            default:
+                Vmotor_Time = 2000;
+                vib_Time = 0x82;
                 break;
         }
     }
@@ -10061,7 +10065,7 @@ void main(void) {
 
 
     while (1) {
-# 543 "main.c"
+# 540 "main.c"
         pwm_set(duty_cycle);
 
         __asm(" clrwdt");
@@ -10182,7 +10186,7 @@ void main(void) {
                 else {
                   holdTimeLeft = 0;
                 }
-# 674 "main.c"
+# 671 "main.c"
                 NUM_REC = NUM;
                 WriteSTLED316SData(NUM, vibration_mode);
 
@@ -10258,11 +10262,11 @@ void main(void) {
                                   Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
                                   Serial_Buffer_Out[4] = 0x5A;
 
-                                  INTCONbits.GIE = 0;
+
                                   for (i = 0; i < 5; i++) {
                                     Write1USART(Serial_Buffer_Out[i]);
                                   }
-                                  INTCONbits.GIE = 1;
+
                                 }
                               } while (IR_SENSORF != 0);
                               _delay((unsigned long)((30)*(8000000/4000.0)));
@@ -10278,11 +10282,11 @@ void main(void) {
                                   Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
                                   Serial_Buffer_Out[4] = 0x5A;
 
-                                  INTCONbits.GIE = 0;
+
                                   for (i = 0; i < 5; i++) {
                                     Write1USART(Serial_Buffer_Out[i]);
                                   }
-                                  INTCONbits.GIE = 1;
+
                                 }
                               } while (IR_SENSORF != 1);
                               errorcounter = 30;
@@ -10306,12 +10310,11 @@ void main(void) {
                               Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
                               Serial_Buffer_Out[4] = 0x5A;
 
-                              INTCONbits.GIE = 0;
+
                               for (i = 0; i < 5; i++) {
                                 Write1USART(Serial_Buffer_Out[i]);
                               }
-                              INTCONbits.GIE = 1;
-# 833 "main.c"
+# 830 "main.c"
                             } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
                             {
                                 dispense = 0;
@@ -10336,6 +10339,59 @@ void main(void) {
 
 
 
+                              vib_Time = read_i2c(0x0040);
+                              switch (vib_Time) {
+                                case 0x81:
+                                  Vmotor_Time = 1000;
+                                  break;
+
+                                case 0x83:
+                                  Vmotor_Time = 3000;
+                                  break;
+
+                                case 0x84:
+                                  Vmotor_Time = 4000;
+                                  break;
+
+                                case 0x85:
+                                  Vmotor_Time = 5000;
+                                  break;
+
+                                case 0x82:
+                                default:
+                                  Vmotor_Time = 2000;
+                                  vib_Time = 0x82;
+                                  break;
+                              }
+                              pause_Time = read_i2c(0x0060);
+                              switch (pause_Time) {
+                                case 0x31:
+                                  Motor_Pause_Time = 1000;
+                                  break;
+
+                                case 0x32:
+                                  Motor_Pause_Time = 2000;
+                                  break;
+
+                                case 0x33:
+                                  Motor_Pause_Time = 3000;
+                                  break;
+
+                                case 0x34:
+                                  Motor_Pause_Time = 4000;
+                                  break;
+
+                                case 0x35:
+                                  Motor_Pause_Time = 5000;
+                                  break;
+
+                                case 0x30:
+                                default:
+                                  Motor_Pause_Time = 0;
+                                  pause_Time = 0x30;
+                                  break;
+                              }
+
                               if (vibration_mode == 1) {
                                 LATCbits.LATC1 = 1;
                                 delay2_1ms(Vmotor_Time);
@@ -10348,6 +10404,7 @@ void main(void) {
                               }
 
                               LATAbits.LATA2 = 1;
+                              delay2_1ms(Motor_Pause_Time);
                               MotorON();
                               _delay((unsigned long)((150)*(8000000/4000.0)));
                               errorcounter = 30;
@@ -10361,11 +10418,11 @@ void main(void) {
                                   Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
                                   Serial_Buffer_Out[4] = 0x5A;
 
-                                  INTCONbits.GIE = 0;
+
                                   for (i = 0; i < 5; i++) {
                                     Write1USART(Serial_Buffer_Out[i]);
                                   }
-                                  INTCONbits.GIE = 1;
+
                                 }
                               } while (IR_SENSORF != 0);
                               _delay((unsigned long)((30)*(8000000/4000.0)));
@@ -10381,11 +10438,11 @@ void main(void) {
                                   Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
                                   Serial_Buffer_Out[4] = 0x5A;
 
-                                  INTCONbits.GIE = 0;
+
                                   for (i = 0; i < 5; i++) {
                                     Write1USART(Serial_Buffer_Out[i]);
                                   }
-                                  INTCONbits.GIE = 1;
+
                                 }
                               } while (IR_SENSORF != 1);
                               errorcounter = 30;
@@ -10409,12 +10466,11 @@ void main(void) {
                               Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
                               Serial_Buffer_Out[4] = 0x5A;
 
-                              INTCONbits.GIE = 0;
+
                               for (i = 0; i < 5; i++) {
                                 Write1USART(Serial_Buffer_Out[i]);
                               }
-                              INTCONbits.GIE = 1;
-# 966 "main.c"
+# 1017 "main.c"
                             } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
                             {
                                 dispense = 0;
@@ -10435,12 +10491,6 @@ void main(void) {
 
                                 pause_Time = Serial_Buffer[2];
                                 switch (pause_Time) {
-                                    case 0x30:
-                                    default:
-                                        Motor_Pause_Time = 0;
-                                        pause_Time = 0x30;
-                                        break;
-
                                     case 0x31:
                                         Motor_Pause_Time = 1000;
                                         break;
@@ -10460,13 +10510,19 @@ void main(void) {
                                     case 0x35:
                                         Motor_Pause_Time = 5000;
                                         break;
+
+                                    case 0x30:
+                                    default:
+                                        Motor_Pause_Time = 0;
+                                        pause_Time = 0x30;
+                                        break;
                                 }
 
 
 
-                                INTCONbits.GIE = 0;
+
                                 write_i2c(0x0060, pause_Time);
-                                INTCONbits.GIE = 1;
+
 
                                 flush();
                                 Busy = 0;
@@ -10534,7 +10590,7 @@ void main(void) {
                                 Busy = 0;
                             }
                             break;
-# 1116 "main.c"
+# 1167 "main.c"
                         case 0x65:
 
                             if (Busy == 0) {
@@ -10544,12 +10600,6 @@ void main(void) {
                                 switch (vib_Time) {
                                     case 0x81:
                                         Vmotor_Time = 1000;
-                                        break;
-
-                                    case 0x82:
-                                    default:
-                                        Vmotor_Time = 2000;
-                                        vib_Time = 0x82;
                                         break;
 
                                     case 0x83:
@@ -10563,10 +10613,16 @@ void main(void) {
                                     case 0x85:
                                         Vmotor_Time = 5000;
                                         break;
+
+                                    case 0x82:
+                                    default:
+                                        Vmotor_Time = 2000;
+                                        vib_Time = 0x82;
+                                        break;
                                 }
-                                INTCONbits.GIE = 0;
+
                                 write_i2c(0x0040, vib_Time);
-                                INTCONbits.GIE = 1;
+
 
                                 Busy = 0;
                             }
@@ -10578,9 +10634,9 @@ void main(void) {
                                 delay_motor_stop_time = Serial_Buffer[2];
                                 Motor_Stop_Delay_Time = delay_motor_stop_time;
 
-                                INTCONbits.GIE = 0;
+
                                 write_i2c(0x0050, delay_motor_stop_time);
-                                INTCONbits.GIE = 1;
+
 
                                 Busy = 0;
                             }
@@ -10633,9 +10689,9 @@ void main(void) {
                                 Busy = 1;
                                 productType = Serial_Buffer[2];
                                 if (productType != 0x00 && productType != 0x01)
-                                INTCONbits.GIE = 0;
+
                                 write_i2c(0x0090, productType);
-                                INTCONbits.GIE = 1;
+
                                 Busy = 0;
                             }
                             break;
@@ -10648,369 +10704,6 @@ void main(void) {
                     OpMode = MANUAL_MODE;
                 }
 
-
-
-            case AUTO_MODE2:
-
-                if (Serial_Flag == 1) {
-
-                    switch (Serial_Buffer[1]) {
-                        case 0x44:
-
-                            if (Serial_Buffer[2] == 0xF1 && Busy == 0)
-                            {
-                                Stop = 0;
-                                Busy = 1;
-                                NUM = NUM_REC;
-
-                                errorcounter = 30;
-                                Homing_Again_Auto();
-
-                            } else if (Serial_Buffer[2] == 0xF2 && Busy == 0)
-                            {
-                                dispense = 1;
-                                Busy = 1;
-                                errorcounter = 30;
-                                Homing_Again_Manual();
-# 1276 "main.c"
-                            } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
-                            {
-                                dispense = 0;
-                            }
-                            flush();
-                            flushOut();
-                            Stop = 0;
-                            Busy = 0;
-                            break;
-
-                        case 0x46:
-                          if (Serial_Buffer[2] != 0x00 && Busy == 0)
-                            {
-
-                              dispense = 1;
-                              Busy = 1;
-                              NUM = (unsigned int)Serial_Buffer[2];
-                              WriteSTLED316SData(NUM, vibration_mode);
-
-                              errorcounter = 30;
-
-
-
-                              if (vibration_mode == 1) {
-                                LATCbits.LATC1 = 1;
-                                delay2_1ms(Vmotor_Time);
-                                LATCbits.LATC1 = 0;
-                                _delay((unsigned long)((300)*(8000000/4000.0)));
-                              }
-                              else {
-                                LATCbits.LATC1 = 0;
-                                _delay((unsigned long)((300)*(8000000/4000.0)));
-                              }
-
-                              LATAbits.LATA2 = 1;
-                              MotorON();
-                              _delay((unsigned long)((150)*(8000000/4000.0)));
-                              errorcounter = 30;
-                              do{
-                                IR_SENSORF = Read_IR();
-                                if (errorcounter == 0) {
-                                  MotorBREAK();
-                                  Serial_Buffer_Out[0] = 0xA5;
-                                  Serial_Buffer_Out[1] = 0xE1;
-                                  Serial_Buffer_Out[2] = 0x00;
-                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
-                                  Serial_Buffer_Out[4] = 0x5A;
-
-                                  INTCONbits.GIE = 0;
-                                  for (i = 0; i < 5; i++) {
-                                    Write2USART(Serial_Buffer_Out[i]);
-                                  }
-                                  INTCONbits.GIE = 1;
-                                }
-                              } while (IR_SENSORF != 0);
-                              _delay((unsigned long)((30)*(8000000/4000.0)));
-                              errorcounter = 30;
-
-                              do {
-                                IR_SENSORF = Read_IR();
-                                if (errorcounter == 0) {
-                                  MotorBREAK();
-                                  Serial_Buffer_Out[0] = 0xA5;
-                                  Serial_Buffer_Out[1] = 0xE2;
-                                  Serial_Buffer_Out[2] = 0x00;
-                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
-                                  Serial_Buffer_Out[4] = 0x5A;
-
-                                  INTCONbits.GIE = 0;
-                                  for (i = 0; i < 5; i++) {
-                                    Write2USART(Serial_Buffer_Out[i]);
-                                  }
-                                  INTCONbits.GIE = 1;
-                                }
-                              } while (IR_SENSORF != 1);
-                              errorcounter = 30;
-                              delay2_1ms(Motor_Stop_Delay_Time);
-
-                              MotorBREAK();
-
-                              if (vibration_mode == 1) {
-                                LATCbits.LATC1 = 1;
-                                delay2_1ms(Vmotor_Time);
-                                LATCbits.LATC1 = 0;
-                                _delay((unsigned long)((300)*(8000000/4000.0)));
-                              }
-                              else {
-                                LATCbits.LATC1 = 0;
-                                _delay((unsigned long)((300)*(8000000/4000.0)));
-                              }
-                              Serial_Buffer_Out[0] = 0xA5;
-                              Serial_Buffer_Out[1] = 0xF9;
-                              Serial_Buffer_Out[2] = 0x00;
-                              Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
-                              Serial_Buffer_Out[4] = 0x5A;
-
-                              INTCONbits.GIE = 0;
-                              for (i = 0; i < 5; i++) {
-                                Write2USART(Serial_Buffer_Out[i]);
-                              }
-                              INTCONbits.GIE = 1;
-# 1408 "main.c"
-                            } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
-                            {
-                                dispense = 0;
-                            }
-                            flush();
-                            flushOut();
-                            dispense = 0;
-                            Stop = 0;
-                            Busy = 0;
-                            break;
-
-                        case 0x23:
-
-                            if (Busy == 0) {
-                                Busy = 1;
-
-
-
-                                pause_Time = Serial_Buffer[2];
-                                switch (pause_Time) {
-                                    case 0x30:
-                                    default:
-                                        Motor_Pause_Time = 0;
-                                        pause_Time = 0x30;
-                                        break;
-
-                                    case 0x31:
-                                        Motor_Pause_Time = 1000;
-                                        break;
-
-                                    case 0x32:
-                                        Motor_Pause_Time = 2000;
-                                        break;
-
-                                    case 0x33:
-                                        Motor_Pause_Time = 3000;
-                                        break;
-
-                                    case 0x34:
-                                        Motor_Pause_Time = 4000;
-                                        break;
-
-                                    case 0x35:
-                                        Motor_Pause_Time = 5000;
-                                        break;
-                                }
-
-
-
-                                INTCONbits.GIE = 0;
-                                write_i2c(0x0060, pause_Time);
-                                INTCONbits.GIE = 1;
-
-                                flush();
-                                Busy = 0;
-                            }
-                            break;
-                        case 0x51:
-
-                            if (Busy == 0) {
-                                if (Serial_Buffer[2] == 0x00) {
-                                    Busy = 1;
-
-
-                                    pause_Time = read_i2c(0x0060);
-                                    vib_Time = read_i2c(0x0040);
-                                    dutyCycle_reg = read_i2c(0x0070);
-
-
-
-
-                                    Serial_Buffer_Out[0] = 0xA5;
-                                    Serial_Buffer_Out[1] = pause_Time;
-                                    Serial_Buffer_Out[2] = dutyCycle_reg;
-                                    Serial_Buffer_Out[3] = vib_Time;
-                                    Serial_Buffer_Out[4] = 0x5A;
-
-                                    _delay((unsigned long)((100)*(8000000/4000.0)));
-
-
-                                    for (i = 0; i < 5; i++) {
-                                        Write2USART(Serial_Buffer_Out[i]);
-                                    }
-
-                                }
-                                flushOut();
-                                Busy = 0;
-                            }
-                            break;
-                        case 0x52:
-
-                            if (Busy == 0) {
-                                if (Serial_Buffer[2] == 0x00) {
-                                    Busy = 1;
-
-
-                                    productType = read_i2c(0x0090);
-                                    fwver = read_i2c(0x0080);
-                                    NUM = NUM_REC;
-
-
-                                    Serial_Buffer_Out[0] = 0xA5;
-                                    Serial_Buffer_Out[1] = productType;
-                                    Serial_Buffer_Out[2] = fwver;
-                                    Serial_Buffer_Out[3] = NUM;
-                                    Serial_Buffer_Out[4] = 0x5A;
-
-                                    _delay((unsigned long)((100)*(8000000/4000.0)));
-
-
-                                    for (i = 0; i < 5; i++) {
-                                        Write2USART(Serial_Buffer_Out[i]);
-                                    }
-
-                                }
-                                flushOut();
-                                Busy = 0;
-                            }
-                            break;
-# 1558 "main.c"
-                        case 0x65:
-
-                            if (Busy == 0) {
-                                Busy = 1;
-                                vib_Time = Serial_Buffer[2];
-
-                                switch (vib_Time) {
-                                    case 0x81:
-                                        Vmotor_Time = 1000;
-                                        break;
-
-                                    case 0x82:
-                                    default:
-                                        Vmotor_Time = 2000;
-                                        vib_Time = 0x82;
-                                        break;
-
-                                    case 0x83:
-                                        Vmotor_Time = 3000;
-                                        break;
-
-                                    case 0x84:
-                                        Vmotor_Time = 4000;
-                                        break;
-
-                                    case 0x85:
-                                        Vmotor_Time = 5000;
-                                        break;
-                                }
-                                INTCONbits.GIE = 0;
-                                write_i2c(0x0040, vib_Time);
-                                INTCONbits.GIE = 1;
-
-                                Busy = 0;
-                            }
-
-                        case 0x66:
-
-                            if (Busy == 0) {
-                                Busy = 1;
-                                delay_motor_stop_time = Serial_Buffer[2];
-                                Motor_Stop_Delay_Time = delay_motor_stop_time;
-
-                                INTCONbits.GIE = 0;
-                                write_i2c(0x0050, delay_motor_stop_time);
-                                INTCONbits.GIE = 1;
-
-                                Busy = 0;
-                            }
-
-                            break;
-                        case 0x54:
-                            if (Busy == 0){
-                                Busy = 1;
-
-                                if (Serial_Buffer[2] == 0x71){
-                                    duty_cycle = PWM_Selection(0x04);
-                                }
-                                else if (Serial_Buffer[2] == 0x72){
-                                    duty_cycle = PWM_Selection(0x00);
-                                }
-                                else if (Serial_Buffer[2] == 0x73){
-                                    duty_cycle = PWM_Selection(0x01);
-                                }
-                                else if (Serial_Buffer[2] == 0x74){
-                                    duty_cycle = PWM_Selection(0x02);
-                                }
-                                else if (Serial_Buffer[2] == 0x75){
-                                    duty_cycle = PWM_Selection(0x03);
-                                }
-                                dutyCycle_reg = read_i2c(0x0070);
-                                ToggleVIB_Mode();
-                                WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
-                                _delay((unsigned long)((300)*(8000000/4000.0)));
-                                Busy = 0;
-                            }
-                            break;
-                        case 0x74:
-                            if (Busy == 0){
-                                Busy = 1;
-                                if (Serial_Buffer[2] == 0x65) {
-                                    NUM = 49;
-                                }
-                                else if (Serial_Buffer[2] == 0x66){
-                                    NUM = 90;
-                                } else {
-                                    NUM = (unsigned int)Serial_Buffer[2];
-                                }
-                                NUM_REC = NUM;
-                                WriteSTLED316SData(NUM, vibration_mode);
-                                Busy = 0;
-                            }
-                            break;
-                        case 0x55:
-                            if (Busy == 0){
-                                Busy = 1;
-                                productType = Serial_Buffer[2];
-                                if (productType != 0x00 && productType != 0x01){
-                                    Busy = 0;
-                                }
-                                else {
-                                    INTCONbits.GIE = 0;
-                                    write_i2c(0x0090, productType);
-                                    INTCONbits.GIE = 1;
-                                    Busy = 0;
-                                }
-                            }
-                            break;
-                    }
-
-                    Serial_Flag = 0;
-                    Serial_GData = 0;
-                    OpMode = MANUAL_MODE;
-                } else {
-                    OpMode = MANUAL_MODE;
-                }
         }
     }
 
@@ -11086,61 +10779,13 @@ void __attribute__((picinterrupt(("")))) high_isr(void) {
     }
    else if ((PIR3bits.RC2IF))
     {
-        c = Read2USART();
+      OpMode = MANUAL_MODE;
 
-        if ((c == 0xA5) && ((Serial_Flag == 0) || (Busy == 1))) {
-            Serial_GData = 1;
-            Serial_Count = 0;
-            Serial_Buffer[Serial_Count] = c;
-            Serial_Count++;
-        } else if (Serial_GData == 1) {
-            Serial_Buffer[Serial_Count] = c;
-
-            if (Serial_Count < 5) {
-                if (c == 0x5A) {
-                    Temp = Serial_Buffer[1] + Serial_Buffer[2];
-
-                    if (Temp == Serial_Buffer[3]) {
-                        if (Busy == 0 || Serial_Buffer[2] == 0xF5) {
-
-                            for (i = 0; i < 5; i++) {
-                                Write2USART(Serial_Buffer[i]);
-                            }
-
-                        } else {
-
-                            for (i = 0; i < 5; i++) {
-                                Write2USART(0x16);
-                            }
-
-                        }
-
-                        Serial_Flag = 1;
-                        Serial_Count = 0;
-                        OpMode = AUTO_MODE2;
-
-                    } else {
-                        Serial_Flag = 0;
-                        Serial_Count = 0;
-
-
-                        for (i = 0; i < 5; i++) {
-                            Write2USART(0x15);
-                        }
-
-                    }
-
-                    if (Serial_Buffer[2] == 0xF5 && OpMode == AUTO_MODE2) {
-                        Stop = 1;
-                    }
-                }
-            } else {
-                Serial_GData = 0;
-            }
-
-            Serial_Count++;
-        }
-
+      handle_uart_communication(Motor_Stop_Delay_Time,
+                                errorcounter,
+                                Vmotor_Time,
+                                vibration_mode);
+# 1437 "main.c"
     }
     else {
         if (RCSTA1bits.OERR == 1) {
@@ -11389,7 +11034,7 @@ void Homing_Again_Manual(void) {
 
         if (Stop == 1)
             break;
-# 2064 "main.c"
+# 1697 "main.c"
         while (dispense == 0 && (i_RUN_ZERO == 1 || i_RUN_ZERO == 0)) {
             i_RUN_ZERO = 2;
             WriteSTLED316SData(NUM, !vibration_mode);
@@ -11714,4 +11359,9 @@ void PWM1_Start() {
 
 void PWM1_Stop() {
     CCP1CON = 0x00;
+}
+
+void pwm_set(uint16_t duty){
+    CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
+    CCPR1L = (uint8_t)(duty >> 2);
 }

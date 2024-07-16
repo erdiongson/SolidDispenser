@@ -9297,6 +9297,8 @@ unsigned char __t3rd16on(void);
 # 42 "./main.h" 2
 # 71 "./main.h"
     extern unsigned char PWM_reg;
+    extern unsigned int NUM;
+    extern unsigned int NUM_REC;
 
     void init(void);
     void initMotor(void);
@@ -9342,8 +9344,11 @@ unsigned char __t3rd16on(void);
 
 
     unsigned int duty_cycle = 0;
+    unsigned int dutyCycle_reg;
     volatile unsigned char PWM_Duty_Cycle;
     void vibrationMotorControl(unsigned int pwm_msg);
+    unsigned int PWM_Selection (unsigned int msg);
+    void pwm_set(uint16_t duty);
 
     void PWM1_Init(long desiredFrequency);
     void PWM1_SetDutyCycle(unsigned int dutyCycle);

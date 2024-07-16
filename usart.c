@@ -9,6 +9,8 @@
 #include <xc.h>
 #include "IO.h"
 #include "main.h"
+#include "i2c.h"
+#include "Led_Display.h"
 
 //Added by Leo
 #include "UART_PicArduino.h"
@@ -463,14 +465,16 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                                unsigned char vibration_mode) {
 
     unsigned int IR_SENSORF = 0;
-
+    
+    unsigned char receivedBytes[5];
     IR_ON = 1; //turn ON IR sensor
-
-    //volatile long errorcounter = errorTime0; //IRsensor counter
-
-    //while (1) {
-        unsigned char receivedBytes[5];
-
+    
+/*******************************************************************************
+    Read PWM Setup
+********************************************************************************/    
+    //pwm_set(duty_cycle);
+/*********************Read PWM Setup - END*************************************/     
+    
         // Wait for start of transmission byte
         while ((receivedBytes[0] = receiveData(2)) != 0xA5);
 
@@ -478,7 +482,6 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
         for (int i = 1; i < 5; i++) {
             receivedBytes[i] = receiveData(2);
         }
-
         // Print the received data in one line as a block
         //        print_received_block(2, receivedBytes, 5);
 
@@ -506,6 +509,7 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                 case SDB_Dispense_START:
                     // Implement SDB dispense start
                     //if(data2 == (command + data1)){ //Checksum Checking
+                    //pwm_set(duty_cycle);
                       //Vibrate mode
                       if (vibration_mode == 1) {
                         VIB_MOTOR_ON = 1;
@@ -527,8 +531,9 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                           if (errorcounter == 0) {
                               MotorBREAK();
                               commandSend = IR_Censor_Failure;
+                              data1Send = 0x00;
                               data2Send = commandSend + data1Send;  
-                              sendResponse(0xA5, 0xE1, 0x00, 0x00, 0x5A); // Dispense_DONE
+                              sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend); // Dispense_DONE
                           }
                       } while (IR_SENSORF != 0);   
                       __delay_ms(30);
@@ -538,7 +543,10 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                           IR_SENSORF = Read_IR();
                           if (errorcounter == 0) {
                               MotorBREAK();
-                              sendResponse(0xA5, 0xE2, 0x00, 0x00, 0x5A); // Dispense_DONE
+                              commandSend = Marker_Not_Detected;
+                              data1Send = 0x00;
+                              data2Send = commandSend + data1Send;  
+                              sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend); // Dispense_DONE
                           }
                       } while (IR_SENSORF != 1);
                       errorcounter = errorTime0;
@@ -556,62 +564,103 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                         VIB_MOTOR_ON = 0;
                         __delay_ms(300);
                       }
-                      sendResponse(0xA5, 0x3C, 0x00, 0x00, 0x5A); // Dispense_DONE
+                      commandSend = Response_End_Dispense;
+                      data1Send = 0x00;
+                      data2Send = commandSend + data1Send;  
+                      sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend); // Dispense_DONE
                       //ClearRXBuffer();
                     //}
                     break;
                 case Vibrate_Mode_ON:
                     //commandSend = Response_VibModeChange;
+                    
+/******************************************************************************
                     switch(data1){
                         case Vibration_U1:
                             vibrationMotorControl(zero_percent);
                                                        
-                            commandSend = Response_U1;
-                            data1Send = 0x00;
+                            commandSend = Vibrate_Mode_ON;
+                            data1Send = Vibration_U1;
                             data2Send = commandSend + data1Send;
                             sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            break;
+                            //break;
                         case Vibration_U2:
                             vibrationMotorControl(twentyfive_percent);
                                                        
-                            commandSend = Response_U2;
-                            data1Send = 0x00;
+                            commandSend = Vibrate_Mode_ON;
+                            data1Send = Vibration_U2;
                             data2Send = commandSend + data1Send;
                             sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            break;
+                            //break;
                         case Vibration_U3:
                             vibrationMotorControl(fifty_percent);
                                                        
-                            commandSend = Response_U3;
-                            data1Send = 0x00;
+                            commandSend = Vibrate_Mode_ON;
+                            data1Send = Vibration_U3;
                             data2Send = commandSend + data1Send;
                             sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);                            
-                            break;
+                            //break;
                         case Vibration_U4:
                             vibrationMotorControl(seventyfive_percent);
                             
-                            commandSend = Response_U4;
-                            data1Send = 0x00;
+                            commandSend = Vibrate_Mode_ON;
+                            data1Send = Vibration_U4;
                             data2Send = commandSend + data1Send;
                             sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);                            
-                            break;
+                            //break;
                         case Vibrate_Mode_OFF:
                             vibrationMotorControl(hundred_percent);
                             vibration_mode = 0;                            
-                            commandSend = Response_U0;
-                            data1Send = 0x00;
+                            commandSend = Vibrate_Mode_ON;
+                            data1Send = Vibrate_Mode_OFF;
                             data2Send = commandSend + data1Send;
                             sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);                            
-                            break;
+                            //break;
                         default:
                             break;
-                    }    
-                    break;                    
-                default:
-                    // Error handling or sending an error response
+                    }
+*******************************************************************************/
+                    if (data1 == 0x71){ //U0 0% Vibration Mode
+                      duty_cycle = PWM_Selection(hundred_percent);
+                      vibration_mode = 0;                            
+                      data1Send = Vibrate_Mode_OFF;                    
+                    }
+                    else if (data1 == 0x72){ //U1 25% Vibration Mode
+                      duty_cycle = PWM_Selection(zero_percent);
+                      data1Send = Vibration_U1;
+                    }
+                    else if (data1 == 0x73){ //U2 50% Vibration Mode
+                      duty_cycle = PWM_Selection(twentyfive_percent);
+                      data1Send = Vibration_U2;
+                    }
+                    else if (data1 == 0x74){ //U3 75% Vibration Mode
+                      duty_cycle = PWM_Selection(fifty_percent);
+                      data1Send = Vibration_U3;
+                    }
+                    else if (data1 == 0x75){ //U4 100% Vibration Mode
+                      duty_cycle = PWM_Selection(seventyfive_percent);
+                      data1Send = Vibration_U4;
+                    }
+                    commandSend = Vibrate_Mode_ON;
+                    data2Send = commandSend + data1Send;                      
+                    sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+                    dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                    ToggleVIB_Mode();
+                    pwm_set(duty_cycle);
+                    __delay_ms(300);
                     break;
-            }
-        }
+                case SDB_ContinuousDisp_START:
+                    if (data1 == 0xF1)
+                    {
+                        NUM = NUM_REC;
+                        
+                    }
+                    break;
+                default:
+                    break;
+                    //WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
+            }//End of Switch Case
+        }//End of if Else
         return;
     //}
 }
@@ -620,4 +669,16 @@ void ClearRXBuffer() {
     while (PIR1bits.RC1IF) { // Check if data is available in UART1 receive buffer
         unsigned char receivedData = receiveData(2); // Read and discard data from RX buffer
     }
+}
+
+char* getBuffer(unsigned char buffer[5]){
+    //unsigned char receivedBytes[5];
+    
+    // Wait for start of transmission byte
+    while ((buffer[0] = receiveData(2)) != 0xA5);
+    
+    for (int i = 1; i < 5; i++) {
+      buffer[i] = receiveData(2);
+    }
+    return(buffer);
 }

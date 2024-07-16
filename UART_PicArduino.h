@@ -25,25 +25,26 @@ baud rate = 9600
 
 typedef enum {
     Handshake = 0x06,
-    Vibrate_Mode_ON = 0xC1,
-    Vibrate_Mode_OFF = 0xC2,
-    Vibration_U1 = 0xB1,
-    Vibration_U2 = 0xB2,
-    Vibration_U3 = 0xB3,
-    Vibration_U4 = 0xB4,            
-    SDB_Dispense_START = 0xC3,
+    Vibrate_Mode_ON = 0x54,    //Vibration Level Setting 1RC
+    Vibrate_Mode_OFF = 0x71,   //Vibration U0 Setting 1RC
+    Vibration_U1 = 0x72,       //Vibration U1 Setting 1RC
+    Vibration_U2 = 0x73,       //Vibration U2 Setting 1RC
+    Vibration_U3 = 0x74,       //Vibration U3 Setting 1RC
+    Vibration_U4 = 0x75,       //Vibration U4 Setting 1RC
+    SDB_Dispense_START = 0x46, //N-Cycle START Mode 1RC
+    SDB_ContinuousDisp_START = 0x44, //Continuous Dispense Start
     SDB_Dispense_PAUSE = 0xC4,
     SDB_Dispense_STOP = 0xC5,
-    IR_Censor_Failure = 0xE1,
-    Marker_Not_Detected = 0xE2,
+    IR_Censor_Failure = 0xE1,     //N-Cycle Error 1
+    Marker_Not_Detected = 0xE2,   //N-Cycle Error 2
     Response_Handshake = 0x60,
-    Response_Start_Dispense = 0x3C,
-    Response_VibModeChange = 0x1C,
-    Response_U0 = 0x2C,
-    Response_U1 = 0x1B,
-    Response_U2 = 0x2B,
-    Response_U3 = 0x3B,
-    Response_U4 = 0x4B
+    Response_End_Dispense = 0xF9, //N-Cycle END Mode
+    Response_VibModeChange = 0x1C,//Not used for 1RC
+    Response_U0 = 0x2C,           //Not used for 1RC
+    Response_U1 = 0x1B,           //Not used for 1RC
+    Response_U2 = 0x2B,           //Not used for 1RC
+    Response_U3 = 0x3B,           //Not used for 1RC
+    Response_U4 = 0x4B            //Not used for 1RC
 } Command;
 
 typedef enum {
@@ -90,6 +91,7 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
 unsigned char receiveData(unsigned char uart_channel);
 void delay2_1ms(unsigned int time);
 void ClearRXBuffer();
+char* getBuffer(unsigned char buffer[5]);
 
 ///******************************************************************************
 // * PWM Duty Cycle Selection
