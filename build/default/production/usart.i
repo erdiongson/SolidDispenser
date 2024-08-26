@@ -9289,8 +9289,16 @@ unsigned char __t3rd16on(void);
 
 #pragma config CCP2MX = DEFAULT
 #pragma config MSSPMSK = MSK5
-# 56 "./main.h"
- extern unsigned char PWM_reg;
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdbool.h" 1 3
+# 42 "./main.h" 2
+# 71 "./main.h"
+    extern unsigned char PWM_reg;
+    extern unsigned int NUM;
+    extern unsigned int NUM_REC;
 
     void init(void);
     void initMotor(void);
@@ -9328,37 +9336,361 @@ unsigned char __t3rd16on(void);
     void flushOut(void);
     void readWeighingData(void);
     void Homing_Again_Auto(void);
+
+    void Write2USART(char data);
+    char Read2USART(void);
+
+
+
+
+    unsigned int duty_cycle = 0;
+    unsigned int dutyCycle_reg;
+    volatile unsigned char PWM_Duty_Cycle;
+    void vibrationMotorControl(unsigned int pwm_msg);
+    unsigned int PWM_Selection (unsigned int msg);
+    void pwm_set(uint16_t duty);
+
+    void PWM1_Init(long desiredFrequency);
+    void PWM1_SetDutyCycle(unsigned int dutyCycle);
+
+    void PWM1_Start();
+    void PWM1_Stop();
 # 11 "usart.c" 2
+
+# 1 "./i2c.h" 1
+# 12 "usart.c" 2
+
+# 1 "./Led_Display.h" 1
+# 13 "usart.c" 2
+
+
+
+# 1 "./UART_PicArduino.h" 1
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
+
+
+
+
+
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 137 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long ssize_t;
+# 246 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef long long off_t;
+# 399 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 3 "./UART_PicArduino.h" 2
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\string.h" 1 3
+# 25 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\string.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
+# 411 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 3
+typedef struct __locale_struct * locale_t;
+# 25 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\string.h" 2 3
+
+
+void *memcpy (void *restrict, const void *restrict, size_t);
+void *memmove (void *, const void *, size_t);
+void *memset (void *, int, size_t);
+int memcmp (const void *, const void *, size_t);
+void *memchr (const void *, int, size_t);
+
+char *strcpy (char *restrict, const char *restrict);
+char *strncpy (char *restrict, const char *restrict, size_t);
+
+char *strcat (char *restrict, const char *restrict);
+char *strncat (char *restrict, const char *restrict, size_t);
+
+int strcmp (const char *, const char *);
+int strncmp (const char *, const char *, size_t);
+
+int strcoll (const char *, const char *);
+size_t strxfrm (char *restrict, const char *restrict, size_t);
+
+char *strchr (const char *, int);
+char *strrchr (const char *, int);
+
+size_t strcspn (const char *, const char *);
+size_t strspn (const char *, const char *);
+char *strpbrk (const char *, const char *);
+char *strstr (const char *, const char *);
+char *strtok (char *restrict, const char *restrict);
+
+size_t strlen (const char *);
+
+char *strerror (int);
+# 65 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\string.h" 3
+char *strtok_r (char *restrict, const char *restrict, char **restrict);
+int strerror_r (int, char *, size_t);
+char *stpcpy(char *restrict, const char *restrict);
+char *stpncpy(char *restrict, const char *restrict, size_t);
+size_t strnlen (const char *, size_t);
+char *strdup (const char *);
+char *strndup (const char *, size_t);
+char *strsignal(int);
+char *strerror_l (int, locale_t);
+int strcoll_l (const char *, const char *, locale_t);
+size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
+
+
+
+
+void *memccpy (void *restrict, const void *restrict, int, size_t);
+# 4 "./UART_PicArduino.h" 2
+# 26 "./UART_PicArduino.h"
+typedef enum {
+    Handshake = 0x06,
+    Vibrate_Mode_ON = 0x54,
+    Vibrate_Mode_OFF = 0x71,
+    Vibration_U1 = 0x72,
+    Vibration_U2 = 0x73,
+    Vibration_U3 = 0x74,
+    Vibration_U4 = 0x75,
+    SDB_Dispense_START = 0x46,
+    SDB_ContinuousDisp_START = 0x44,
+    SDB_Dispense_PAUSE = 0xC4,
+    SDB_Dispense_STOP = 0xC5,
+    IR_Censor_Failure = 0xE1,
+    Marker_Not_Detected = 0xE2,
+    Response_Handshake = 0x60,
+    Response_End_Dispense = 0xF9,
+    Response_VibModeChange = 0x1C,
+    Response_U0 = 0x2C,
+    Response_U1 = 0x1B,
+    Response_U2 = 0x2B,
+    Response_U3 = 0x3B,
+    Response_U4 = 0x4B
+} Command;
+
+typedef enum {
+    WAIT_FOR_START,
+    RECEIVE_BYTES,
+    PROCESS_COMMAND
+} uart_state_t;
 
 
 void initUSART(void);
 void Write1USART(char data);
 char Read1USART(void);
+void Write2USART(char data);
+char Read2USART(void);
 
 
+void uart_config(unsigned int uart_num);
+void uart_send(unsigned int uart_num, unsigned char data);
+unsigned char uart_receive(unsigned int uart_num);
+unsigned char uart_receive_err(unsigned int uart_num);
+void uart_send_char(unsigned int uart_num, char data);
+void uart_send_char_err(unsigned int uart_num, char data);
+char uart_receive_char(unsigned int uart_num);
+char uart_receive_char_err(unsigned int uart_num);
+void uart_send_string(unsigned int uart_num, const char *data);
+void uart_send_string_err(unsigned int uart_num, const char *data);
+void uart_receive_string(unsigned int uart_num, char *data);
+void uart_receive_string_err(unsigned int uart_num, char *data);
 
 
+void uart_print(const char *str);
+void uart_println(unsigned char num);
+
+void sendResponse(unsigned char sot, unsigned char response, unsigned char data1, unsigned char data2, unsigned char eot);
+void sendData(unsigned char *data, int length, unsigned char uart_channel);
+void uart_print(const char *str);
+void uart_println(unsigned char num);
+void uart_print_hex(unsigned char num);
+void print_received_block(unsigned char uart_channel, unsigned char *data, unsigned int size);
+void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
+                               volatile long errorcounter,
+                               unsigned int Vmotor_Time,
+                               unsigned char vibration_mode);
+unsigned char receiveData(unsigned char uart_channel);
+void delay2_1ms(unsigned int time);
+void ClearRXBuffer();
+char* getBuffer(unsigned char buffer[5]);
+# 16 "usart.c" 2
+# 25 "usart.c"
 void initUSART(void) {
 
     TRISCbits.TRISC6 = 0;
     TRISCbits.TRISC7 = 1;
+
+    TRISGbits.TRISG1 = 0;
+    TRISGbits.TRISG2 = 1;
+
     TXSTA1bits.SYNC = 0;
     TXSTA1bits.TX9 = 0;
     TXSTA1bits.TXEN = 1;
+
+    TXSTA2bits.SYNC = 0;
+    TXSTA2bits.TX9 = 0;
+    TXSTA2bits.TXEN = 1;
+
     RCSTA1bits.RX9 = 0;
     RCSTA1bits.CREN = 1;
+
+    RCSTA2bits.RX9 = 0;
+    RCSTA2bits.CREN = 1;
+
     TXSTA1bits.CSRC = 0;
     RCSTA1bits.ADDEN = 1;
     RCSTA1bits.SPEN = 1;
 
+    TXSTA2bits.CSRC = 0;
+    RCSTA2bits.ADDEN = 1;
+    RCSTA2bits.SPEN = 1;
+
 
     BAUDCON1bits.BRG16 = 0;
     TXSTA1bits.BRGH = 1;
+
+    BAUDCON2bits.BRG16 = 0;
+    TXSTA2bits.BRGH = 1;
+
     PIE1bits.RC1IE = 1;
     PIE1bits.TX1IE = 0;
 
+    PIE3bits.RC2IE = 1;
+    PIE3bits.TX2IE = 0;
+
+
     SPBRG1 = 25;
     SPBRGH1 = 0;
+
+    SPBRG2 = 25;
+    SPBRGH2 = 0;
 
 }
 
@@ -9387,4 +9719,499 @@ char Read1USART(void) {
     }
 
     return result;
+}
+
+
+
+
+
+
+void Write2USART(char data) {
+    TXREG2 = data;
+
+    while ((!TXSTA2bits.TRMT2));
+}
+
+
+
+
+
+
+char Read2USART(void) {
+    char result;
+
+
+
+
+    while (!(PIR3bits.RC2IF));
+    result = RCREG2;
+
+
+
+
+
+    return result;
+}
+
+void uart_print(const char *str) {
+    while (*str) {
+        while (!TX1IF);
+        TXREG1 = *str;
+        str++;
+    }
+}
+
+void uart_println(unsigned char num) {
+    char buf[5];
+    sprintf(buf, "%d", num);
+    uart_print(buf);
+    uart_print("\r\n");
+}
+
+void uart_print_hex(unsigned char num) {
+    char buf[5];
+    sprintf(buf, "0x%02X", num);
+    uart_print(buf);
+}
+
+
+
+void print_received_block(unsigned char uart_channel, unsigned char *data, unsigned int size) {
+    uart_print("Received data (UART");
+    uart_print(uart_channel);
+    uart_print("): ");
+    for (unsigned int i = 0; i < size; i++) {
+        uart_print_hex(data[i]);
+        if (i < (size - 1)) {
+            uart_print(", ");
+        }
+    }
+    uart_print("\r\n");
+}
+
+void sendData(unsigned char *data, int length, unsigned char uart_channel) {
+    for (int i = 0; i < length; i++) {
+        if (uart_channel == 1) {
+            while (!TX1IF);
+            TXREG1 = data[i];
+            uart_print("Sent response (UART1): ");
+            uart_print_hex(data[i]);
+            if (i < (length - 1)) {
+                uart_print(", ");
+            } else {
+                uart_print("\r\n");
+            }
+        } else if (uart_channel == 2) {
+            while (!TX2IF);
+            TXREG2 = data[i];
+        }
+    }
+}
+
+unsigned char receiveData(unsigned char uart_channel) {
+    unsigned char receivedData;
+    if (uart_channel == 1) {
+        while (!PIR1bits.RC1IF);
+        receivedData = RCREG1;
+    } else if (uart_channel == 2) {
+        while (!PIR3bits.RC2IF);
+        receivedData = RCREG2;
+    }
+    return receivedData;
+}
+
+void sendResponse(unsigned char sot, unsigned char response, unsigned char data1, unsigned char data2, unsigned char eot) {
+    unsigned char responseData[5] = {sot, response, data1, data2, eot};
+
+
+
+
+
+    sendData(responseData, 5, 2);
+
+
+}
+
+void delay2_1ms(unsigned int time) {
+    while (time > 0) {
+        _delay((unsigned long)((1)*(8000000/4000.0)));
+        time--;
+    }
+}
+
+
+
+void uart_config(unsigned int uart_num) {
+    if (uart_num == 1) {
+
+
+
+        PIE1bits.RC1IE = 1;
+        PIE1bits.TX1IE = 0;
+
+        TRISCbits.TRISC7 = 1;
+        TRISCbits.TRISC6 = 0;
+
+
+
+        TXSTA1bits.CSRC = 0;
+        TXSTA1bits.TX9 = 0;
+        TXSTA1bits.TXEN = 1;
+        TXSTA1bits.SYNC = 0;
+
+        TXSTA1bits.BRGH = 1;
+
+
+
+
+        RCSTA1bits.SPEN = 1;
+        RCSTA1bits.RX9 = 0;
+        RCSTA1bits.SREN = 0;
+        RCSTA1bits.CREN = 1;
+        RCSTA1bits.ADDEN = 0;
+        RCSTA1bits.FERR = 0;
+        RCSTA1bits.FERR = 0;
+        RCSTA1bits.RX9D = 0;
+
+
+    } else if (uart_num == 2) {
+
+        TRISGbits.TRISG1 = 0;
+        TRISGbits.TRISG2 = 1;
+
+        TXSTA2bits.TX9 = 0;
+        TXSTA2bits.TXEN = 1;
+        RCSTA2bits.RX9 = 0;
+        RCSTA2bits.CREN = 1;
+
+
+        RCSTA2bits.SPEN = 1;
+
+
+        BAUDCON2bits.BRG16 = 0;
+        TXSTA2bits.BRGH = 1;
+        PIE3bits.RC2IE = 1;
+        PIE3bits.TX2IE = 1;
+
+        SPBRG2 = 25;
+        SPBRGH2 = 0;
+# 312 "usart.c"
+    } else {
+
+        printf("Error: Invalid UART number.\n");
+    }
+}
+
+
+
+void uart_send(unsigned int uart_num, unsigned char data) {
+    if (uart_num == 1) {
+        while (!TXSTA1bits.TRMT1);
+        TXREG1 = data;
+    } else if (uart_num == 2) {
+        while (!TXSTA2bits.TRMT2);
+        TXREG2 = data;
+    } else {
+
+        printf("Error: Invalid UART number.\n");
+    }
+}
+
+
+
+unsigned char uart_receive(unsigned int uart_num) {
+    if (uart_num == 1) {
+        while (!PIR1bits.RC1IF);
+        return RCREG1;
+    } else if (uart_num == 2) {
+        while (!PIR3bits.RC2IF);
+        return RCREG2;
+    } else {
+
+        printf("Error: Invalid UART number.\n");
+        return 0;
+    }
+}
+
+
+
+unsigned char uart_receive_err(unsigned int uart_num) {
+    if (uart_num == 1) {
+        while (!PIR1bits.RC1IF) {
+            if (RCSTA1bits.FERR || RCSTA1bits.OERR) {
+
+                RCSTA1bits.FERR = 0;
+                RCSTA1bits.OERR = 0;
+                return 0xFF;
+            }
+        }
+        return RCREG1;
+    } else if (uart_num == 2) {
+        while (!PIR3bits.RC2IF) {
+            if (RCSTA2bits.FERR || RCSTA2bits.OERR) {
+
+                RCSTA2bits.FERR = 0;
+                RCSTA2bits.OERR = 0;
+                return 0xFF;
+            }
+        }
+        return RCREG2;
+    } else {
+
+        printf("Error: Invalid UART number.\n");
+        return 0;
+    }
+}
+
+
+
+void uart_send_char(unsigned int uart_num, char data) {
+    uart_send(uart_num, data);
+}
+
+
+
+void uart_send_char_err(unsigned int uart_num, char data) {
+    if (uart_num == 1 || uart_num == 2) {
+        uart_send(uart_num, data);
+    } else {
+        printf("Error: Invalid UART number.\n");
+    }
+}
+
+
+
+char uart_receive_char(unsigned int uart_num) {
+    return (char) uart_receive(uart_num);
+}
+
+
+
+char uart_receive_char_err(unsigned int uart_num) {
+    if (uart_num == 1 || uart_num == 2) {
+        return (char) uart_receive(uart_num);
+    } else {
+        printf("Error: Invalid UART number.\n");
+        return 0;
+    }
+}
+
+
+
+void uart_send_string(unsigned int uart_num, const char *data) {
+    int i;
+    for (i = 0; i < strlen(data); i++) {
+        uart_send(uart_num, data[i]);
+    }
+}
+
+
+
+void uart_send_string_err(unsigned int uart_num, const char *data) {
+    if (uart_num == 1 || uart_num == 2) {
+        int i;
+        for (i = 0; i < strlen(data); i++) {
+            uart_send(uart_num, data[i]);
+        }
+    } else {
+        printf("Error: Invalid UART number.\n");
+    }
+}
+
+
+
+void uart_receive_string(unsigned int uart_num, char *data) {
+    int i = 0;
+    char c = uart_receive(uart_num);
+    while (c != '\0') {
+        data[i++] = c;
+        c = uart_receive(uart_num);
+    }
+    data[i] = '\0';
+}
+
+
+
+void uart_receive_string_err(unsigned int uart_num, char *data) {
+    if (uart_num == 1 || uart_num == 2) {
+        int i = 0;
+        char c = uart_receive(uart_num);
+        while (c != '\r') {
+            data[i++] = c;
+            c = uart_receive(uart_num);
+        }
+        data[i] = '\0';
+    } else {
+        printf("Error: Invalid UART number.\n");
+    }
+}
+
+void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
+                               volatile long errorcounter,
+                               unsigned int Vmotor_Time,
+                               unsigned char vibration_mode) {
+
+    unsigned int IR_SENSORF = 0;
+
+    unsigned char receivedBytes[5];
+    LATAbits.LATA2 = 1;
+# 479 "usart.c"
+        while ((receivedBytes[0] = receiveData(2)) != 0xA5);
+
+
+        for (int i = 1; i < 5; i++) {
+            receivedBytes[i] = receiveData(2);
+        }
+
+
+
+        unsigned char command = receivedBytes[1];
+        unsigned char data1 = receivedBytes[2];
+        unsigned char data2 = receivedBytes[3];
+        unsigned char eot = receivedBytes[4];
+        unsigned char SOTSend = 0xA5;
+        unsigned char commandSend, data1Send, data2Send;
+        unsigned char EOTSend = 0x5A;
+
+        if (receivedBytes[0] == 0xA5 && eot == 0x5A) {
+
+            switch (command) {
+                case Handshake:
+                    commandSend = Response_Handshake;
+                    data1Send = 0x00;
+                    data2Send = commandSend + data1Send;
+                    sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+                    ClearRXBuffer();
+
+
+
+                    break;
+                case SDB_Dispense_START:
+
+
+
+
+                      if (vibration_mode == 1) {
+                        LATCbits.LATC1 = 1;
+                        delay2_1ms(Vmotor_Time);
+                        LATCbits.LATC1 = 0;
+                        _delay((unsigned long)((300)*(8000000/4000.0)));
+                      }
+                      else {
+                        LATCbits.LATC1 = 0;
+                        _delay((unsigned long)((300)*(8000000/4000.0)));
+                      }
+
+                      LATAbits.LATA2 = 1;
+                      MotorON();
+                      _delay((unsigned long)((150)*(8000000/4000.0)));
+                      errorcounter = 30;
+                      do {
+                          IR_SENSORF = Read_IR();
+                          if (errorcounter == 0) {
+                              MotorBREAK();
+                              commandSend = IR_Censor_Failure;
+                              data1Send = 0x00;
+                              data2Send = commandSend + data1Send;
+                              sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+                          }
+                      } while (IR_SENSORF != 0);
+                      _delay((unsigned long)((30)*(8000000/4000.0)));
+                      errorcounter = 30;
+
+                      do {
+                          IR_SENSORF = Read_IR();
+                          if (errorcounter == 0) {
+                              MotorBREAK();
+                              commandSend = Marker_Not_Detected;
+                              data1Send = 0x00;
+                              data2Send = commandSend + data1Send;
+                              sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+                          }
+                      } while (IR_SENSORF != 1);
+                      errorcounter = 30;
+                      delay2_1ms(Motor_Stop_Delay_Time);
+
+                      MotorBREAK();
+
+                      if (vibration_mode == 1) {
+                        LATCbits.LATC1 = 1;
+                        delay2_1ms(Vmotor_Time);
+                        LATCbits.LATC1 = 0;
+                        _delay((unsigned long)((300)*(8000000/4000.0)));
+                      }
+                      else {
+                        LATCbits.LATC1 = 0;
+                        _delay((unsigned long)((300)*(8000000/4000.0)));
+                      }
+                      commandSend = Response_End_Dispense;
+                      data1Send = 0x00;
+                      data2Send = commandSend + data1Send;
+                      sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+
+
+                    break;
+                case Vibrate_Mode_ON:
+# 623 "usart.c"
+                    if (data1 == 0x71){
+                      duty_cycle = PWM_Selection(0x04);
+                      vibration_mode = 0;
+                      data1Send = Vibrate_Mode_OFF;
+                    }
+                    else if (data1 == 0x72){
+                      duty_cycle = PWM_Selection(0x00);
+                      data1Send = Vibration_U1;
+                    }
+                    else if (data1 == 0x73){
+                      duty_cycle = PWM_Selection(0x01);
+                      data1Send = Vibration_U2;
+                    }
+                    else if (data1 == 0x74){
+                      duty_cycle = PWM_Selection(0x02);
+                      data1Send = Vibration_U3;
+                    }
+                    else if (data1 == 0x75){
+                      duty_cycle = PWM_Selection(0x03);
+                      data1Send = Vibration_U4;
+                    }
+                    commandSend = Vibrate_Mode_ON;
+                    data2Send = commandSend + data1Send;
+                    sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+                    dutyCycle_reg = read_i2c(0x0070);
+                    ToggleVIB_Mode();
+                    pwm_set(duty_cycle);
+                    _delay((unsigned long)((300)*(8000000/4000.0)));
+                    break;
+                case SDB_ContinuousDisp_START:
+                    if (data1 == 0xF1)
+                    {
+                        NUM = NUM_REC;
+
+                    }
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        return;
+
+}
+
+void ClearRXBuffer() {
+    while (PIR1bits.RC1IF) {
+        unsigned char receivedData = receiveData(2);
+    }
+}
+
+char* getBuffer(unsigned char buffer[5]){
+
+
+
+    while ((buffer[0] = receiveData(2)) != 0xA5);
+
+    for (int i = 1; i < 5; i++) {
+      buffer[i] = receiveData(2);
+    }
+    return(buffer);
 }

@@ -9289,8 +9289,16 @@ unsigned char __t3rd16on(void);
 
 #pragma config CCP2MX = DEFAULT
 #pragma config MSSPMSK = MSK5
-# 56 "./main.h"
- extern unsigned char PWM_reg;
+
+
+
+
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdbool.h" 1 3
+# 42 "./main.h" 2
+# 71 "./main.h"
+    extern unsigned char PWM_reg;
+    extern unsigned int NUM;
+    extern unsigned int NUM_REC;
 
     void init(void);
     void initMotor(void);
@@ -9328,6 +9336,25 @@ unsigned char __t3rd16on(void);
     void flushOut(void);
     void readWeighingData(void);
     void Homing_Again_Auto(void);
+
+    void Write2USART(char data);
+    char Read2USART(void);
+
+
+
+
+    unsigned int duty_cycle = 0;
+    unsigned int dutyCycle_reg;
+    volatile unsigned char PWM_Duty_Cycle;
+    void vibrationMotorControl(unsigned int pwm_msg);
+    unsigned int PWM_Selection (unsigned int msg);
+    void pwm_set(uint16_t duty);
+
+    void PWM1_Init(long desiredFrequency);
+    void PWM1_SetDutyCycle(unsigned int dutyCycle);
+
+    void PWM1_Start();
+    void PWM1_Stop();
 # 11 "Display.c" 2
 
 # 1 "./Led_Display.h" 1
@@ -9592,6 +9619,10 @@ void WriteSTLED316SVibMode(unsigned int dc_reg, char v_mode) {
     else if(v_mode == 1 && dc_reg == 0x03){
         STLED316s_SPI_SendData(0x3E);
         STLED316s_SPI_SendData(0xCF);
+    }
+    else if(v_mode == 1 && dc_reg == 0x04){
+        STLED316s_SPI_SendData(0x3E);
+        STLED316s_SPI_SendData(0xE6);
     }
     else if (v_mode == 0 && dc_reg == 0x00){
         STLED316s_SPI_SendData(0x3E);

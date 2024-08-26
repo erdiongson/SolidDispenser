@@ -47,6 +47,7 @@
 #include "Led_Display.h"
 #include "i2c.h"
 #include "pic18f65j50.h"
+#include "UART_PicArduino.h" //20240314: erdiongson - Added for Arduino and PIC Communication
 
 /******************************************************************************
 * Please change this version every time the code is updated.
@@ -69,6 +70,8 @@
 #define FAST    	0x00
 #define SLOW    	0x7F//0x7F
 
+#define TMR2PRESCALE 4 //This could be 1, 4 or 16, adjust to your own
+#define PWM_FREQ 5000 //This is the frequency of your PWM signal, adjust to your own
 /******************************************************************************
 * Vibration Motor Duration Selection
 ******************************************************************************/
@@ -81,27 +84,19 @@
 #define one_dot_five 0x87 //20230323 - erdiongson: 1.5 Seconds
 
 /******************************************************************************
-* PWM Duty Cycle Selection
-******************************************************************************/
-#define zero_percent       0x00
-#define twentyfive_percent 0x01
-#define fifty_percent      0x02
-#define seventyfive_percent 0x03
-#define hundred_percent    0x04
-/******************************************************************************
 * Write USART Data
 ******************************************************************************/
-#define Serial_SOT	0xA5 //Serial Out Buffer Start Bit
-#define Serial_EOT	0x5A //Serial Out Buffer End Bit
+#define Serial_SOT	0xEF //Serial Out Buffer Start Bit
+#define Serial_EOT	0xFE //0x5A //Serial Out Buffer End Bit
 #define NAK         0x15
 #define CMD_BUSY    0x16
 
 #define errorTime0  30 //IR sensor
 #define Time0       20 //Low Power
 
-enum Op_Mode {
-    MANUAL_MODE, IDLE_MODE, AUTO_MODE
-};
+/*enum Op_Mode {
+    MANUAL_MODE, IDLE_MODE, AUTO_MODE, AUTO_MODE2
+};*/
 
 unsigned char Serial_Flag;
 unsigned char Serial_GData;
@@ -114,7 +109,7 @@ unsigned char Busy = 0;
 unsigned char vibration_mode;
 unsigned char data;
 
-unsigned int Serial_Count;
+unsigned int Serial_Count = 0;
 unsigned int EAdd_High, EAdd_Low, ETemp;
 unsigned int Motor_Speed;
 unsigned int Vmotor_Time = 2000;
@@ -127,6 +122,9 @@ unsigned int NUM_REC;
 unsigned int i = 0;
 unsigned int IR_SENSORF = 0;
 unsigned int VOLTAGE = -0;
+//20240502
+unsigned int fwver = VERSION;
+unsigned int productType = 0; //1 = Benchtop; 0 = Handheld
 
 volatile char OpMode = MANUAL_MODE;
 volatile long errorcounter = errorTime0; //IRsensor counter
@@ -138,7 +136,7 @@ volatile unsigned char delay_motor_stop_time;
 volatile unsigned char PWM_Duty_Cycle;
 volatile char TMR1IF_triggered = false;
 unsigned char PWM_reg = 0x3F;
-unsigned int dutyCycle_reg;
+//unsigned int dutyCycle_reg;
 
 void init(void);
 void initMotor(void);
@@ -175,16 +173,16 @@ char Read1USART(void);
 void flush(void);
 void flushOut(void);
 void readWeighingData(void);
-void Homing_Again_Auto(void);
+//void Homing_Again_Auto(void);
 void WriteSTLED316SErr(char msg);
 void InitTimer1(void);
 void AD_capture_BattVoltage(void);
 void Low_Power_Indicator(void);
-unsigned int PWM_Selection (unsigned int msg);
+//unsigned int PWM_Selection (unsigned int msg);
 void Test_LED (void);
 
 //
-unsigned int duty_cycle = 0;
+//unsigned int duty_cycle = 0;
 uint16_t pwm_count = 0;
 uint16_t pwm_mode = 0;
 //20221214 - (erdiongson) Interrupt Declaration for toggle on and off
@@ -195,10 +193,7 @@ int holdTimeLeft = 0; //Hold time for Decrement
 int holdTimeMode = 0; //Hold time for Mode (Center Button)
 int test_redled = 0; //use only for testing RED LED IO
 
-void pwm_set(uint16_t duty){
-    CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
-    CCPR1L = (uint8_t)(duty >> 2);
-}
+
 
 /****************************************************************************
 Function:		Main Loop
@@ -212,6 +207,7 @@ void main(void) {
     initUSART();
     InitTimer1();
     
+    INTCONbits.GIE = 1;
     
     //int duty_cycle = 100;
     //20221214 - (erdiongson) Interrupt Declaration for toggle on and off
@@ -259,15 +255,19 @@ void main(void) {
 
     /* Enable interrupt priority */
     RCONbits.IPEN = 1;
-
+    
     /* Make receive interrupt high priority */
-    IPR1bits.RCIP = 1;
-
+    IPR1bits.RC1IP = 1;
+    IPR3bits.RC2IP = 1;
+    //handle_uart_communication(Motor_Stop_Delay_Time, errorcounter);
     /* Enable all high priority interrupts */
-    INTCONbits.GIEH = 1;
-    INTCONbits.GIE = 1;
+    //INTCONbits.GIEH = 1; 
+    //INTCONbits.GIE = 1;
+    /* Enable all low priority interrupts */
+    //INTCONbits.PEIE = 1; 
+    //INTCONbits.GIEL = 1; 
     //PIE1bits.RCIE=1;
-
+    
     //RCSTA1bits.CREN = 1; // Continuos receiver
     WDTCONbits.SWDTEN = OFF; // turn ON watchdog timer
     GREEN_LED = 1;
@@ -334,12 +334,6 @@ void main(void) {
         INTCONbits.GIE = 1;
     } else {
         switch (pause_Time) {
-            case 0x30:
-            default:
-                Motor_Pause_Time = 0;
-                pause_Time = 0x30;
-                break;
-
             case 0x31:
                 Motor_Pause_Time = 1000;
                 break;
@@ -359,6 +353,12 @@ void main(void) {
             case 0x35:
                 Motor_Pause_Time = 5000;
                 break;
+                
+            case 0x30:
+            default:
+                Motor_Pause_Time = 0;
+                pause_Time = 0x30;
+                break;                
         }
     }
 
@@ -403,11 +403,6 @@ void main(void) {
             case 0x81:
                 Vmotor_Time = 1000;
                 break;
-            case 0x82:
-            default:
-                Vmotor_Time = 2000; // default is 2 sec  
-                vib_Time = 0x82;
-                break;
             case 0x83:
                 Vmotor_Time = 3000;
                 break;
@@ -423,6 +418,11 @@ void main(void) {
             case 0x87:
                 Vmotor_Time = 1500;
                 break;
+            case 0x82:
+            default:
+                Vmotor_Time = 2000; // default is 2 sec  
+                vib_Time = 0x82;
+                break;                
         }
     }
 
@@ -490,7 +490,36 @@ void main(void) {
           break;       
         }   
     }
-                   
+    /*************************************************************************
+               Read Firmware Version
+     **************************************************************************/     
+    INTCONbits.GIE=0;
+    ETemp = read_i2c(EEPROM_FWVer);
+    INTCONbits.GIE=1;
+    fwver = ETemp & 0xFF;
+    if(fwver != VERSION)
+    {
+        fwver = VERSION;
+        
+        INTCONbits.GIE=0;
+        write_i2c(EEPROM_FWVer,fwver);
+        INTCONbits.GIE=1;
+    }    
+    /*************************************************************************
+               Read Product Type Setup
+     **************************************************************************/     
+    INTCONbits.GIE=0;
+    ETemp = read_i2c(EEPROM_ProductType);
+    INTCONbits.GIE=1;
+    productType = ETemp & 0xFF;
+    if(productType != 1 && productType != 0)
+    {
+        productType = 1; //Default is SDB = 1
+        
+        INTCONbits.GIE=0;
+        write_i2c(EEPROM_ProductType,productType);
+        INTCONbits.GIE=1;
+    }                      
     /****************************************************************************
                    While(1) loop
      ******************************************************************************/
@@ -679,7 +708,103 @@ void main(void) {
 
                             } else if (Serial_Buffer[2] == 0xF2 && Busy == 0) //semi auto
                             {
-                                Stop = 0;
+                              //20240520: erdiongson - copy COMBO Logic for dispensing
+                              dispense = 1;
+                              Busy = 1;
+                              NUM = Serial_Buffer[3];
+                              WriteSTLED316SData(NUM, vibration_mode);
+
+                              errorcounter = errorTime0;
+                              // Implement SDB dispense start
+                              //if(data2 == (command + data1)){ //Checksum Checking
+                              //Vibrate mode
+                              if (vibration_mode == 1) {
+                                VIB_MOTOR_ON = 1;
+                                delay2_1ms(Vmotor_Time);
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              else {
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              //Dispense Mode
+                              IR_ON = 1;
+                              MotorON();
+                              __delay_ms(150); //20230922 - ediongson change in rotation
+                              errorcounter = errorTime0;
+                              do{
+                                IR_SENSORF = Read_IR();
+                                if (errorcounter == 0) {
+                                  MotorBREAK();
+                                  Serial_Buffer_Out[0] = Serial_SOT;
+                                  Serial_Buffer_Out[1] = 0xE1;
+                                  Serial_Buffer_Out[2] = 0x00;
+                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                                  Serial_Buffer_Out[4] = Serial_EOT;
+
+                                  //INTCONbits.GIE = 0;
+                                  for (i = 0; i < 5; i++) {
+                                    Write1USART(Serial_Buffer_Out[i]);
+                                  }
+                                  //INTCONbits.GIE = 1;                                  
+                                }
+                              } while (IR_SENSORF != 0);   
+                              __delay_ms(30);
+                              errorcounter = errorTime0;
+                    
+                              do {
+                                IR_SENSORF = Read_IR();
+                                if (errorcounter == 0) {
+                                  MotorBREAK();
+                                  Serial_Buffer_Out[0] = Serial_SOT;
+                                  Serial_Buffer_Out[1] = 0xE2;
+                                  Serial_Buffer_Out[2] = 0x00;
+                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                                  Serial_Buffer_Out[4] = Serial_EOT;
+                                  
+                                  //INTCONbits.GIE = 0;
+                                  for (i = 0; i < 5; i++) {
+                                    Write1USART(Serial_Buffer_Out[i]);
+                                  }
+                                  //INTCONbits.GIE = 1;                                   
+                                }
+                              } while (IR_SENSORF != 1);
+                              errorcounter = errorTime0;
+                              delay2_1ms(Motor_Stop_Delay_Time);
+                      
+                              MotorBREAK();                    
+                              //Vibrate Mode                                        
+                              if (vibration_mode == 1) {
+                                VIB_MOTOR_ON = 1; 
+                                delay2_1ms(Vmotor_Time);
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              else {
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              Serial_Buffer_Out[0] = Serial_SOT;
+                              Serial_Buffer_Out[1] = 0xF9;
+                              Serial_Buffer_Out[2] = 0x00;
+                              Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                              Serial_Buffer_Out[4] = Serial_EOT;
+                                  
+                              //INTCONbits.GIE = 0;
+                              for (i = 0; i < 5; i++) {
+                                Write1USART(Serial_Buffer_Out[i]);
+                              }
+                              //INTCONbits.GIE = 1;
+                              //ClearRXBuffer();
+                            //}
+                                /*//20240510: erdiongson - Update to accommodate PLC
+                                dispense = 1;
+                                Busy = 1;
+                                errorcounter = errorTime0;
+                                Homing_Again_Manual();
+                                //20240510: END*/
+                                /*Stop = 0;
                                 Busy = 1;
                                 NUM = NUM_REC;
                                 WriteSTLED316SData(NUM, vibration_mode);
@@ -700,8 +825,11 @@ void main(void) {
                                         Write1USART(Serial_Buffer_Out[i]);
                                     }
                                     INTCONbits.GIE = 1;
-                                }
+                                }*/
 
+                            } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
+                            {
+                                dispense = 0;
                             }
                             flush();
                             flushOut();
@@ -709,7 +837,194 @@ void main(void) {
                             Busy = 0;
                             break;
 
+                        case 0x46:
+                          if (Serial_Buffer[2] != 0x00 && Busy == 0) //semi auto
+                            {
+                              //20240520: erdiongson - copy COMBO Logic for dispensing
+                              dispense = 1;
+                              Busy = 1;
+                              NUM = (unsigned int)Serial_Buffer[2];
+                              WriteSTLED316SData(NUM, vibration_mode);
+                              NUM_REC = NUM;
+                              
+                              errorcounter = errorTime0;
+                              // Implement SDB dispense start
+                              //if(data2 == (command + data1)){ //Checksum Checking
+                              //Resetting of Vibration Time
+                              vib_Time = read_i2c(EEPROM_VibTime);                              
+                              switch (vib_Time) {
+                                case 0x81:
+                                  Vmotor_Time = 1000;
+                                  break;
 
+                                case 0x83:
+                                  Vmotor_Time = 3000;
+                                  break;
+
+                                case 0x84:
+                                  Vmotor_Time = 4000;
+                                  break;
+
+                                case 0x85:
+                                  Vmotor_Time = 5000;
+                                  break;
+                                        
+                                case 0x82:
+                                default:
+                                  Vmotor_Time = 2000;
+                                  vib_Time = 0x82;
+                                  break;                                        
+                              }
+                              pause_Time = read_i2c(EEPROM_MotorPauseTime);
+                              switch (pause_Time) {
+                                case 0x31:
+                                  Motor_Pause_Time = 1000;
+                                  break;
+
+                                case 0x32:
+                                  Motor_Pause_Time = 2000;
+                                  break;
+
+                                case 0x33:
+                                  Motor_Pause_Time = 3000;
+                                  break;
+
+                                case 0x34:
+                                  Motor_Pause_Time = 4000;
+                                  break;
+
+                                case 0x35:
+                                  Motor_Pause_Time = 5000;
+                                  break;
+
+                                case 0x30:
+                                default:
+                                  Motor_Pause_Time = 0;
+                                  pause_Time = 0x30;
+                                  break;                                        
+                              }                              
+                              //Vibrate mode
+                              if (vibration_mode == 1) {
+                                VIB_MOTOR_ON = 1;
+                                delay2_1ms(Vmotor_Time);
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              else {
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              //Dispense Mode
+                              IR_ON = 1;
+                              delay2_1ms(Motor_Pause_Time);
+                              MotorON();
+                              __delay_ms(150); //20230922 - ediongson change in rotation
+                              errorcounter = errorTime0;
+                              do{
+                                IR_SENSORF = Read_IR();
+                                if (errorcounter == 0) {
+                                  MotorBREAK();
+                                  Serial_Buffer_Out[0] = Serial_SOT;
+                                  Serial_Buffer_Out[1] = 0xE1;
+                                  Serial_Buffer_Out[2] = 0x00;
+                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                                  Serial_Buffer_Out[4] = Serial_EOT;
+
+                                  //INTCONbits.GIE = 0;
+                                  for (i = 0; i < 5; i++) {
+                                    Write1USART(Serial_Buffer_Out[i]);
+                                  }
+                                  //INTCONbits.GIE = 1;                                  
+                                }
+                              } while (IR_SENSORF != 0);   
+                              __delay_ms(30);
+                              errorcounter = errorTime0;
+                    
+                              do {
+                                IR_SENSORF = Read_IR();
+                                if (errorcounter == 0) {
+                                  MotorBREAK();
+                                  Serial_Buffer_Out[0] = Serial_SOT;
+                                  Serial_Buffer_Out[1] = 0xE2;
+                                  Serial_Buffer_Out[2] = 0x00;
+                                  Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                                  Serial_Buffer_Out[4] = Serial_EOT;
+                                  
+                                  //INTCONbits.GIE = 0;
+                                  for (i = 0; i < 5; i++) {
+                                    Write1USART(Serial_Buffer_Out[i]);
+                                  }
+                                  //INTCONbits.GIE = 1;                                   
+                                }
+                              } while (IR_SENSORF != 1);
+                              errorcounter = errorTime0;
+                              delay2_1ms(Motor_Stop_Delay_Time);
+                      
+                              MotorBREAK();                    
+                              //Vibrate Mode                                        
+                              if (vibration_mode == 1) {
+                                VIB_MOTOR_ON = 1; 
+                                delay2_1ms(Vmotor_Time);
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              else {
+                                VIB_MOTOR_ON = 0;
+                                __delay_ms(300);
+                              }
+                              Serial_Buffer_Out[0] = Serial_SOT;
+                              Serial_Buffer_Out[1] = 0xF9;
+                              Serial_Buffer_Out[2] = 0x00;
+                              Serial_Buffer_Out[3] = Serial_Buffer_Out[1] + Serial_Buffer_Out[2];
+                              Serial_Buffer_Out[4] = Serial_EOT;
+                                  
+                              //INTCONbits.GIE = 0;
+                              for (i = 0; i < 5; i++) {
+                                Write1USART(Serial_Buffer_Out[i]);
+                              }
+                              //INTCONbits.GIE = 1;
+                              //ClearRXBuffer();
+                            //}
+                                /*//20240510: erdiongson - Update to accommodate PLC
+                                dispense = 1;
+                                Busy = 1;
+                                errorcounter = errorTime0;
+                                Homing_Again_Manual();
+                                //20240510: END*/
+                                /*Stop = 0;
+                                Busy = 1;
+                                NUM = NUM_REC;
+                                WriteSTLED316SData(NUM, vibration_mode);
+
+                                errorcounter = errorTime0;
+                                Homing_Again_Manual();
+
+                                //send semi-auto dispense completed command to PC
+                                if (Stop == 0) {
+                                    Serial_Buffer_Out[0] = Serial_SOT;
+                                    Serial_Buffer_Out[1] = 0x44;
+                                    Serial_Buffer_Out[2] = 0xF9;
+                                    Serial_Buffer_Out[3] = 0X3D;
+                                    Serial_Buffer_Out[4] = Serial_EOT;
+
+                                    INTCONbits.GIE = 0;
+                                    for (i = 0; i < 5; i++) {
+                                        Write1USART(Serial_Buffer_Out[i]);
+                                    }
+                                    INTCONbits.GIE = 1;
+                                }*/
+
+                            } else if (Serial_Buffer[2] == 0xF5 && Busy == 0)
+                            {
+                                dispense = 0;
+                            }   
+                            flush();
+                            flushOut();
+                            dispense = 0;
+                            Stop = 0;
+                            Busy = 0;
+                            break;
+                            
                         case 0x23: //program Pause time
 
                             if (Busy == 0) {
@@ -719,12 +1034,6 @@ void main(void) {
                                 //Device_ID = Serial_Buffer[2];
                                 pause_Time = Serial_Buffer[2];
                                 switch (pause_Time) {
-                                    case 0x30:
-                                    default:
-                                        Motor_Pause_Time = 0;
-                                        pause_Time = 0x30;
-                                        break;
-
                                     case 0x31:
                                         Motor_Pause_Time = 1000;
                                         break;
@@ -744,20 +1053,24 @@ void main(void) {
                                     case 0x35:
                                         Motor_Pause_Time = 5000;
                                         break;
+
+                                    case 0x30:
+                                    default:
+                                        Motor_Pause_Time = 0;
+                                        pause_Time = 0x30;
+                                        break;                                        
                                 }
                                 //}
                                 //write_i2c(EEPROM_DevID, Device_ID);
 
-                                INTCONbits.GIE = 0;
+                                //INTCONbits.GIE = 0;
                                 write_i2c(EEPROM_MotorPauseTime, pause_Time);
-                                INTCONbits.GIE = 1;
+                                //INTCONbits.GIE = 1;
 
                                 flush();
                                 Busy = 0;
                             }
                             break;
-
-
                         case 0x51: //query status command
 
                             if (Busy == 0) {
@@ -767,15 +1080,16 @@ void main(void) {
                                     //INTCONbits.GIE = 0;
                                     pause_Time = read_i2c(EEPROM_MotorPauseTime);
                                     vib_Time = read_i2c(EEPROM_VibTime);
-                                    Motor_Speed = read_i2c(EEPROM_MotorSpeed);
-                                    delay_motor_stop_time = read_i2c(EEPROM_MotorStopPosition);
+                                    dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                                    //Motor_Speed = read_i2c(EEPROM_MotorSpeed);
+                                    //delay_motor_stop_time = read_i2c(EEPROM_MotorStopPosition);
                                     //INTCONbits.GIE = 1;
 
-                                    Serial_Buffer_Out[0] = 0x51;
+                                    Serial_Buffer_Out[0] = Serial_SOT;
                                     Serial_Buffer_Out[1] = pause_Time;
-                                    Serial_Buffer_Out[2] = Motor_Speed;
+                                    Serial_Buffer_Out[2] = dutyCycle_reg;
                                     Serial_Buffer_Out[3] = vib_Time;
-                                    Serial_Buffer_Out[4] = delay_motor_stop_time;
+                                    Serial_Buffer_Out[4] = Serial_EOT;
 
                                     __delay_ms(100);
 
@@ -789,6 +1103,36 @@ void main(void) {
                                 Busy = 0;
                             }
                             break;
+                        case 0x52: //query status command part2
+
+                            if (Busy == 0) {
+                                if (Serial_Buffer[2] == 0x00) {
+                                    Busy = 1;
+
+                                    //INTCONbits.GIE = 0;
+                                    productType = read_i2c(EEPROM_ProductType);
+                                    fwver = read_i2c(EEPROM_FWVer);
+                                    NUM = NUM_REC;                                    
+                                    //INTCONbits.GIE = 1;
+
+                                    Serial_Buffer_Out[0] = Serial_SOT;
+                                    Serial_Buffer_Out[1] = productType;
+                                    Serial_Buffer_Out[2] = fwver;
+                                    Serial_Buffer_Out[3] = NUM;
+                                    Serial_Buffer_Out[4] = Serial_EOT;
+
+                                    __delay_ms(100);
+
+                                    //INTCONbits.GIE = 0;
+                                    for (i = 0; i < 5; i++) {
+                                        Write1USART(Serial_Buffer_Out[i]);
+                                    }
+                                    //INTCONbits.GIE = 1;
+                                }
+                                flushOut();
+                                Busy = 0;
+                            }
+                            break;                              
 
                             /*case 0x64: //program motor speed
                             
@@ -831,12 +1175,6 @@ void main(void) {
                                         Vmotor_Time = 1000;
                                         break;
 
-                                    case 0x82:
-                                    default:
-                                        Vmotor_Time = 2000;
-                                        vib_Time = 0x82;
-                                        break;
-
                                     case 0x83:
                                         Vmotor_Time = 3000;
                                         break;
@@ -848,10 +1186,16 @@ void main(void) {
                                     case 0x85:
                                         Vmotor_Time = 5000;
                                         break;
+                                        
+                                    case 0x82:
+                                    default:
+                                        Vmotor_Time = 2000;
+                                        vib_Time = 0x82;
+                                        break;                                        
                                 }
-                                INTCONbits.GIE = 0;
+                                //INTCONbits.GIE = 0;
                                 write_i2c(EEPROM_VibTime, vib_Time);
-                                INTCONbits.GIE = 1;
+                                //INTCONbits.GIE = 1;
 
                                 Busy = 0;
                             }
@@ -863,15 +1207,67 @@ void main(void) {
                                 delay_motor_stop_time = Serial_Buffer[2];
                                 Motor_Stop_Delay_Time = delay_motor_stop_time;
 
-                                INTCONbits.GIE = 0;
+                                //INTCONbits.GIE = 0;
                                 write_i2c(EEPROM_MotorStopPosition, delay_motor_stop_time);
-                                INTCONbits.GIE = 1;
+                                //INTCONbits.GIE = 1;
 
                                 Busy = 0;
                             }
 
                             break;
-
+                        case 0x54: //Vibration Mode Selection
+                            if (Busy == 0){
+                                Busy = 1;
+                                
+                                if (Serial_Buffer[2] == 0x71){ //U0 0% Vibration Mode
+                                    duty_cycle = PWM_Selection(hundred_percent);
+                                }
+                                else if (Serial_Buffer[2] == 0x72){ //U1 25% Vibration Mode
+                                    duty_cycle = PWM_Selection(zero_percent);
+                                }
+                                else if (Serial_Buffer[2] == 0x73){ //U2 50% Vibration Mode
+                                    duty_cycle = PWM_Selection(twentyfive_percent);
+                                }
+                                else if (Serial_Buffer[2] == 0x74){ //U3 75% Vibration Mode
+                                    duty_cycle = PWM_Selection(fifty_percent);
+                                }
+                                else if (Serial_Buffer[2] == 0x75){ //U4 100% Vibration Mode
+                                    duty_cycle = PWM_Selection(seventyfive_percent);
+                                }
+                                dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                                ToggleVIB_Mode();                                
+                                WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
+                                __delay_ms(300);
+                                Busy = 0;       
+                            }
+                            break;
+                        case 0x74: //Cycle Selection
+                            if (Busy == 0){
+                                Busy = 1;
+                                if (Serial_Buffer[2] == 0x65) {
+                                    NUM = 49;
+                                }
+                                else if (Serial_Buffer[2] == 0x66){
+                                    NUM = 90;
+                                } else {
+                                    NUM = (unsigned int)Serial_Buffer[2];
+                                }
+                                NUM_REC = NUM;
+                                WriteSTLED316SData(NUM, vibration_mode);
+                                Busy = 0;
+                            }
+                            break;
+                        case 0x55: //Product Type
+                            if (Busy == 0){
+                                Busy = 1;
+                                productType = Serial_Buffer[2];
+                                if (productType != 0x00 && productType != 0x01)
+                                //INTCONbits.GIE = 0;
+                                write_i2c(EEPROM_ProductType, productType);
+                                //INTCONbits.GIE = 1;
+                                Busy = 0;
+                            }
+                            break;                            
                     }
 
                     Serial_Flag = 0;
@@ -880,8 +1276,7 @@ void main(void) {
                 } else {
                     OpMode = MANUAL_MODE;
                 }
-
-
+    
         } //end switch case
     }//end while loop
 
@@ -953,12 +1348,106 @@ void __interrupt() high_isr(void) {
 
             Serial_Count++;
         }
-    } else {
+        //PIR1bits.RC1IF = 0; //20240403: erdiongson
+    }
+   else if (DataRdy2USART()) //USART Receive interrupt FLAG
+    {
+      //OpMode = MANUAL_MODE;
+      //ToggleVIB_Mode();
+      handle_uart_communication(Motor_Stop_Delay_Time,
+                                errorcounter,
+                                Vmotor_Time,
+                                vibration_mode);
+      OpMode = MANUAL_MODE;
+      
+      //ToggleVIB_Mode();
+      //OpMode = MANUAL_MODE;
+      
+       /*Serial_Count = 0;
+       while ((Serial_Buffer[Serial_Count] = Read2USART()) != Serial_SOT);
+      
+       for (Serial_Count = 1; Serial_Count < 5; Serial_Count++) {
+         Serial_Buffer[Serial_Count] = Read2USART();
+       }
+
+       if(Serial_Buffer[4] == Serial_EOT && ((Serial_Flag) == 0 || (Busy == 1)))
+       {
+         Serial_Count = 0;
+       }
+       
+       Serial_Flag = 1;
+       OpMode = AUTO_MODE2;*/
+
+       
+
+/***********************  Original Code  **************************************
+        c = Read2USART();
+        if ((c == Serial_SOT) && ((Serial_Flag == 0) || (Busy == 1))) {
+            Serial_GData = 1;
+            Serial_Count = 0;
+            Serial_Buffer[Serial_Count] = c;
+            Serial_Count++;
+        } else if (Serial_GData == 1) {
+            Serial_Buffer[Serial_Count] = c;
+
+            if (Serial_Count < 5) {
+                if (c == Serial_EOT) {
+                    Temp = Serial_Buffer[1] + Serial_Buffer[2];
+
+                    if (Temp == Serial_Buffer[3]) {
+                        if (Busy == 0 || Serial_Buffer[2] == 0xF5) {
+                            //INTCONbits.GIE = 0;
+                            for (i = 0; i < 5; i++) {
+                                Write2USART(Serial_Buffer[i]);
+                            }
+                            //INTCONbits.GIE = 1;
+                        } else {
+                            //INTCONbits.GIE = 0;
+                            for (i = 0; i < 5; i++) {
+                                Write2USART(CMD_BUSY);
+                            }
+                            //INTCONbits.GIE = 1;
+                        }
+
+                        Serial_Flag = 1;
+                        Serial_Count = 0;
+                        OpMode = AUTO_MODE2;
+
+                    } else {
+                        Serial_Flag = 0;
+                        Serial_Count = 0;
+
+                        //INTCONbits.GIE = 0;
+                        for (i = 0; i < 5; i++) {
+                            Write2USART(NAK);
+                        }
+                        //INTCONbits.GIE = 1;
+                    }
+
+                    if (Serial_Buffer[2] == 0xF5 && OpMode == AUTO_MODE2) {
+                        Stop = 1;
+                    }
+                }
+            } else {
+                Serial_GData = 0;
+            }
+
+            Serial_Count++;
+        }
+************************  Original Code  *************************************/
+    }
+    else {
         if (RCSTA1bits.OERR == 1) {
             RCSTA1bits.OERR = 0; // clear overrun if it occurs
             RCSTA1bits.CREN = 0;
             RCSTA1bits.CREN = 1;
         }
+        /*if (RCSTA2bits.OERR == 1) {
+            RCSTA2bits.OERR = 0; // clear overrun if it occurs
+            RCSTA2bits.CREN = 0;
+            RCSTA2bits.CREN = 1;
+        }*/
+        //PIR1bits.RC1IF = 0; //20240403: erdiongson
     }
 
     if (TMR1IF_triggered == true) {
@@ -1025,11 +1514,14 @@ unsigned int Read_IR(void) {
     if (IR_Status == 1)//white
     {
         //20240228: erdionson - Debounce for Handheld
-        __delay_ms(5);
-        if(IR_Status == 1){
+        if (productType == 0x00){ //Handheld
+            __delay_ms(5);
+            if(IR_Status == 1){
+                return 0;
+            }
+        } else { //Benchtop
             return 0;
         }
-        //return 0;
     } else //black
     {
         return 1;
@@ -1335,8 +1827,13 @@ void Homing_Again_Auto(void) {
     }
 
     NUM = 0;
-    OpMode = AUTO_MODE;
-
+    if(OpMode == AUTO_MODE)
+    {
+        OpMode = AUTO_MODE;
+    }
+    else {
+        OpMode = AUTO_MODE2;    
+    }
 }
 
 /****************************************************************************
@@ -1374,8 +1871,14 @@ void readWeighingData(void) {
     Serial_Buffer_Out[4] = Serial_EOT;
 
     INTCONbits.GIE = 0;
-    for (i = 0; i < 5; i++) {
+    if (OpMode == AUTO_MODE){
+      for (i = 0; i < 5; i++) {
         Write1USART(Serial_Buffer_Out[i]);
+      }
+    } else if (OpMode == AUTO_MODE2){
+        for (i = 0; i < 5; i++) {
+          Write2USART(Serial_Buffer_Out[i]);
+        }
     }
     INTCONbits.GIE = 1;
 
@@ -1486,4 +1989,39 @@ void Test_LED (void){
         AMBER_LED = 0;
         test_redled = 0;
     }
+}
+
+void vibrationMotorControl(unsigned int pwm_msg) {
+        duty_cycle = PWM_Selection(pwm_msg);
+        dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+        ToggleVIB_Mode();
+}
+
+void PWM1_Init(long desiredFrequency) {
+    PR2 = (_XTAL_FREQ / (desiredFrequency * 4 * TMR2PRESCALE)) - 1; //Setting the PWM period
+    CCPR1L = 0; //Initial duty cycle is 0
+    TRISC2 = 0; //Setting the CCP1 pin as output for PWM out
+}
+
+void PWM1_SetDutyCycle(unsigned int dutyCycle) {
+    if (dutyCycle < 1024) //10-bit max value is 1023
+    {
+        dutyCycle = ((float) dutyCycle / 1023)*(_XTAL_FREQ / (PWM_FREQ * 4 * TMR2PRESCALE)) - 1;
+        CCP1CONbits.DC1B = dutyCycle & 0x03; //Taking the base 2 LSBs
+        CCPR1L = dutyCycle >> 2; //Shifting to get the remaining 8 bits
+    }
+}
+
+void PWM1_Start() {
+    CCP1CON = 0b00001100; //PWM mode
+    T2CON = 0b00000100; //Timer2 ON, prescaler 1
+}
+
+void PWM1_Stop() {
+    CCP1CON = 0x00; //PWM off
+}
+
+void pwm_set(uint16_t duty){
+    CCP1CONbits.DC1B = (uint8_t)(duty & 0x0003);
+    CCPR1L = (uint8_t)(duty >> 2);
 }

@@ -39,6 +39,7 @@ extern "C" {
 
 
     //#include <xc.h>
+#include <stdbool.h>    
 
 #define _XTAL_FREQ 8000000
 
@@ -49,11 +50,39 @@ extern "C" {
 #define EEPROM_MotorStopPosition    0x0050
 #define EEPROM_MotorPauseTime       0x0060
 #define EEPROM_PWMDutyCycle         0x0070
+#define EEPROM_FWVer                0x0080
+#define EEPROM_ProductType          0x0090
 
 #define Busy1USART( )  (!TXSTA1bits.TRMT)
 #define DataRdy1USART( ) (PIR1bits.RC1IF)
-
+#define Busy2USART( )  (!TXSTA2bits.TRMT2)
+#define DataRdy2USART( ) (PIR3bits.RC2IF)
+    
+/******************************************************************************
+* PWM Duty Cycle Selection
+******************************************************************************/
+#define zero_percent       0x00
+#define twentyfive_percent 0x01
+#define fifty_percent      0x02
+#define seventyfive_percent 0x03
+#define hundred_percent    0x04
+        
+    //Global Variables from main.c that will be accessed by other *.c files
     extern unsigned char PWM_reg;
+    extern unsigned int NUM;
+    extern unsigned int NUM_REC;
+    extern unsigned char Busy;
+    extern unsigned char Stop;
+    extern int dispense;
+    extern unsigned int Motor_Pause_Time;
+    
+    extern volatile unsigned char pause_Time;
+    extern volatile unsigned char vib_Time;
+    extern unsigned int productType; //1 = Benchtop; 0 = Handheld
+    extern unsigned int fwver;
+    enum Op_Mode {
+    MANUAL_MODE, IDLE_MODE, AUTO_MODE, AUTO_MODE2 };
+    extern volatile char OpMode;
 
     void init(void);
     void initMotor(void);
@@ -91,6 +120,26 @@ extern "C" {
     void flushOut(void);
     void readWeighingData(void);
     void Homing_Again_Auto(void);
+    //20230419 : erdiongson - Added Write2USART and Read2USART for SDB1R
+    void Write2USART(char data);
+    char Read2USART(void);
+
+    //Added by leo
+    //20231005 : erdiongson - Added for reference on Duty Cycle
+    // 0 = zero; 7 = 25%; 9 = 50%; 12 = 75%; 20 = 100%;
+    unsigned int duty_cycle = 0;
+    unsigned int dutyCycle_reg;
+    volatile unsigned char PWM_Duty_Cycle;
+    void vibrationMotorControl(unsigned int pwm_msg);
+    unsigned int PWM_Selection (unsigned int msg);
+    void pwm_set(uint16_t duty);
+    void Homing_Again_Auto(void);
+
+    void PWM1_Init(long desiredFrequency);
+    void PWM1_SetDutyCycle(unsigned int dutyCycle);
+
+    void PWM1_Start();
+    void PWM1_Stop();    
 
 
 #ifdef	__cplusplus
