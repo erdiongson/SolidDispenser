@@ -476,7 +476,9 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
 /*********************Read PWM Setup - END*************************************/     
     
         // Wait for start of transmission byte
-        while ((receivedBytes[0] = receiveData(2)) != 0xA5);
+        while ((receivedBytes[0] = receiveData(2)) != 0xEF){
+            return;
+        };
 
         // Receive the remaining bytes
         for (int i = 1; i < 5; i++) {
@@ -489,14 +491,17 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
         unsigned char data1 = receivedBytes[2];
         unsigned char data2 = receivedBytes[3];
         unsigned char eot = receivedBytes[4];
-        unsigned char SOTSend = 0xA5;
+        unsigned char SOTSend = 0xEF;
         unsigned char commandSend, data1Send, data2Send;
-        unsigned char EOTSend = 0x5A;
+        unsigned char EOTSend = 0xFE;
 
-        if (receivedBytes[0] == 0xA5 && eot == 0x5A) {
+        if (receivedBytes[0] == 0xEF && eot == 0xFE) {
+            //20240719: erdiongson - added the acknowledge for every command.
+            sendResponse(receivedBytes[0], command, data1, data2, eot);
             // Process the command and send the appropriate response
             switch (command) {
-                case Handshake: // Handshake
+                // 0x06 - Combo and 1R Handshake Command
+                case Handshake:
                     commandSend = Response_Handshake;
                     data1Send = 0x00;
                     data2Send = commandSend + data1Send;
@@ -506,11 +511,44 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                     //PIE3bits.RC2IE = 0; // Enable UART2 receive interrupt
                     //PIE3bits.TX2IE = 0; // Enable UART2 transmit interrupt 
                     break;
+                //0x44 - Start or Stop Command (Continuous Dispense)
+                case SDB_ContinuousDisp_START:
+                    if (data1 == 0xF1 && Busy == 0) //auto start command
+                    {
+                      Stop = 0;
+                      Busy = 1;
+                      NUM = NUM_REC;
+
+                      errorcounter = errorTime0;
+                      Homing_Again_Auto();
+                    } else if (data1 == 0xF2 && Busy == 0) //semi auto
+                    {
+                      dispense = 1;
+                      Busy = 1;
+                      errorcounter = errorTime0;
+                      Homing_Again_Manual();
+                    } else if (data1 == 0xF5 && Busy == 0)
+                    {
+                      dispense = 0;
+                    }
+                    Stop = 0;
+                    Busy = 0;
+                    break;
+                //0x46 - N-Cycle Mode Command
                 case SDB_Dispense_START:
                     // Implement SDB dispense start
-                    //if(data2 == (command + data1)){ //Checksum Checking
-                    //pwm_set(duty_cycle);
-                      //Vibrate mode
+                    //Vibrate mode
+                    if(data1 != 0x00 && Busy == 0)
+                    {
+                      //20240520: erdiongson - copy COMBO Logic for dispensing
+                      dispense = 1;
+                      Busy = 1;                        
+                      NUM = (unsigned int)data1;
+                      
+                      WriteSTLED316SData(NUM, vibration_mode);
+                      
+                      errorcounter = errorTime0;
+                      
                       if (vibration_mode == 1) {
                         VIB_MOTOR_ON = 1;
                         delay2_1ms(Vmotor_Time);
@@ -523,6 +561,7 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                       }
                       //Dispense Mode
                       IR_ON = 1;
+                      delay2_1ms(Motor_Pause_Time);
                       MotorON();
                       __delay_ms(150); //20230922 - ediongson change in rotation
                       errorcounter = errorTime0;
@@ -569,57 +608,115 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                       data2Send = commandSend + data1Send;  
                       sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend); // Dispense_DONE
                       //ClearRXBuffer();
-                    //}
+                    //}                        
+                    } else if (data1 == 0xF5 && Busy == 0)
+                    {
+                      dispense = 0;
+                    }
+                    dispense = 0;
+                    Stop = 0;
+                    Busy = 0;
+                    break;
+                case Set_MotorPauseTime:
+                    if (Busy == 0) {
+                      Busy = 1;
+                      pause_Time = data1;
+                      switch (pause_Time) {
+                        case 0x31:
+                          Motor_Pause_Time = 1000;
+                          break;
+                        case 0x32:
+                          Motor_Pause_Time = 2000;
+                          break;                         
+                        case 0x33:
+                          Motor_Pause_Time = 3000;
+                          break;
+                        case 0x34:
+                          Motor_Pause_Time = 4000;
+                          break;
+                        case 0x35:
+                          Motor_Pause_Time = 5000;
+                          break;
+                        case 0x30:
+                        default:
+                          Motor_Pause_Time = 0;
+                          pause_Time = 0x30;
+                          break;                                        
+                        }
+                      write_i2c(EEPROM_MotorPauseTime, pause_Time);
+                      Busy = 0;
+                    }                    
+                    break;
+                case Set_MotorVibTime:
+                    if (Busy == 0)
+                    {
+                      Busy = 1;
+                      vib_Time = data1;
+                      switch (vib_Time) {
+                        case 0x81:
+                          Vmotor_Time = 1000;
+                          break;
+                        case 0x83:
+                          Vmotor_Time = 3000;
+                          break;
+                        case 0x84:
+                          Vmotor_Time = 4000;
+                          break;
+                        case 0x85:
+                          Vmotor_Time = 5000;
+                          break;
+                        case 0x82:
+                        default:
+                          Vmotor_Time = 2000;
+                          vib_Time = 0x82;
+                          break;                                        
+                      }
+                      //INTCONbits.GIE = 0;
+                      write_i2c(EEPROM_VibTime, vib_Time);
+                      //INTCONbits.GIE = 1;
+                      Busy = 0;
+                    }
+                    break;
+                case Read_Query1:
+                    if (Busy == 0) {
+                      if (data1 == 0x00) {
+                        Busy = 1;
+                        //INTCONbits.GIE = 0;
+                        pause_Time = read_i2c(EEPROM_MotorPauseTime);
+                        vib_Time = read_i2c(EEPROM_VibTime);
+                        dutyCycle_reg = read_i2c(EEPROM_PWMDutyCycle);
+                        //INTCONbits.GIE = 1;
+
+                        commandSend = pause_Time;
+                        data1Send = dutyCycle_reg;
+                        data2Send = vib_Time;
+                        __delay_ms(100);
+                        sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
+                      }
+                      Busy = 0;
+                    }                    
+                    break;
+                case Read_Query2:
+                    if (Busy == 0) {
+                      if (data1 == 0x00) {
+                        Busy = 1;
+                        //INTCONbits.GIE = 0;
+                        productType = read_i2c(EEPROM_ProductType);
+                        fwver = read_i2c(EEPROM_FWVer);
+                        NUM = NUM_REC;                                    
+                        //INTCONbits.GIE = 1;
+
+                        commandSend = productType;
+                        data1Send = fwver;
+                        data2Send = NUM;
+                        __delay_ms(100);
+                        sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);                        
+
+                      }
+                      Busy = 0;
+                    }                    
                     break;
                 case Vibrate_Mode_ON:
-                    //commandSend = Response_VibModeChange;
-                    
-/******************************************************************************
-                    switch(data1){
-                        case Vibration_U1:
-                            vibrationMotorControl(zero_percent);
-                                                       
-                            commandSend = Vibrate_Mode_ON;
-                            data1Send = Vibration_U1;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            //break;
-                        case Vibration_U2:
-                            vibrationMotorControl(twentyfive_percent);
-                                                       
-                            commandSend = Vibrate_Mode_ON;
-                            data1Send = Vibration_U2;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);
-                            //break;
-                        case Vibration_U3:
-                            vibrationMotorControl(fifty_percent);
-                                                       
-                            commandSend = Vibrate_Mode_ON;
-                            data1Send = Vibration_U3;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);                            
-                            //break;
-                        case Vibration_U4:
-                            vibrationMotorControl(seventyfive_percent);
-                            
-                            commandSend = Vibrate_Mode_ON;
-                            data1Send = Vibration_U4;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);                            
-                            //break;
-                        case Vibrate_Mode_OFF:
-                            vibrationMotorControl(hundred_percent);
-                            vibration_mode = 0;                            
-                            commandSend = Vibrate_Mode_ON;
-                            data1Send = Vibrate_Mode_OFF;
-                            data2Send = commandSend + data1Send;
-                            sendResponse(SOTSend, commandSend, data1Send, data2Send, EOTSend);                            
-                            //break;
-                        default:
-                            break;
-                    }
-*******************************************************************************/
                     if (data1 == 0x71){ //U0 0% Vibration Mode
                       duty_cycle = PWM_Selection(hundred_percent);
                       vibration_mode = 0;                            
@@ -649,18 +746,48 @@ void handle_uart_communication(unsigned int Motor_Stop_Delay_Time,
                     pwm_set(duty_cycle);
                     __delay_ms(300);
                     break;
-                case SDB_ContinuousDisp_START:
-                    if (data1 == 0xF1)
-                    {
-                        NUM = NUM_REC;
-                        
+                case Set_Cycle:
+                    if (Busy == 0){
+                      Busy = 1;
+                      if (data1 == 0x65) {
+                        NUM = 49;
+                      }
+                      else if (data1 == 0x66){
+                        NUM = 90;
+                      } else {
+                        NUM = (unsigned int)data1;
+                      }
+                      NUM_REC = NUM;
+                      WriteSTLED316SData(NUM, vibration_mode);
+                      Busy = 0;
                     }
+                    break;
+                case Set_ProductType:
+                    if (Busy == 0){
+                      Busy = 1;
+                      productType = data1;
+                      if (productType != 0x00 && productType != 0x01){
+                        Busy = 0;                                    
+                      }
+                      else {
+                        write_i2c(EEPROM_ProductType, productType);
+                        Busy = 0;   
+                      }
+                    }                    
                     break;
                 default:
                     break;
                     //WriteSTLED316SVibMode(dutyCycle_reg, vibration_mode);
             }//End of Switch Case
-        }//End of if Else
+            OpMode = MANUAL_MODE;
+        }//End of if
+        else {
+            command = 0xFF;
+            data1 = 0xFF;
+            data2 = 0xFF;
+            sendResponse(SOTSend, command, data1, data2, EOTSend);
+            OpMode = MANUAL_MODE;
+        }
         return;
     //}
 }
@@ -675,7 +802,7 @@ char* getBuffer(unsigned char buffer[5]){
     //unsigned char receivedBytes[5];
     
     // Wait for start of transmission byte
-    while ((buffer[0] = receiveData(2)) != 0xA5);
+    while ((buffer[0] = receiveData(2)) != 0xEF);
     
     for (int i = 1; i < 5; i++) {
       buffer[i] = receiveData(2);

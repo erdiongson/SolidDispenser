@@ -67,10 +67,22 @@ extern "C" {
 #define seventyfive_percent 0x03
 #define hundred_percent    0x04
         
-
+    //Global Variables from main.c that will be accessed by other *.c files
     extern unsigned char PWM_reg;
     extern unsigned int NUM;
     extern unsigned int NUM_REC;
+    extern unsigned char Busy;
+    extern unsigned char Stop;
+    extern int dispense;
+    extern unsigned int Motor_Pause_Time;
+    
+    extern volatile unsigned char pause_Time;
+    extern volatile unsigned char vib_Time;
+    extern unsigned int productType; //1 = Benchtop; 0 = Handheld
+    extern unsigned int fwver;
+    enum Op_Mode {
+    MANUAL_MODE, IDLE_MODE, AUTO_MODE, AUTO_MODE2 };
+    extern volatile char OpMode;
 
     void init(void);
     void initMotor(void);
@@ -121,6 +133,7 @@ extern "C" {
     void vibrationMotorControl(unsigned int pwm_msg);
     unsigned int PWM_Selection (unsigned int msg);
     void pwm_set(uint16_t duty);
+    void Homing_Again_Auto(void);
 
     void PWM1_Init(long desiredFrequency);
     void PWM1_SetDutyCycle(unsigned int dutyCycle);

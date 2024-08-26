@@ -86,17 +86,17 @@
 /******************************************************************************
 * Write USART Data
 ******************************************************************************/
-#define Serial_SOT	0xA5 //Serial Out Buffer Start Bit
-#define Serial_EOT	0x5A //Serial Out Buffer End Bit
+#define Serial_SOT	0xEF //Serial Out Buffer Start Bit
+#define Serial_EOT	0xFE //0x5A //Serial Out Buffer End Bit
 #define NAK         0x15
 #define CMD_BUSY    0x16
 
 #define errorTime0  30 //IR sensor
 #define Time0       20 //Low Power
 
-enum Op_Mode {
+/*enum Op_Mode {
     MANUAL_MODE, IDLE_MODE, AUTO_MODE, AUTO_MODE2
-};
+};*/
 
 unsigned char Serial_Flag;
 unsigned char Serial_GData;
@@ -173,7 +173,7 @@ char Read1USART(void);
 void flush(void);
 void flushOut(void);
 void readWeighingData(void);
-void Homing_Again_Auto(void);
+//void Homing_Again_Auto(void);
 void WriteSTLED316SErr(char msg);
 void InitTimer1(void);
 void AD_capture_BattVoltage(void);
@@ -1352,12 +1352,13 @@ void __interrupt() high_isr(void) {
     }
    else if (DataRdy2USART()) //USART Receive interrupt FLAG
     {
-      OpMode = MANUAL_MODE;
+      //OpMode = MANUAL_MODE;
       //ToggleVIB_Mode();
       handle_uart_communication(Motor_Stop_Delay_Time,
                                 errorcounter,
                                 Vmotor_Time,
                                 vibration_mode);
+      OpMode = MANUAL_MODE;
       
       //ToggleVIB_Mode();
       //OpMode = MANUAL_MODE;

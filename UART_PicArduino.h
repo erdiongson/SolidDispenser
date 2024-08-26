@@ -33,6 +33,12 @@ typedef enum {
     Vibration_U4 = 0x75,       //Vibration U4 Setting 1RC
     SDB_Dispense_START = 0x46, //N-Cycle START Mode 1RC
     SDB_ContinuousDisp_START = 0x44, //Continuous Dispense Start
+    Set_MotorPauseTime = 0x23,
+    Set_MotorVibTime = 0x65,
+    Set_Cycle = 0x74,
+    Set_ProductType = 0x55,
+    Read_Query1 = 0x51,
+    Read_Query2 = 0x52,
     SDB_Dispense_PAUSE = 0xC4,
     SDB_Dispense_STOP = 0xC5,
     IR_Censor_Failure = 0xE1,     //N-Cycle Error 1
