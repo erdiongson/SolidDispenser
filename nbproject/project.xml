@@ -3,6 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>Solid_Dispenser_v4.0</name>
+            <name>Solid_Dispenser_V3.72_PLC_20241121</name>
             <name>Solid_Dispenser_V3.72_PLC</name>
             <name>Solid_Dispenser_V3.3</name>
             <name>Solid_Dispenser_V3.3</name>

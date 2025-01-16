@@ -134,7 +134,10 @@ extern "C" {
     unsigned int PWM_Selection (unsigned int msg);
     void pwm_set(uint16_t duty);
     void Homing_Again_Auto(void);
-
+    void handle_uart_communication(unsigned int Motor_Stop_Delay_Time, 
+                               volatile long errorcounter, 
+                               unsigned int Vmotor_Time, 
+                               unsigned char vibration_mode);
     void PWM1_Init(long desiredFrequency);
     void PWM1_SetDutyCycle(unsigned int dutyCycle);
 

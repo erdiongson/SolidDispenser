@@ -21,6 +21,15 @@ baud rate = 9600
 #define BAUD 19200 // Define baud rate
 #define BRG ((_XTAL_FREQ/16/BAUD) - 1) //Formula for high speed calculation if baud rate is greater than 255
 
+unsigned char receivedBytes[5];
+unsigned char command;
+unsigned char data1;
+unsigned char data2;
+unsigned char eot;
+unsigned char SOTSend = 0xEF;
+unsigned char commandSend, data1Send, data2Send;
+unsigned char EOTSend = 0xFE;
+
 //Enum added by Leo - 05May23
 
 typedef enum {
@@ -39,8 +48,8 @@ typedef enum {
     Set_ProductType = 0x55,
     Read_Query1 = 0x51,
     Read_Query2 = 0x52,
-    SDB_Dispense_PAUSE = 0xC4,
-    SDB_Dispense_STOP = 0xC5,
+    SDB_Dispense_PAUSE = 0x31,
+    SDB_Dispense_STOP = 0x32,
     IR_Censor_Failure = 0xE1,     //N-Cycle Error 1
     Marker_Not_Detected = 0xE2,   //N-Cycle Error 2
     Response_Handshake = 0x60,
@@ -90,14 +99,13 @@ void uart_print(const char *str);
 void uart_println(unsigned char num);
 void uart_print_hex(unsigned char num);
 void print_received_block(unsigned char uart_channel, unsigned char *data, unsigned int size);
-void handle_uart_communication(unsigned int Motor_Stop_Delay_Time, 
-                               volatile long errorcounter, 
-                               unsigned int Vmotor_Time, 
-                               unsigned char vibration_mode);
+
 unsigned char receiveData(unsigned char uart_channel);
 void delay2_1ms(unsigned int time);
 void ClearRXBuffer();
 char* getBuffer(unsigned char buffer[5]);
+void flushReceiveBytes(void);
+void flushSendVars(void);
 
 ///******************************************************************************
 // * PWM Duty Cycle Selection
