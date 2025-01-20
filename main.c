@@ -36,7 +36,13 @@
  *                   in handheld;
  *                ii. Adjusted the debounce of the LEFT, RIGHT, and MODE buttons;
  *                iii. Adjusted the delay on reading IR sensor to compensate with the changes
- *                   in Read_IR().
+ *                   in Read_IR(). This has beed solved already on the HW side so we opted to return the code.
+ *                iv. [20241107] - Changed the delay to 110 to accommodate the small head for regular SDB. 
+ * Created: 2025-01-20
+ * Author: ediongson, 11:34AM
+ * Version 4.0 : i. This version includes the updates on the API PC and PLC controls using UART 1 and UART 2 respectively;
+ *               ii. UART 1 has interrupt while UART 2 is polling;
+ *               iii. This version of the code can be used for SDB1, SDB2, SDH, SDB-1C, SDB-1R and SDB-1A.
  */
 
 
@@ -2044,14 +2050,14 @@ unsigned int Read_IR(void) {
     if (IR_Status == 1)//white
     {
         //20240228: erdionson - Debounce for Handheld
-        if (productType == 0x00){ //Handheld
+        /*if (productType == 0x00){ //Handheld
             __delay_ms(5);
             if(IR_Status == 1){
                 return 0;
             }
-        } else { //Benchtop
+        } else { //Benchtop*/
             return 0;
-        }
+        //}
     } else //black
     {
         return 1;
@@ -2158,7 +2164,8 @@ void Homing_Again_Manual(void) {
         //default delay 350 ms
         //20230605: erdiongson - changed to 150 for small head
         //20240228: erdiongson - changed to 140 to compensate for updated Read_IR
-        __delay_ms(140); 
+        //20241107: Changed to 120, final 110
+        __delay_ms(110); 
         errorcounter = errorTime0;
         //Dispense motor stops at IR Sensor Detection
         //IR sensor aligned with the marker
@@ -2298,8 +2305,9 @@ void Homing_Again_Auto(void) {
         //default delay 350 ms
         //20230605: erdiongson - changed to 150 for small head
         //20240228: erdiongson - changed to 140 to compensate for updated Read_IR
-        __delay_ms(140);
-
+        //20241107: Changed to 120, final 110
+        __delay_ms(110);
+        
         errorcounter = errorTime0;
 
         do {
